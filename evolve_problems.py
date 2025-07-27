@@ -1,6 +1,7 @@
 import os
 import time
-import csv # --- 変更点: csvライブラリをインポート ---
+import csv
+import re
 from openai import OpenAI
 
 # --- 1. APIクライアントの設定 ---
@@ -81,9 +82,20 @@ with open(csv_filename, 'w', newline='', encoding='utf-8-sig') as file:
             print("--- APIからの応答全文 ---\n", response_text, "\n------------------------") 
             
             # 応答テキストから最終的な問題文だけを抽出する
+            # 正規表現を使って、より柔軟に最終的な問題文を抽出する
             final_instruction = ""
-            if "#Finally Rewritten Instruction#:" in response_text:
-                final_instruction = response_text.split("#Finally Rewritten Instruction#:")[1].strip()
+            # パターン:「#Finally...#」という文字列を探し、その後の全てを抜き出す
+            # 「re.IGNORECASE」で大文字・小文字の違いを無視し、「re.DOTALL」で改行もマッチさせる
+            match = re.search(r'#Finally Rewritten Instruction#\s*:\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
+            
+            if match:
+                # パターンに一致した部分の、1番目のカッコ（.*）の中身を取得する
+                final_instruction = match.group(1).strip()
+            else:
+                # もし上記パターンで見つからない場合、コロンなしのパターンも試す
+                match = re.search(r'#Finally Rewritten Instruction#\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
+                if match:
+                    final_instruction = match.group(1).strip()
             
             print("進化した問題:\n", final_instruction)
             
