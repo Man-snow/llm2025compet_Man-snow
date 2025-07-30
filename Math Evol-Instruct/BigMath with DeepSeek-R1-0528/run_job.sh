@@ -5,6 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8               # vLLMで利用するGPU数
 #SBATCH --time=02:00:00                 # 最大実行時間 (HH:MM:SS)
+#SBATCH --mem=64G                       # !!修正!!: ジョブが使用するメインメモリを64GBに指定
 #SBATCH --output=slurm_logs/%x-%j.out   # 標準出力ログの保存場所
 #SBATCH --error=slurm_logs/%x-%j.err    # エラーログの保存場所
 
@@ -12,8 +13,12 @@
 echo "ジョブ開始: $(date)"
 echo "実行ノード: $(hostname)"
 
+# スクリプト自身の場所に移動して、パスの問題を解決する
+cd "$(dirname "$0")"
+echo "作業ディレクトリをスクリプトの場所に変更しました: $(pwd)"
+
+
 # ログ保存用ディレクトリの作成
-# このスクリプトはあなたのリポジトリから実行されるので、ログもそこに作られます
 mkdir -p slurm_logs
 
 # 【重要】事前準備
@@ -32,8 +37,7 @@ else
 fi
 
 # --- Pythonスクリプトの実行 ---
-# このスクリプトはあなたのリポジトリのルートから実行されるため、cdは不要
-echo "Pythonスクリプト (generate_problems.py) を実行します..."
-python generate_problems.py
+echo "Pythonスクリプト (generate_server.py) を実行します..."
+python generate_server.py
 
 echo "ジョブ終了: $(date)"
