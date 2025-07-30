@@ -61,7 +61,7 @@ def main():
     print("--- ステップ1: データセットの準備 ---")
     # Gated Datasetにアクセスするため、事前に `huggingface-cli login` が必要
     try:
-        # !!修正!!: 不要になった trust_remote_code=True を削除
+        # 不要になった trust_remote_code=True を削除
         dataset = load_dataset(SOURCE_DATASET_ID, split="train")
         df = dataset.to_pandas()
     except Exception as e:
@@ -78,11 +78,11 @@ def main():
     # --- 2. vLLMモデルの初期化 ---
     print("--- ステップ2: vLLMモデルの初期化 ---")
     try:
-        # 計算ノードのGPU数(8基)に合わせて並列化
+        # !!修正!!: tensor_parallel_sizeを、モデルのヘッド数(12)で割り切れる4に変更
         llm = LLM(
             model=MODEL_ID,
             quantization="awq",
-            tensor_parallel_size=8, 
+            tensor_parallel_size=4, 
             trust_remote_code=True
         )
         sampling_params = SamplingParams(temperature=0.7, top_p=0.95, max_tokens=1024)
