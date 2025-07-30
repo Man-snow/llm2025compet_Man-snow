@@ -14,7 +14,7 @@ MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct-AWQ"
 # 入力データセット
 SOURCE_DATASET_ID = "SynthLabsAI/Big-Math-RL-Verified"
 # !!修正!!: Hugging Face Hubのアップロード先リポジトリID
-OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-server"
+OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-server-Qwen2.5-1.5B-Instruct-AWQ "
 # 出力ファイル名（バックアップ用）
 OUTPUT_CSV_FILENAME = "evolved_problems_output.csv"
 
@@ -69,7 +69,7 @@ def main():
         return
 
     sorted_df = df.sort_values(by=["llama8b_solve_rate", "problem"], ascending=[True, True])
-    problems_to_process = sorted_df.head(100)
+    problems_to_process = sorted_df.head(1000)
     print(f"データセットの準備が完了しました。処理対象: {len(problems_to_process)}問")
 
     # --- 2. vLLMモデルの初期化 ---
