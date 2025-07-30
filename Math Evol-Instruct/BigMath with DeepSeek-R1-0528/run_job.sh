@@ -37,7 +37,11 @@ else
 fi
 
 # --- Pythonスクリプトの実行 ---
-# このスクリプトはあなたのリポジトリのルートから実行されるため、cdは不要
+# !!修正!!: 実行前にvLLMのコンパイルキャッシュを削除し、破損したキャッシュによるエラーを防ぐ
+echo "古いvLLMコンパイルキャッシュを削除します..."
+rm -rf ~/.cache/vllm/torch_compile_cache
+echo "キャッシュを削除しました。"
+
 echo "Pythonスクリプト (generate_problems.py) を実行します..."
 python generate_problems.py
 
