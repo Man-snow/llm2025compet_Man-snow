@@ -1,7 +1,7 @@
 import os
 import time
 import pandas as pd
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
 from vllm import LLM, SamplingParams
 import re
 from transformers import AutoTokenizer
@@ -13,7 +13,9 @@ from transformers import AutoTokenizer
 MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct-AWQ"
 # 入力データセット
 SOURCE_DATASET_ID = "SynthLabsAI/Big-Math-RL-Verified"
-# 出力ファイル名
+# !!修正!!: Hugging Face Hubのアップロード先リポジトリID
+OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-server"
+# 出力ファイル名（バックアップ用）
 OUTPUT_CSV_FILENAME = "evolved_problems_output.csv"
 
 # 問題を上方修正するためのプロンプト
@@ -59,26 +61,20 @@ def main():
     """
     # --- 1. Hugging Faceデータセットの準備 ---
     print("--- ステップ1: データセットの準備 ---")
-    # Gated Datasetにアクセスするため、事前に `huggingface-cli login` が必要
     try:
-        # 不要になった trust_remote_code=True を削除
         dataset = load_dataset(SOURCE_DATASET_ID, split="train")
         df = dataset.to_pandas()
     except Exception as e:
         print(f"データセットの読み込みに失敗しました: {e}")
         return
 
-    # llama8b_solve_rateの昇順、problemのアルファベット昇順でソート
     sorted_df = df.sort_values(by=["llama8b_solve_rate", "problem"], ascending=[True, True])
-    
-    # 上位100問を取得
     problems_to_process = sorted_df.head(100)
     print(f"データセットの準備が完了しました。処理対象: {len(problems_to_process)}問")
 
     # --- 2. vLLMモデルの初期化 ---
     print("--- ステップ2: vLLMモデルの初期化 ---")
     try:
-        # !!修正!!: tensor_parallel_sizeを、モデルのヘッド数(12)で割り切れる4に変更
         llm = LLM(
             model=MODEL_ID,
             quantization="awq",
@@ -93,9 +89,7 @@ def main():
     print("モデルの初期化が完了しました。")
 
     # --- 3. プロンプトの生成とモデルによる処理 ---
-    print("--- ステップ3: 問題生成と結果の集計 ---")
-    
-    # Qwen2 Instructモデルのチャットテンプレートに合わせてプロンプトを整形
+    print("--- ステップ3: 問題生成 ---")
     messages_list = [
         [
             {"role": "system", "content": "You are a helpful assistant."},
@@ -129,14 +123,27 @@ def main():
             "full_model_output": generated_text
         })
     print("結果の集計が完了しました。")
-
-    # --- 5. 結果をCSVファイルとして保存 ---
-    print(f"--- ステップ5: 結果を'{OUTPUT_CSV_FILENAME}'に保存 ---")
     results_df = pd.DataFrame(results)
+
+    # --- 5. 結果をファイルとHugging Face Hubに保存 ---
+    print(f"--- ステップ5: 結果の保存とアップロード ---")
+    
+    # 5-1. CSVファイルとして保存（バックアップ用）
     results_df.to_csv(OUTPUT_CSV_FILENAME, index=False, encoding='utf-8-sig')
-    print("正常に保存されました。")
-    print("\n--- 生成データ プレビュー ---")
-    print(results_df.head())
+    print(f"結果を'{OUTPUT_CSV_FILENAME}'に保存しました。")
+    
+    # 5-2. Hugging Face Hubへアップロード
+    try:
+        hf_dataset = Dataset.from_pandas(results_df)
+        hf_dataset.push_to_hub(
+            repo_id=OUTPUT_DATASET_ID,
+            private=True # 非公開データセットとして作成
+        )
+        print(f"データセットを '{OUTPUT_DATASET_ID}' に正常にアップロードしました。")
+    except Exception as e:
+        print(f"Hugging Face Hubへのアップロードに失敗しました: {e}")
+
+    print("\n--- 正常に処理が完了しました ---")
 
 if __name__ == "__main__":
     main()
