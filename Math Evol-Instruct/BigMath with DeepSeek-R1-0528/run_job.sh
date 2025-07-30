@@ -25,11 +25,6 @@ echo "実行ノード: $(hostname)"
 export NCCL_P2P_DISABLE=1
 echo "NCCL_P2P_DISABLE=1 に設定しました。"
 
-# スクリプト自身の場所に移動して、パスの問題を解決する
-cd "$(dirname "$0")"
-echo "作業ディレクトリをスクリプトの場所に変更しました: $(pwd)"
-
-
 # ログ保存用ディレクトリの作成
 mkdir -p slurm_logs
 
