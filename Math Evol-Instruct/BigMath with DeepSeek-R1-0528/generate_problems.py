@@ -79,11 +79,10 @@ def main():
             # !!修正!!: 量子化モデルではないため、quantizationを削除
             # !!修正!!: 8基のGPUすべてを使うため、tensor_parallel_sizeを8に変更
             tensor_parallel_size=8, 
+            pipeline_parallel_size=3, # <-- !!修正!!: 3ノードに分割
             trust_remote_code=True,
             # !!修正!!: H100 GPUの性能を最大限に引き出すため、bfloat16を指定
-            dtype="bfloat16",
-            # !!修正!!: 最大シーケンス長を制限し、GPUメモリ使用量を削減
-            max_model_len=16384
+            dtype="bfloat16"
         )
         sampling_params = SamplingParams(temperature=0.7, top_p=0.95, max_tokens=1024)
     except Exception as e:

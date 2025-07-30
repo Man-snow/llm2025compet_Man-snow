@@ -2,7 +2,7 @@
 
 #SBATCH --job-name=evolve-math-deepseek-r1
 #SBATCH --partition=P02                 # !!ご自身のチームのパーティション名に書き換えてください!!
-#SBATCH --nodes=1
+#SBATCH --nodes=3
 #SBATCH --gpus-per-node=8               # vLLMで利用するGPU数
 #SBATCH --time=24:00:00                 # モデルのロード時間を考慮し、最大実行時間を24時間に延長
 #SBATCH --mem=1200G                     # 巨大モデルのロードに必要なシステムメモリを1TBに増量
