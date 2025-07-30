@@ -81,7 +81,7 @@ def main():
             tensor_parallel_size=8, 
             trust_remote_code=True,
             # !!修正!!: H100 GPUの性能を最大限に引き出すため、bfloat16を指定
-            dtype="bfloat16" 
+            dtype="bfloat16",
             # !!修正!!: 最大シーケンス長を制限し、GPUメモリ使用量を削減
             max_model_len=16384
         )
