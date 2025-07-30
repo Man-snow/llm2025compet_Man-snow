@@ -4,18 +4,19 @@ import pandas as pd
 from datasets import load_dataset, Dataset
 from vllm import LLM, SamplingParams
 import re
-# transformersはプロンプトの整形に不要になったため、AutoTokenizerのimportを削除
+from transformers import AutoTokenizer
 
 # --- 定数設定 ---
 
-# !!修正!!: ターゲットの高性能モデルに変更
-MODEL_ID = "deepseek-ai/DeepSeek-R1-0528"
+# 計算ノードで実行する、軽量な量子化モデル
+# Qwen/Qwen2.5-1.5B-Instruct-AWQ は存在しないため、同等の性能を持つ TheBloke/Qwen2-1.5B-Instruct-AWQ を利用します
+MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct-AWQ"
 # 入力データセット
 SOURCE_DATASET_ID = "SynthLabsAI/Big-Math-RL-Verified"
 # !!修正!!: Hugging Face Hubのアップロード先リポジトリID
-OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-deepseek-r1"
+OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-server-Qwen2.5-1.5B-Instruct-AWQ "
 # 出力ファイル名（バックアップ用）
-OUTPUT_CSV_FILENAME = "evolved_problems_output_deepseek-r1.csv"
+OUTPUT_CSV_FILENAME = "evolved_problems_output.csv"
 
 # 問題を上方修正するためのプロンプト
 UPWARD_EVOLUTION_PROMPT_TEMPLATE = """
@@ -68,7 +69,7 @@ def main():
         return
 
     sorted_df = df.sort_values(by=["llama8b_solve_rate", "problem"], ascending=[True, True])
-    problems_to_process = sorted_df.head(100)
+    problems_to_process = sorted_df.head(1000)
     print(f"データセットの準備が完了しました。処理対象: {len(problems_to_process)}問")
 
     # --- 2. vLLMモデルの初期化 ---
@@ -76,14 +77,12 @@ def main():
     try:
         llm = LLM(
             model=MODEL_ID,
-            # !!修正!!: 量子化モデルではないため、quantizationを削除
-            # !!修正!!: 8基のGPUすべてを使うため、tensor_parallel_sizeを8に変更
-            tensor_parallel_size=8, 
-            trust_remote_code=True,
-            # !!修正!!: H100 GPUの性能を最大限に引き出すため、bfloat16を指定
-            dtype="bfloat16" 
+            quantization="awq",
+            tensor_parallel_size=2, 
+            trust_remote_code=True
         )
         sampling_params = SamplingParams(temperature=0.7, top_p=0.95, max_tokens=1024)
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     except Exception as e:
         print(f"モデルの初期化に失敗しました: {e}")
         return
@@ -91,11 +90,14 @@ def main():
 
     # --- 3. プロンプトの生成とモデルによる処理 ---
     print("--- ステップ3: 問題生成 ---")
-    # !!修正!!: DeepSeek-R1はベースモデルのため、特殊なトークンを使わないシンプルなプロンプト形式に変更
-    prompts = [
-        UPWARD_EVOLUTION_PROMPT_TEMPLATE.format(problem=row["problem"])
+    messages_list = [
+        [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": UPWARD_EVOLUTION_PROMPT_TEMPLATE.format(problem=row["problem"])}
+        ]
         for _, row in problems_to_process.iterrows()
     ]
+    prompts = [tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True) for messages in messages_list]
 
     start_time = time.time()
     outputs = llm.generate(prompts, sampling_params)
