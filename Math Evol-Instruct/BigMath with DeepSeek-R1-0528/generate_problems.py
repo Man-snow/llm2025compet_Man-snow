@@ -10,7 +10,7 @@ from transformers import AutoTokenizer
 
 # 計算ノードで実行する、軽量な量子化モデル
 # Qwen/Qwen2.5-1.5B-Instruct-AWQ は存在しないため、同等の性能を持つ TheBloke/Qwen2-1.5B-Instruct-AWQ を利用します
-MODEL_ID = "TheBloke/Qwen2-1.5B-Instruct-AWQ"
+MODEL_ID = "Qwen/Qwen2.5-1.5B-Instruct-AWQ"
 # 入力データセット
 SOURCE_DATASET_ID = "SynthLabsAI/Big-Math-RL-Verified"
 # 出力ファイル名
