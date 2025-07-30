@@ -33,7 +33,7 @@ fi
 
 # --- Pythonスクリプトの実行 ---
 # このスクリプトはあなたのリポジトリのルートから実行されるため、cdは不要
-echo "Pythonスクリプト (generate_problems_server.py) を実行します..."
-python generate_problems_server.py
+echo "Pythonスクリプト (generate_problems.py) を実行します..."
+python generate_problems.py
 
 echo "ジョブ終了: $(date)"
