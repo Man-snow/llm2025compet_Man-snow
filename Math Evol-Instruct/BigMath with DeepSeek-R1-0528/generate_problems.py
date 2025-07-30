@@ -82,7 +82,7 @@ def main():
         llm = LLM(
             model=MODEL_ID,
             quantization="awq",
-            tensor_parallel_size=4, 
+            tensor_parallel_size=2, 
             trust_remote_code=True
         )
         sampling_params = SamplingParams(temperature=0.7, top_p=0.95, max_tokens=1024)
