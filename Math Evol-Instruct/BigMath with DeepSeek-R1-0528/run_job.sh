@@ -5,6 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8               # vLLMで利用するGPU数
 #SBATCH --time=02:00:00                 # 最大実行時間 (HH:MM:SS)
+#SBATCH --mem=1024G                      # !!修正!!: ジョブが使用するメインメモリを512GBに増量
 #SBATCH --output=slurm_logs/%x-%j.out   # 標準出力ログの保存場所
 #SBATCH --error=slurm_logs/%x-%j.err    # エラーログの保存場所
 
