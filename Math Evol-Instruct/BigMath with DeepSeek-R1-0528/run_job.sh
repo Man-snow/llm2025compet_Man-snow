@@ -5,7 +5,7 @@
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8               # vLLMで利用するGPU数
 #SBATCH --time=24:00:00                 # モデルのロード時間を考慮し、最大実行時間を24時間に延長
-#SBATCH --mem=1024G                     # 巨大モデルのロードに必要なシステムメモリを1TBに増量
+#SBATCH --mem=1200G                     # 巨大モデルのロードに必要なシステムメモリを1TBに増量
 #SBATCH --output=slurm_logs/%x-%j.out   # 標準出力ログの保存場所
 #SBATCH --error=slurm_logs/%x-%j.err    # エラーログの保存場所
 
