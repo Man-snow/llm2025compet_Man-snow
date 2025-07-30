@@ -42,6 +42,24 @@ else
     exit 1
 fi
 
+# --- !!修正!!: マルチノード実行のための堅牢な設定 ---
+
+# 1. 以前の実行で残った可能性のあるRayプロセスを強制停止
+echo "以前のRayプロセスをクリーンアップします..."
+ray stop --force
+echo "クリーンアップ完了。"
+
+# 2. SlurmからヘッドノードのIPアドレスを取得し、Rayに教える
+# scontrol show hostnames はノード名のリストを返す
+# head -n 1 で最初のノード（ヘッドノード）を取得
+export HEAD_NODE_IP=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
+export RAY_ADDRESS="$HEAD_NODE_IP:6379"
+echo "Rayヘッドノードアドレスを設定: $RAY_ADDRESS"
+
+# 3. PyTorch/NCCL用のネットワークインターフェースを指定 (HPCで一般的な設定)
+export NCCL_SOCKET_IFNAME=^lo,docker,virbr
+export NCCL_DEBUG=INFO # NCCLのデバッグログを有効化
+
 # --- Pythonスクリプトの実行 ---
 # 実行前にvLLMのコンパイルキャッシュを削除し、破損したキャッシュによるエラーを防ぐ
 echo "古いvLLMコンパイルキャッシュを削除します..."
