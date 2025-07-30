@@ -10,7 +10,7 @@ from transformers import AutoTokenizer
 
 # 計算ノードで実行する、軽量な量子化モデル
 # Qwen/Qwen2.5-1.5B-Instruct-AWQ は存在しないため、同等の性能を持つ TheBloke/Qwen2-1.5B-Instruct-AWQ を利用します
-MODEL_ID = "Qwen/Qwen2-1.5B-Instruct-AWQ"
+MODEL_ID = "TheBloke/Qwen2-1.5B-Instruct-AWQ"
 # 入力データセット
 SOURCE_DATASET_ID = "SynthLabsAI/Big-Math-RL-Verified"
 # 出力ファイル名
@@ -61,7 +61,8 @@ def main():
     print("--- ステップ1: データセットの準備 ---")
     # Gated Datasetにアクセスするため、事前に `huggingface-cli login` が必要
     try:
-        dataset = load_dataset(SOURCE_DATASET_ID, split="train", trust_remote_code=True)
+        # !!修正!!: 不要になった trust_remote_code=True を削除
+        dataset = load_dataset(SOURCE_DATASET_ID, split="train")
         df = dataset.to_pandas()
     except Exception as e:
         print(f"データセットの読み込みに失敗しました: {e}")
