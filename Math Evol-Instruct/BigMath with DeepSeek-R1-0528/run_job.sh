@@ -13,6 +13,10 @@
 echo "ジョブ開始: $(date)"
 echo "実行ノード: $(hostname)"
 
+# GPU間のP2P通信を無効にし、初期化の安定性を向上させる
+export NCCL_P2P_DISABLE=1
+echo "NCCL_P2P_DISABLE=1 に設定しました。"
+
 # ログ保存用ディレクトリの作成
 # このスクリプトはあなたのリポジトリから実行されるので、ログもそこに作られます
 mkdir -p slurm_logs
