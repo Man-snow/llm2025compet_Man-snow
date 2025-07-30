@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=evolve-math-problems
+#SBATCH --job-name=evolve-math-server
 #SBATCH --partition=P02                 # !!ご自身のチームのパーティション名に書き換えてください!!
 #SBATCH --nodes=1
 #SBATCH --gpus-per-node=8               # vLLMで利用するGPU数
@@ -9,28 +9,31 @@
 #SBATCH --error=slurm_logs/%x-%j.err    # エラーログの保存場所
 
 # --- 環境設定 ---
-echo "Job started on $(hostname) at $(date)"
+echo "ジョブ開始: $(date)"
+echo "実行ノード: $(hostname)"
 
 # ログ保存用ディレクトリの作成
+# このスクリプトはあなたのリポジトリから実行されるので、ログもそこに作られます
 mkdir -p slurm_logs
 
-# uvで作成した仮想環境を有効化
-# !!パスはご自身の環境に合わせて修正してください!!
-source ~/llm2025compet/.venv/bin/activate
-echo "Virtual environment activated."
+# 【重要】事前準備
+# このスクリプトを実行する前に、ログインノードで一度 `huggingface-cli login` を実行し、
+# Hugging Faceアカウントの認証を済ませておく必要があります。
 
-# Hugging Faceのトークンを環境変数として設定
-# このスクリプトを実行する前に、`export HF_TOKEN="hf_..."` のようにトークンを設定してください
-if [ -z "${HUGGING_FACE_TOKEN}" ]; then
-  echo "Error: HUGGING_FACE_TOKEN is not set."
-  exit 1
+# 共有リポジトリにある仮想環境を有効化する
+# パスを `Damin3927` のリポジトリ名に修正
+VENV_PATH="$HOME/llm2025compet/.venv/bin/activate"
+if [ -f "$VENV_PATH" ]; then
+    source "$VENV_PATH"
+    echo "仮想環境 ($VENV_PATH) を有効化しました。"
+else
+    echo "エラー: 仮想環境が見つかりません。パスを確認してください: $VENV_PATH"
+    exit 1
 fi
-export HF_TOKEN=${HUGGING_FACE_TOKEN}
-echo "Hugging Face token is set."
-
 
 # --- Pythonスクリプトの実行 ---
-echo "Running the Python script..."
-python generate_problems.py
+# このスクリプトはあなたのリポジトリのルートから実行されるため、cdは不要
+echo "Pythonスクリプト (generate_problems_server.py) を実行します..."
+python generate_problems_server.py
 
-echo "Job finished at $(date)"
+echo "ジョブ終了: $(date)"

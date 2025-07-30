@@ -1,20 +1,20 @@
 import os
 import time
 import pandas as pd
-from datasets import load_dataset, Dataset
+from datasets import load_dataset
 from vllm import LLM, SamplingParams
 import re
+from transformers import AutoTokenizer
 
 # --- 定数設定 ---
 
-# 処理に利用するモデル
-MODEL_ID = "deepseek-ai/DeepSeek-R1-0528"
+# 計算ノードで実行する、軽量な量子化モデル
+# Qwen/Qwen2.5-1.5B-Instruct-AWQ は存在しないため、同等の性能を持つ TheBloke/Qwen2-1.5B-Instruct-AWQ を利用します
+MODEL_ID = "Qwen/Qwen2-1.5B-Instruct-AWQ"
 # 入力データセット
 SOURCE_DATASET_ID = "SynthLabsAI/Big-Math-RL-Verified"
-# 出力データセット（!!ご自身のHugging Faceユーザー名に書き換えてください!!）
-OUTPUT_DATASET_ID = "Man-snow/evolved-big-math-rl"
-# Hugging Faceトークンを読み込むための環境変数名
-HF_TOKEN_ENV = "HUGGING_FACE_TOKEN"
+# 出力ファイル名
+OUTPUT_CSV_FILENAME = "evolved_problems_output.csv"
 
 # 問題を上方修正するためのプロンプト
 UPWARD_EVOLUTION_PROMPT_TEMPLATE = """
@@ -58,86 +58,84 @@ def main():
     メインの処理を実行する関数
     """
     # --- 1. Hugging Faceデータセットの準備 ---
-    print("1. Loading and sorting dataset...")
+    print("--- ステップ1: データセットの準備 ---")
+    # Gated Datasetにアクセスするため、事前に `huggingface-cli login` が必要
     try:
-        dataset = load_dataset(SOURCE_DATASET_ID, split="train")
+        dataset = load_dataset(SOURCE_DATASET_ID, split="train", trust_remote_code=True)
         df = dataset.to_pandas()
     except Exception as e:
-        print(f"Failed to load dataset: {e}")
+        print(f"データセットの読み込みに失敗しました: {e}")
         return
 
     # llama8b_solve_rateの昇順、problemのアルファベット昇順でソート
     sorted_df = df.sort_values(by=["llama8b_solve_rate", "problem"], ascending=[True, True])
     
-    # 上位5問を取得
-    problems_to_process = sorted_df.head(5)
-    print(f"Selected {len(problems_to_process)} problems to process.")
+    # 上位100問を取得
+    problems_to_process = sorted_df.head(100)
+    print(f"データセットの準備が完了しました。処理対象: {len(problems_to_process)}問")
 
     # --- 2. vLLMモデルの初期化 ---
-    print("2. Initializing VLLM model...")
-    # 計算ノードのGPU数に応じてtensor_parallel_sizeを調整してください (例: 8)
+    print("--- ステップ2: vLLMモデルの初期化 ---")
     try:
-        llm = LLM(model=MODEL_ID, tensor_parallel_size=8, trust_remote_code=True)
+        # 計算ノードのGPU数(8基)に合わせて並列化
+        llm = LLM(
+            model=MODEL_ID,
+            quantization="awq",
+            tensor_parallel_size=8, 
+            trust_remote_code=True
+        )
         sampling_params = SamplingParams(temperature=0.7, top_p=0.95, max_tokens=1024)
+        tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     except Exception as e:
-        print(f"Failed to initialize VLLM: {e}")
+        print(f"モデルの初期化に失敗しました: {e}")
         return
+    print("モデルの初期化が完了しました。")
 
     # --- 3. プロンプトの生成とモデルによる処理 ---
-    print("3. Generating prompts and processing with the model...")
-    prompts = [
-        UPWARD_EVOLUTION_PROMPT_TEMPLATE.format(problem=row["problem"])
+    print("--- ステップ3: 問題生成と結果の集計 ---")
+    
+    # Qwen2 Instructモデルのチャットテンプレートに合わせてプロンプトを整形
+    messages_list = [
+        [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": UPWARD_EVOLUTION_PROMPT_TEMPLATE.format(problem=row["problem"])}
+        ]
         for _, row in problems_to_process.iterrows()
     ]
+    prompts = [tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True) for messages in messages_list]
 
     start_time = time.time()
     outputs = llm.generate(prompts, sampling_params)
     end_time = time.time()
-    
     total_elapsed_time = end_time - start_time
-    print(f"Finished processing in {total_elapsed_time:.2f} seconds.")
+    print(f"問題生成が完了しました。処理時間: {total_elapsed_time:.2f}秒")
 
     # --- 4. 結果の集計 ---
-    print("4. Aggregating results...")
+    print("--- ステップ4: 結果の集計 ---")
     results = []
     for i, output in enumerate(outputs):
-        original_problem = output.prompt.split("#Instruction#\n")[1].split("\n\nFollow these steps precisely.")[0].strip()
+        original_problem_text = problems_to_process.iloc[i]['problem']
         generated_text = output.outputs[0].text
-        
         evolved_problem = parse_final_instruction(generated_text)
-        
-        # 処理時間とトークン数はリクエスト毎に正確に取るのが難しいため、全体の平均を記録
         avg_time_per_problem = total_elapsed_time / len(outputs) if len(outputs) > 0 else 0
         
         results.append({
-            "original_problem": original_problem,
+            "original_problem": original_problem_text,
             "evolved_problem": evolved_problem,
-            "total_tokens": output.outputs[0].cumulative_logprobs is not None and len(output.outputs[0].cumulative_logprobs) or 0,
+            "total_tokens": len(output.outputs[0].token_ids),
             "elapsed_time_avg": avg_time_per_problem,
             "success": evolved_problem is not None,
-            "full_model_output": generated_text # デバッグ用に完全な出力も保存
+            "full_model_output": generated_text
         })
+    print("結果の集計が完了しました。")
 
-    # --- 5. Hugging Face Hubへのアップロード ---
-    print("5. Uploading results to Hugging Face Hub...")
-    hf_token = os.getenv(HF_TOKEN_ENV)
-    if not hf_token:
-        print(f"Error: Hugging Face token not found. Please set the '{HF_TOKEN_ENV}' environment variable.")
-        return
-
-    try:
-        # 結果をDatasetオブジェクトに変換
-        result_dataset = Dataset.from_pandas(pd.DataFrame(results))
-        
-        # Hugging Face Hubにプッシュ
-        result_dataset.push_to_hub(
-            repo_id=OUTPUT_DATASET_ID,
-            token=hf_token,
-            private=True # 必要に応じてFalseに変更
-        )
-        print(f"Successfully uploaded results to {OUTPUT_DATASET_ID}")
-    except Exception as e:
-        print(f"Failed to upload to Hugging Face Hub: {e}")
+    # --- 5. 結果をCSVファイルとして保存 ---
+    print(f"--- ステップ5: 結果を'{OUTPUT_CSV_FILENAME}'に保存 ---")
+    results_df = pd.DataFrame(results)
+    results_df.to_csv(OUTPUT_CSV_FILENAME, index=False, encoding='utf-8-sig')
+    print("正常に保存されました。")
+    print("\n--- 生成データ プレビュー ---")
+    print(results_df.head())
 
 if __name__ == "__main__":
     main()
