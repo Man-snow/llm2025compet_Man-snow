@@ -13,12 +13,8 @@
 echo "ジョブ開始: $(date)"
 echo "実行ノード: $(hostname)"
 
-# スクリプト自身の場所に移動して、パスの問題を解決する
-cd "$(dirname "$0")"
-echo "作業ディレクトリをスクリプトの場所に変更しました: $(pwd)"
-
-
 # ログ保存用ディレクトリの作成
+# このスクリプトはあなたのリポジトリから実行されるので、ログもそこに作られます
 mkdir -p slurm_logs
 
 # 【重要】事前準備
@@ -37,7 +33,8 @@ else
 fi
 
 # --- Pythonスクリプトの実行 ---
-echo "Pythonスクリプト (generate_server.py) を実行します..."
-python generate_server.py
+# このスクリプトはあなたのリポジトリのルートから実行されるため、cdは不要
+echo "Pythonスクリプト (generate_problems.py) を実行します..."
+python generate_problems.py
 
 echo "ジョブ終了: $(date)"
