@@ -10,7 +10,7 @@ import re
 # --- Constants ---
 DATASET_NAME = "SynthLabsAI/Big-Math-RL-Verified"
 DATASET_SPLIT = "train"
-NUM_PROBLEMS = 1
+NUM_PROBLEMS = 500
 
 # --- OpenRouter API Settings ---
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
