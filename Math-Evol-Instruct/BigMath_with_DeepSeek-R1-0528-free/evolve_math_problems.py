@@ -162,7 +162,7 @@ def main():
             "status": status,
             "processing_time_seconds": round(processing_time, 2),
             "llama8b_solve_rate": row['llama8b_solve_rate'],
-            "original_solution": row['predicted_solution']
+            "original_solution": row['answer']
         })
         
         time.sleep(1)
