@@ -39,11 +39,6 @@ export TOKENIZERS_PARALLELISM=false
 echo "ジョブ開始: $(date)"
 echo "実行ノード: $(hostname)"
 
-# スクリプト自身の場所に移動して、パスの問題を解決する
-cd "$(dirname "$0")"
-echo "作業ディレクトリをスクリプトの場所に変更しました: $(pwd)"
-
-
 # ログ保存用ディレクトリの作成
 mkdir -p slurm_logs
 
