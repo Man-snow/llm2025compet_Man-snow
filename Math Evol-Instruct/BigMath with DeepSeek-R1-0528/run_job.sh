@@ -6,7 +6,7 @@
 #SBATCH --ntasks-per-node=1             # 各ノードで1つのタスクを実行
 #SBATCH --gpus-per-node=8               # 1ノードあたりのGPU数
 #SBATCH --time=24:00:00
-#SBATCH --mem=1400G                     # 要求メモリをサーバーの物理限界に近い1.4TBに増量
+#SBATCH --mem=1024G                     # 要求メモリをサーバーの物理限界に近い1.4TBに増量
 #SBATCH --output=slurm_logs/%x-%j.out
 #SBATCH --error=slurm_logs/%x-%j.err
 
