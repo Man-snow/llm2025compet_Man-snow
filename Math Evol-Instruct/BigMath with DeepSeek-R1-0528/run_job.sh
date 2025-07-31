@@ -1,36 +1,51 @@
 #!/bin/bash
 
-#SBATCH --job-name=evolve-math-deepseek-r1
+#SBATCH --job-name=evolve-math-deepseek-3node
 #SBATCH --partition=P02                 # !!ご自身のチームのパーティション名に書き換えてください!!
-#SBATCH --nodes=3
-#SBATCH --gpus-per-node=8               # vLLMで利用するGPU数
-#SBATCH --time=24:00:00                 # モデルのロード時間を考慮し、最大実行時間を24時間に延長
-#SBATCH --mem=1200G                     # 巨大モデルのロードに必要なシステムメモリを1TBに増量
-#SBATCH --output=slurm_logs/%x-%j.out   # 標準出力ログの保存場所
-#SBATCH --error=slurm_logs/%x-%j.err    # エラーログの保存場所
+#SBATCH --nodes=3                       # 3ノードを要求
+#SBATCH --ntasks-per-node=1             # 各ノードで1つのタスクを実行
+#SBATCH --gpus-per-node=8               # 1ノードあたりのGPU数
+#SBATCH --time=24:00:00
+#SBATCH --mem=1024G
+#SBATCH --output=slurm_logs/%x-%j.out
+#SBATCH --error=slurm_logs/%x-%j.err
 
-# --- リアルタイムでの進捗確認方法 ---
-# このジョブを sbatch で投入した後、ログインノードで以下のコマンドを実行すると、
-# 処理の進捗をリアルタイムで確認できます。
-# ※ JOBID の部分は、sbatch実行時に表示されるジョブIDに置き換えてください。
-#
-# tail -f slurm_logs/evolve-math-deepseek-r1-JOBID.out
-# -----------------------------------------
+# --- !!修正!!: チームメンバーの成功実績がある環境設定を全面的に導入 ---
+echo "Loading modules..."
+module purge
+module load cuda/12.4
+module load cudnn/9.6.0
+module load nccl/2.24.3
+# module load hpcx/2.18.1-gcc-cuda12/hpcx-mt # hpcxはRayクラスターの手動設定で主に使われるため、一旦コメントアウト
 
-# --- 環境設定 ---
+echo "Setting environment variables for distributed run..."
+# キャッシュディレクトリを共有ストレージに指定
+export HF_HUB_CACHE="/home/Competition2025/P02/shareP02/.cache/huggingface/hub"
+export VLLM_CACHE_ROOT="/home/Competition2025/P02/shareP02/.cache/vllm"
+
+# NCCL (GPU間通信ライブラリ) の詳細設定
+export NCCL_DEBUG=INFO # INFOレベルのデバッグ情報を出力
+export NCCL_IB_HCA=mlx5_0,mlx5_1,mlx5_2,mlx5_3,mlx5_4,mlx5_5,mlx5_8,mlx5_9
+export NCCL_IB_GID_INDEX=3
+export NCCL_SOCKET_IFNAME=^lo,docker,virbr # 使用するネットワークインターフェースを指定
+export NCCL_PROTO=Simple
+
+# RayとTokenizerの並列化設定
+export RAY_DISABLE_USAGE_STATS=1
+export TOKENIZERS_PARALLELISM=false
+
+# --------------------------------------------------------------------
+
 echo "ジョブ開始: $(date)"
 echo "実行ノード: $(hostname)"
 
-# GPU間のP2P通信を無効にし、初期化の安定性を向上させる
-export NCCL_P2P_DISABLE=1
-echo "NCCL_P2P_DISABLE=1 に設定しました。"
+# スクリプト自身の場所に移動して、パスの問題を解決する
+cd "$(dirname "$0")"
+echo "作業ディレクトリをスクリプトの場所に変更しました: $(pwd)"
+
 
 # ログ保存用ディレクトリの作成
 mkdir -p slurm_logs
-
-# 【重要】事前準備
-# このスクリプトを実行する前に、ログインノードで一度 `huggingface-cli login` を実行し、
-# 「Write」権限を持つトークンで認証を済ませておく必要があります。
 
 # 共有リポジトリにある仮想環境を有効化する
 VENV_PATH="$HOME/llm2025compet/.venv/bin/activate"
@@ -42,32 +57,14 @@ else
     exit 1
 fi
 
-# --- !!修正!!: マルチノード実行のための堅牢な設定 ---
-
-# 1. 以前の実行で残った可能性のあるRayプロセスを強制停止
-echo "以前のRayプロセスをクリーンアップします..."
-ray stop --force
-echo "クリーンアップ完了。"
-
-# 2. SlurmからヘッドノードのIPアドレスを取得し、Rayに教える
-# scontrol show hostnames はノード名のリストを返す
-# head -n 1 で最初のノード（ヘッドノード）を取得
-export HEAD_NODE_IP=$(scontrol show hostnames $SLURM_JOB_NODELIST | head -n 1)
-export RAY_ADDRESS="$HEAD_NODE_IP:6379"
-echo "Rayヘッドノードアドレスを設定: $RAY_ADDRESS"
-
-# 3. PyTorch/NCCL用のネットワークインターフェースを指定 (HPCで一般的な設定)
-export NCCL_SOCKET_IFNAME=^lo,docker,virbr
-export NCCL_DEBUG=INFO # NCCLのデバッグログを有効化
-
 # --- Pythonスクリプトの実行 ---
-# 実行前にvLLMのコンパイルキャッシュを削除し、破損したキャッシュによるエラーを防ぐ
+# 実行前にvLLMのコンパイルキャッシュを削除
 echo "古いvLLMコンパイルキャッシュを削除します..."
 rm -rf ~/.cache/vllm/torch_compile_cache
 echo "キャッシュを削除しました。"
 
 echo "Pythonスクリプト (generate_problems.py) を実行します..."
-# !!修正!!: srun と python -u を使い、出力をリアルタイムでログに送るようにする
+# srunがマルチノードでPythonプロセスを起動
 srun python -u generate_problems.py
 
 echo "ジョブ終了: $(date)"
