@@ -1,25 +1,29 @@
 import os
 import pandas as pd
 import requests
-from datasets import load_dataset
+from datasets import load_dataset, Dataset
 from tqdm import tqdm
 import time
+import json
+import re
 
-# --- 定数の設定 ---
-
-# 1. Hugging Face データセット情報
+# --- Constants ---
 DATASET_NAME = "SynthLabsAI/Big-Math-RL-Verified"
 DATASET_SPLIT = "train"
 NUM_PROBLEMS = 5
 
-# 2. OpenRouter API 情報
+# --- OpenRouter API Settings ---
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODEL_NAME = "deepseek/deepseek-r1-0528:free"
 YOUR_SITE_URL = "http://localhost"
 APP_NAME = "BigMath Evolver"
 
-# 3. 上方修正のためのプロンプトテンプレート
+# ★★★ Hugging Face Upload Settings ★★★
+# Please change this to your Hugging Face username and desired dataset name.
+OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-deepseek-r1-0528:free"
+
+
 UPWARD_EVOLUTION_PROMPT_TEMPLATE = """
 You are an expert in creating complex mathematical problems. Your task is to rewrite the given instruction to make it more challenging.
 
@@ -47,113 +51,152 @@ Step 4
 """
 
 def get_sorted_problems():
-    """Hugging Faceからデータセットをロードし、指定条件でソートして返す"""
-    print("🔄 データセットをHugging Faceから読み込んでいます...")
+    """Loads and sorts the dataset from Hugging Face."""
+    print("🔄 Loading dataset from Hugging Face...")
     try:
         dataset = load_dataset(DATASET_NAME, split=DATASET_SPLIT)
         df = dataset.to_pandas()
-        print(f"✅ データセットの読み込み完了。合計 {len(df)} 問。")
+        print(f"✅ Dataset loaded. Total {len(df)} problems.")
         
-        print("🔃 問題をソートしています...")
+        print("🔃 Sorting problems...")
         df['llama8b_solve_rate'] = pd.to_numeric(df['llama8b_solve_rate'], errors='coerce')
         df.dropna(subset=['llama8b_solve_rate'], inplace=True)
         
         sorted_df = df.sort_values(by=['llama8b_solve_rate', 'problem'], ascending=[True, True])
         
-        print(f"✅ ソート完了。上位 {NUM_PROBLEMS} 問を取得します。")
+        print(f"✅ Sort complete. Getting top {NUM_PROBLEMS} problems.")
         return sorted_df.head(NUM_PROBLEMS)
         
     except Exception as e:
-        print(f"❌ データセットの取得またはソート中にエラーが発生しました: {e}")
+        print(f"❌ Error getting or sorting dataset: {e}")
         return None
 
 def evolve_problem_with_openrouter(problem_text: str) -> tuple[str, str]:
-    """
-    OpenRouter APIを呼び出し、問題文を上方修正する。
-    戻り値: (ステータス文字列, 結果/エラーメッセージ) のタプル
-    """
+    """Calls the OpenRouter API to evolve a problem statement."""
     if not OPENROUTER_API_KEY:
-        return "failure", "❌ 環境変数 'OPENROUTER_API_KEY' が設定されていません。"
+        return "failure", "❌ OPENROUTER_API_KEY environment variable not set."
 
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
-        "HTTP-Referer": YOUR_SITE_URL, 
+        "HTTP-Referer": YOUR_SITE_URL,
         "X-Title": APP_NAME,
         "Content-Type": "application/json"
     }
     prompt = UPWARD_EVOLUTION_PROMPT_TEMPLATE.format(problem=problem_text)
     data = {"model": MODEL_NAME, "messages": [{"role": "user", "content": prompt}]}
+    last_error = ""
 
-    # ★★★ 最大3回まで再試行するループを追加 ★★★
     for attempt in range(3):
         try:
             response = requests.post(OPENROUTER_API_URL, headers=headers, json=data, timeout=120)
             response.raise_for_status()
-            
-            # ★★★ JSONデコードエラーをここで捕捉 ★★★
+
             json_response = response.json()
-            
+
             if 'choices' in json_response and len(json_response['choices']) > 0:
                 content = json_response['choices'][0]['message']['content']
                 return "success", content.strip()
             else:
-                last_error = f"❌ APIからのレスポンスに有効なコンテンツがありませんでした。 Response: {json_response}"
+                last_error = f"❌ API response missing valid content. Response: {json_response}"
+
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code in [402, 429]:
+                try:
+                    error_details = e.response.json().get('error', {}).get('message', '')
+                except json.JSONDecodeError:
+                    error_details = e.response.text
+                final_error_message = f"❌ Possible credit exhaustion or rate limit ({e.response.status_code}): {error_details}"
+                return "failure", final_error_message
+            else:
+                last_error = f"❌ HTTP Error: {e}"
 
         except json.JSONDecodeError as e:
-            # JSONの解析に失敗した場合のエラー
-            last_error = f"❌ APIからの応答が不正な形式でした (JSONDecodeError): {e}"
+            last_error = f"❌ Invalid API response format (JSONDecodeError): {e}"
         except requests.exceptions.RequestException as e:
-            # その他のリクエスト関連エラー
-            last_error = f"❌ APIリクエスト中にエラーが発生しました: {e}"
+            last_error = f"❌ API Request Error: {e}"
         except Exception as e:
-            last_error = f"❌ 不明なエラーが発生しました: {e}"
-        
-        # ★★★ 失敗した場合、1秒待ってから再試行 ★★★
-        print(f"  (試行 {attempt + 1}/3) APIリクエストに失敗。1秒後に再試行します...")
+            last_error = f"❌ An unknown error occurred: {e}"
+
+        print(f"  (Attempt {attempt + 1}/3) API request failed. Retrying in 1 second...")
         time.sleep(1)
 
-    # 3回試行しても失敗した場合、最後のエラーを返す
     return "failure", last_error
 
+def parse_final_instruction(response_text: str) -> str:
+    """Extracts the final rewritten instruction from the full API response."""
+    match = re.search(r'#Finally Rewritten Instruction#\s*:\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    match = re.search(r'#Finally Rewritten Instruction#\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    return "Extraction Failed"
+
+
 def main():
-    """メイン処理"""
+    """Main execution function."""
     problems_df = get_sorted_problems()
     
     if problems_df is None:
         return
 
     results = []
-    print(f"\n🚀 {len(problems_df)}問の問題の上方修正を開始します...")
+    print(f"\n🚀 Starting upward evolution for {len(problems_df)} problems...")
 
-    for index, row in tqdm(problems_df.iterrows(), total=len(problems_df), desc="問題を処理中"):
+    for index, row in tqdm(problems_df.iterrows(), total=len(problems_df), desc="Processing Problems"):
         original_problem = row['problem']
         
-        # ★★★ 処理時間を計測開始 ★★★
         start_time = time.time()
-        
-        # APIを呼び出し
         status, evolved_response = evolve_problem_with_openrouter(original_problem)
-        
-        # ★★★ 処理時間を計測終了 ★★★
         end_time = time.time()
         processing_time = end_time - start_time
         
-        # ★★★ 新しい列を含む結果を格納 ★★★
+        evolved_problem = ""
+        if status == 'success':
+            evolved_problem = parse_final_instruction(evolved_response)
+        
         results.append({
+            "original_problem": original_problem,
+            "evolved_problem": evolved_problem,
+            "evolved_response": evolved_response,
             "status": status,
             "processing_time_seconds": round(processing_time, 2),
-            "original_problem": original_problem,
-            "evolved_response": evolved_response,
-            "llama8b_solve_rate": row['llama8b_solve_rate']
+            "llama8b_solve_rate": row['llama8b_solve_rate'],
+            "original_solution": row['predicted_solution']
         })
         
         time.sleep(1)
 
-    results_df = pd.DataFrame(results)
-    output_filename = "evolved_math_problems_v2.csv"
-    results_df.to_csv(output_filename, index=False, encoding='utf-8-sig')
+    # --- Save results to CSV and upload to Hugging Face Hub ---
     
-    print(f"\n🎉 処理が完了しました！結果は '{output_filename}' に保存されました。")
+    # 1. Convert to DataFrame and set column order
+    results_df = pd.DataFrame(results)
+    column_order = [
+        "original_problem", "evolved_problem", "evolved_response", "status",
+        "processing_time_seconds", "llama8b_solve_rate", "original_solution"
+    ]
+    final_columns = [col for col in column_order if col in results_df.columns]
+    results_df = results_df[final_columns]
+    
+    # 2. Save to local CSV file
+    output_filename = "evolved_math_problems.csv"
+    results_df.to_csv(output_filename, index=False, encoding='utf-8-sig')
+    print(f"\n✅ Results saved locally to '{output_filename}'")
+
+    # ★★★ 3. Upload to Hugging Face Hub ★★★
+    try:
+        print(f"🚀 Uploading dataset to Hugging Face Hub: '{OUTPUT_DATASET_ID}'...")
+        hf_dataset = Dataset.from_pandas(results_df)
+        hf_dataset.push_to_hub(
+            repo_id=OUTPUT_DATASET_ID,
+            private=True  # Creates the dataset as private
+        )
+        print(f"✅ Successfully uploaded dataset to '{OUTPUT_DATASET_ID}'.")
+    except Exception as e:
+        print(f"❌ Failed to upload to Hugging Face Hub: {e}")
+        print("  Please ensure you are logged in (`huggingface-cli login`) and the repo_id is correct.")
+
+    print("\n--- Processing complete ---")
 
 if __name__ == "__main__":
     main()
