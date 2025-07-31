@@ -18,9 +18,9 @@ module load cudnn/9.6.0
 module load nccl/2.24.3
 
 echo "Setting environment variables for distributed run..."
-# キャッシュディレクトリを共有ストレージに指定
-export HF_HUB_CACHE="/home/Competition2025/P02/shareP02/.cache/huggingface/hub"
-export VLLM_CACHE_ROOT="/home/Competition2025/P02/shareP02/.cache/vllm"
+# !!修正!!: 共有キャッシュの指定を削除。各ライブラリがデフォルトの安全な場所(~/.cache)を使うようにする
+# export HF_HUB_CACHE="/home/Competition2025/P02/shareP02/.cache/huggingface/hub"
+# export VLLM_CACHE_ROOT="/home/Competition2025/P02/shareP02/.cache/vllm"
 
 # NCCL (GPU間通信ライブラリ) の詳細設定
 export NCCL_DEBUG=INFO
