@@ -10,7 +10,7 @@ import re
 # --- Constants ---
 DATASET_NAME = "SynthLabsAI/Big-Math-RL-Verified"
 DATASET_SPLIT = "train"
-NUM_PROBLEMS = 5
+NUM_PROBLEMS = 1
 
 # --- OpenRouter API Settings ---
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -21,7 +21,7 @@ APP_NAME = "BigMath Evolver"
 
 # ★★★ Hugging Face Upload Settings ★★★
 # Please change this to your Hugging Face username and desired dataset name.
-OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-deepseek-r1-0528:free"
+OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-deepseek-r1-0528-free"
 
 
 UPWARD_EVOLUTION_PROMPT_TEMPLATE = """
@@ -189,7 +189,7 @@ def main():
         hf_dataset = Dataset.from_pandas(results_df)
         hf_dataset.push_to_hub(
             repo_id=OUTPUT_DATASET_ID,
-            private=True  # Creates the dataset as private
+            private=False  # Creates the dataset as private
         )
         print(f"✅ Successfully uploaded dataset to '{OUTPUT_DATASET_ID}'.")
     except Exception as e:

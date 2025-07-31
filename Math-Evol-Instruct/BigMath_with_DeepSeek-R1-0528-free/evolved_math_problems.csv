@@ -1,0 +1,161 @@
+﻿original_problem,evolved_problem,evolved_response,status,processing_time_seconds,llama8b_solve_rate,original_solution
+"
+A four-digit number, when a 7 is added in front of it, becomes a five-digit number. When a 7 is added to its end, it also becomes a five-digit number. The difference between these two five-digit numbers is 53208. What is the original four-digit number? $\qquad$ .","A four-digit number yields two different five-digit numbers by adding a digit \(d\) at its front and the same digit \(d\) at its end. The difference between the two resulting numbers is 53208, and \(d\) is the units digit of this difference. Find the original four-digit number.","Step 1  
+#Elements Identified#:  
+- The original four-digit number.  
+- Addition of a digit at the front to form a five-digit number.  
+- Addition of a digit at the end to form another five-digit number.  
+- The difference between these two five-digit numbers (53208).  
+- Theme: Solving for the original number using place value and algebraic manipulation.  
+
+Step 2  
+#Plan#:  
+1. Replace the fixed digit (7) with a variable digit \(d\), making \(d\) an unknown to increase complexity.  
+2. Add a constraint that \(d\) is determined by the units digit of the given difference (53208), requiring deduction of \(d\) before solving.  
+3. Ensure all conditions are logical and interconnected: the difference value provides \(d\), and \(d\) is used to set up the equation for the original number.  
+
+Step 3  
+#Rewritten Instruction#:  
+A four-digit number yields two five-digit numbers when a digit \(d\) is added at its front and again at its end. The positive difference between these two resulting numbers is 53208, and \(d\) is the units digit of this difference. Determine the original four-digit number.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+A four-digit number yields two different five-digit numbers by adding a digit \(d\) at its front and the same digit \(d\) at its end. The difference between the two resulting numbers is 53208, and \(d\) is the units digit of this difference. Find the original four-digit number.",success,351.87,0.0,1865
+"
+A student-entrepreneur bought several packs of masks from a pharmacy and sold them to classmates at a higher price, making a profit of 1000 rubles. With all the money earned, he bought more masks from the pharmacy (at the same price as the first purchase) and sold them to classmates (at the same price as the first sale). This time, the profit was 1500 rubles. How much money did he spend on the first purchase?","A student-entrepreneur bought several packs of masks from a pharmacy and sold them to classmates with a 25% profit margin, earning a profit of 1000 rubles. With all money earned, he bought more masks at the same pharmacy price and sold them with an unspecified profit margin. Then, using all proceeds, he purchased masks again at identical cost and sold them with a 20% profit margin, yielding a profit of 1760 rubles. How much did he spend initially?","Step 1  
+#Elements Identified#:  
+- Variables: initial spending (unknown), cost per unit (constant), sale price per unit (varies per transaction), profit amounts (1000 rubles for first, 1500 rubles for second), quantities (implicitly determined by money flow).  
+- Conditions: constant cost price per unit across transactions, sale prices change but defined by profit margins, all earnings reinvested fully.  
+- Participants/actions: student-entrepreneur buying masks from pharmacy, selling to classmates in multiple cycles, profit calculated per cycle.  
+- Theme: business reinvestment with profit margin variations.  
+
+Step 2  
+#Plan#:  
+1. Increase transaction cycles from two to three to add complexity in money flow and variable dependencies.  
+2. Introduce different profit percentages for designated transactions (first: 25%, third: 20%) to create varied markups and interdependent equations.  
+3. Modify profit amounts to 1000 rubles (first) and 1760 rubles (third), retain the second transaction with an unspecified profit margin to ensure a solvable system focused on initial spending.  
+4. Enforce constant cost price per unit throughout to maintain logical connections, requiring sequential cost-revenue derivation.  
+
+Step 3  
+#Rewritten Instruction#:  
+A student-entrepreneur bought several packs of masks from a pharmacy and sold them to classmates with a 25% profit margin, earning a profit of 1000 rubles. With all money earned, he bought more masks at the same pharmacy price and sold them with an unknown profit margin. Using all proceeds, he purchased additional masks at the same cost and sold them with a 20% profit margin, making a profit of 1760 rubles. How much money did he spend on the first purchase?  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+A student-entrepreneur bought several packs of masks from a pharmacy and sold them to classmates with a 25% profit margin, earning a profit of 1000 rubles. With all money earned, he bought more masks at the same pharmacy price and sold them with an unspecified profit margin. Then, using all proceeds, he purchased masks again at identical cost and sold them with a 20% profit margin, yielding a profit of 1760 rubles. How much did he spend initially?",success,177.15,0.0,2000 rubles
+"
+An athlete weighing 78.75 kg tests a net used by firefighters for rescuing people. The net sagged 100 cm when jumping from a height of 15 m. Assuming the net is elastic like a spring, calculate how much it will sag when a person weighing 45 kg jumps from a height of 29 m.
+
+Given:
+
+$m_{1} = 78.75$ kg;
+
+$x_{1} = 1$ m;
+
+$h_{1} = 15$ m;
+
+$m_{2} = 45$ kg;
+
+$h_{2} = 29$ m;","An athlete weighing 78.75 kg tested a rescue net. From 15 m (\(g = 9.8  \text{m/s}^2\)), the net sagged 100 cm. From 20 m, it sagged 180 cm. The net follows \(F = k x^n\), with stored energy \(U = \frac{k x^{n+1}}{n+1}\). Calculate the sag when a 45 kg person jumps from 29 m with \(g = 9.7  \text{m/s}^2\).  
+Given:  
+\(m_{1} = 78.75\) kg;  
+\(h_{1} = 15\) m;  
+\(x_{1} = 1\) m;  
+\(h_{3} = 20\) m;  
+\(x_{3} = 1.8\) m;  
+\(m_{2} = 45\) kg;  
+\(h_{2} = 29\) m;  
+\(g_{1} = 9.8  \text{m/s}^2\);  
+\(g_{2} = 9.7  \text{m/s}^2\).","Step 1  
+#Elements Identified#:  
+- Core concept: Conservation of energy (gravitational potential energy converted to elastic potential energy in the net).  
+- Variables: Masses (\(m_1\), \(m_2\)), heights (\(h_1\), \(h_2\)), sag amounts (\(x_1\)), and additional potential (g, assumed constant).  
+- Participants: Athlete and person to be rescued.  
+- Conditions: Net modeled as a linear spring (Hooke's law, U = \(\frac{1}{2} k x^2\)).  
+- Theme: Predicting sag in a rescue net using experimental data.  
+- Processes: Single test jump to calibrate the net, then apply to a new scenario.  
+
+Step 2  
+#Plan#:  
+1. Modify the elastic model to non-linear: Restoring force \(F = k x^n\) with stored energy \(U = \frac{k x^{n+1}}{n+1}\), introducing exponent \(n\) as an additional unknown.  
+2. Add a second test jump to resolve the new unknown: Use the same athlete with a different height to provide calibration data pairs (\(h_1\), \(x_1\)) and (\(h_3\), \(x_3\)).  
+3. Introduce environmental variation: Different gravity values for test and rescue locations to prevent cancellation of g in energy equations.  
+- Ensure coherence: Non-linear model requires two calibration points; gravity difference adds dependency on location; all unknowns are determined logically from the data.  
+- Add concrete data: Gravity given as 9.8 m/s² for tests and 9.7 m/s² for rescue, and select \(h_3 = 20\) m, \(x_3 = 1.8\) m.  
+
+Step 3  
+#Rewritten Instruction#:  
+An athlete weighing 78.75 kg tested a rescue net. From a height of 15 m with \(g = 9.8  \text{m/s}^2\), the net sagged 100 cm. From 20 m (\(g = 9.8  \text{m/s}^2\)), it sagged 180 cm. The net follows \(F = k x^n\), with stored energy \(U = \frac{k x^{n+1}}{n+1}\). Calculate the sag when a 45 kg person jumps from 29 m with \(g = 9.7  \text{m/s}^2\).  
+Given:  
+\(m_{1} = 78.75\) kg;  
+\(h_{1} = 15\) m;  
+\(x_{1} = 1\) m;  
+\(h_{3} = 20\) m;  
+\(x_{3} = 1.8\) m;  
+\(m_{2} = 45\) kg;  
+\(h_{2} = 29\) m;  
+\(g_{1} = 9.8  \text{m/s}^2\) (tests);  
+\(g_{2} = 9.7  \text{m/s}^2\) (rescue).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+An athlete weighing 78.75 kg tested a rescue net. From 15 m (\(g = 9.8  \text{m/s}^2\)), the net sagged 100 cm. From 20 m, it sagged 180 cm. The net follows \(F = k x^n\), with stored energy \(U = \frac{k x^{n+1}}{n+1}\). Calculate the sag when a 45 kg person jumps from 29 m with \(g = 9.7  \text{m/s}^2\).  
+Given:  
+\(m_{1} = 78.75\) kg;  
+\(h_{1} = 15\) m;  
+\(x_{1} = 1\) m;  
+\(h_{3} = 20\) m;  
+\(x_{3} = 1.8\) m;  
+\(m_{2} = 45\) kg;  
+\(h_{2} = 29\) m;  
+\(g_{1} = 9.8  \text{m/s}^2\);  
+\(g_{2} = 9.7  \text{m/s}^2\).",success,214.69,0.0,"1.04 \, \text{m}"
+"
+Bullies Jay and Bob drew tadpoles during drafting class (four circles in the picture, all with the same radius, the triangle is equilateral, and the horizontal side of this triangle is the diameter of the circle). Which tadpole has the largest area?","Given convex quadrilateral ABCD with distinct side lengths AB, BC, CD, DA, Jay and Bob draw four distinct circles, each centered at a vertex A, B, C, D respectively, and each having the adjacent side as its diameter. For each side, they form a tadpole shape using the larger circular segment outside the quadrilateral. Which of the four tadpoles has the largest area?","Step 1
+#Elements Identified#:
+*   Participants: Jay and Bob (implicitly drawing/components).
+*   Shapes: Four circles (same radius), one equilateral triangle (horizontal side = circle diameter).
+*   Structure: Triangle sides define relationships between circles - a side acts as the diameter for one circle. Tadpoles are the composite shapes formed by circles adjacent to the triangle.
+*   Core Task: Compare areas of tadpoles.
+*   Theme: Complex geometric shape construction (tadpoles) and area comparison.
+
+Step 2
+#Plan#:
+1.  **Alter Shape Number & Type:** Replace the single triangle (3 circles implicit) with a **quadrilateral** (specifically referencing 4 sides), requiring **four circles**.
+2.  **Eliminate Symmetry & Introduce Variation:** Change ""equilateral triangle"" to **arbitrary convex quadrilateral** with **given distinct side lengths**, removing inherent symmetry and increasing computational complexity.
+3.  **Modify Circle Constraints:** Clarify that **each vertex lies at the center of a circle**, and **each side acts as the diameter** for its corresponding circle, providing a less obvious spatial relationship.
+4.  **Increase Construct Definition Complexity:** Define the tadpole associated with a side to include not just the circle segment outside the polygon, but specifically the **larger circular segment** outside the quadrilateral. This necessitates arc calculation.
+5.  **Add Real-World Constraint:** Explicitly state the core task requires **calculating and comparing the areas** of these tadpoles.
+6.  **Ensure Dependency:** The side lengths determine circle diameters and thus radii. The convex quadrilateral constraint ensures the circular segments/tadpoles are ""outside"" and well-defined. Calculating segment areas depends on being ""larger"" (angle > 180°) since the quadrilateral side is the chord.
+
+Step 3
+#Rewritten Instruction#:
+Jay and Bob draw four distinct circles such that each vertex of a given convex quadrilateral ABCD (side lengths AB, BC, CD, DA) is a circle's center, and each side is the diameter of the circle at its starting vertex. For each side, they draw the tadpole comprising the larger circular segment beyond that side. Calculate and determine which tadpole shape has the greatest area.
+
+Step 4
+#Finally Rewritten Instruction#:
+Given convex quadrilateral ABCD with distinct side lengths AB, BC, CD, DA, Jay and Bob draw four distinct circles, each centered at a vertex A, B, C, D respectively, and each having the adjacent side as its diameter. For each side, they form a tadpole shape using the larger circular segment outside the quadrilateral. Which of the four tadpoles has the largest area?",success,23.69,0.0,The areas are equal.
+"
+Businessmen Ivanov, Petrov, and Sidorov decided to create a car company. Ivanov bought 70 identical cars for the company, Petrov bought 40 identical cars, and Sidorov contributed 44 million rubles to the company. It is known that Ivanov and Petrov can share the money among themselves in such a way that each of the three businessmen's contributions to the business is equal. How much money is Ivanov entitled to receive? Provide the answer in million rubles.","Businessmen Ivanov, Petrov, Sidorov, and Markov formed a car company. Ivanov contributed 70 identical cars, Petrov 40, Markov 60, and Sidorov 44 million rubles. Only 40 million of Sidorov's contribution is shared between Ivanov and Petrov, ensuring the net contributions of all four are in ratio 2:1:1:1. The company's total valuation equals 168 million rubles. How much money does Ivanov receive? Provide the answer in million rubles.","Step 1  
+#Elements Identified#:  
+- Participants: Ivanov, Petrov, Sidorov.  
+- Contributions: Ivanov (70 cars), Petrov (40 cars), Sidorov (44 million rubles).  
+- Core condition: Sharing Sidorov's money between Ivanov and Petrov to equalize net contributions.  
+- Variable: Per-car price (initially unknown).  
+- Theme: Equality of net business contributions after adjustment.  
+- Opportunity for complexity: Introduce ambiguity in the distribution outcome by adding conflicting constraints or introducing a fourth participant.  
+
+Step 2  
+#Plan#:  
+1. Introduce a fourth participant and specify their contribution to increase variables and interdependence.  
+2. Make the equality condition non-uniform by converting it to a ratio (1:1:1 → 2:1:1) and add a constraint on the total company valuation.  
+3. Modify the sharing mechanism: specify that only part of Sidorov's money is used for sharing.  
+4. Concretize: Add a requirement to resolve potential negative distributions and new conditions (e.g., total valuation constraint).  
+
+Step 3  
+#Rewritten Instruction#:  
+Businessmen Ivanov, Petrov, Sidorov, and Markov created a car company. Ivanov supplied 70 identical cars, Petrov 40, Markov 60, and Sidorov provided 44 million rubles. They share only 40 million from Sidorov's contribution between Ivanov and Petrov to ensure their contributions are in ratio 2:1:1:1. Total company valuation is 168 million rubles. How much money does Ivanov receive (in million rubles)?  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Businessmen Ivanov, Petrov, Sidorov, and Markov formed a car company. Ivanov contributed 70 identical cars, Petrov 40, Markov 60, and Sidorov 44 million rubles. Only 40 million of Sidorov's contribution is shared between Ivanov and Petrov, ensuring the net contributions of all four are in ratio 2:1:1:1. The company's total valuation equals 168 million rubles. How much money does Ivanov receive? Provide the answer in million rubles.",success,303.42,0.0,12
