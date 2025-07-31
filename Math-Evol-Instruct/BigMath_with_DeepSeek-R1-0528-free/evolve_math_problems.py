@@ -134,8 +134,7 @@ def main():
             "processing_time_seconds": round(processing_time, 2),
             "original_problem": original_problem,
             "evolved_response": evolved_response,
-            "llama8b_solve_rate": row['llama8b_solve_rate'],
-            "original_solution": row['solution']
+            "llama8b_solve_rate": row['llama8b_solve_rate']
         })
         
         time.sleep(1)
