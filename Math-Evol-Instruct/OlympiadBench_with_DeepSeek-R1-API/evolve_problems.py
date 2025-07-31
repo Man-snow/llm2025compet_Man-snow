@@ -175,7 +175,7 @@ def main():
     final_columns = [col for col in column_order if col in results_df.columns]
     results_df = results_df[final_columns]
     
-    output_filename = "evolved_math_problems_v3.csv"
+    output_filename = "evolved_math_problems.csv"
     results_df.to_csv(output_filename, index=False, encoding='utf-8-sig')
     
     print(f"\n🎉 処理が完了しました！結果は '{output_filename}' に保存されました。")
