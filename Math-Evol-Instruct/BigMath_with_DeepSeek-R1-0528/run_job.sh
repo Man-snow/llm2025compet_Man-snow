@@ -7,7 +7,6 @@
 #SBATCH --gpus-per-node=8               # 1ノードあたりのGPU数
 #SBATCH --time=24:00:00
 #SBATCH --mem=1024G                     # 要求メモリをサーバーの物理限界に近い1TBに増量
-#SBATCH --cpus-per-task=32              # !!追加!!: 各タスクに割り当てるCPUコア数を32に指定
 # !!修正!!: ログの出力先を、ジョブ投入ディレクトリからの絶対パスに修正
 #SBATCH --output="$SLURM_SUBMIT_DIR/slurm_logs/%x-%j.out"
 #SBATCH --error="$SLURM_SUBMIT_DIR/slurm_logs/%x-%j.err"
