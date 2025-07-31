@@ -84,26 +84,36 @@ def evolve_problem_with_openrouter(problem_text: str) -> tuple[str, str]:
     prompt = UPWARD_EVOLUTION_PROMPT_TEMPLATE.format(problem=problem_text)
     data = {"model": MODEL_NAME, "messages": [{"role": "user", "content": prompt}]}
 
-    try:
-        response = requests.post(OPENROUTER_API_URL, headers=headers, json=data, timeout=120)
-        response.raise_for_status()
-        
-        json_response = response.json()
-        
-        if 'choices' in json_response and len(json_response['choices']) > 0:
-            content = json_response['choices'][0]['message']['content']
-            # ★★★ 成功ステータスと結果を返す ★★★
-            return "success", content.strip()
-        else:
-            # ★★★ 失敗ステータスとエラー内容を返す ★★★
-            return "failure", f"❌ APIからのレスポンスに有効なコンテンツがありませんでした。 Response: {json_response}"
+    # ★★★ 最大3回まで再試行するループを追加 ★★★
+    for attempt in range(3):
+        try:
+            response = requests.post(OPENROUTER_API_URL, headers=headers, json=data, timeout=120)
+            response.raise_for_status()
+            
+            # ★★★ JSONデコードエラーをここで捕捉 ★★★
+            json_response = response.json()
+            
+            if 'choices' in json_response and len(json_response['choices']) > 0:
+                content = json_response['choices'][0]['message']['content']
+                return "success", content.strip()
+            else:
+                last_error = f"❌ APIからのレスポンスに有効なコンテンツがありませんでした。 Response: {json_response}"
 
-    except requests.exceptions.RequestException as e:
-        # ★★★ 失敗ステータスとエラー内容を返す ★★★
-        return "failure", f"❌ APIリクエスト中にエラーが発生しました: {e}"
-    except Exception as e:
-        # ★★★ 失敗ステータスとエラー内容を返す ★★★
-        return "failure", f"❌ 不明なエラーが発生しました: {e}"
+        except json.JSONDecodeError as e:
+            # JSONの解析に失敗した場合のエラー
+            last_error = f"❌ APIからの応答が不正な形式でした (JSONDecodeError): {e}"
+        except requests.exceptions.RequestException as e:
+            # その他のリクエスト関連エラー
+            last_error = f"❌ APIリクエスト中にエラーが発生しました: {e}"
+        except Exception as e:
+            last_error = f"❌ 不明なエラーが発生しました: {e}"
+        
+        # ★★★ 失敗した場合、1秒待ってから再試行 ★★★
+        print(f"  (試行 {attempt + 1}/3) APIリクエストに失敗。1秒後に再試行します...")
+        time.sleep(1)
+
+    # 3回試行しても失敗した場合、最後のエラーを返す
+    return "failure", last_error
 
 def main():
     """メイン処理"""

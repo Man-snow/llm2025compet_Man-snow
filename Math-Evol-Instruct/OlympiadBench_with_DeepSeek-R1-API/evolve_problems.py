@@ -1,22 +1,30 @@
 import os
+import pandas as pd
+import requests
+from datasets import load_dataset
+from tqdm import tqdm
 import time
-import csv
-import re
-from openai import OpenAI
+import json
+import re # ★★★ 正規表現ライブラリをインポート ★★★
 
-# --- 1. APIクライアントの設定 ---
-try:
-    client = OpenAI(
-        api_key=os.environ.get("DEEPSEEK_API_KEY"),
-        base_url="https://api.deepseek.com/v1",
-    )
-except Exception as e:
-    print(f"エラー: APIキーが設定されていません。環境変数 'DEEPSEEK_API_KEY' を設定してください。")
-    print(f"詳細: {e}")
-    exit()
+# --- 定数の設定 ---
+DATASET_NAME = "SynthLabsAI/Big-Math-RL-Verified"
+DATASET_SPLIT = "train"
+NUM_PROBLEMS = 5
 
-# --- 2. 上方進化プロンプトの定義 ---
-UPWARD_EVOLUTION_PROMPT = """
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions"
+MODEL_NAME = "deepseek/deepseek-r1-0528:free"
+YOUR_SITE_URL = "http://localhost"
+APP_NAME = "BigMath Evolver"
+
+UPWARD_EVOLUTION_PROMPT_TEMPLATE = """
+You are an expert in creating complex mathematical problems. Your task is to rewrite the given instruction to make it more challenging.
+
+#Instruction#
+{problem}
+
+Follow these steps precisely.
 Step 1: Understand the core concept and structure of the "#Instruction#". Identify the key elements such as variables, conditions, participants, actions, or processes that can be manipulated to increase complexity. Also, recognize the theme of the instruction and ensure it remains consistent throughout the evolution.
 Step 2: Formulate a comprehensive plan to increment the complexity of the "#Instruction#" based on the identified elements in Step 1. The plan should involve modifying or expanding at least three components from the list. It is crucial to ensure that all components in the instruction are logically interconnected and that the complexity increase is coherent and justified. The plan should avoid introducing variables or conditions without clear criteria for determining their values or without contributing to the overall complexity. In this step, consider adding more real-world constraints and dependencies between variables to make the problem more challenging. And you can also add more constraints, concretizing, increasing reasoning.
 Step 3: Implement the plan step by step to create the "#Rewritten Instruction#". Ensure the rewritten instruction maintains a logical sequence and avoids ambiguity or confusion. If additional variables or conditions are introduced, provide clear and unambiguous methods or criteria for determining their values. The "#Rewritten Instruction#" should not exceed the original "#Instruction#" by more than 30 words to ensure readability and comprehension.
@@ -36,94 +44,141 @@ Step 4
 ...
 """
 
-# --- 3. 進化させる問題のリスト ---
-problems_to_evolve = [
-    "Let $T_{1}, T_{2}, T_{3}, T_{4}$ be pairwise distinct collinear points such that $T_{2}$ lies between $T_{1}$ and $T_{3}$, and $T_{3}$ lies between $T_{2}$ and $T_{4}$. Let $\\omega_{1}$ be a circle through $T_{1}$ and $T_{4}$; let $\\omega_{2}$ be the circle through $T_{2}$ and internally tangent to $\\omega_{1}$ at $T_{1}$; let $\\omega_{3}$ be the circle through $T_{3}$ and externally tangent to $\\omega_{2}$ at $T_{2}$; and let $\\omega_{4}$ be the circle through $T_{4}$ and externally tangent to $\\omega_{3}$ at $T_{3}$. A line crosses $\\omega_{1}$ at $P$ and $W, \\omega_{2}$ at $Q$ and $R, \\omega_{3}$ at $S$ and $T$, and $\\omega_{4}$ at $U$ and $V$, the order of these points along the line being $P, Q, R, S, T, U, V, W$. Prove that $P Q+T U=R S+V W$.",
-    "A number of 17 workers stand in a row. Every contiguous group of at least 2 workers is a brigade. The chief wants to assign each brigade a leader (which is a member of the brigade) so that each worker's number of assignments is divisible by 4 . Prove that the number of such ways to assign the leaders is divisible by 17 .",
-    "Let $A B C$ be a triangle, let $D$ be the touchpoint of the side $B C$ and the incircle of the triangle $A B C$, and let $J_{b}$ and $J_{c}$ be the incentres of the triangles $A B D$ and $A C D$, respectively. Prove that the circumcentre of the triangle $A J_{b} J_{c}$ lies on the bisectrix of the angle $B A C$.",
-    "\nProve that every positive integer $n$ can be written uniquely in the form\n\n\n\n$$\n\nn=\\sum_{j=1}^{2 k+1}(-1)^{j-1} 2^{m_{j}}\n\n$$\n\n\n\nwhere $k \\geq 0$ and $0 \\leq m_{1}<m_{2}<\\cdots<m_{2 k+1}$ are integers.\n\n\n\nThis number $k$ is called the weight of $n$.",
-    "Given a triangle $A B C$, let $H$ and $O$ be its orthocentre and circumcentre, respectively. Let $K$ be the midpoint of the line segment $A H$. Let further $\\ell$ be a line through $O$, and let $P$ and $Q$ be the orthogonal projections of $B$ and $C$ onto $\\ell$, respectively. Prove that $K P+K Q \\geq B C$.",
-]
-
-# --- 変更点: CSVファイルの設定 ---
-csv_filename = 'evolved_problems_log.csv'
-# UTF-8-sigにすることでExcelで開いた際の文字化けを防ぎます
-with open(csv_filename, 'w', newline='', encoding='utf-8-sig') as file:
-    writer = csv.writer(file)
-    # ヘッダー（列名）を書き込む
-    writer.writerow(['original instruction', 'updated instruction', 'total_tokens', 'process time'])
-
-    print("🚀 問題の上方進化を開始し、結果をCSVに記録します...\n")
-
-    for i, problem in enumerate(problems_to_evolve):
-        problem_start_time = time.time() 
-
-        print(f"--- 問題 {i+1}/{len(problems_to_evolve)} ---")
-        print(f"元の問題:\n{problem}\n")
-
-        try:
-            chat_completion = client.chat.completions.create(
-                model="deepseek-reasoner", 
-                messages=[
-                    {"role": "system", "content": UPWARD_EVOLUTION_PROMPT},
-                    {"role": "user", "content": f"#Instruction#:\n{problem}"}
-                ],
-                max_tokens=10000,
-                temperature=0.7,
-                timeout=700.0,
-            )
-            
-            # --- 変更点: API応答からデータを抽出 ---
-            response_text = chat_completion.choices[0].message.content
-            print("--- 進化した問題（APIの全応答） ---\n", chat_completion, "\n------------------------------------")
-            total_tokens = chat_completion.usage.total_tokens
-            
-            # --- デバッグ用コードを追加 ---
-            print("--- APIからの応答全文 ---\n", response_text, "\n------------------------") 
-            
-            # 応答テキストから最終的な問題文だけを抽出する
-            # 正規表現を使って、より柔軟に最終的な問題文を抽出する
-            final_instruction = ""
-            # パターン:「#Finally...#」という文字列を探し、その後の全てを抜き出す
-            # 「re.IGNORECASE」で大文字・小文字の違いを無視し、「re.DOTALL」で改行もマッチさせる
-            match = re.search(r'#Finally Rewritten Instruction#\s*:\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
-            
-            if match:
-                # パターンに一致した部分の、1番目のカッコ（.*）の中身を取得する
-                final_instruction = match.group(1).strip()
-            else:
-                # もし上記パターンで見つからない場合、コロンなしのパターンも試す
-                match = re.search(r'#Finally Rewritten Instruction#\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
-                if match:
-                    final_instruction = match.group(1).strip()
-            
-            print("進化した問題:\n", final_instruction)
-            
-            # 処理時間を計算
-            duration = time.time() - problem_start_time
-            
-            # --- 変更点: データをCSVファイルに書き込む ---
-            writer.writerow([problem, final_instruction, total_tokens, f"{duration:.2f}"])
-
-        except APITimeoutError as e:
-            print(f"エラー: API呼び出しがタイムアウトしました。")
-            print(f"詳細: {e}")
-        except APIStatusError as e:
-            print(f"エラー: APIサーバーからエラーステータスが返されました。")
-            print(f"ステータスコード: {e.status_code}")
-            print(f"応答内容: {e.response}")
-        except APIConnectionError as e:
-            print(f"エラー: APIサーバーへの接続に失敗しました。")
-            print(f"詳細: {e.__cause__}")
-        except Exception as e:
-            print(f"エラー: API呼び出し中に問題が発生しました。")
-            print(f"詳細: {e}")
-            duration = time.time() - problem_start_time
-            # エラーが発生した場合も記録を残す
-            writer.writerow([problem, 'ERROR', 'N/A', f"{duration:.2f}"])
+def get_sorted_problems():
+    """Hugging Faceからデータセットをロードし、指定条件でソートして返す"""
+    print("🔄 データセットをHugging Faceから読み込んでいます...")
+    try:
+        dataset = load_dataset(DATASET_NAME, split=DATASET_SPLIT)
+        df = dataset.to_pandas()
+        print(f"✅ データセットの読み込み完了。合計 {len(df)} 問。")
         
-        finally:
-            print(f"⏱️ この問題の処理時間: {duration:.2f} 秒")
-            print("-" * 25 + "\n")
+        print("🔃 問題をソートしています...")
+        df['llama8b_solve_rate'] = pd.to_numeric(df['llama8b_solve_rate'], errors='coerce')
+        df.dropna(subset=['llama8b_solve_rate'], inplace=True)
+        
+        sorted_df = df.sort_values(by=['llama8b_solve_rate', 'problem'], ascending=[True, True])
+        
+        print(f"✅ ソート完了。上位 {NUM_PROBLEMS} 問を取得します。")
+        return sorted_df.head(NUM_PROBLEMS)
+        
+    except Exception as e:
+        print(f"❌ データセットの取得またはソート中にエラーが発生しました: {e}")
+        return None
 
-print(f"✅ すべての処理が完了し、'{csv_filename}' に結果を保存しました。")
+def evolve_problem_with_openrouter(problem_text: str) -> tuple[str, str]:
+    """OpenRouter APIを呼び出し、問題文を上方修正する。"""
+    if not OPENROUTER_API_KEY:
+        return "failure", "❌ 環境変数 'OPENROUTER_API_KEY' が設定されていません。"
+
+    headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
+        "HTTP-Referer": YOUR_SITE_URL, 
+        "X-Title": APP_NAME,
+        "Content-Type": "application/json"
+    }
+    prompt = UPWARD_EVOLUTION_PROMPT_TEMPLATE.format(problem=problem_text)
+    data = {"model": MODEL_NAME, "messages": [{"role": "user", "content": prompt}]}
+
+    for attempt in range(3):
+        try:
+            response = requests.post(OPENROUTER_API_URL, headers=headers, json=data, timeout=120)
+            response.raise_for_status()
+            json_response = response.json()
+            
+            if 'choices' in json_response and len(json_response['choices']) > 0:
+                content = json_response['choices'][0]['message']['content']
+                return "success", content.strip()
+            else:
+                last_error = f"❌ APIからのレスポンスに有効なコンテンツがありませんでした。 Response: {json_response}"
+
+        except json.JSONDecodeError as e:
+            last_error = f"❌ APIからの応答が不正な形式でした (JSONDecodeError): {e}"
+        except requests.exceptions.RequestException as e:
+            last_error = f"❌ APIリクエスト中にエラーが発生しました: {e}"
+        except Exception as e:
+            last_error = f"❌ 不明なエラーが発生しました: {e}"
+        
+        print(f"  (試行 {attempt + 1}/3) APIリクエストに失敗。1秒後に再試行します...")
+        time.sleep(1)
+
+    return "failure", last_error
+
+# ★★★ 最終的な問題文を抽出する関数を新設 ★★★
+def parse_final_instruction(response_text: str) -> str:
+    """APIの完全な応答テキストから、最終的な問題文だけを抽出する。"""
+    # 正規表現を使って、柔軟に最終的な問題文を抽出
+    # re.IGNORECASE: 大文字・小文字を区別しない
+    # re.DOTALL: 改行文字も「.」に含める
+    match = re.search(r'#Finally Rewritten Instruction#\s*:\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
+    if match:
+        # マッチした部分の最初のキャプチャグループ（.*）を取得
+        return match.group(1).strip()
+
+    # コロンなしのフォールバックパターン
+    match = re.search(r'#Finally Rewritten Instruction#\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
+    if match:
+        return match.group(1).strip()
+    
+    # どちらのパターンにも一致しない場合
+    return "抽出失敗"
+
+
+def main():
+    """メイン処理"""
+    problems_df = get_sorted_problems()
+    
+    if problems_df is None:
+        return
+
+    results = []
+    print(f"\n🚀 {len(problems_df)}問の問題の上方修正を開始します...")
+
+    for index, row in tqdm(problems_df.iterrows(), total=len(problems_df), desc="問題を処理中"):
+        original_problem = row['problem']
+        
+        start_time = time.time()
+        status, evolved_response = evolve_problem_with_openrouter(original_problem)
+        end_time = time.time()
+        processing_time = end_time - start_time
+        
+        # ★★★ 抽出処理を追加 ★★★
+        evolved_problem = ""
+        if status == 'success':
+            # 成功した場合のみ、最終的な問題文の抽出を試みる
+            evolved_problem = parse_final_instruction(evolved_response)
+        
+        results.append({
+            "original_problem": original_problem,
+            "evolved_problem": evolved_problem, # 新しい列
+            "evolved_response": evolved_response,
+            "status": status,
+            "processing_time_seconds": round(processing_time, 2),
+            "llama8b_solve_rate": row['llama8b_solve_rate'],
+            "original_solution": row['predicted_solution']
+        })
+        
+        time.sleep(1)
+
+    results_df = pd.DataFrame(results)
+    
+    # ★★★ 列の順序を指定 ★★★
+    column_order = [
+        "original_problem",
+        "evolved_problem",
+        "evolved_response",
+        "status",
+        "processing_time_seconds",
+        "llama8b_solve_rate",
+        "original_solution"
+    ]
+    # 存在する列のみで順序を再設定
+    final_columns = [col for col in column_order if col in results_df.columns]
+    results_df = results_df[final_columns]
+    
+    output_filename = "evolved_math_problems_v3.csv"
+    results_df.to_csv(output_filename, index=False, encoding='utf-8-sig')
+    
+    print(f"\n🎉 処理が完了しました！結果は '{output_filename}' に保存されました。")
+
+if __name__ == "__main__":
+    main()
