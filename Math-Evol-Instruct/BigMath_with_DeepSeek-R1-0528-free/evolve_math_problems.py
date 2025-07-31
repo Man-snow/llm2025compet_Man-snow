@@ -20,7 +20,7 @@ YOUR_SITE_URL = "http://localhost"
 APP_NAME = "BigMath Evolver"
 
 # ★★★ Hugging Face Upload Settings ★★★
-# Please change this to your Hugging Face username and desired dataset name.
+# ここは後で変更する必要あり
 OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-from-deepseek-r1-0528-free"
 
 
