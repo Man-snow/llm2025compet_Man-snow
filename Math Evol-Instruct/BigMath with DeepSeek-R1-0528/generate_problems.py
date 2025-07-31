@@ -82,7 +82,8 @@ def main():
             pipeline_parallel_size=3, # <-- !!修正!!: 3ノードに分割
             trust_remote_code=True,
             # !!修正!!: H100 GPUの性能を最大限に引き出すため、bfloat16を指定
-            dtype="bfloat16"
+            dtype="bfloat16",
+            gpu_memory_utilization=0.95
         )
         sampling_params = SamplingParams(temperature=0.7, top_p=0.95, max_tokens=1024)
     except Exception as e:
