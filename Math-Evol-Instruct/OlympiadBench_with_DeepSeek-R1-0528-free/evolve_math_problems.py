@@ -24,28 +24,24 @@ OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-
 
 # ★★★ Updated Prompt Template ★★★
 UPWARD_EVOLUTION_PROMPT_TEMPLATE = """
-You are an expert in mathematical problem design. Your primary task is to transform proof-based problems into computational problems. If the problem is already computational, your task is to make it more challenging.
+You are an expert in creating complex mathematical problems. Your task is to rewrite the given instruction to make it more challenging. When the given instruction is a "proof" question, you must transform it into a difficult "computational" question that requires a specific answer, as well as into an even more difficult problem.
 
 #Instruction#
 {problem}
 
 Follow these steps precisely.
-Step 1: First, determine if the "#Instruction#" is a "proof problem" (e.g., contains "Prove that...", "Show that...") or a "computational problem" (e.g., asks "Find...", "What is...").
-- If it is a proof problem: Your main goal is to reformulate it into a computational problem that uses the same core mathematical concepts but asks for a specific value, formula, or example. This is your priority.
-- If it is already a computational problem: Your goal is to make it more challenging.
-Based on this goal, identify the key elements such as variables, conditions, or concepts that can be manipulated.
+Step 1: Understand the core concept and structure of the "#Instruction#". Identify the key elements such as variables, conditions, participants, actions, or processes that can be manipulated to increase complexity. Also, recognize the theme of the instruction and ensure it remains consistent throughout the evolution. Finally, analyze the "#Instruction#" to determine its type ("proof problem" vs. "computational problem")
 
-Step 2: Formulate a comprehensive plan.
-- For a proof-to-computational transformation: The plan should detail how to introduce parameters or specific scenarios to create a question with a concrete answer.
-- For increasing complexity: The plan should involve modifying or expanding at least three components. Consider adding more constraints, dependencies, or real-world context.
+Step 2: Formulate a comprehensive plan to increment the complexity of the "#Instruction#" based on the identified elements in Step 1. The plan should involve modifying or expanding at least three components from the list. It is crucial to ensure that all components in the instruction are logically interconnected and that the complexity increase is coherent and justified. The plan should avoid introducing variables or conditions without clear criteria for determining their values or without contributing to the overall complexity. In this step, consider adding more real-world constraints and dependencies between variables to make the problem more challenging. And you can also add more constraints, concretizing, increasing reasoning. 
+- If it is a proof problem: Your primary goal is to transform it into a non-trivial computational problem that is HARDER than the original proof. Do not simplify the problem by merely choosing a small or trivial base case. Instead, introduce complex parameters, ask for a specific but difficult-to-calculate value (e.g., an optimal value, a count of a large set, a specific term in a complex sequence), or combine concepts from the proof with another area of mathematics.
+- If it is already a computational problem: Your goal is to increase its difficulty by making it more abstract, adding more variables, or introducing new, challenging constraints.
 
-Step 3: Implement the plan to create the "#Rewritten Instruction#". The new problem must be solvable and logically sound. Ensure any new variables or conditions are clearly defined. The rewritten instruction should not exceed the original by more than 40 words.
+Step 3: Implement the plan step by step to create the "#Rewritten Instruction#". Ensure the rewritten instruction maintains a logical sequence and avoids ambiguity or confusion. If additional variables or conditions are introduced, provide clear and unambiguous methods or criteria for determining their values. The "#Rewritten Instruction#" should not exceed the original "#Instruction#" by more than 30 words to ensure readability and comprehension.
 
-Step 4: Review the "#Rewritten Instruction#" thoroughly. Ensure it fulfills the goal from Step 1 (either transformed or made more complex). Provide the "#Finally Rewritten Instruction#" without any supplementary explanation.
-
+Step 4: Review the "#Rewritten Instruction#" thoroughly to identify any unreasonable elements or inconsistencies. Make sure the "#Rewritten Instruction#" is a more complex version of the "#Instruction#". and that it accurately reflects the intended increase in complexity. Adjust any part of the instruction that may lead to misunderstanding or ambiguity, and provide the "#Finally Rewritten Instruction#" without any supplementary explanation.
 Please reply strictly in the following format:
+
 Step 1
-#Goal#: [Transform to Computational / Increase Complexity]
 #Elements Identified#:
 ...
 Step 2
