@@ -6,10 +6,9 @@
 #SBATCH --ntasks-per-node=1             # 各ノードで1つのタスクを実行
 #SBATCH --gpus-per-node=8               # 1ノードあたりのGPU数
 #SBATCH --time=24:00:00
-#SBATCH --mem=1024G                     # 要求メモリをサーバーの物理限界に近い1TBに増量
-# !!修正!!: ログの出力先を、ジョブ投入ディレクトリからの絶対パスに修正
-#SBATCH --output="$SLURM_SUBMIT_DIR/slurm_logs/%x-%j.out"
-#SBATCH --error="$SLURM_SUBMIT_DIR/slurm_logs/%x-%j.err"
+#SBATCH --mem=1024G                     # 要求メモリをサーバーの物理限界に近い1.4TBに増量
+#SBATCH --output=slurm_logs/%x-%j.out
+#SBATCH --error=slurm_logs/%x-%j.err
 
 # --- チームメンバーの成功実績がある環境設定を全面的に導入 ---
 echo "Loading modules..."
