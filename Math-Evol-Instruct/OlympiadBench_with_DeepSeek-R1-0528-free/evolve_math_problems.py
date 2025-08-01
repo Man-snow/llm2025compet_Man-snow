@@ -10,7 +10,7 @@ import re
 # --- Constants ---
 # ★★★ New dataset URL ★★★
 JSONL_URL = "https://raw.githubusercontent.com/tana114/vllm-api-structured/main/project/olym/data/TP_TO_maths_en_COMP.jsonl"
-NUM_PROBLEMS = 3 # Number of problems to process
+# NUM_PROBLEMS = 3 # Number of problems to process
 
 # --- OpenRouter API Settings ---
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -66,7 +66,7 @@ def get_problems_from_jsonl(url: str, num_problems: int):
         print(f"✅ Download complete. Found {len(lines)} problems.")
         
         problems = []
-        for line in lines[:num_problems]:
+        for line in lines:
             try:
                 data = json.loads(line)
                 # We will use 'question' as the problem text
