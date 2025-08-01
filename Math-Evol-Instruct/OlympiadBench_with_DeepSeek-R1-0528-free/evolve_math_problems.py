@@ -10,7 +10,7 @@ import re
 # --- Constants ---
 # ★★★ New dataset URL ★★★
 JSONL_URL = "https://raw.githubusercontent.com/tana114/vllm-api-structured/main/project/olym/data/TP_TO_maths_en_COMP.jsonl"
-NUM_PROBLEMS = 5 # Number of problems to process
+NUM_PROBLEMS = 3 # Number of problems to process
 
 # --- OpenRouter API Settings ---
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
