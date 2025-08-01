@@ -138,7 +138,7 @@ def parse_final_instruction(response_text: str) -> str:
 
 def main():
     """Main execution function."""
-    problems_df = get_problems_from_jsonl(JSONL_URL, NUM_PROBLEMS)
+    problems_df = get_problems_from_jsonl(JSONL_URL)
     
     if problems_df is None or problems_df.empty:
         print("No problems to process. Exiting.")
