@@ -52,6 +52,7 @@
 #### 実行コマンド
 ```bash
 python evolve_math_problems_all.py
+```
 
 ### 方法2：指定範囲の問題のみを処理する（CSV生成のみ）
 
@@ -62,14 +63,15 @@ python evolve_math_problems_all.py
 実行前の設定
 スクリプトファイルを開き、main関数冒頭にある以下の箇所を修正してください。
 
-Python
-
+```Python
 # --- ユーザー設定 (User Configuration) ---
 # ★★★ ここで開始問題番号と処理数を指定してください ★★★
 start_from_problem_number = 401  # 例: 401番目の問題から開始
 num_to_process = 30            # 例: 30問を処理
 # ★★★ 設定はここまで ★★★
+```
 
 #### 実行コマンド
 ```bash
 python evolve_math_problems_divided.py
+```
