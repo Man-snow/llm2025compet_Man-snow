@@ -55,7 +55,7 @@ Step 4
 ...
 """
 
-def get_problems_from_jsonl(url: str, num_problems: int):
+def get_problems_from_jsonl(url: str):
     """Downloads and parses a .jsonl file from a URL."""
     print(f"🔄 Downloading dataset from {url}...")
     try:
@@ -137,19 +137,54 @@ def parse_final_instruction(response_text: str) -> str:
 
 
 def main():
-    """Main execution function."""
-    problems_df = get_problems_from_jsonl(JSONL_URL)
+    """Main execution function to process all problems with resume capability."""
+    # --- Configuration ---
+    output_filename = "evolved_math_problems.csv"
+
+    # --- Resume Logic ---
+    processed_ids = []
+    if os.path.exists(output_filename):
+        print(f"📄 Found existing results file: '{output_filename}'.")
+        try:
+            existing_df = pd.read_csv(output_filename)
+            if 'id' in existing_df.columns:
+                processed_ids = existing_df['id'].dropna().tolist()
+                print(f"✅ Found {len(processed_ids)} previously processed problems. They will be skipped.")
+        except pd.errors.EmptyDataError:
+            print("⚠️ Existing results file is empty. Starting fresh.")
+        except Exception as e:
+            print(f"⚠️ Could not read existing file, starting fresh. Error: {e}")
+
+    # --- Data Loading and Filtering ---
+    all_problems_df = get_problems_from_jsonl(JSONL_URL)
     
-    if problems_df is None or problems_df.empty:
-        print("No problems to process. Exiting.")
+    if all_problems_df is None or all_problems_df.empty:
+        print("No problems were loaded from the source. Exiting.")
         return
 
-    results = []
-    print(f"\n🚀 Starting upward evolution for {len(problems_df)} problems...")
+    # Filter out any problems that have already been processed (for resuming)
+    if processed_ids:
+        problems_to_process_df = all_problems_df[~all_problems_df['id'].isin(processed_ids)]
+    else:
+        # If no processed problems, use the full dataframe
+        problems_to_process_df = all_problems_df
 
-    for index, row in tqdm(problems_df.iterrows(), total=len(problems_df), desc="Processing Problems"):
-        original_problem = row['question']
+    if problems_to_process_df.empty:
+        print("✅ All problems have already been processed. Nothing to do.")
+        return
+
+    # --- Main Processing Loop ---
+    batch_results = []
+    total_to_process = len(problems_to_process_df)
+    
+    print(f"\n🚀 Starting upward evolution for all {total_to_process} remaining problems...")
+    print(f"💾 Results will be appended to '{output_filename}' in batches of 5.")
+    print("⚠️ This will take a very long time and may incur significant API costs.")
+
+    for i, (index, row) in enumerate(problems_to_process_df.iterrows()):
+        print(f"\n--- Processing problem {i + 1}/{total_to_process} (Original ID: {row.get('id', 'N/A')}) ---")
         
+        original_problem = row['question']
         start_time = time.time()
         status, evolved_response = evolve_problem_with_openrouter(original_problem)
         end_time = time.time()
@@ -159,38 +194,39 @@ def main():
         if status == 'success':
             evolved_problem = parse_final_instruction(evolved_response)
         
-        results.append({
+        batch_results.append({
             "id": row.get('id', 'N/A'),
             "original_problem": original_problem,
             "evolved_problem": evolved_problem,
             "evolved_response": evolved_response,
             "status": status,
             "processing_time_seconds": round(processing_time, 2),
-            "original_solution": str(row.get('solution', 'N/A')) # Ensure solution is string
+            "original_solution": str(row.get('solution', 'N/A'))
         })
         
-        time.sleep(1)
-    
-    # --- Save results and upload ---
-    results_df = pd.DataFrame(results)
-    column_order = [
-        "id", "original_problem", "evolved_problem", "evolved_response", "status",
-        "processing_time_seconds", "original_solution"
-    ]
-    results_df = results_df[[col for col in column_order if col in results_df.columns]]
-    
-    output_filename = "evolved_math_problems.csv"
-    results_df.to_csv(output_filename, index=False, encoding='utf-8-sig')
-    print(f"\n✅ Results saved locally to '{output_filename}'")
+        if (i + 1) % 5 == 0 or (i + 1) == total_to_process:
+            print(f"💾 Saving batch of {len(batch_results)} results to CSV...")
+            temp_df = pd.DataFrame(batch_results)
+            temp_df.to_csv(
+                output_filename,
+                mode='a',
+                header=not os.path.exists(output_filename) or os.path.getsize(output_filename) == 0,
+                index=False,
+                encoding='utf-8-sig'
+            )
+            batch_results.clear()
 
+    print(f"\n✅ All local processing complete. Final results are in '{output_filename}'.")
+
+    # --- Final Upload ---
     try:
-        print(f"🚀 Uploading dataset to Hugging Face Hub: '{OUTPUT_DATASET_ID}'...")
-        hf_dataset = Dataset.from_pandas(results_df)
+        print(f"🚀 Uploading final dataset to Hugging Face Hub: '{OUTPUT_DATASET_ID}'...")
+        final_df = pd.read_csv(output_filename)
+        hf_dataset = Dataset.from_pandas(final_df)
         hf_dataset.push_to_hub(repo_id=OUTPUT_DATASET_ID, private=True)
         print(f"✅ Successfully uploaded dataset to '{OUTPUT_DATASET_ID}'.")
     except Exception as e:
         print(f"❌ Failed to upload to Hugging Face Hub: {e}")
-        print("  Please ensure you are logged in (`huggingface-cli login`) and the repo_id is correct.")
 
     print("\n--- Processing complete ---")
 
