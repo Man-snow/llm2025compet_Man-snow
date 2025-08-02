@@ -5,7 +5,7 @@
 このリポジトリには、OpenRouter利用して、既存の数学問題をより挑戦的な問題へと自動で上方修正するためのPythonスクリプトが含まれています。
 * **対象データセット**: https://raw.githubusercontent.com/tana114/vllm-api-structured/main/project/olym/data/TP_TO_maths_en_COMP.jsonl
 * **利用API**: deepseek/deepseek-r1-0528:free
-**注**: OpenRouterの無料枠がどの程度あるのか、掴めきれてない状態（08/02現在）です。30問ほどは1日で行けるのではないかと見込んでいますが、確かめ切れていません。また、1問の生成に平均して5分ほどかかります。
+* **注**: OpenRouterの無料枠がどの程度あるのか、掴めきれてない状態（08/02現在）です。30問ほどは1日で行けるのではないかと見込んでいますが、確かめ切れていません。また、1問の生成に平均して5分ほどかかります。
 
 ---
 
