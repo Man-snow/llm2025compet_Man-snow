@@ -1,16 +1,16 @@
 import os
 import pandas as pd
 import requests
-from datasets import Dataset
+from datasets import load_dataset, Dataset # load_datasetをインポート
 from tqdm import tqdm
 import time
 import json
 import re
 
 # --- Constants ---
-# ★★★ New dataset URL ★★★
-JSONL_URL = "https://raw.githubusercontent.com/tana114/vllm-api-structured/main/project/olym/data/TP_TO_maths_en_COMP.jsonl"
-# NUM_PROBLEMS = 3 # Number of problems to process
+# ★★★ データセットの設定を更新 ★★★
+DATASET_ID = "Hothan/OlympiadBench"
+DATASET_CONFIG = "TP_TO_maths_en_COMP"
 
 # --- OpenRouter API Settings ---
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -19,22 +19,17 @@ MODEL_NAME = "deepseek/deepseek-r1-0528:free"
 YOUR_SITE_URL = "http://localhost"
 APP_NAME = "Math Problem Evolver"
 
-# --- Hugging Face Upload Settings ---
-OUTPUT_DATASET_ID = "Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-r1-0528-free"
-
-# ★★★ Updated Prompt Template ★★★
+# --- Prompt Template (変更なし) ---
 UPWARD_EVOLUTION_PROMPT_TEMPLATE = """
-You are an expert in creating complex mathematical problems. Your task is to rewrite the given instruction to make it more challenging. When the given instruction is a "proof" question, you must transform it into a difficult "computational" question that requires a specific answer, as well as into an even more difficult problem.
+You are an expert in creating complex mathematical problems. Your task is to rewrite the given instruction to make it more challenging. Since the given instruction is a "proof" question, you must transform it into a difficult "computational" question that requires a specific answer, as well as into an even more difficult problem.
 
 #Instruction#
 {problem}
 
 Follow these steps precisely.
-Step 1: Understand the core concept and structure of the "#Instruction#". Identify the key elements such as variables, conditions, participants, actions, or processes that can be manipulated to increase complexity. Also, recognize the theme of the instruction and ensure it remains consistent throughout the evolution. Finally, analyze the "#Instruction#" to determine its type ("proof problem" vs. "computational problem")
+Step 1: Understand the core concept and structure of the "#Instruction#". Identify the key elements such as variables, conditions, participants, actions, or processes that can be manipulated to increase complexity. Also, recognize the theme of the instruction and ensure it remains consistent throughout the evolution. 
 
-Step 2: Formulate a comprehensive plan to increment the complexity of the "#Instruction#" based on the identified elements in Step 1. The plan should involve modifying or expanding at least three components from the list. It is crucial to ensure that all components in the instruction are logically interconnected and that the complexity increase is coherent and justified. The plan should avoid introducing variables or conditions without clear criteria for determining their values or without contributing to the overall complexity. In this step, consider adding more real-world constraints and dependencies between variables to make the problem more challenging. And you can also add more constraints, concretizing, increasing reasoning. 
-- If it is a proof problem: Your primary goal is to transform it into a non-trivial computational problem that is HARDER than the original proof. Do not simplify the problem by merely choosing a small or trivial base case. Instead, introduce complex parameters, ask for a specific but difficult-to-calculate value (e.g., an optimal value, a count of a large set, a specific term in a complex sequence), or combine concepts from the proof with another area of mathematics.
-- If it is already a computational problem: Your goal is to increase its difficulty by making it more abstract, adding more variables, or introducing new, challenging constraints.
+Step 2: Formulate a comprehensive plan to increment the complexity of the "#Instruction#" based on the identified elements in Step 1. The plan should involve modifying or expanding at least three components from the list. It is crucial to ensure that all components in the instruction are logically interconnected and that the complexity increase is coherent and justified. The plan should avoid introducing variables or conditions without clear criteria for determining their values or without contributing to the overall complexity. In this step, consider adding more real-world constraints and dependencies between variables to make the problem more challenging. And you can also add more constraints, concretizing, increasing reasoning. Moreover, your primary goal is to transform a proof problem into a non-trivial computational problem that is HARDER than the original proof. Do not simplify the problem by merely choosing a small or trivial base case. Instead, introduce complex parameters, ask for a specific but difficult-to-calculate value (e.g., an optimal value, a count of a large set, a specific term in a complex sequence), or combine concepts from the proof with another area of mathematics.
 
 Step 3: Implement the plan step by step to create the "#Rewritten Instruction#". Ensure the rewritten instruction maintains a logical sequence and avoids ambiguity or confusion. If additional variables or conditions are introduced, provide clear and unambiguous methods or criteria for determining their values. The "#Rewritten Instruction#" should not exceed the original "#Instruction#" by more than 30 words to ensure readability and comprehension.
 
@@ -55,36 +50,23 @@ Step 4
 ...
 """
 
-def get_problems_from_jsonl(url: str):
-    """Downloads and parses a .jsonl file from a URL."""
-    print(f"🔄 Downloading dataset from {url}...")
+# ★★★ データ読み込み関数をHugging Face Hub対応に変更 ★★★
+def get_problems_from_hub(dataset_id: str, config_name: str):
+    """Downloads and loads a dataset from the Hugging Face Hub."""
+    print(f"🔄 Loading dataset '{dataset_id}' with config '{config_name}' from Hugging Face Hub...")
     try:
-        response = requests.get(url, timeout=60)
-        response.raise_for_status()
-        
-        lines = response.text.strip().splitlines()
-        print(f"✅ Download complete. Found {len(lines)} problems.")
-        
-        problems = []
-        for line in lines:
-            try:
-                data = json.loads(line)
-                # We will use 'question' as the problem text
-                if 'id' in data and 'question' in data:
-                    problems.append(data)
-            except json.JSONDecodeError:
-                print(f"⚠️ Skipping a line due to JSON parsing error: {line}")
-        
-        print(f"✅ Successfully parsed {len(problems)} problems.")
-        return pd.DataFrame(problems)
+        # 'train' スプリットを読み込みます (データセットに存在するスプリット名に合わせてください)
+        dataset = load_dataset(dataset_id, config_name, split='train')
+        print(f"✅ Download complete. Found {len(dataset)} problems.")
+        return dataset.to_pandas()
 
-    except requests.exceptions.RequestException as e:
-        print(f"❌ Error downloading the dataset: {e}")
+    except Exception as e:
+        print(f"❌ Error loading dataset from Hugging Face Hub: {e}")
         return None
 
 def evolve_problem_with_openrouter(problem_text: str) -> tuple[str, str]:
     """Calls the OpenRouter API to evolve a problem statement."""
-    # This function remains the same as the previous version
+    # (この関数は変更なし)
     if not OPENROUTER_API_KEY:
         return "failure", "❌ OPENROUTER_API_KEY environment variable not set."
 
@@ -127,6 +109,7 @@ def evolve_problem_with_openrouter(problem_text: str) -> tuple[str, str]:
 
 def parse_final_instruction(response_text: str) -> str:
     """Extracts the final rewritten instruction from the full API response."""
+    # (この関数は変更なし)
     match = re.search(r'#Finally Rewritten Instruction#\s*:\s*(.*)', response_text, re.IGNORECASE | re.DOTALL)
     if match:
         return match.group(1).strip()
@@ -138,13 +121,12 @@ def parse_final_instruction(response_text: str) -> str:
 
 def main():
     """Main execution function with configurable start/count and CSV-only output."""
-    # --- ユーザー設定 (User Configuration) ---
-    # ★★★ ここで開始問題番号と処理数を指定してください ★★★
-    start_from_problem_number = 1  # 例: 401番目の問題から開始
-    num_to_process = 30            # 例: 30問を処理
-    # ★★★ 設定はここまで ★★★
-
-    output_filename = "evolved_math_problems.csv"
+    # ★★★ ここで開始問題番号と処理数を指定してください ★★★	
+    start_from_problem_number = 1 # 例: 1番目の問題から開始
+    num_to_process = 30 # 例: 30問を処理
+    
+    # ★★★ 出力ファイル名を動的に設定 ★★★
+    output_filename = f"evolved_math_problems_{DATASET_CONFIG}.csv"
 
     # --- Resume Logic ---
     processed_ids = []
@@ -160,14 +142,14 @@ def main():
         except Exception as e:
             print(f"⚠️ Could not read existing file, starting fresh. Error: {e}")
 
-    # --- Data Loading and Filtering ---
-    all_problems_df = get_problems_from_jsonl(JSONL_URL)
+    # ★★★ データ読み込みの呼び出しを更新 ★★★
+    all_problems_df = get_problems_from_hub(DATASET_ID, DATASET_CONFIG)
     
     if all_problems_df is None or all_problems_df.empty:
         print("No problems were loaded from the source. Exiting.")
         return
 
-    # 1. Select the desired slice of problems based on user settings
+    # (以降のロジックは変更なし)
     start_index = start_from_problem_number - 1
     end_index = start_index + num_to_process
 
@@ -175,10 +157,8 @@ def main():
         print(f"Source has only {len(all_problems_df)} problems. Cannot start from problem {start_from_problem_number}. Exiting.")
         return
     
-    # Slice the dataframe to get the target problems
     target_problems_df = all_problems_df.iloc[start_index:end_index].copy()
 
-    # 2. Filter out any problems that have already been processed (for resuming)
     if processed_ids:
         problems_to_process_df = target_problems_df[~target_problems_df['id'].isin(processed_ids)]
     else:
@@ -188,12 +168,11 @@ def main():
         print("✅ All target problems have already been processed. Nothing to do.")
         return
 
-    # --- Main Processing Loop ---
     batch_results = []
     total_to_process = len(problems_to_process_df)
     
-    print(f"\n🚀 Starting upward evolution for {total_to_process} problems (from original problem #{start_from_problem_number} onwards)...")
-    print(f"💾 Results will be appended to '{output_filename}' in batches of 5.")
+    print(f"\n🚀 Starting upward evolution for {total_to_process} problems...")
+    print(f"💾 Results will be appended to '{output_filename}' after each problem.")
 
     for i, (index, row) in enumerate(problems_to_process_df.iterrows()):
         print(f"\n--- Processing problem {i + 1}/{total_to_process} (Original ID: {row.get('id', 'N/A')}) ---")
@@ -218,17 +197,16 @@ def main():
             "original_solution": str(row.get('solution', 'N/A'))
         })
         
-        if (i + 1) % 5 == 0 or (i + 1) == total_to_process:
-            print(f"💾 Saving batch of {len(batch_results)} results to CSV...")
-            temp_df = pd.DataFrame(batch_results)
-            temp_df.to_csv(
-                output_filename,
-                mode='a',
-                header=not os.path.exists(output_filename) or os.path.getsize(output_filename) == 0,
-                index=False,
-                encoding='utf-8-sig'
-            )
-            batch_results.clear()
+        print(f"💾 Saving result for problem {i + 1} to CSV...")
+        temp_df = pd.DataFrame(batch_results)
+        temp_df.to_csv(
+            output_filename,
+            mode='a',
+            header=not os.path.exists(output_filename) or os.path.getsize(output_filename) == 0,
+            index=False,
+            encoding='utf-8-sig'
+        )
+        batch_results.clear()
 
     print(f"\n✅ All processing complete. Final results are in '{output_filename}'.")
 
