@@ -3,9 +3,9 @@
 ## 概要
 
 このリポジトリには、OpenRouter利用して、既存の数学問題をより挑戦的な問題へと自動で上方修正するためのPythonスクリプトが含まれています。
-* **対象データセット**: https://raw.githubusercontent.com/tana114/vllm-api-structured/main/project/olym/data/TP_TO_maths_en_COMP.jsonl
+* **対象データセット**: https://huggingface.co/datasets/Hothan/OlympiadBench
 * **利用API**: deepseek/deepseek-r1-0528:free
-* **注**: OpenRouterの無料枠がどの程度あるのか、掴めきれてない状態（08/02現在）です。30問ほどは1日で行けるのではないかと見込んでいますが、確かめ切れていません。また、1問の生成に平均して5分ほどかかります。
+* **注**: OpenRouterの無料枠がどの程度あるのか、掴めきれてない状態（08/02現在）です。公式ドキュメントによると1日50リクエストなので、40問に設定していますが、それ以上実施できたこともありました。また、1問の生成に平均して5分ほどかかります。
 
 ---
 
@@ -42,7 +42,7 @@
 
 目的に応じて、2つのスクリプトを使い分けます。
 
-### 方法1：全問題を処理し、Hugging Faceにアップロードする
+### 方法1：全問題を処理し、Hugging Faceにアップロードする（8/3現在修正中のため無視してください）
 
 この方法は、データセットのすべての問題を対象に処理を実行します。
 
@@ -61,7 +61,7 @@ python evolve_math_problems_all.py
 
 この方法は、データセットの一部だけを処理し、結果をローカルのCSVファイルに保存したい場合に便利です。Hugging Faceへのアップロードは行いません。
 
-* **スクリプト名:** `evolve_math_problems_divided.py` (範囲指定用のスクリプト)
+* **スクリプト名:** `evolve_math_problems_divided_for_[OE_TO or TP_TO]_maths_en_COMP.py` (範囲指定用のスクリプト)
 
 実行前の設定
 スクリプトファイルを開き、main関数冒頭にある以下の箇所を修正してください。
@@ -70,11 +70,11 @@ python evolve_math_problems_all.py
 # --- ユーザー設定 (User Configuration) ---
 # ★★★ ここで開始問題番号と処理数を指定してください ★★★
 start_from_problem_number = 401  # 例: 401番目の問題から開始
-num_to_process = 30            # 例: 30問を処理
+num_to_process = 40            # 例: 40問を処理
 # ★★★ 設定はここまで ★★★
 ```
 
 #### 実行コマンド
 ```bash
-python evolve_math_problems_divided.py
+python evolve_math_problems_divided_for_[OE_TO or TP_TO]_maths_en_COMP.py
 ```
