@@ -2,29 +2,36 @@ import subprocess
 import os
 import sys
 import time
+import argparse # argparseをインポート
 from concurrent.futures import ProcessPoolExecutor
 from datasets import load_dataset
+import pandas
 
-def fetch_problems():
+# ★ 変更点 1: 関数に引数を追加し、取得範囲を指定できるようにする
+def fetch_problems(start_index=1, num_to_fetch=3):
     """
-    Hugging Face Hubから数学問題を取得する
+    Hugging Face Hubから指定された範囲の数学問題を取得する
     """
-    print("📚 Fetching problems from Hugging Face Hub...")
+    print(f"📚 Fetching {num_to_fetch} problems from Hugging Face Hub, starting from problem #{start_index}...")
     try:
-        # データセットをストリーミングモードでロード
         dataset = load_dataset("Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-r1-0528-free", split='train', streaming=True)
         
         problems = []
-        # 最初の3問を取得
-        for i, example in enumerate(iter(dataset)):
-            if i >= 3:
-                break
+        
+        # isliceを使ってデータセットの指定された範囲を効率的に処理
+        from itertools import islice
+        start_position = start_index - 1 # 0-based index
+        dataset_slice = islice(dataset, start_position, start_position + num_to_fetch)
+
+        for i, example in enumerate(dataset_slice):
             problems.append({
-                "id": i + 1,
+                "id": start_index + i, # 問題番号を正しく設定
                 "problem": example['evolved_problem']
             })
         
         print(f"✅ Successfully fetched {len(problems)} problems.")
+        if not problems:
+            print("Warning: No problems were fetched. Check start_index and dataset size.")
         return problems
     except Exception as e:
         print(f"❌ Failed to fetch problems: {e}")
@@ -37,7 +44,7 @@ def run_single_agent_instance(agent_id, problem_id, problem_file, log_dir):
     log_file = os.path.join(log_dir, f"problem_{problem_id}_agent_{agent_id:02d}.log")
     cmd = [
         sys.executable,
-        "agent_modified.py",
+        "agent_modified.py", # ここはご自身のファイル名に合わせてください
         problem_file,
         "--log",
         log_file
@@ -46,16 +53,13 @@ def run_single_agent_instance(agent_id, problem_id, problem_file, log_dir):
     print(f"🚀 Starting agent {agent_id} for problem {problem_id}...")
     
     try:
-        # agent_modified.pyは成功時にSUCCESS_SIGNAL.txtを生成する
-        # ここではプロセスの完了を待つだけ
         subprocess.run(
             cmd,
-            timeout=1800, # 30分間のタイムアウト
-            check=False # エラーで停止しない
+            timeout=1800,
+            check=False
         )
-        # 成功シグナルファイルがあるか確認
         if os.path.exists("SUCCESS_SIGNAL.txt"):
-            os.remove("SUCCESS_SIGNAL.txt") # 他のプロセスに影響しないように削除
+            os.remove("SUCCESS_SIGNAL.txt")
             return (problem_id, agent_id, True)
         return (problem_id, agent_id, False)
 
@@ -91,14 +95,12 @@ def solve_problem_in_parallel(problem_id, problem_text, num_agents=3, log_dir="l
                     solution_found = True
                     print(f"\n🎉🎉🎉 Agent {agent_id} FOUND A SOLUTION for Problem {prob_id}! 🎉🎉🎉")
                     print(f"Check logs in '{log_dir}/problem_{prob_id}_agent_{agent_id:02d}.log' for details.")
-                    # 1つでも成功したら他のエージェントはキャンセル（実際にはシャットダウンを試みる）
                     executor.shutdown(wait=False, cancel_futures=True)
                     break 
             except Exception as e:
                  print(f"A worker process failed: {e}")
 
-
-    os.remove(problem_file) # 一時ファイルを削除
+    os.remove(problem_file)
     
     if not solution_found:
         print(f"\n❌ No solution found for Problem {problem_id} after {num_agents} attempts.")
@@ -106,10 +108,18 @@ def solve_problem_in_parallel(problem_id, problem_text, num_agents=3, log_dir="l
     return solution_found
 
 def main():
-    # 問題を取得
-    problems = fetch_problems()
+    parser = argparse.ArgumentParser(description='Solve math problems from Hugging Face Hub.')
+    parser.add_argument('--num_agents', '-n', type=int, default=3, 
+                        help='Number of parallel agents to run per problem (default: 1)')
+    parser.add_argument('--start_problem', type=int, default=4, 
+                        help='The starting problem number to fetch (default: 4)')
+    parser.add_argument('--num_problems', type=int, default=7, 
+                        help='The number of problems to fetch (default: 7, for problems 4 to 10)')
+    args = parser.parse_args()
     
-    # ログディレクトリを作成
+    # ★ 変更点 2: コマンドライン引数をfetch_problemsに渡す
+    problems = fetch_problems(start_index=args.start_problem, num_to_fetch=args.num_problems)
+    
     log_dir = "logs"
     os.makedirs(log_dir, exist_ok=True)
     
@@ -117,7 +127,7 @@ def main():
     
     solved_count = 0
     for problem in problems:
-        if solve_problem_in_parallel(problem['id'], problem['problem'], num_agents=3, log_dir=log_dir):
+        if solve_problem_in_parallel(problem['id'], problem['problem'], num_agents=args.num_agents, log_dir=log_dir):
             solved_count += 1
             
     end_time = time.time()

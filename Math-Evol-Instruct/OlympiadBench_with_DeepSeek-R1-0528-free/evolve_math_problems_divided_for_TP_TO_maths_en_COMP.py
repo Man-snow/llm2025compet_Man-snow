@@ -122,7 +122,7 @@ def parse_final_instruction(response_text: str) -> str:
 def main():
     """Main execution function with configurable start/count and CSV-only output."""
     # ★★★ ここで開始問題番号と処理数を指定してください ★★★	
-    start_from_problem_number = 1 # 例: 1番目の問題から開始
+    start_from_problem_number = 41 # 例: 1番目の問題から開始
     num_to_process = 40 # 例: 40問を処理
     
     # ★★★ 出力ファイル名を動的に設定 ★★★
