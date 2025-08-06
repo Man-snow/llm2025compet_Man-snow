@@ -147,7 +147,7 @@ def main():
                 "question": problem['problem'], 
                 "output": None,  # 常にnull (PythonではNone)
                 "answer": final_answer,
-                "solution": f"<think>{solution_text}</think>{final_answer}"
+                "solution": solution_text
             }
             solved_count += 1
         else:
@@ -158,7 +158,7 @@ def main():
                 "question": problem['problem'], 
                 "output": None, # 常にnull (PythonではNone)
                 "answer": "NO_SOLUTION_FOUND",
-                "solution": "<think></think>NO_SOLUTION_FOUND"
+                "solution": "NO_SOLUTION_FOUND"
             }
         
         with open(args.output_file, 'a', encoding='utf-8') as f:
