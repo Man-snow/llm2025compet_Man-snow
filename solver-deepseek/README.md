@@ -2,16 +2,18 @@
 
 このプロジェクトは、論文「Gemini 2.5 Pro Capable of Winning Gold at IMO 2025」で提案された「自己検証パイプライン」を実装し、複雑な数学の問題を解くものです。
 
-このバージョンは、DeepSeekモデルをOpenRouter API経由で利用し、特定のHugging Faceデータセットから問題を自動で取得するように改造されています。並列実行、堅牢なエラーハンドリング、そしてHugging Face Hubを介した共同作業のための結果マージ機能をサポートしています。
+DeepSeekモデルをOpenRouter API経由で利用し、特定のHugging Faceデータセットから問題を取得します。
+並列実行、そしてHugging Face Hubを介した共同作業のための結果マージ機能をサポートしています。
 
 ## 主な機能
 
-- **問題の自動取得**: `Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-r1-0528-free` データセットから、指定されたID範囲の問題を取得します。
+- **問題の自動取得**: `Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-r1-0528-free` データセットから、指定された問題を取得します。
+- **実行の再開**: スクリプトを中断しても、次回の実行時に前回終了した問題の次から処理を再開します。
 - **自己検証パイプライン**: 論文で提案された「生成→自己改善→検証→修正」のループを実行し、解の精度を高めます。
-- **並列処理**: 各問題に対し、複数のエージェントを同時に実行し、解を発見する確率を高めます。
-- **堅牢なリトライ処理**: 初期解の生成が「不完全」と判断された場合に、自動でリトライします。
+- **並列処理**: 各問題に対し、複数のエージェント（デフォルトでは3つ）を同時に実行し、解を発見する確率を高めます。
+- **堅牢なリトライ処理**: 初期解の生成が失敗（サーバーからの応答が失敗）した場合に、自動で3回までリトライします。
 - **JSONL形式での出力**: 各問題の結果を、構造化されたJSON Lines (`.jsonl`) 形式で保存します。
-- **共同作業のためのアップロード機能**: 共有されたHugging Faceデータセットに対し、新しいIDの結果を追加し、既存のIDの結果を上書きする、安全なアップロードを行います。
+- **専用スクリプトによるアップロード機能**: `upload_to_hf.py`を使うことで、ローカルの結果をHugging Face Hub上のデータセットと安全にマージ（追加・上書き）できます。idは常に昇順に整列されます。
 
 ---
 
@@ -28,8 +30,8 @@
 このリポジトリをクローンし、必要なPythonライブラリをインストールします。
 
 ```bash
-git clone <your_repo_url>
-cd <your_repo_name>
+git clone https://github.com/Man-snow/llm2025compet_Man-snow/
+cd solver-deepseek
 pip install -r requirements.txt
 ```
 
@@ -53,13 +55,15 @@ OPENROUTER_API_KEY="sk-or-..."
 huggingface-cli login
 ```
 
-プロンプトに従って、ご自身のAPIトークンを入力してください。
+プロンプトに従って、ご自身のAPIトークン（アップロードにはWrite権限が必要）を入力してください。
 
 ---
 
 ## 実行方法
 
-メインスクリプトは `run_solver.py` です。コマンドライン引数を使って動作を制御できます。
+このプロジェクトは、問題を解く `run_solver.py` と 結果をアップロードする `upload_to_hf.py` の2つの主要なスクリプトで構成されています。
+
+### 1. 問題を解く（`run_solver.py`）
 
 ### 基本コマンド
 
@@ -74,9 +78,17 @@ python run_solver.py [OPTIONS]
 - `--num_agents <N>`: 各問題に対して並列実行するエージェントの数。（デフォルト: 3）  
   ※ APIのレート制限を避けるため、1に設定することを推奨します。
 - `--output_file <PATH>`: 結果を出力するファイルパス。（デフォルト: `results.jsonl`）
-- `--upload_to_hf`: このフラグを付けると、Hugging Face Hubに結果をアップロードします。（デフォルト: 無効）
-- `--hf_repo <REPO_ID>`: アップロード先のHugging FaceデータセットリポジトリID（例: `YourUsername/YourRepoName`）  
-  ※ `--upload_to_hf` を使用する場合は必須です。
+
+### 2. 結果をアップロードする（`upload_to_hf.py`）
+
+```bash
+python upload_to_hf.py [OPTIONS]
+```
+
+### コマンドライン引数
+
+- `--local_file <PATH>`: アップロードするローカルのファイルパス。（デフォルト: results.jsonl）
+- `--hf_repo <REPO_ID>`: アップロード先のHugging FaceリポジトリID。（デフォルト: neko-llm/HLE_RL_OlympiadBench）
 
 ---
 
@@ -85,13 +97,7 @@ python run_solver.py [OPTIONS]
 ### 例1: 10問目から5問を解く
 
 ```bash
-python run_solver.py --start_problem 10 --num_problems 5 --num_agents 1
-```
-
-### 例2: ID 50から2問を解き、結果をアップロードする
-
-```bash
-python run_solver.py --start_problem 50 --num_problems 2 --num_agents 1 --upload_to_hf --hf_repo "MyUsername/math-olympiad-solutions"
+python run_solver.py --start_problem 10 --num_problems 5
 ```
 
 ---
@@ -116,12 +122,14 @@ python run_solver.py --start_problem 50 --num_problems 2 --num_agents 1 --upload
 {
     "id": 123, 
     "question": "問題の全文...",
-    "output": "<think>成功した最初のエージェントの思考プロセスを含む、生の解答全文...</think>最終的な答え",
-    "answer": "抽出された最終的な答え（例: '0'や'-2'、'解は存在しない'など）"
+    "output": "現状は空欄（後工程で埋めます）",
+    "answer": "抽出された最終的な答え（例: '0'や'-2'、'解は存在しない'など）",
+    "solution: "回答過程"
 }
 ```
 
-※ 問題が解けなかった場合、`output` の値は `"NO_SOLUTION_FOUND"` になります。
+※ 問題が解けた場合：3回連続で回答がverifiedされた場合、`output`と`answer`には最初に解いたagentの回答が入ります。
+※ 問題が解けなかった場合：5回連続で回答がverifiedされなかった場合、`answer` の値は `"NO_SOLUTION_FOUND"` になります。
 
 ---
 
