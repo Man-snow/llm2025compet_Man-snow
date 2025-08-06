@@ -1,0 +1,912 @@
+﻿id,original_problem,evolved_problem,evolved_response,status,processing_time_seconds,original_solution
+2721,"Let $T=0$. At some point during a given week, a law enforcement officer had issued $T+2$ traffic warnings, 20 tickets, and had made $T+5$ arrests. How many more tickets must the officer issue in order for the combined number of tickets and arrests to be 20 times the number of warnings issued that week?","A senior police officer, allocated k units of overtime based on crime levels (k≥1), issued `T+2` traffic warnings, 20 tickets, and made `k(T+1)` arrests during a week. Department rules require arrests after adding tickets to remain at least double the initial tickets. Due to compliance issues, each ticket issued beyond 20 reduces arrests by 0.5. How many more tickets `x` must the officer issue to ensure the combined tickets and total adjusted arrests equal 20 times the warnings, while the final tickets-to-arrests ratio is precisely 1.5? (Set `T=0`).","Step 1
+#Elements Identified#:
+*   **Core Concept:** Solving an algebraic equation where one quantity must reach a multiple of another, given initial values of three interconnected variables.
+*   **Variables:** Initial fixed value (Tickets = 20), initial expressions involving a constant `T` (`T+2` Warnings, `T+5` Arrests; `T=0`).
+*   **Target Condition:** The combined number of Tickets and Arrests must equal 20 times the number of Warnings.
+*   **Operation:** Find the additional Tickets (`x`) required to meet the condition.
+*   **Participants:** Law enforcement officer.
+*   **Actions:** Issuing traffic warnings, issuing tickets, making arrests.
+*   **Theme:** Quantifiable law enforcement actions during a defined time period (a week).
+*   **Structure:** Set initial state, define condition, solve for an unknown increment.
+
+Step 2
+#Plan#:
+1.  **Modify Ambiguity in Variable:** Replace the fixed `T=0` with a scenario-dependent variable `k` (e.g., indicating week type: normal or high-crime) that intrinsically affects initial values.
+2.  **Introduce Conditional Constraint:** Add a requirement influencing how the solution for `x` interacts with another fixed element (like the initial ticket count), forcing consideration of inequalities (e.g., ""After adding tickets, arrests must be at least double the original ticket count""). This prevents a straightforward equation solve.
+3.  **Introduce Variable Penalty/Adjustment:** Incorporate an element where some part of the initial count is variable and depends on the solution `x`, making it sensitive to his choices (e.g., ""each ticket issued beyond a certain point reduces arrests"").
+4.  **Expand Outcome Requirement:** Introduce a second condition for the final state that relates tickets and arrests differently (e.g., obeying an additional ratio).
+5.  **Interconnect & Concretize:** Ensure the week type `k` defines the initial arrest count as a multiple of itself. Tie the conditional constraint explicitly to the officer's decision (`x`). Define the penalty concretely. Ensure the second ratio condition uses the final counts incorporating `x`. Maintain the officer/fine enforcement theme.
+
+Step 3
+#Rewritten Instruction#:
+A senior police officer, allocated k units of overtime based on crime levels (k≥1), issued `T+2` traffic warnings, 20 tickets, and made `k(T+1)` arrests during a week. Department policy demands that if the arrest count falls below double the initial tickets (`2*20`), the officer must accept penalties. Due to a special initiative, each ticket issued above 20 reduces arrests by 0.5. How many more tickets `x` must the officer issue to ensure the combined tickets and arrests become 20 times the warnings, while arrests meet policy and the ratio of tickets to arrests finally is exactly 1.5? (Set `T=0`).
+
+Step 4
+#Finally Rewritten Instruction#:
+A senior police officer, allocated k units of overtime based on crime levels (k≥1), issued `T+2` traffic warnings, 20 tickets, and made `k(T+1)` arrests during a week. Department rules require arrests after adding tickets to remain at least double the initial tickets. Due to compliance issues, each ticket issued beyond 20 reduces arrests by 0.5. How many more tickets `x` must the officer issue to ensure the combined tickets and total adjusted arrests equal 20 times the warnings, while the final tickets-to-arrests ratio is precisely 1.5? (Set `T=0`).",success,24.22,"['The problem requests the value of $k$ such that $20+k+T+5=20(T+2)$, thus $k=19 T+15$. With $T=0$, it follows that $k=\\mathbf{1 5}$.']"
+2722,"Let $T=15$. In parallelogram $A R M L$, points $P$ and $Q$ trisect $\overline{A R}$ and points $W, X, Y, Z$ divide $\overline{M L}$ into fifths (where $W$ is closest to $M$, and points $X$ and $Y$ are both between $W$ and $Z$ ). If $[A R M L]=T$, compute $[P Q W Z]$.","**:  
+Let $T=15$. In parallelogram $A R M L$, points $P$ and $Q$ on $\overline{A R}$ satisfy $AP:PQ:QR=3:1:2$, and points $W, X, Y, Z$ divide $\overline{M L}$ in order such that $MW:WX:XY:YZ:ZL=1:2:3:2:2$. If $[A R M L]=T$, compute $[P Q W Z]$.","**Step 1**  
+**#Elements Identified#**:  
+- Given fixed area $T = 15$ of parallelogram $ARML$.  
+- Parallelogram $ARML$ with sides $AR$ and $ML$ being opposite and equal.  
+- Points $P$ and $Q$ dividing $\overline{AR}$ into three parts (original: equal trisection).  
+- Points $W, X, Y, Z$ dividing $\overline{ML}$ into parts (original: five equal segments), with $W$ closest to $M$, and $X$, $Y$ between $W$ and $Z$.  
+- Target: compute area $[PQWZ]$.  
+- Opportunity: Modify ratios for divisions, add variable ratios, ensure interdependence.  
+
+**Step 2**  
+**#Plan#**:  
+- Change $\overline{AR}$ division: Replace equal trisection with fixed ratio $AP:PQ:QR = 3:1:2$, introducing non-uniform segments and requiring ratio-based positioning.  
+- Change $\overline{ML}$ division: Replace equal fifths with five segments in ratio $MW:WX:XY:YZ:ZL = 1:2:3:2:2$, adding complexity through unequal parts.  
+- Specify ordering of points to avoid ambiguity: Explicitly state $W, X, Y, Z$ are ordered from $M$ to $L$.  
+- Maintain $T$ as given area and all elements interconnected via vertex relationships and area computation.  
+
+**Step 3**  
+**#Rewritten Instruction#**:  
+Let $T=15$. In parallelogram $A R M L$, points $P$ and $Q$ on $\overline{A R}$ satisfy $AP:PQ:QR=3:1:2$, and points $W, X, Y, Z$ divide $\overline{M L}$ in order such that $MW:WX:XY:YZ:ZL=1:2:3:2:2$. If $[A R M L]=T$, compute $[P Q W Z]$.  
+
+**Step 4**  
+**#Finally Rewritten Instruction#**:  
+Let $T=15$. In parallelogram $A R M L$, points $P$ and $Q$ on $\overline{A R}$ satisfy $AP:PQ:QR=3:1:2$, and points $W, X, Y, Z$ divide $\overline{M L}$ in order such that $MW:WX:XY:YZ:ZL=1:2:3:2:2$. If $[A R M L]=T$, compute $[P Q W Z]$.",success,225.09,"['Let $h$ be the distance between $\\overline{A R}$ and $\\overline{M L}$, and for simplicity, let $A R=M L=15 n$. Then $[A R M L]=15 n h$, and $[P Q W Z]=(1 / 2)(P Q+W Z) h$. Note that $P Q=15 n / 3=5 n$ and $W Z=15 n-3 n-3 n=9 n$. Thus $[P Q W Z]=7 n h=(7 / 15) \\cdot[A R M L]=7 T / 15$. With $T=15$, the answer is 7 .']"
+2723,Let $T=7$. Compute the number of positive perfect cubes that are divisors of $(T+10) !$.,Let T=7. Define n as the count of prime numbers less than or equal to T. Compute the number of positive perfect cubes that are divisors of (n + T + 5)! and are less than or equal to (n!)^2.,"Step 1
+#Elements Identified#:
+- Variable T fixed at 7.
+- Constant offset ""10"" in the term (T+10).
+- Factorial computation ( )!.
+- Action: compute the number of dividend perfect cube divisors.
+- Condition: divisors must be positive perfect cubes.
+- Theme: factorial divisibility and perfect cube properties in number theory.
+
+Step 2
+#Plan#:
+1. **Make T dynamic**: Introduce n defined as the number of primes less than or equal to T, with T still initially 7, but n must be calculated first.
+2. **Modify the factorial expression**: Replace the constant offset ""10"" with an expression involving n and T, specifically changing (T+10) to (n + T + 5) to add dependency.
+3. **Add a constraint on the cube divisors**: Require that each perfect cube divisor must be less than or equal to (n!)^2, introducing a bound based on a new function of n.
+4. **Ensure logical interconnection**: n depends on T, the factorial depends on n and T, and the constraint depends on n, creating a chain of reasoning.
+5. **Increase reasoning depth**: Added steps involve prime counting, factorial growth effects on exponents, and bound-based filtering for feasible solutions.
+
+Step 3
+#Rewritten Instruction#:
+Let T=7. Define n as the count of prime numbers less than or equal to T. Compute the number of positive perfect cubes that are divisors of (n + T + 5)! and are less than or equal to (n!)^2.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let T=7. Define n as the count of prime numbers less than or equal to T. Compute the number of positive perfect cubes that are divisors of (n + T + 5)! and are less than or equal to (n!)^2.",success,114.95,"['Let $N=T+10$. In order for $k^{3}(k \\in \\mathbb{N})$ to be a divisor of $N$ !, the largest odd prime factor of $k$ (call it $p$ ) must be less than or equal to $N / 3$ so that there are at least three multiples of $p$ among the product of the first $N$ positive integers. If $p=3$, then the smallest possible value of $N$ is 9 , and the largest perfect cube factor of 9 ! is $2^{6} \\cdot 3^{3}$. Similarly, if $p=5$, then the smallest possible value of $N$ is 15 , and the largest perfect cube factor of 15 ! is $2^{9} \\cdot 3^{6} \\cdot 5^{3}$. With $T=7, N=17$, and the largest perfect cube factor of 17 ! is $2^{15} \\cdot 3^{6} \\cdot 5^{3}$. Thus $k^{3} \\mid 17$ ! if and only if $k \\mid 2^{5} \\cdot 3^{2} \\cdot 5^{1}$. Therefore $k=2^{x} 3^{y} 5^{z}$, where $x, y, z$ are nonnegative integers with $x \\leq 5, y \\leq 2, z \\leq 1$, yielding $6 \\cdot 3 \\cdot 2=\\mathbf{3 6}$ possible values of $k$.']"
+2724,"Let $T=36$. The graph of $y=x^{2}+2 x-T$ intersects the $x$-axis at points $A$ and $M$, which are diagonally opposite vertices of square $A R M L$. Compute $[A R M L]$.","The graph of $y = x^{2} + 2 x - T$ intersects the $x$-axis at points $A$ and $M$, which are diagonally opposite vertices of square $A R M L$. Determine $T$ such that a vertex adjacent to $A$ or $M$ lies on the parabola, then find $[A R M L]$.","Step 1  
+#Elements Identified#:  
+- Fixed variable: $T=36$ given directly.  
+- Quadratic equation: $y = x^2 + 2x - T$.  
+- Points: $A$ and $M$ as x-intercepts of the parabola.  
+- Geometric shape: Square $ARML$ with $A$ and $M$ as diagonally opposite vertices.  
+- Action: Compute the area $[ARML]$ of the square.  
+- Theme: Algebraic geometry involving solving quadratic equations and geometric properties to find area.  
+
+Step 2  
+#Plan#:  
+- Modify the definition of $T$: Instead of a fixed value, define $T$ implicitly such that an additional geometric condition is satisfied.  
+- Introduce a new constraint: Require that one of the other vertices ($R$ or $L$) of the square $ARML$ lies on the parabola. This adds complexity by creating a dependency between $T$ and the square's position.  
+- After solving for $T$, compute the area as an intermediate step, maintaining the core action.  
+- Justify changes: The modifications increase complexity by introducing an implicit equation for $T$ that must be solved before finding the area, adding algebraic depth and coordination between variables.  
+- Ensure coherence: $T$ is determined by the condition, and all elements remain logically connected through the parabola and square properties.  
+
+Step 3  
+#Rewritten Instruction#:  
+The graph of $y = x^2 + 2x - T$ intersects the $x$-axis at points $A$ and $M$, which are diagonally opposite vertices of square $ARML$. Find $T$ such that one of the other vertices of the square lies on the parabola, then compute $[ARML]$.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+The graph of $y = x^{2} + 2 x - T$ intersects the $x$-axis at points $A$ and $M$, which are diagonally opposite vertices of square $A R M L$. Determine $T$ such that a vertex adjacent to $A$ or $M$ lies on the parabola, then find $[A R M L]$.",success,166.27,"['Note that the $x$-coordinates of $A$ and $M$ correspond to the two roots $r_{1}, r_{2}$ of $x^{2}+2 x-T$. If $s$ is the side length of square $A R M L$, then $A M=s \\sqrt{2}=\\left|r_{1}-r_{2}\\right|=\\sqrt{\\left(r_{1}-r_{2}\\right)^{2}}=$ $\\sqrt{\\left(r_{1}+r_{2}\\right)^{2}-4 r_{1} r_{2}}=\\sqrt{(-2)^{2}-4(-T)}=2 \\sqrt{1+T}$. Thus $[A R M L]=s^{2}=2(1+T)$. With $T=36,[A R M L]=\\mathbf{7 4}$.']"
+2725,"Let $S$ be the set of prime factors of the numbers you receive from positions 7 and 9 , and let $p$ and $q$ be the two least distinct elements of $S$, with $p<q$. Hexagon HEXAGO is inscribed in circle $\omega$, and every angle of $H E X A G O$ is $120^{\circ}$. If $H E=X A=G O=p$ and $E X=A G=O H=q$, compute the area of circle $\omega$.","**
+Let the Padovan sequence be defined by \( a_1 = 1 \), \( a_2 = 1 \), \( a_3 = 1 \), and \( a_n = a_{n-2} + a_{n-3} \) for \( n \geq 4 \). Let \( b = a_5 + a_8 \) and let \( c = a_5 \times a_8 \). Let \( S \) be the set of distinct prime factors of \( b \) and \( c \). Form the quadratic \( x^2 - s x + p_1 = 0 \), where \( s \) is the sum and \( p_1 \) the product of elements in \( S \). Let \( p \) and \( q \) (\( p < q \)) be its roots. Hexagon \( H E X A G O \) is inscribed in circle \( \omega \), every interior angle \( 120^{\circ} \), with \( H E = X A = G O = p \) and \( E X = A G = O H = q \). If the diagonal \( H X \) is the diameter of \( \omega \), compute the area of circle \( \omega \).","### Step 1
+**#Elements Identified#:**
+- **Input Source:** The numbers from positions 7 and 9, which are undefined and lack context, allowing for a more complex definition.
+- **Set Definition:** \( S \) is defined as the set of prime factors of the input numbers; \( p \) and \( q \) are derived as the two least distinct elements of \( S \) with \( p < q \), a simple selection method.
+- **Geometric Constraints:** The hexagon \( H E X A G O \) is inscribed in circle \( \omega \), with all interior angles \( 120^\circ \), and side lengths specifically assigned as \( H E = X A = G O = p \) and \( E X = A G = O H = q \).
+- **Output:** Computation of the area of circle \( \omega \).
+- **Theme:** Integration of number theory (prime factors) with geometry (cyclic equiangular hexagon) for a calculated output.
+
+### Step 2
+**#Plan#:**
+1. **Expand and Redefine Input Source:** Replace the ambiguous ""positions 7 and 9"" with a recursively defined sequence (e.g., Padovan sequence) to increase computational depth, requiring solvers to generate terms before extracting inputs.
+2. **Modify Set Definition and Element Selection:** Broaden \( S \) to include prime factors from the sum of sequence terms (positions 5 and 8) and their product, ensuring a larger set. Redefine \( p \) and \( q \) as the multiplicative roots of a quadratic equation derived from \( S \), adding algebraic complexity.
+3. **Add Geometric Constraint and Dependency:** Introduce that for the hexagon to be cyclic, the diagonal \( H X \) must equal the diameter of \( \omega \), creating a geometric link between \( p \), \( q \), and the circle. This requires solvers to derive a parameter relationship before area computation.
+4. **Ensure Coherence:** All modifications interconnect logically: the sequence defines inputs, the set process determines parameters for geometry, and the added constraint enforces solvers to resolve dependencies. Complexity increases through multi-step reasoning without unnecessary variables.
+
+### Step 3
+**#Rewritten Instruction#:**
+Let the Padovan sequence be defined by \( a_1 = 1 \), \( a_2 = 1 \), \( a_3 = 1 \), and \( a_n = a_{n-2} + a_{n-3} \) for \( n \geq 4 \). Let \( b = a_5 + a_8 \) and let \( c = a_5 \times a_8 \). Let \( S \) be the set of distinct prime factors of \( b \) and \( c \). Form the quadratic \( x^2 - s x + p\_1 = 0 \), where \( s \) is sum and \( p\_1 \) is product of elements in S. Let \( p \) and \( q \), with \( p < q \), be the roots. Hexagon \( H E X A G O \) is inscribed in circle \( \omega \), all interior angles \( 120^\circ \), and \( H E = X A = G O = p \), \( E X = A G = O H = q \). Given the diagonal \( H X \) equals the diameter of \( \omega \), compute the area of circle \( \omega \).
+
+### Step 4
+**#Finally Rewritten Instruction#:**
+Let the Padovan sequence be defined by \( a_1 = 1 \), \( a_2 = 1 \), \( a_3 = 1 \), and \( a_n = a_{n-2} + a_{n-3} \) for \( n \geq 4 \). Let \( b = a_5 + a_8 \) and let \( c = a_5 \times a_8 \). Let \( S \) be the set of distinct prime factors of \( b \) and \( c \). Form the quadratic \( x^2 - s x + p_1 = 0 \), where \( s \) is the sum and \( p_1 \) the product of elements in \( S \). Let \( p \) and \( q \) (\( p < q \)) be its roots. Hexagon \( H E X A G O \) is inscribed in circle \( \omega \), every interior angle \( 120^{\circ} \), with \( H E = X A = G O = p \) and \( E X = A G = O H = q \). If the diagonal \( H X \) is the diameter of \( \omega \), compute the area of circle \( \omega \).",success,143.81,"[""The given information implies that triangles $H E X, X A G$, and $G O H$ are congruent, hence triangle $H X G$ is equilateral. If $H X=s$, then the radius of the circle circumscribing $\\triangle H X G$ is $s / \\sqrt{3}$ so that the circle's area is $\\pi s^{2} / 3$. It remains to compute $s$. With $\\mathrm{m} \\angle H E X=120^{\\circ}$, use the Law of Cosines to find\n\n$$\n\\begin{aligned}\nH X^{2} & =H E^{2}+E X^{2}-2 H E \\cdot E X \\cdot \\cos 120^{\\circ} \\\\\n& =p^{2}+q^{2}-2 p q(-1 / 2) \\\\\n& =p^{2}+q^{2}+p q .\n\\end{aligned}\n$$\n\nUsing the answers 74 and 7 from positions 7 and 9 , respectively, conclude that $S=\\{2,7,37\\}$ and that $(p, q)=(2,7)$. Hence the foregoing yields $H X^{2}=4+49+14=67$. Thus the area of circle $\\omega$ is $\\frac{\\mathbf{6 7 \\pi}}{\\mathbf{3}}$.""]"
+2726,Let $T=184$. A group of $n$ friends goes camping; two of them are selected to set up the campsite when they arrive and two others are selected to take down the campsite the next day. Compute the smallest possible value of $n$ such that there are at least $T$ ways of selecting the four helpers.,"Let $T=184$. A group of $n$ friends, including Alex, goes camping; two are selected to set up the campsite with Alex as one, two others are selected for teardown with one chosen as leader, and one more is selected for first aid. Compute the smallest possible $n$ such that there are at least $T$ ways of selecting the helpers under these conditions.","Step 1  
+#Elements Identified#:  
+- Variable: $T = 184$ (fixed value).  
+- Participants: Group of $n$ friends (homogeneous except for potential specific roles or constraints).  
+- Actions: Selecting two distinct friends for setup and two distinct others for teardown, implying no overlap and four distinct helpers in total; the selections are unordered pairs.  
+- Core concept: Combinatorial selection with distinct roles (setup and teardown teams), focusing on the number of ways as $\binom{n}{2} \times \binom{n-2}{2}$.  
+- Theme: Camping scenario with helper assignments; simplicity allows for expansions like additional tasks or constraints.  
+- Conditions: No inherent constraints; complexity can be added through more tasks, role differentiations, or selection restrictions.  
+
+Step 2  
+#Plan#:  
+1. Increase the number of tasks: Add a third distinct task (e.g., first aid duty) requiring one helper to expand the helper count to five, changing the combinatorial structure to $\binom{n}{2} \times \binom{n-2}{2} \times \binom{n-4}{1}$ or similar, increasing the number of selections and requiring larger $n$ for a comparable $T$.  
+2. Add a specific constraint: Introduce a named friend (Alex) who must be part of the setup team, reducing the free choices and adding fixed selection logic, altering the number of ways to $(n-1) \times \cdots$ for setup.  
+3. Add role differentiation within a team: For the teardown team, require selecting a leader (e.g., one of the two teardown helpers), making the team choices ordered and increasing the multiplicative factor via $2 \times \binom{n-2}{2}$ for teardown.  
+- Justification: All components interconnect logically—the new task adds helpers, the constraint reduces flexibility for setup, and the role differentiation increases variability for teardown, collectively demanding more intricate combinatorial reasoning. $T=184$ is retained for consistency, but now it applies to a more complex scenario, adjusting the minimal $n$ target.  
+- Avoid ambiguity: Alex is explicitly named; first aid is a distinct task; leader selection is clear; $n$ must be large enough (e.g., at least 5) for selections, handled implicitly.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let $T=184$. A group of $n$ friends, including Alex, goes camping; two are selected to set up the campsite with Alex as one, two others are selected for teardown with one chosen as leader, and one more is selected for first aid. Compute the smallest possible $n$ such that there are at least $T$ ways of selecting the helpers under these conditions.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let $T=184$. A group of $n$ friends, including Alex, goes camping; two are selected to set up the campsite with Alex as one, two others are selected for teardown with one chosen as leader, and one more is selected for first aid. Compute the smallest possible $n$ such that there are at least $T$ ways of selecting the helpers under these conditions.",success,165.89,"['There are $\\left(\\begin{array}{l}n \\\\ 2\\end{array}\\right)$ ways of choosing the two people to set up and $\\left(\\begin{array}{c}n-2 \\\\ 2\\end{array}\\right)$ ways of choosing the two people to take down the campsite, so there are $\\frac{n(n-1)}{2} \\cdot \\frac{(n-2)(n-3)}{2}$ ways of choosing the four people, or $\\frac{n(n-1)(n-2)(n-3)}{4}$ ways total; call this function $C(n)$. For the least $n$ such that $\\frac{n(n-1)(n-2)(n-3)}{4} \\geq T$, as a rough approximation, note that $n-3<\\sqrt[4]{4 T}<n$. With $T=184$, the approximation becomes $n-3<\\sqrt[4]{736}<n$. Now $5^{4}=625$ while $6^{4}=1296$, so $5<n<9$. Try values starting from $n=6$ :\n\n$$\n\\begin{aligned}\n& C(6)=\\frac{6 \\cdot 5 \\cdot 4 \\cdot 3}{4}=90 \\\\\n& C(7)=\\frac{7 \\cdot 6 \\cdot 5 \\cdot 4}{4}=210 .\n\\end{aligned}\n$$\n\nThus $n=7$.']"
+2727,Let $T=8$. The parabola $y=x^{2}+T x$ is tangent to the parabola $y=-(x-2 T)^{2}+b$. Compute $b$.,"Let $T$ be a positive constant such that the parabola $y = x^{2} + T x$ is tangent to the parabola $y = -(x-3T)^{2} + b$, and the point of tangency has a y-coordinate of $12T$. Compute $b$.","Step 1
+#Elements Identified#:
+- Given constant: $T=8$.
+- Parabolas: $y = x^{2} + T x$ and $y = -(x - 2T)^{2} + b$.
+- Condition: Tangency between the two parabolas.
+- Action: Compute $b$ for tangency.
+- Theme: Solving for a parameter in tangency between quadratic functions.
+- Manipulable elements: The value of $T$, the form of the parabolas, the tangency point, or additional constraints like numerical conditions or related parameters.
+
+Step 2
+#Plan#:
+1. Modify the constant $T$ from fixed to variable: Instead of $T=8$, let $T$ be a positive constant to be determined.
+2. Add a constraint on the point of tangency: Require that the y-coordinate at the point of tangency equals $k T$ for a specific integer $k$ to increase reasoning steps.
+3. Change the form of the second parabola: Replace $y = -(x-2T)^{2} + b$ with $y = -(x-3T)^{2} + b$ to alter the vertex position, increasing algebraic complexity.
+4. Ensure coherence: Introduce dependencies by requiring the solution of multiple equations involving $T$ and $b$, such as tangency condition and the new point constraint, to justify finding numerical values logically.
+
+Step 3
+#Rewritten Instruction#:
+Let $T$ be a positive constant such that the parabolas $y = x^{2} + T x$ and $y = -(x-3T)^{2} + b$ are tangent and the point of tangency has a y-coordinate of $12T$. Compute $b$.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $T$ be a positive constant such that the parabola $y = x^{2} + T x$ is tangent to the parabola $y = -(x-3T)^{2} + b$, and the point of tangency has a y-coordinate of $12T$. Compute $b$.",success,146.41,"['In this case, the two parabolas are tangent exactly when the system of equations has a unique solution. (Query: Is this the case for every pair of equations representing parabolas?) So set the right sides equal to each other: $x^{2}+T x=-(x-2 T)^{2}+b$. Then $x^{2}+T x=$ $-x^{2}+4 T x-4 T^{2}+b$, or equivalently, $2 x^{2}-3 T x+4 T^{2}-b=0$. The equation has a double root when the discriminant is 0 , so set $(-3 T)^{2}-4\\left(4 T^{2}-b\\right)(2)=0$ and solve: $9 T^{2}-32 T^{2}+8 b=0$ implies $-23 T^{2}+8 b=0$, or $b=23 T^{2} / 8$. Using $T=8$ yields $b=\\mathbf{1 8 4}$.']"
+2728,"Let $T=19$. The first two terms of a sequence are $a_{1}=3 / 5$ and $a_{2}=4 / 5$. For $n>2$, if $n$ is odd, then $a_{n}=a_{n-1}^{2}-a_{n-2}^{2}$, while if $n$ is even, then $a_{n}=2 a_{n-2} a_{n-3}$. Compute the sum of the squares of the first $T-3$ terms of the sequence.","Let $T=19$. The first two terms of a sequence are $a_{1}=3/5$ and $a_{2}=4/5$. Term $a_3$ is defined as $a_{3} = a_{2}^{2} - a_{1}^{2} = (4/5)^2 - (3/5)^2 = 7/25$. For $n > 3$, the sequence is defined based on $n \mod 3$: if $n \equiv 1 \pmod{3}$, then $a_{n} = a_{n-1}^{2} - a_{n-2}^{2}$; if $n \equiv 2 \pmod{3}$, then $a_{n} = 2 a_{n-2} a_{n-3}$; if $n \equiv 0 \pmod{3}$, then $a_{n} = a_{n-1} a_{n-2} + a_{n-3}$. Compute the sum of the cubes of the first $T-3$ terms of the sequence.","Step 1
+#Elements Identified#:
+- Fixed variable $T=19$ defining the problem scope
+- Sequence terms $a_n$ with initial values $a_1=3/5$, $a_2=4/5$
+- Recursive definitions for $n>2$ based on the parity of $n$ (odd or even)
+- Actions: Compute the sum of squares of the first $T-3$ terms (i.e., 16 terms)
+- Theme: Sequence generation with conditional recurrence and summation
+
+Step 2
+#Plan#:
+- Modify the recurrence to include an additional case based on $n \mod 3$ instead of just parity, introducing modulo-based conditions for increased branching complexity
+- Change the computation from sum of squares to sum of cubes, adding nonlinearity and increasing computational demand
+- Introduce an explicit definition for $a_3$ to resolve the base case for the new recurrence starting at $n>3$, ensuring logical consistency and adding an initial step
+- Retain fixed $T=19$ and the number of terms ($T-3$) to maintain problem structure while increasing reasoning depth
+
+Step 3
+#Rewritten Instruction#:
+Let $T=19$. The first two terms of a sequence are $a_{1}=3/5$ and $a_{2}=4/5$. Term $a_3$ is defined as $a_{3} = a_{2}^{2} - a_{1}^{2} = (4/5)^2 - (3/5)^2 = 7/25$. For $n > 3$, the sequence is defined based on $n \mod 3$: if $n \equiv 1 \pmod{3}$, then $a_{n} = a_{n-1}^{2} - a_{n-2}^{2}$; if $n \equiv 2 \pmod{3}$, then $a_{n} = 2 a_{n-2} a_{n-3}$; if $n \equiv 0 \pmod{3}$, then $a_{n} = a_{n-1} a_{n-2} + a_{n-3}$. Compute the sum of the cubes of the first $T-3$ terms of the sequence.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $T=19$. The first two terms of a sequence are $a_{1}=3/5$ and $a_{2}=4/5$. Term $a_3$ is defined as $a_{3} = a_{2}^{2} - a_{1}^{2} = (4/5)^2 - (3/5)^2 = 7/25$. For $n > 3$, the sequence is defined based on $n \mod 3$: if $n \equiv 1 \pmod{3}$, then $a_{n} = a_{n-1}^{2} - a_{n-2}^{2}$; if $n \equiv 2 \pmod{3}$, then $a_{n} = 2 a_{n-2} a_{n-3}$; if $n \equiv 0 \pmod{3}$, then $a_{n} = a_{n-1} a_{n-2} + a_{n-3}$. Compute the sum of the cubes of the first $T-3$ terms of the sequence.",success,141.84,"['Using the identity $\\left(x^{2}-y^{2}\\right)^{2}+(2 x y)^{2}=\\left(x^{2}+y^{2}\\right)^{2}$, notice that $a_{2 n+1}^{2}+a_{2 n+2}^{2}=\\left(a_{2 n}^{2}-a_{2 n-1}^{2}\\right)^{2}+$ $\\left(2 a_{2 n} a_{2 n-1}\\right)^{2}=\\left(a_{2 n}^{2}+a_{2 n-1}^{2}\\right)^{2}$. So surprisingly, for all $n \\in \\mathbb{N}, a_{2 n+1}^{2}+a_{2 n+2}^{2}=1$. Thus if $n$ is even, the sum of the squares of the first $n$ terms is $n / 2$. With $T=19, T-3=16$, and the sum is 8 .']"
+2729,Let $T=17$. A regular $n$-gon has exactly $T$ more diagonals than a regular $(n-1)$-gon. Compute the value of $n$.,"Let $T=17$. A regular $n$-gon has exactly $T$ more diagonals than a regular $(n-1)$-gon. Moreover, $T$ divides the number of interior diagonal intersection points of the $(n-1)$-gon. Compute $n$.","Step 1
+#Elements Identified#:
+- Fixed variable: $T = 17$.
+- Polygon sizes: $n$-gon and $(n-1)$-gon.
+- Core condition: Difference in diagonals between the $n$-gon and $(n-1)$-gon equals $T$.
+- Action: Compute $n$.
+- Theme: Polygon diagonal combinatorics with algebraic relation.
+- Implicit elements: Formula for diagonals in polygon, solvers must use or derive it.
+
+Step 2
+#Plan#:
+- Expand the number of participants: Introduce the concept of interior diagonal intersection points for the $(n-1)$-gon.
+- Add a mathematical constraint: $T$ must divide this number of intersection points.
+- Modify the conditions: Require verification that the difference condition implies the divisibility condition.
+- Ensure logical connection: The computed $n$ must satisfy both the diagonal difference and the divisibility, leveraging combinatorics (C(n,4) formula).
+- Increase reasoning: Solvers must recognize the formula for intersection points and perform divisibility check after solving.
+
+Step 3
+#Rewritten Instruction#:
+Let $T=17$. A regular $n$-gon has exactly $T$ more diagonals than a regular $(n-1)$-gon. Additionally, $T$ divides the number of interior diagonal intersection points of the $(n-1)$-gon (assuming no three diagonals concurrent). Compute $n$.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $T=17$. A regular $n$-gon has exactly $T$ more diagonals than a regular $(n-1)$-gon. Moreover, $T$ divides the number of interior diagonal intersection points of the $(n-1)$-gon. Compute $n$.",success,174.92,"['Using the formula $D(n)=\\frac{n(n-3)}{2}$ twice yields $D(n)-D(n-1)=\\frac{n^{2}-3 n}{2}-\\frac{n^{2}-5 n+4}{2}=\\frac{2 n-4}{2}=n-2$. So $T=n-2$, thus $n=T+2$, and with $T=17, n=19$.']"
+2730,"Let $T=27/2$. The sequence $a_{1}, a_{2}, a_{3}, \ldots$, is arithmetic with $a_{16}=13$ and $a_{30}=20$. Compute the value of $k$ for which $a_{k}=T$.","Let \(T = 27/2\). The sequence \(a_{1}, a_{2}, a_{3}, \ldots\) is arithmetic with \(a_{16} = 13\) and \(a_{30} = 20\). Compute the value of \(k\) for which the average of \(a_{k}\) and \(a_{k+14}\) equals \(T\).","**Step 1**  
+#Elements Identified#:  
+- The sequence is arithmetic, characterized by a common difference \(d\) and first term \(a_1\).  
+- Given terms: \(a_{16} = 13\) and \(a_{30} = 20\).  
+- Target value \(T = 27/2 = 13.5\) fixed externally.  
+- The goal is to find \(k\) such that \(a_k = T\).  
+
+**Step 2**  
+#Plan#:  
+- Replace the direct condition \(a_k = T\) with a constraint involving multiple terms: the average of \(a_k\) and another term (specifically, \(a_{k+t}\) for a fixed offset \(t\)) equals \(T\). This introduces algebraic manipulation and dependencies between terms.  
+- Add an offset parameter (\(t = 14\)) to the new condition, ensuring it integrates logically with the existing terms. The offset is chosen to reflect the difference in indices between the known terms (16 and 30), which is 14.  
+- Retain \(T = 27/2\), \(a_{16} = 13\), and \(a_{30} = 20\) to maintain the core problem but require solving an additional equation involving \(k\). This forces combining the given conditions in a multi-step solution to determine \(k\).  
+
+**Step 3**  
+#Rewritten Instruction#:  
+Let \(T = 27/2\). The sequence \(a_{1}, a_{2}, a_{3}, \ldots\) is arithmetic with \(a_{16} = 13\) and \(a_{30} = 20\). Compute the value of \(k\) for which the average of \(a_{k}\) and \(a_{k+14}\) equals \(T\).  
+
+**Step 4**  
+#Finally Rewritten Instruction#:  
+Let \(T = 27/2\). The sequence \(a_{1}, a_{2}, a_{3}, \ldots\) is arithmetic with \(a_{16} = 13\) and \(a_{30} = 20\). Compute the value of \(k\) for which the average of \(a_{k}\) and \(a_{k+14}\) equals \(T\).",success,133.07,"['If $d$ is the common difference of the sequence, then the $n^{\\text {th }}$ term of the sequence is $a_{n}=$ $a_{16}+d(n-16)$. The values $a_{16}=13$ and $a_{30}=20$ yield $d=(20-13) /(30-16)=1 / 2$, hence $a_{n}=13+(1 / 2)(n-16)$. If $a_{n}=T$, then $n=2(T-13)+16=2 T-10$. With $T=27 / 2$, it follows that $n=\\mathbf{1 7}$.']"
+2731,"Let $T=114$. A rectangular prism has a length of 1 , a width of 3 , a height of $h$, and has a total surface area of $T$. Compute the value of $h$.","Let \(T=114\). A rectangular prism with length \(1\), width \(3\), and height \(\sqrt{k}\) has total surface area \(T\). Its material density \(\rho\) creates pressure \(P = \frac{\rho g \sqrt{k}}{3}\). If \(P = \frac{2\rho g}{k}\), compute the resistance \(R = k^2 - 19T\).","Step 1  
+#Elements Identified#:  
+- **Core Concept**: Surface area calculation of rectangular prism  
+- **Variables**: Fixed length (1), width (3), surface area (\(T = 114\)), height (\(h\)) as unknown  
+- **Action**: Solve for \(h\) using \(2(lw + lh + wh) = T\)  
+- **Constraints**: Direct numerical computation  
+- **Theme**: Geometric properties and algebraic solving  
+
+Step 2  
+#Plan#:  
+1. **Replace height with function**: Change \(h\) to \(\sqrt{k}\), requiring solving for \(k\) first.  
+2. **Introduce real-world physics**: Add material density (\(\rho\)) and pressure constraint (\(P\)) tied to \(k\), where \(P = \frac{\rho g \sqrt{k}}{w}\).  
+3. **Add output variable**: Define resistance \(R = k^2 - 19T\) to increase algebraic complexity.  
+4. **Enforce dependencies**: Ensure \(k\) solves both surface area and pressure equations, nesting constraints.  
+5. **Maintain theme**: Focus on geometric-physical interdependencies.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let \(T=114\). A rectangular prism with length \(1\), width \(3\), and height \(\sqrt{k}\) has total surface area \(T\). Its material density \(\rho\) exerts pressure \(P = \frac{\rho g \sqrt{k}}{3}\) on the base. Given \(P = \frac{2\rho g}{k}\), compute the resistance \(R = k^2 - 19T\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let \(T=114\). A rectangular prism with length \(1\), width \(3\), and height \(\sqrt{k}\) has total surface area \(T\). Its material density \(\rho\) creates pressure \(P = \frac{\rho g \sqrt{k}}{3}\). If \(P = \frac{2\rho g}{k}\), compute the resistance \(R = k^2 - 19T\).",success,35.04,"['The surface area is given by the expression $2 \\cdot 1 \\cdot 3+2 \\cdot 1 \\cdot h+2 \\cdot 3 \\cdot h=6+8 h$. Because $6+8 h=T, h=\\frac{T-6}{8}$. With $T=114, h=108 / 8=\\mathbf{2 7} / \\mathbf{2}$.']"
+2732,"The zeros of $x^{2}+b x+93$ are $r$ and $s$. If the zeros of $x^{2}-22 x+c$ are $r+1$ and $s+1$, compute $c$.","Consider three quadratics: The first, \(a x^{2} + b x + p = 0\) (\(a \neq 0\)), has roots \(r\) and \(s\). The second, \(x^{2} - u x + c = 0\), has roots \(r+k\) and \(s+k\). The third, \(x^{2} + v x + d = 0\), has roots \(\frac{1}{r}\) and \(\frac{1}{s}\). Given the root sum of the third quadratic is `-10` and \(rs + (r+k)(s+k) + \frac{1}{rs} = 0\), determine \(c\), \(d\), and \(k\).","Step 1
+#Elements Identified#:
+*   **Original Quadratics:** Two quadratic equations are given: `x² + bx + 93` and `x² - 22x + c`.
+*   **Roots:** The roots of the first are `r` and `s`. The roots of the second are `r+1` and `s+1`.
+*   **Relationships:** The roots of the second quadratic are a linear shift (+1) of the roots of the first.
+*   **Parameters:** The problem involves finding the parameter `c` given a relationship between `b` and `c` via the roots.
+*   **Core Actions:** Use properties of quadratic equations (sum and product of roots) to relate the coefficients `b` and `c` via the root shift.
+*   **Theme:** Connecting root properties and linear transformations between quadratic equations.
+*   **Manipulation Points:** Root shift magnitude/direction, coefficients (constant term, linear term, or leading coefficient), number of equations/variables involved, type of root transformation (beyond linear shift), complexity of required output.
+
+Step 2
+#Plan#:
+1.  **Increase Equations:** Introduce a third quadratic equation to increase interconnectedness. The original problem involves only two quadratics (one generating roots, one with shifted roots). Add a third equation whose roots are derived differently from `r` and `s`.
+2.  **Diversify Root Transformation:** Instead of applying the same shift (`+1`) to both roots for the second equation, use a complex transformation (reciprocal roots) for the third equation. For the second equation, replace the constant shift `+1` with a variable shift `+k`.
+3.  **Increase Parameters & Dependencies:** Complicate parameter determination by:
+    *   Making both the linear coefficient and constant term of the first equation variables (current linear term `b` is unknown variable, constant `93` is given; change `93` to an unknown constant `p`). `p = r*s`
+    *   Making the shift magnitude `k` a variable.
+    *   Adding the constant term `d` of the third equation as a variable.
+    *   Providing specific constraints between `p`, `k`, and known roots to close the system and justify the existence of a solution: the sum of the roots of the third quadratic is `-10`, and the sum of the products of the roots pairwise for all three quadratics is `0`.
+4.  **Expand Output:** Instead of finding a single value `c`, require finding multiple parameters: `c`, `d`, and `k`, as all are now interdependent variables.
+
+Step 3
+#Rewritten Instruction#:
+Three quadratic equations are given: The first has roots \(r\) and \(s\): \(a x^{2} + b x + p = 0\) (where \(a \neq 0\)). The second has roots \(r+k\) and \(s+k\): \(x^{2} - u x + c = 0\). The third has roots \(\frac{1}{r}\) and \(\frac{1}{s}\): \(x^{2} + v x + d = 0\). Suppose the sum of the roots of the third quadratic is `-10` and the sum of `rs + (r+k)(s+k) + 1/(rs)` equals `0`. Compute the values of \(c\), \(d\), and \(k\).
+
+Step 4
+#Finally Rewritten Instruction#:
+Consider three quadratics: The first, \(a x^{2} + b x + p = 0\) (\(a \neq 0\)), has roots \(r\) and \(s\). The second, \(x^{2} - u x + c = 0\), has roots \(r+k\) and \(s+k\). The third, \(x^{2} + v x + d = 0\), has roots \(\frac{1}{r}\) and \(\frac{1}{s}\). Given the root sum of the third quadratic is `-10` and \(rs + (r+k)(s+k) + \frac{1}{rs} = 0\), determine \(c\), \(d\), and \(k\).",success,24.58,"['Use sums and products of roots formulas: the desired quantity $c=(r+1)(s+1)=r s+r+s+1$. From the first equation, $r s=93$, while from the second equation, $(r+1)+(s+1)=r+s+2=$ 22. So $r s+r+s+1=93+22-1=\\mathbf{1 1 4}$.']"
+2733,"Let $N=888,888 \times 9,999,999$. Compute the sum of the digits of $N$.","Let $a = 888,888$ and $b = 9,999,999$. Compute $N_1 = a \times b$. Let $N_2$ be the integer formed by concatenating the digits of $a$ and $b$. Compute $N = N_1 \times N_2$, then find the sum of the digits of $N$.","Step 1  
+#Elements Identified#:  
+- Variables: $N$ (defined as $888,888 \times 9,999,999$).  
+- Operations: Multiplication of two specific integers, followed by summing the digits of the product.  
+- Constants: The fixed multiplicands (888,888 and 9,999,999) and their digit patterns (repeating 8s and 9s).  
+- Theme: Performing arithmetic on large numbers with repeating digits and then aggregating digit sums.  
+
+Step 2  
+#Plan#:  
+1. Replace the fixed multiplicands with expressions requiring prior computation. Define $a$ and $b$ as the original multiplicands.  
+2. Compute $N_1 = a \times b$ to preserve the core multiplication while setting up for subsequent steps.  
+3. Create $N_2$ by concatenating $a$ and $b$ (as digit sequences) to introduce a string-to-number transformation.  
+4. Add a second multiplication: $N = N_1 \times N_2$, increasing the scale.  
+5. Finally, compute the sum of digits of $N$, retaining the original goal but on a larger and interdependent result.  
+Changes ensure logical coherence: $N_1$ builds on $a$ and $b$, $N_2$ depends on formatting $a$ and $b$, and $N$ unifies both. The complexity increase comes from sequential operations, larger numbers, and mixed transformations.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let $a = 888,888$ and $b = 9,999,999$. Compute $N_1 = a \times b$. Let $N_2$ be the integer formed by concatenating the digits of $a$ and $b$. Compute $N = N_1 \times N_2$, then find the sum of the digits of $N$.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let $a = 888,888$ and $b = 9,999,999$. Compute $N_1 = a \times b$. Let $N_2$ be the integer formed by concatenating the digits of $a$ and $b$. Compute $N = N_1 \times N_2$, then find the sum of the digits of $N$.",success,105.91,"['Write $N$ as\n\n$$\n\\begin{aligned}\n& (10,000,000-1) \\cdot 888,888 \\\\\n= & 8,888,880,000,000-888,888 \\\\\n= & 8,888,879,111,112 .\n\\end{aligned}\n$$\n\nThe sum of the digits of $N$ is 63 .']"
+2734,Five equilateral triangles are drawn in the plane so that no two sides of any of the triangles are parallel. Compute the maximum number of points of intersection among all five triangles.,Five scalene triangles with distinct areas are drawn in a plane such that no two sides are parallel and all triangles share a common region. Compute the maximum number of intersection points among the five triangles.,"Step 1  
+#Elements Identified#:  
+1. **Shape Type:** Equilateral triangles (fixed regularity).  
+2. **Quantity:** Five triangles.  
+3. **Spatial Constraint:** No two sides parallel.  
+4. **Objective:** Maximize the count of intersection *points*.  
+5. **Domain:** Plane geometry (implicit).  
+6. **Scope:** All triangles interact pairwise/simultaneously.  
+
+Step 2  
+#Plan#:  
+1. **Generalize Shape:** Replace ""equilateral"" with ""scalene"" to eliminate inherent symmetries, forcing consideration of varied angles and side lengths.  
+2. **Add Metric Constraint:** Require all triangles to have **distinct areas**, eliminating size uniformity and introducing combinatorial optimization for intersection maximization.  
+3. **Introduce Positioning Constraint:** Mandate that **all triangles share a common region** (e.g., overlapping interiors or a common subregion), adding topological interdependence that affects intersection density.  
+*Interconnection:* Scalene triangles with distinct areas must be positioned to maximize intersections while sharing a common region and adhering to the no-parallel-sides constraint.  
+
+Step 3  
+#Rewritten Instruction#:  
+Five scalene triangles with distinct areas are drawn in a plane such that no two sides are parallel and all triangles share a common region. Compute the maximum number of intersection points among all triangles.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Five scalene triangles with distinct areas are drawn in a plane such that no two sides are parallel and all triangles share a common region. Compute the maximum number of intersection points among the five triangles.",success,19.28,"['Any two of the triangles intersect in at most six points, because each side of one triangle can intersect the other triangle in at most two points. To count the total number of intersections among the five triangles, note that there are $\\left(\\begin{array}{l}5 \\\\ 2\\end{array}\\right)=10$ ways to select a pair of triangles, and each pair may result in 6 intersections. Thus $10 \\times 6=60$ is an upper bound.\n\nThis can be achieved, for example, by taking six equilateral triangles of equal size, centered at a single point, and rotating them different amounts so that no three sides intersect at a single point. Thus the answer is 60.']"
+2735,"$\quad$ Let $S$ be the set of four-digit positive integers for which the sum of the squares of their digits is 17 . For example, $2023 \in S$ because $2^{2}+0^{2}+2^{2}+3^{2}=17$. Compute the median of $S$.","Let S be the set of four-digit positive integers for which the sum of the squares of the digits equals twice the sum of the digits, the number is divisible by the product of its first and last digits, and the digits include at least one prime and at least one perfect square digit. Compute the median of S.","Step 1  
+#Elements Identified#:  
+- Variables: Four-digit positive integers (represented as digits a, b, c, d where a ≥ 1, and b, c, d range from 0 to 9).  
+- Condition: The sum of the squares of the digits is fixed at 17.  
+- Set S: Collection of all such integers satisfying the digit sum of squares condition.  
+- Action: Compute the median of S as the middle value after sorting.  
+- Theme: Digit properties and combinatorics with a statistical operation.  
+
+Step 2  
+#Plan#:  
+- Modify the digit condition: Instead of a fixed sum of squares, make the sum of squares equal to a variable defined as twice the sum of the digits, introducing dependency between digit squares and their linear sum.  
+- Add a divisibility constraint: Include that the number must be divisible by the product of its first and last digits, adding a positional and multiplicative dependency.  
+- Add a digit constraint: Require that the digits contain at least one prime digit (2, 3, 5, 7) and at least one perfect square digit (0, 1, 4, 9), which ensures non-trivial digit selection.  
+- Ensure logical interconnection: The new sum of squares condition ties directly to other digit properties; divisibility involves digit values; and digit constraints affect which numbers qualify.  
+- Increase complexity: The variable sum depends on digits, forcing iterative verification; divisibility depends on specific digits, adding positional logic; and digit type constraints introduce combinatorial filtering.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let S be the set of four-digit positive integers for which the sum of the squares of the digits equals twice the sum of the digits, the number is divisible by the product of its first and last digits, and the digits include at least one prime and at least one perfect square digit. Compute the median of S.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let S be the set of four-digit positive integers for which the sum of the squares of the digits equals twice the sum of the digits, the number is divisible by the product of its first and last digits, and the digits include at least one prime and at least one perfect square digit. Compute the median of S.",success,178.67,"['In order for the sums of the squares of four digits to be 17 , the digits must be either $0,2,2$, and 3 , or $0,0,1$, and 4 , in some order. If the leading digit is 2 , there are $3 !=6$ possible four-digit numbers. If the leading digit is 1,3 , or 4 , there are $\\frac{3 !}{2 !}=3$ possible four-digit numbers. In total, there are $6+3 \\cdot 3=15$ four-digit integers in $S$, and the median will be the eighth least. The least eight integers in $S$, from least to greatest, are: 1004, 1040, 1400, 2023, 2032, 2203, 2230, 2302. Thus the median of $S$ is 2302.']"
+2736,"Let $E U C L I D$ be a hexagon inscribed in a circle of radius 5 . Given that $E U=U C=L I=I D=6$, and $C L=D E$, compute $C L$.","Let $E U C L I D$ be a hexagon inscribed in a circle of radius $5$. Given that $E U=5$, $U C=7$, $L I=5$, $I D=7$, $C L=D E$, and the interior angle at $C$ is $90^\circ$, compute $C L$.","Step 1  
+#Elements Identified#:  
+- The figure is a cyclic hexagon EUCLID.  
+- Given fixed radius of the circumscribed circle: 5.  
+- Given equal side lengths: EU = UC = LI = ID = 6.  
+- Given equality condition: CL = DE.  
+- Target variable to compute: CL.  
+- Theme: Geometric properties of a cyclic hexagon with specified side length constraints.  
+- Participants: Vertices E, U, C, L, I, D on a circle.  
+- Process: Utilization of circle theorems, chord properties, and angle relationships to solve for the unknown side.  
+
+Step 2  
+#Plan#:  
+- Modify the given side lengths to create asymmetry and eliminate redundancy: Instead of all four sides (EU, UC, LI, ID) being 6, assign distinct lengths (EU = 5, UC = 7, LI = 5, ID = 7) to introduce variation and require individualized central angle calculations.  
+- Add a geometric constraint to enforce a specific angle condition: Specify that the interior angle at vertex C is 90 degrees, introducing trigonometric dependency and vertex-specific properties not in the original.  
+- Add dependency between angles and sides: Maintain the equality CL = DE but now ensure it integrates with the new lengths and the right angle, forcing dependent variable resolution.  
+- Ensure coherence: All elements must interconnect logically—circular symmetry remains, but the varied lengths and angle constraint create interdependence between central angles, chord lengths, and vertex angles, increasing algebraic and geometric complexity without introducing free variables.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let EUCLID be a hexagon inscribed in a circle of radius 5. Given that EU = 5, UC = 7, LI = 5, ID = 7, CL = DE, and the interior angle at C is 90 degrees, compute CL.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let $E U C L I D$ be a hexagon inscribed in a circle of radius $5$. Given that $E U=5$, $U C=7$, $L I=5$, $I D=7$, $C L=D E$, and the interior angle at $C$ is $90^\circ$, compute $C L$.",success,192.46,"[""Let $C L=x$. Because the quadrilaterals $E U C L$ and $L I D E$ are congruent, $\\overline{E L}$ is a diameter of the circle in which the hexagon is inscribed, so $E L=10$. Furthermore, because $\\overline{E L}$ is a diameter of the circle, it follows that the inscribed $\\angle E U L$ is a right angle, hence $U L=8$.\n\n\n\n<img_3485>\n\nUsing Ptolemy's Theorem for cyclic quadrilaterals and the fact that $\\triangle E C L$ is also a right triangle,\n\n$$\n\\begin{aligned}\n& U C \\cdot E L+E U \\cdot C L=E C \\cdot U L \\\\\n\\Longrightarrow & 6(10+x)=8 \\sqrt{100-x^{2}} \\\\\n\\Longrightarrow & 36(10+x)^{2}=64(10+x)(10-x) \\\\\n\\Longrightarrow & 6 \\sqrt{10+x}=8 \\sqrt{10-x} \\\\\n\\Longrightarrow & 36(10+x)=64(10-x) \\\\\n\\Longrightarrow & 360+36 x=640-64 x \\\\\n\\Longrightarrow & 100 x=280 \\\\\n\\Longrightarrow & x=\\frac{\\mathbf{1 4}}{\\mathbf{5}} .\n\\end{aligned}\n$$""]"
+2737,"The ARMLLexicon consists of 10 letters: $\{A, R, M, L, e, x, i, c, o, n\}$. A palindrome is an ordered list of letters that read the same backwards and forwards; for example, MALAM, n, oncecno, and MoM are palindromes. Compute the number of 15-letter palindromes that can be spelled using letters in the ARMLLexicon, among which there are four consecutive letters that spell out $A R M L$.","The ARMLLexicon consists of 10 letters: $\{A, R, M, L, e, x, i, c, o, n\}$. A palindrome reads identically backwards and forwards. Compute the **sum** of the number of palindromic strings possible for each prime-length $N$ within $\{13$, $17$, $19$, $23\}$ satisfying: 1) The substring $ARML$ appears **at least twice**; 2) The starting indices of any two $ARML$ occurrences are symmetric about the palindrome's center; 3) No letter (except $R$) appears adjacent to another occurrence of itself.","Step 1
+#Elements Identified#:
+*   **Set size and elements:** Lexicon has 10 letters: {A, R, M, L, e, x, i, c, o, n}
+*   **Structure:** Palindromic sequences (symmetrical around center)
+*   **Fixed Length:** Sequences are 15 letters long
+*   **Pattern Constraint:** Must contain the exact consecutive substring ""A R M L"" somewhere
+*   **Focus:** Counting valid sequences
+*   **Manipulable Elements:** Specific fixed length, specific required substring, number of required substring occurrences, position dependency of substring within the palindrome, allowed letter positions/adjacencies, set restrictions.
+
+Step 2
+#Plan#:
+1.  **Introduce Variable Length:** Replace the fixed length (15) with a variable length **N**, constrained to prime numbers within a specific small range (N ∈ P = {13, 17, 19, 23}) to impact symmetry considerations and make computation non-uniform.
+2.  **Introduce Additional Pattern Constraint:** Require the substring ""ARML"" to appear **at least twice** (non-overlapping) in the palindrome.
+3.  **Add Positional Dependency for Patterns:** Mandate that the positions of the two required ""ARML"" occurrences must be symmetric with respect to the center of the palindrome.
+4.  **Add Letter Placement Restriction:** Impose a significant restriction on letter placement: no letter (except 'R') can appear at any position adjacent to another occurrence of itself within the sequence.
+5.  **Generalize Output:** Require the solution to sum the counts of valid palindromes for all possible allowed lengths (N).
+Plan ensures interconnection: Length N impacts structure symmetry and pattern positioning possibilities. The dual pattern requirement with symmetry links pattern constraints inherently to the palindrome structure. The adjacent letter restriction depends directly on the sequence content and interacts with the pattern requirements. Primes ensure distinct cases are computed. Summation over lengths adds computational depth.
+
+Step 3
+#Rewritten Instruction#:
+The ARMLLexicon consists of 10 letters: $\{A, R, M, L, e, x, i, c, o, n\}$. A palindrome reads identically backwards and forwards. Compute the **sum** of the number of palindromic strings possible for each letter prime-length $N$ ($N \in \{13, 17, 19, 23\}$) satisfying: 1) The substring $ARML$ appears **at least twice**; 2) The starting indices of any two $ARML$ sequences are symmetric about the palindrome's center; 3) No two adjacent letters are identical, except $R$ which can be adjacent to itself.
+
+Step 4
+#Finally Rewritten Instruction#:
+The ARMLLexicon consists of 10 letters: $\{A, R, M, L, e, x, i, c, o, n\}$. A palindrome reads identically backwards and forwards. Compute the **sum** of the number of palindromic strings possible for each prime-length $N$ within $\{13$, $17$, $19$, $23\}$ satisfying: 1) The substring $ARML$ appears **at least twice**; 2) The starting indices of any two $ARML$ occurrences are symmetric about the palindrome's center; 3) No letter (except $R$) appears adjacent to another occurrence of itself.",success,26.01,"['Any 15-letter palindrome is determined completely by its first 8 letters, because the last 7 letters must be the first 7 in reverse. Such a palindrome contains the string $A R M L$ if and only if its first 8 letters contain either $A R M L$ or $L M R A$. (The string $A R M L$ cannot cross the middle of the palindrome, because the 7th and 9th letters must be the same.) It therefore suffices to count the number of 8-letter strings consiting of letters in the ARMLLexicon that contain either ARML or LMRA.\n\nThere are 5 possible positions for $A R M L$, and likewise with $L M R A$. For each choice of position, there are four remaining letters, which can be any letter in the ARMLLexicon (here, $W, X, Y$, and $Z$ are used to denote arbitrary letters that need not be distinct). This leads to the following table:\n\n\n\n| Word | Num. Possibilities |\n| :---: | :---: |\n| ARMLWXYZ | $10^{4}$ |\n| WARMLXYZ | $10^{4}$ |\n| WXARMLYZ | $10^{4}$ |\n| WXYARMLZ | $10^{4}$ |\n| WXYZARML | $10^{4}$ |\n| LMRAWXYZ | $10^{4}$ |\n| WLMRAXYZ | $10^{4}$ |\n| WXLMRAYZ | $10^{4}$ |\n| WXYLMRAZ | $10^{4}$ |\n| WXYZLMRA | $10^{4}$ |\n\nThis gives $10 \\cdot 10^{4}$ possible words, but each word with two of ARML or LMRA (e.g., ARMLARML or $A A R M L M R A$ ) is counted twice. There are four words with two of $A R M L$ or $L M R A$ that use all 8 letters, and four possible types of words that use 7 of the 8 positions and leave one ""free space"". This leads to the following table:\n\n| Word | Num. Possibilities |\n| :---: | :---: |\n| ARMLARML | 1 |\n| LMRALMRA | 1 |\n| ARMLLMRA | 1 |\n| LMRAARML | 1 |\n| ARMLMRAW | 10 |\n| LMRARMLW | 10 |\n| WARMLMRA | 10 |\n| WLMRARML | 10 |\n\nThus the total number of desired words is $10 \\cdot 10^{4}-4 \\cdot 10-4 \\cdot 1=\\mathbf{9 9 9 5 6}$.']"
+2738,Let $10^{y}$ be the product of all real numbers $x$ such that $\log x=\frac{3+\left\lfloor(\log x)^{2}\right\rfloor}{4}$. Compute $y$.,Let \(10^{y}\) be the product of all real numbers \(x\) such that \(\log x = \frac{3 + \left\lfloor (\log x)^{2}\right\rfloor + \left\lceil (\log x)^{2}\right\rceil}{8}\). Compute \(y\).,"Step 1  
+#Elements Identified#:  
+- Variables: \(x\) (real number), \(\log x\) is used in the equation.  
+- Conditions: The equation \(\log x = \frac{3 + \lfloor (\log x)^2 \rfloor}{4}\) defines which \(x\) are included, with \(\lfloor \cdot \rfloor\) introducing discreteness.  
+- Participants: All real \(x\) satisfying the equation; their product is \(10^y\).  
+- Actions/Processes: Solve the floor equation to find \(\log x\), find all such \(x\), compute their product, then find \(y\) from \(\log_{10}\) of the product.  
+- Theme: Solving a logarithmic equation with a floor function, then computing the product of roots expressed as a power of 10.  
+
+Step 2  
+#Plan#:  
+1. Modify the equation to include both floor and ceiling functions for increased complexity, changing it to \(\log x = \frac{3 + \lfloor (\log x)^2 \rfloor + \lceil (\log x)^2 \rceil}{8}\). This adds interaction between the functions, requiring case handling based on whether \((\log x)^2\) is integer or not.  
+2. Adjust the denominator to 8 to accommodate the added ceiling term, ensuring the equation remains solvable but with more intricate inequalities.  
+3. Maintain the core action of finding the product and computing \(y\), but increase reasoning by introducing additional constraints from the ceiling function, such as separate conditions for integer and non-integer values of \((\log x)^2\), leading to multiple solution cases.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let \(10^{y}\) be the product of all real numbers \(x\) such that \(\log x = \frac{3 + \left\lfloor (\log x)^{2}\right\rfloor + \left\lceil (\log x)^{2}\right\rceil}{8}\). Compute \(y\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let \(10^{y}\) be the product of all real numbers \(x\) such that \(\log x = \frac{3 + \left\lfloor (\log x)^{2}\right\rfloor + \left\lceil (\log x)^{2}\right\rceil}{8}\). Compute \(y\).",success,136.43,"['First, note that\n\n$$\n\\left\\lfloor(\\log x)^{2}\\right\\rfloor \\leq(\\log x)^{2} \\Longrightarrow \\frac{3+\\left\\lfloor(\\log x)^{2}\\right\\rfloor}{4} \\leq \\frac{3+(\\log x)^{2}}{4}\n$$\n\nTherefore\n\n$$\n\\log x \\leq \\frac{(\\log x)^{2}+3}{4} \\Longrightarrow 0 \\leq(\\log x)^{2}-4 \\log x+3=(\\log x-1)(\\log x-3)\n$$\n\nThis implies either $\\log x \\leq 1$ or $\\log x \\geq 3$, so $0 \\leq(\\log x)^{2} \\leq 1$ or $(\\log x)^{2} \\geq 9$.\n\nIn the first case, $\\left\\lfloor(\\log x)^{2}\\right\\rfloor=0$ or $\\left\\lfloor(\\log x)^{2}\\right\\rfloor=1$, so $\\log x=\\frac{3}{4}$ or $\\log x=1$, hence $x=10^{3 / 4}$ or $x=10$.\n\nTo solve the second case, note that $\\left\\lfloor(\\log x)^{2}\\right\\rfloor \\geq(\\log x)^{2}-1$, so $0 \\geq(\\log x)^{2}-4 \\log x+2$. The solutions to $t^{2}-4 t+2=0$ are $t=\\frac{4 \\pm \\sqrt{16-8}}{2}=2 \\pm \\sqrt{2}$ by the Quadratic Formula, so $2-\\sqrt{2} \\leq \\log x \\leq 2+\\sqrt{2}$. This implies that $6-4 \\sqrt{2} \\leq(\\log x)^{2} \\leq 6+4 \\sqrt{2}$, so $0 \\leq\\left\\lfloor(\\log x)^{2}\\right\\rfloor \\leq 11$. However, this case is for $(\\log x)^{2} \\geq 9$, so the only possibilities that need to be considered are $9 \\leq\\left\\lfloor(\\log x)^{2}\\right\\rfloor \\leq 11$.\n\n- If $\\left\\lfloor(\\log x)^{2}\\right\\rfloor=9$, then $\\log x=3$, so $x=10^{3}$.\n- If $\\left\\lfloor(\\log x)^{2}\\right\\rfloor=10$, then $\\log x=\\frac{13}{4}$, so $x=10^{13 / 4}$.\n- Finally, if $\\left\\lfloor(\\log x)^{2}\\right\\rfloor=11$, then $\\log x=\\frac{7}{2}$, which yields $(\\log x)^{2}=\\frac{49}{4}>12$, so there are no solutions.\n\nThus the product of all possible values of $x$ is $y=10^{3 / 4} \\cdot 10 \\cdot 10^{13 / 4} \\cdot 10^{3}=10^{8}$, so $y=\\mathbf{8}$.']"
+2739,"The solutions to the equation $x^{2}-180 x+8=0$ are $r_{1}$ and $r_{2}$. Compute
+
+$$
+\frac{r_{1}}{\sqrt[3]{r_{2}}}+\frac{r_{2}}{\sqrt[3]{r_{1}}}
+$$","**  
+The solutions to \(x^2 - (2 + \sqrt{5})x + \sqrt{10} = 0\) are \(r_1\) and \(r_2\). Define \(k = \frac{\sqrt{14} - 1}{5}\). Compute:  
+\[
+(r_1 r_2)^k \left[ \exp\left(-\frac{r_1r_2}{r_1 + r_2}\right) \frac{r_1}{r_2^{1/7}} + \exp\left(-\frac{r_1r_2}{r_1 + r_2}\right) \frac{r_2}{r_1^{1/7}} \right]
+\]","Step 1  
+**#Elements Identified#:**  
+- **Base Equation:** Quadratic equation \(x^2 - 180x + 8 = 0\) with roots \(r_1, r_2\).  
+- **Expression Structure:** Symmetric rational expression \(\frac{r_1}{\sqrt[3]{r_2}} + \frac{r_2}{\sqrt[3]{r_1}}\).  
+- **Operations:** Cube roots, division, addition.  
+- **Theme:** Root manipulation and symmetric simplification.  
+
+Step 2  
+**#Plan#:**  
+1. **Increase polynomial complexity:** Modify the quadratic equation to \(x^2 - (2 + \sqrt{5})x + \sqrt{10} = 0\), introducing irrational coefficients.  
+2. **Augment expression operations:** Replace cube roots with **seventh roots** and multiply the expression by \((r_1 r_2)^{k}\) where \(k = \frac{9}{14}\), forcing rationalization with higher roots.  
+3. **Introduce exponential terms:** Add \(\exp\left(-\frac{r_1r_2}{r_1 + r_2}\right)\) to each term, creating interdependence between roots and exponentials.  
+4. **Enforce parameter constraint:** Define \(k = \frac{\sqrt{14} - 1}{5}\), requiring its value derivation within the problem.  
+
+Step 3  
+**#Rewritten Instruction#:**  
+The solutions to \(x^2 - (2 + \sqrt{5})x + \sqrt{10} = 0\) are \(r_1\) and \(r_2\). With \(k = \frac{\sqrt{14} - 1}{5}\), compute:  
+\[
+(r_1 r_2)^k \left[ \exp\left(-\frac{r_1r_2}{r_1 + r_2}\right) \frac{r_1}{r_2^{1/7}} + \exp\left(-\frac{r_1r_2}{r_1 + r_2}\right) \frac{r_2}{r_1^{1/7}} \right]
+\]
+
+Step 4  
+**#Finally Rewritten Instruction#:**  
+The solutions to \(x^2 - (2 + \sqrt{5})x + \sqrt{10} = 0\) are \(r_1\) and \(r_2\). Define \(k = \frac{\sqrt{14} - 1}{5}\). Compute:  
+\[
+(r_1 r_2)^k \left[ \exp\left(-\frac{r_1r_2}{r_1 + r_2}\right) \frac{r_1}{r_2^{1/7}} + \exp\left(-\frac{r_1r_2}{r_1 + r_2}\right) \frac{r_2}{r_1^{1/7}} \right]
+\]",success,21.83,"[""First note that the solutions of the given equation are real because the equation's discriminant is positive. By Vieta's Formulas, $r_{1}+r_{2}=180(*)$ and $r_{1} r_{2}=8(* *)$. The expression to be computed can be written with a common denominator as\n\n$$\n\\frac{\\sqrt[3]{r_{1}^{4}}+\\sqrt[3]{r_{2}^{4}}}{\\sqrt[3]{r_{1} r_{2}}}\n$$\n\nBy $(* *)$, the denominator is equal to $\\sqrt[3]{8}=2$. To compute the numerator, first let $S_{k}=\\sqrt[3]{r_{1}^{k}}+\\sqrt[3]{r_{2}^{k}}$, so that the numerator is $S_{4}$. Then note that\n\n$$\n\\begin{aligned}\n\\left(S_{1}\\right)^{3} & =r_{1}+3 \\sqrt[3]{r_{1}^{2} r_{2}}+3 \\sqrt[3]{r_{2}^{2} r_{1}}+r_{2} \\\\\n& =\\left(r_{1}+r_{2}\\right)+3 \\sqrt[3]{r_{1} r_{2}}\\left(\\sqrt[3]{r_{1}}+\\sqrt[3]{r_{2}}\\right) \\\\\n& =180+3 \\cdot 2 \\cdot S_{1}\n\\end{aligned}\n$$\n\nwhere $(*)$ and $(* *)$ are used to substitute values into the second equality. Next note that $S_{1}^{3}-6 S_{1}-180$ can be factored as $\\left(S_{1}-6\\right)\\left(S_{1}^{2}+6 S_{1}+30\\right)$. Because the polynomial $t^{2}+6 t+30$ has no real roots, the unique real solution to $(\\dagger)$ is $S_{1}=6$, so $\\sqrt[3]{r_{1}}+\\sqrt[3]{r_{2}}=6$. Square each side of the previous equation to obtain $S_{2}+2 \\sqrt[3]{r_{1} r_{2}}=36$, hence $S_{2}=36-2 \\cdot 2$; that is, $\\sqrt[3]{r_{1}^{2}}+\\sqrt[3]{r_{2}^{2}}=32$. Again, square both sides of this equation to obtain $\\sqrt[3]{r_{1}^{4}}+2 \\sqrt[3]{r_{1}^{2} r_{2}^{2}}+\\sqrt[3]{r_{2}^{4}}=1024$, so $S_{4}+2 \\sqrt[3]{r_{1}^{2} r_{2}^{2}}=1024$, from which $S_{4}=1024-2 \\cdot 4=1016$. Thus the desired expression equals $\\frac{S_{4}}{2}=\\frac{1016}{2}=\\mathbf{5 0 8}$.""]"
+2740,"Circle $\omega$ is tangent to parallel lines $\ell_{1}$ and $\ell_{2}$ at $A$ and $B$ respectively. Circle $\omega_{1}$ is tangent to $\ell_{1}$ at $C$ and to $\omega$ externally at $P$. Circle $\omega_{2}$ is tangent to $\ell_{2}$ at $D$ and to $\omega$ externally at $Q$. Circles $\omega_{1}$ and $\omega_{2}$ are also externally tangent to each other. Given that $A Q=12$ and $D Q=8$, compute $C D$.","Circle ω is tangent to parallel lines ℓ₁ and ℓ₂ at A and B respectively. Circle ω₁ is tangent to ℓ₁ at C and to ω internally at P. Circle ω₂ is tangent to ℓ₂ at D and to ω externally at Q. Circles ω₁ and ω₂ are externally tangent to each other at T and have the same radius. Given that A T = 12 and D Q = 8, compute CD.","Step 1  
+#Elements Identified#:  
+- Variables: Circle ω, parallel lines ℓ₁ and ℓ₂, points A, B, C, D, P, Q, distances AQ=12, DQ=8.  
+- Conditions: Tangency at points (ω to lines at A and B, ω₁ to line at C and to ω externally at P, ω₂ to line at D and to ω externally at Q), external tangency between ω₁ and ω₂.  
+- Participants: Circles ω, ω₁, ω₂; lines ℓ₁, ℓ₂.  
+- Actions/Processes: Tangency definitions, distance computation.  
+- Theme: Geometry problem with circles tangent to parallel lines and each other, using given distances to find CD.  
+
+Step 2  
+#Plan#:  
+- Change tangency type to internal for one circle: Make ω₁ internally tangent to ω at P to introduce asymmetry and complexity.  
+- Introduce new tangency point and distance: Add point T where ω₁ and ω₂ are externally tangent, and give distance AT instead of AQ.  
+- Add constraint: Specify equal radii for ω₁ and ω₂ to reduce variables but add reasoning about congruence.  
+- Modify given distances: Replace AQ=12 with AT=12 (where T exists due to added point) and keep DQ=8 for consistency.  
+This increases complexity by adding dependency on T, unequal tangency types, and the congruence condition, requiring multi-step geometric reasoning.  
+
+Step 3  
+#Rewritten Instruction#:  
+Circle ω is tangent to parallel lines ℓ₁ and ℓ₂ at A and B respectively. Circle ω₁ is tangent to ℓ₁ at C and to ω internally at P. Circle ω₂ is tangent to ℓ₂ at D and to ω externally at Q. Circles ω₁ and ω₂ are externally tangent to each other at T and have equal radii. Given that A T = 12 and D Q = 8, compute CD.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Circle ω is tangent to parallel lines ℓ₁ and ℓ₂ at A and B respectively. Circle ω₁ is tangent to ℓ₁ at C and to ω internally at P. Circle ω₂ is tangent to ℓ₂ at D and to ω externally at Q. Circles ω₁ and ω₂ are externally tangent to each other at T and have the same radius. Given that A T = 12 and D Q = 8, compute CD.",success,104.08,"['Let $O, O_{1}$ and $O_{2}$ be the centers, and let $r, r_{1}$ and $r_{2}$ be the radii of the circles $\\omega, \\omega_{1}$, and $\\omega_{2}$, respectively. Let $R$ be the point of tangency between $\\omega_{1}$ and $\\omega_{2}$.\n\nLet $H_{1}$ and $H_{2}$ be the projections of $O_{1}$ and $O_{2}$ onto $\\overline{A B}$. Also, let $H$ be the projection of $O_{1}$ onto $\\overline{O_{2} H_{2}}$. Note that $O H_{1}=r-r_{1}, O H_{2}=r-r_{2}, O O_{1}=r+r_{1}, O O_{2}=r+r_{2}$, and $O_{1} O_{2}=r_{1}+r_{2}$. From the Pythagorean Theorem, it follows that $O_{1} H_{1}=2 \\sqrt{r r_{1}}$ and $O_{2} H_{2}=2 \\sqrt{r r_{2}}$. Similarly, applying the Pythagorean Theorem to triangle $O_{1} H O_{2}$ yields $\\left(O_{1} H\\right)^{2}+\\left(O_{2} H\\right)^{2}=\\left(O_{1} O_{2}\\right)^{2}$, which is equivalent to\n\n$$\n\\left(2 \\sqrt{r r_{2}}-2 \\sqrt{r r_{1}}\\right)^{2}+\\left(2 r-r_{1}-r_{2}\\right)^{2}=\\left(r_{1}+r_{2}\\right)^{2}\n$$\n\nwhich yields $r^{2}=4 r_{1} r_{2}$ after simplifying.\n<img_4036>\n\n\n\nNote that $\\overline{A O} \\| \\overline{O_{2} D}$, hence $\\angle A O Q \\cong \\angle D O_{2} Q$, which implies that isosceles triangles $A O Q$ and $D O_{2} Q$ are similar. Thus $\\angle A Q O \\cong \\angle D Q O_{2}$ and therefore points $A, Q$, and $D$ are collinear. Analogously, it follows that the points $B, P$, and $C$ are collinear, as are the points $C, R$, and $D$.\n\nIn right triangle $A B D, \\overline{B Q}$ is the altitude to $\\overline{A D}$. By similarity of triangles, it follows that $D Q \\cdot D A=B D^{2}$ and $A Q \\cdot A D=A B^{2}$. Hence $B D=4 \\sqrt{10}, A B=4 \\sqrt{15}$, and $r=2 \\sqrt{15}$. Because $\\frac{D O_{2}}{A O}=\\frac{D Q}{A Q}=\\frac{2}{3}$, it follows that $r_{2}=\\frac{4}{3} \\sqrt{15}$ and $r_{1}=\\frac{3}{4} \\sqrt{15}$.\n\nNote that $A C=2 \\sqrt{r r_{1}}=3 \\sqrt{10}, B D=2 \\sqrt{r r_{2}}=4 \\sqrt{10}$, and\n\n$$\nC D^{2}=A B^{2}+(B D-A C)^{2}=(4 \\sqrt{15})^{2}+(4 \\sqrt{10}-3 \\sqrt{10})^{2}=240+10=250\n$$\n\nwhich implies that $C D=\\mathbf{5} \\sqrt{\\mathbf{1 0}}$.\n\nAlternate Solution: Conclude that $r^{2}=4 r_{1} r_{2}$, as explained above. Note that $\\angle C A Q \\cong \\angle Q D B \\cong \\angle Q R D$, using the fact that the two given lines are parallel and $\\omega_{2}$ is tangent one of them at $D$. Quadrilateral $C A Q R$ is cyclic, so apply Power of a Point to obtain $D Q \\cdot D A=D R \\cdot D C$. Because $\\frac{r_{2}}{r}=\\frac{Q D}{Q A}=\\frac{2}{3}$, conclude that $r_{2}=2 x, r=3 x$, and hence $r_{1}=\\frac{9}{8} x$. It follows that $\\frac{D R}{C R}=\\frac{r_{2}}{r_{1}}=\\frac{16}{9}$ and $D R=\\frac{16}{25} \\cdot C D$. Thus\n\n$$\nD R \\cdot D C=\\frac{16}{25} \\cdot C D^{2}=D Q \\cdot D A=8 \\cdot 20\n$$\n\nhence $C D=5 \\sqrt{10}$.']"
+2741,"Given quadrilateral $A R M L$ with $A R=20, R M=23, M L=25$, and $A M=32$, compute the number of different integers that could be the perimeter of $A R M L$.","Given convex quadrilateral \(A R M L\) with \(A R = 20\), \(R M = 23\), \(M L = 25\), diagonals \(A M = 32\) and \(R L = 24\) intersecting at point \(O\). Compute the number of distinct integer perimeters possible for \(A R M L\).","Step 1  
+#Elements Identified#:  
+- Quadrilateral ARML with given side lengths AR, RM, ML, and one given diagonal AM.  
+- Compute the number of different integer perimeters determined by the range of the unknown side AL, subject to triangle inequalities in triangles formed by diagonal AM.  
+- Theme: Perimeter calculation involving geometric constraints and triangle inequalities for a quadrilateral.  
+
+Step 2  
+#Plan#:  
+1. Introduce a second diagonal RL to the quadrilateral to increase complexity in the constraint system.  
+2. Fix the length of RL to 24 (a distinct integer) and require the diagonals to intersect at a point O, forcing consideration of segments AO, OM, RO, OL.  
+3. Add explicit convexity to ensure diagonals intersect internally, introducing dependencies across four triangles instead of two.  
+4. Maintain the requirement to find integer perimeters but expand constraints to include multiple interacting triangle inequalities and additional algebra.  
+
+Step 3  
+#Rewritten Instruction#:  
+Given convex quadrilateral \(A R M L\) with \(A R = 20\), \(R M = 23\), \(M L = 25\), diagonals \(A M = 32\) and \(R L = 24\) intersecting at point \(O\). Determine the number of distinct integer perimeters that could be possible for \(A R M L\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Given convex quadrilateral \(A R M L\) with \(A R = 20\), \(R M = 23\), \(M L = 25\), diagonals \(A M = 32\) and \(R L = 24\) intersecting at point \(O\). Compute the number of distinct integer perimeters possible for \(A R M L\).",success,212.59,"['Notice that $\\triangle A R M$ is fixed, so the number of integers that could be the perimeter of $A R M L$ is the same as the number of integers that could be the length $A L$ in $\\triangle A L M$. By the Triangle Inequality, $32-25<A L<32+25$, so $A L$ is at least 8 and no greater than 56 . The number of possible integer values for $A L$ is $56-8+1=49$.']"
+2742,"Let $\mathcal{S}$ denote the set of all real polynomials $A(x)$ with leading coefficient 1 such that there exists a real polynomial $B(x)$ that satisfies
+
+$$
+\frac{1}{A(x)}+\frac{1}{B(x)}+\frac{1}{x+10}=\frac{1}{x}
+$$
+
+for all real numbers $x$ for which $A(x) \neq 0, B(x) \neq 0$, and $x \neq-10,0$. Compute $\sum_{A \in \mathcal{S}} A(10)$.","Let \(\mathcal{S}\) denote the set of all monic real polynomials \(A(x)\) such that there exists a monic real polynomial \(B(x)\) with no common roots with \(A\), satisfying \(\frac{1}{A(x)} + \frac{1}{B(x)} + \frac{1}{x+10} + \frac{1}{x+5} = \frac{1}{x}\) for all real \(x\) where \(x \neq -10, -5, 0\) and \(A(x) \neq 0, B(x) \neq 0\). Compute \(\sum_{A \in \mathcal{S}} A(10)\).","Step 1
+#Elements Identified#:
+- **Variables**: \(A(x)\) and \(B(x)\) are real polynomials, with \(A(x)\) having a leading coefficient of 1.
+- **Conditions**: The functional equation must hold for all real \(x\) excluding points where \(A(x) = 0\), \(B(x) = 0\), or \(x = -10, 0\). The set \(\mathcal{S}\) collects all such \(A(x)\).
+- **Participants**: The set \(\mathcal{S}\) is defined solely by \(A(x)\), with \(B(x)\) existing in relation to \(A(x)\).
+- **Actions/Processes**: Solve for polynomials \(A(x)\) such that a corresponding \(B(x)\) satisfies the rational equation; then compute the sum \(\sum_{A \in \mathcal{S}} A(10)\).
+- **Theme**: Polynomial functional equations involving reciprocals and partial fractions, leading to a summation at a specific point.
+
+Step 2
+#Plan#:
+- **Modify the functional equation**: Add an extra term \(\frac{1}{x+5}\) to the left-hand side to increase algebraic complexity by introducing an additional pole and forcing more intricate partial fraction decomposition. The right-hand side remains \(\frac{1}{x}\) for consistency.
+- **Add constraints on polynomial properties**: Extend the monic requirement to both \(A(x)\) and \(B(x)\) (leading coefficient 1) to limit freedom and ensure symmetry. Impose that \(A(x)\) and \(B(x)\) share no common roots to avoid cancellations and add an irreducibility layer.
+- **Concretize and constrain domains**: Specify all exclusion points explicitly (\(x \neq -10, -5, 0\)) and ensure the sum is computed only at \(x=10\), retaining the core output but with heightened reasoning needed due to additional constraints.
+
+Step 3
+#Rewritten Instruction#:
+Let \(\mathcal{S}\) denote the set of all monic real polynomials \(A(x)\) such that there exists a monic real polynomial \(B(x)\) with no common roots with \(A\), satisfying \(\frac{1}{A(x)} + \frac{1}{B(x)} + \frac{1}{x+10} + \frac{1}{x+5} = \frac{1}{x}\) for all real \(x\) where \(x \neq -10, -5, 0\) and \(A(x) \neq 0, B(x) \neq 0\). Compute \(\sum_{A \in \mathcal{S}} A(10)\).
+
+Step 4
+#Finally Rewritten Instruction#:
+Let \(\mathcal{S}\) denote the set of all monic real polynomials \(A(x)\) such that there exists a monic real polynomial \(B(x)\) with no common roots with \(A\), satisfying \(\frac{1}{A(x)} + \frac{1}{B(x)} + \frac{1}{x+10} + \frac{1}{x+5} = \frac{1}{x}\) for all real \(x\) where \(x \neq -10, -5, 0\) and \(A(x) \neq 0, B(x) \neq 0\). Compute \(\sum_{A \in \mathcal{S}} A(10)\).",success,100.9,"['For brevity, $P$ will be used to represent the polynomial $P(x)$, and let $\\operatorname{deg}(P)$ represent the degree of $P$. Rewrite the given condition as follows:\n\n$$\n\\begin{aligned}\n\\frac{1}{A(x)}+\\frac{1}{B(x)}+\\frac{1}{x+10}=\\frac{1}{x} & \\Longrightarrow \\frac{A+B}{A B}=\\frac{10}{x(x+10)} \\\\\n& \\Longrightarrow A B-\\frac{x(x+10)}{10} A-\\frac{x(x+10)}{10} B=0 \\\\\n& \\Longrightarrow\\left(A-\\frac{x(x+10)}{10}\\right)\\left(B-\\frac{x(x+10)}{10}\\right)=\\frac{x^{2}(x+10)^{2}}{100} .\n\\end{aligned}\n$$\n\nBecause $A$ and $B$ are both polynomials, $A-\\frac{x(x+10)}{10}$ must be some factor $F$ of $\\frac{x^{2}(x+10)^{2}}{100}$. Furthermore, if $\\operatorname{deg}(F) \\leq 1$, then $A$ has leading coefficient $\\frac{1}{10}$, which violates the condition that $A$ has leading coefficient 1 . So\n\n\n\n$\\operatorname{deg}(F) \\geq 2$. Thus $F$ must be a nonzero constant times one of\n\n$$\n\\left\\{x^{2}, x(x+10),(x+10)^{2}, x^{2}(x+10), x(x+10)^{2}, x^{2}(x+10)^{2}\\right\\} .\n$$\n\nThe degree of $A$ determines what this constant must be.\n\n- If $\\operatorname{deg}(A) \\geq 3$, then $\\operatorname{deg}(F)=\\operatorname{deg}(A) \\geq 3$ and $F$ has leading coefficient 1 . Any such $F$ is valid.\n- If $\\operatorname{deg}(A)=2$, then $\\operatorname{deg}(F)=2$ and $F$ has leading coefficient $\\frac{9}{10}$. Again, any such $F$ is valid.\n- If $\\operatorname{deg}(A) \\leq 1$, then $\\operatorname{deg}(F)=2$ and $F$ has leading coefficient $-\\frac{1}{10}$. But not all $F$ are valid, because this does not guarantee that the leading coefficient of $A$ is 1 . Among $-\\frac{1}{10} x^{2},-\\frac{1}{10} x(x+10)$, and $-\\frac{1}{10}(x+10)^{2}$ as possible values of $F$, only $-\\frac{1}{10} x^{2}$ gives a valid $A$ with leading coefficient 1 .\n\nThus $F$ is one of\n\n$$\n\\left\\{-\\frac{1}{10} x^{2}, \\frac{9}{10} x^{2}, \\frac{9}{10} x(x+10), \\frac{9}{10}(x+10)^{2}, x^{2}(x+10), x(x+10)^{2}, x^{2}(x+10)^{2}\\right\\} .\n$$\n\nThen\n\n$$\n\\sum\\left(A(10)-\\frac{10 \\cdot 20}{10}\\right)=-\\frac{1}{10} \\cdot 10^{2}+\\frac{9}{10} \\cdot\\left(10^{2}+10 \\cdot 20+20^{2}\\right)+\\left(10^{2} \\cdot 20+10 \\cdot 20^{2}+10^{2} \\cdot 20^{2}\\right)=46620\n$$\n\nso $\\sum A(10)=7 \\cdot \\frac{10 \\cdot 20}{10}+46620=\\mathbf{4 6 7 6 0}$, as desired.']"
+2744,"Let $T=688$. Let $a$ be the least nonzero digit in $T$, and let $b$ be the greatest digit in $T$. In square $N O R M, N O=b$, and points $P_{1}$ and $P_{2}$ lie on $\overline{N O}$ and $\overline{O R}$, respectively, so that $O P_{1}=O P_{2}=a$. A circle centered at $O$ has radius $a$, and quarter-circular arc $\widehat{P_{1} P_{2}}$ is drawn. There is a circle that is tangent to $\widehat{P_{1} P_{2}}$ and to sides $\overline{M N}$ and $\overline{M R}$. The radius of this circle can be written in the form $x-y \sqrt{2}$, where $x$ and $y$ are positive integers. Compute $x+y$.","Let $T = 840$. Let $a$ be the digit sum of $T$ modulo $10$, and let $b$ be the floor of the product of the digits of $T$ divided by $10$. In square $NORM$, $NO = b$, and points $P_1$ and $P_2$ lie on $\overline{NO}$ and $\overline{OR}$ respectively, so that $OP_1 = c = b - a$ and $OP_2 = d$, where $d$ is the digit sum of $T$ minus the smallest digit. A circle centered at $O$ has radius $a$, and a circular arc $\widehat{P_1 P_2}$ is drawn. There is a circle that is tangent to $\widehat{P_1 P_2}$, to sides $\overline{MN}$ and $\overline{MR}$, and to the line $\overleftrightarrow{P_1 P_2}$. The radius of this circle can be written in the form $x - y \sqrt{2}$, where $x$ and $y$ are positive integers. Compute $x + y$.","Step 1  
+#Elements Identified#:  
+- $T$ is a given number (originally 688) from which digits are extracted.  
+- $a$ is the least nonzero digit of $T$, and $b$ is the greatest digit of $T$.  
+- A square $NORM$ with side $NO = b$.  
+- Points $P_1$ and $P_2$ on sides $\overline{NO}$ and $\overline{OR}$ respectively, with $OP_1 = OP_2 = a$.  
+- A quarter-circle at center $O$ with radius $a$, defining arc $\widehat{P_1 P_2}$.  
+- Another circle tangent to arc $\widehat{P_1 P_2}$ and to sides $\overline{MN}$ and $\overline{MR}$.  
+- The radius of this tangent circle is expressed as $x - y\sqrt{2}$ for positive integers $x$ and $y$, and $x + y$ must be computed.  
+
+Step 2  
+#Plan#:  
+1. Redefine $a$ and $b$ to require computation: Let $a$ be the digit sum of $T$ modulo $10$, and let $b$ be the product of the digits of $T$ divided by $10$ floored to an integer.  
+2. Modify the positions of $P_1$ and $P_2$: Instead of $OP_1 = OP_2 = a$, set $P_1$ on $\overline{NO}$ at distance $c$ from $O$ where $c = b - a$, and $P_2$ on $\overline{OR}$ at distance $d$ from $O$ where $d$ is the digit sum of $T$ minus the smallest digit.  
+3. Add a tangency condition: The circle must also be tangent to the line joining $P_1$ and $P_2$.  
+4. Ensure logical integration: $c$ and $d$ depend on $T$ and the new definitions, increasing the reasoning steps for deriving the circle's radius.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let $T = 840$. Let $a$ be the digit sum of $T$ modulo $10$, and let $b$ be the floor of the product of the digits of $T$ divided by $10$. In square $NORM$, $NO = b$, and points $P_1$ and $P_2$ lie on $\overline{NO}$ and $\overline{OR}$ respectively, so that $OP_1 = c = b - a$ and $OP_2 = d$, where $d$ is the digit sum of $T$ minus the smallest digit. A circle centered at $O$ has radius $a$, and a circular arc $\widehat{P_1 P_2}$ is drawn. There is a circle that is tangent to $\widehat{P_1 P_2}$, to sides $\overline{MN}$ and $\overline{MR}$, and to the line $\overleftrightarrow{P_1 P_2}$. The radius of this circle can be written in the form $x - y \sqrt{2}$, where $x$ and $y$ are positive integers. Compute $x + y$.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let $T = 840$. Let $a$ be the digit sum of $T$ modulo $10$, and let $b$ be the floor of the product of the digits of $T$ divided by $10$. In square $NORM$, $NO = b$, and points $P_1$ and $P_2$ lie on $\overline{NO}$ and $\overline{OR}$ respectively, so that $OP_1 = c = b - a$ and $OP_2 = d$, where $d$ is the digit sum of $T$ minus the smallest digit. A circle centered at $O$ has radius $a$, and a circular arc $\widehat{P_1 P_2}$ is drawn. There is a circle that is tangent to $\widehat{P_1 P_2}$, to sides $\overline{MN}$ and $\overline{MR}$, and to the line $\overleftrightarrow{P_1 P_2}$. The radius of this circle can be written in the form $x - y \sqrt{2}$, where $x$ and $y$ are positive integers. Compute $x + y$.",success,319.87,"['Let $r$ and $Q$ denote the respective radius and center of the circle whose radius is concerned. Let this circle be tangent to arc $\\widehat{P_{1} P_{2}}$ at point $P$, and let it be tangent to sides $\\overline{M N}$ and $\\overline{M R}$ at points $T_{1}$ and $T_{2}$, respectively.\n\n<img_3571>\n\nNote that $Q$ lies on diagonal $\\overline{M O}$ because it is equidistant to $\\overline{M N}$ and $\\overline{M R}$. Points $Q, P$, and $O$ must be collinear because the circles centered at $Q$ and $O$ are mutually tangent at point $P$. It therefore follows that $P$ also lies on diagonal $\\overline{M O}$. Because triangles $Q T_{1} M$ and $Q T_{2} M$ are isosceles right triangles, it follows that $M Q=r \\sqrt{2}$. Thus\n\n$$\nb \\sqrt{2}=M O=M Q+Q P+P O=r \\sqrt{2}+r+a\n$$\n\nSolving this equation yields $r=a+2 b-(a+b) \\sqrt{2}$. With $T=688, a=6$ and $b=8$, so $r=22-14 \\sqrt{2}$, hence $x+y=22+14=\\mathbf{3 6}$.']"
+2745,"Let $T=36$. Square $A B C D$ has area $T$. Points $M, N, O$, and $P$ lie on $\overline{A B}$, $\overline{B C}, \overline{C D}$, and $\overline{D A}$, respectively, so that quadrilateral $M N O P$ is a rectangle with $M P=2$. Compute $M N$.","Let \( T = 36 \). Square \( ABCD \) has area \( T \). Points \( M, N, O \), and \( P \) lie on \( \overline{A B} \), \( \overline{B C} \), \( \overline{C D} \), and \( \overline{D A} \), respectively, and \( M \) is the midpoint of \( \overline{A B} \), so that rectangle \( M N O P \) has diagonal \( M P = 2 \). Compute the area of \( M N O P \).","Step 1  
+#Elements Identified#:  
+- Fixed variable: \( T = 36 \) (area of the square).  
+- Geometric elements: Square \( ABCD \) with area \( T \), points \( M \) on \( \overline{AB} \), \( N \) on \( \overline{BC} \), \( O \) on \( \overline{CD} \), \( P \) on \( \overline{DA} \).  
+- Condition: Quadrilateral \( MNOP \) is a rectangle.  
+- Given: Length \( MP = 2 \) (assumed to be a side of the rectangle).  
+- Target: Compute the length \( MN \).  
+- Theme: Geometry problem involving a square with a rectangle formed by points on the sides and a given length.  
+
+Step 2  
+#Plan#:  
+1. Modify the given element: Change \( MP \) from being a side of the rectangle to being one of its diagonals, increasing the need for geometric property application.  
+2. Add a constraint on positions: Specify that \( M \) is the midpoint of \( \overline{AB} \) to reduce symmetry freedom and introduce fixed positional data.  
+3. Change the target: Instead of computing \( MN \) directly, compute the area of quadrilateral \( MNOP \), adding a layer of calculation involving derived properties.  
+4. Increase reasoning by requiring the dependency between the area and diagonal length, ensuring logical interconnection.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let \( T = 36 \). Square \( ABCD \) has area \( T \). Points \( M, N, O \), and \( P \) lie on \( \overline{A B} \), \( \overline{B C} \), \( \overline{C D} \), and \( \overline{D A} \), respectively, and \( M \) is the midpoint of \( \overline{A B} \), so that quadrilateral \( M N O P \) is a rectangle with diagonal \( M P = 2 \). Compute the area of \( M N O P \).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let \( T = 36 \). Square \( ABCD \) has area \( T \). Points \( M, N, O \), and \( P \) lie on \( \overline{A B} \), \( \overline{B C} \), \( \overline{C D} \), and \( \overline{D A} \), respectively, and \( M \) is the midpoint of \( \overline{A B} \), so that rectangle \( M N O P \) has diagonal \( M P = 2 \). Compute the area of \( M N O P \).",success,205.24,"['Let $A M=a$ and $A P=b$, and let $s=\\sqrt{T}$ be the side length of square $A B C D$. Then $M B=s-a$ and $D P=s-b$. Using the right angles of $M N O P$ and complementary acute angles in triangles $A M P, B N M$, $C O N$, and $D P O$, note that\n\n$$\n\\angle A M P \\cong \\angle B N M \\cong \\angle C O N \\cong D P O\n$$\n\nAlso note that $\\mathrm{m} \\angle B M N=180^{\\circ}-\\left(90^{\\circ}+\\mathrm{m} \\angle A M P\\right)$, so it also follows that\n\n$$\n\\angle B M N \\cong \\angle C N O \\cong \\angle D O P \\cong A P M\n$$\n\n<img_3526>\n\nThus, by side-angle-side congruence, it follows that $\\triangle A M P \\cong \\triangle C O N$ and $\\triangle B N M \\cong \\triangle D P O$. Moreover, by side-angle-side similarity, it follows that $\\triangle A M P \\sim \\triangle B N M \\sim \\triangle C O N \\sim \\triangle D P O$. Thus $B N=s-b, N C=b$, $C O=a$, and $O D=s-a$. The similarity relation implies $\\frac{A M}{B N}=\\frac{A P}{B M}$, so $\\frac{a}{s-b}=\\frac{b}{s-a}$. Cross-multiplying, rearranging, and simplifying yields $s(a-b)=(a+b)(a-b)$. Thus either $a=b$ or $s=a+b$. In the case where $a=b, A M=A P=\\frac{2}{\\sqrt{2}}=\\sqrt{2}$, so $M N=(s-\\sqrt{2}) \\sqrt{2}=s \\sqrt{2}-2$. With $T=36, s=6$, and the answer is thus $6 \\sqrt{\\mathbf{2}}-\\mathbf{2}$. For completeness, it remains to verify that for this particular value of $s$, the case where $s=a+b$ is impossible. Applying the Pythagorean Theorem in $\\triangle M A P$ yields $a^{2}+b^{2}=4$. Now if $s=6=a+b$, then by squaring, it would follow that $a^{2}+b^{2}+2 a b=36 \\Longrightarrow 4+2 a b=36 \\Longrightarrow a b=16$. But the equation $a+b=a+\\frac{16}{a}=6$ has no real solutions, thus $a+b \\neq 6$. (Alternatively, note that by the Arithmetic Mean-Geometric Mean Inequality, $a+\\frac{16}{a} \\geq 2 \\sqrt{a \\cdot \\frac{16}{a}}=8>6$.)']"
+2746,"In a game, a player chooses 2 of the 13 letters from the first half of the alphabet (i.e., A-M) and 2 of the 13 letters from the second half of the alphabet (i.e., N-Z). Aditya plays the game, and then Ayesha plays the game. Compute the probability that Aditya and Ayesha choose the same set of four letters.","In a game, a player selects 3 *ordered* letter pairs (e.g., AB, CD) from the first half of the alphabet (A-M) and 2 *unordered* letter pairs from the second half (N-Z). If a chosen pair starts or ends with adjacent letters (like AB, BC, LM), the corresponding adjacent pair (BA, CB, ML) must also be selected. Aditya plays the game, then Ayesha plays identically. Compute the probability that Aditya's entire set of letter pairs exactly matches Ayesha's set.","Step 1  
+#Elements Identified#:  
+*   **Alphabet Split:** First half (A-M, 13 letters), Second half (N-Z, 13 letters).  
+*   **Selection Process per Player:** Choose 2 letters from each half.  
+*   **Players:** Aditya and Ayesha (two independent players performing the same selection).  
+*   **Outcome:** Both players have identical sets of 4 letters.  
+*   **Computation:** Probability of that outcome.  
+*   **Theme:** Combinatorial selection and probability calculation involving discrete, fixed sets.  
+
+Step 2  
+#Plan#:  
+Modify **Selection Process** by replacing simple letter choices with ordered pairs from the first half and unordered from the second. Increase selections to **3 Ordered Pairs** from the first half instead of 2 letters. Introduce **Position Dependency** by requiring that if players choose a pair starting or ending with adjacent letters (e.g., AB, BC, LM), they must include the corresponding adjacent pair. This creates complex dependencies. Alter the **Samples** needed from the second half to **2 Unordered Pairs**. Maintain the outcome of identical **sets of groups**. This inherently significantly increases the **Computation complexity** due to dependencies and increased sample sizes.
+
+Step 3  
+#Rewritten Instruction#:  
+In a game, a player selects 3 *ordered* letter pairs (like AB, CD) from the first half of the alphabet (A-M) and 2 *unordered* letter pairs from the second half (N-Z). If any pair starts or ends with letters adjacent in the alphabet (e.g., AB requires BA, BC requires CB, LM requires ML), the player must also include this adjacent pair. Aditya plays the game, then Ayesha plays identically. Compute the probability Aditya’s entire set of letter pairs matches Ayesha’s set exactly.
+
+Step 4  
+#Finally Rewritten Instruction#:  
+In a game, a player selects 3 *ordered* letter pairs (e.g., AB, CD) from the first half of the alphabet (A-M) and 2 *unordered* letter pairs from the second half (N-Z). If a chosen pair starts or ends with adjacent letters (like AB, BC, LM), the corresponding adjacent pair (BA, CB, ML) must also be selected. Aditya plays the game, then Ayesha plays identically. Compute the probability that Aditya's entire set of letter pairs exactly matches Ayesha's set.",success,19.64,['The number of ways to choose 2 distinct letters out of 13 is $\\frac{13 \\cdot 12}{2}=78$. The probability of matching on both halves is therefore $\\frac{1}{78^{2}}=\\frac{1}{6084}$.']
+2747,"Let $T=\frac{1}{6084}$. Compute the least positive integer $n$ such that when a fair coin is flipped $n$ times, the probability of it landing heads on all $n$ flips is less than $T$.","Let $T=\frac{1}{6084}$ and let $p$ be the unique real number in $(0,1)$ satisfying $4p(1-p) = \frac{1}{169}$. Compute the least positive integer $n$ such that when a biased coin with heads probability $p$ is flipped $n$ times, the probability of it landing heads on all $n$ flips is less than $T$.","Step 1
+#Elements Identified#:
+- Threshold variable: $T = \frac{1}{6084}$
+- Coin specification: fair (probability of heads $\frac{1}{2}$)
+- Event of interest: landing heads on all $n$ flips (probability $2^{-n}$)
+- Output: minimal positive integer $n$ satisfying $2^{-n} < T$
+
+Step 2
+#Plan#:
+1. Replace the fair coin with a biased coin, introducing the probability $p$ of heads as the unique solution in $(0,1)$ to $4p(1-p) = \frac{1}{169}$. This adds a quadratic equation-solving step.
+2. Retain $T = \frac{1}{6084}$ as the threshold to maintain linkage with the original constant (since $78^2 = 6084$ and $78 = 6 \times 13$, thus $6084 = 36 \times 169$).
+3. Keep the event ""all heads"" but now model its probability as $p^n$, necessitating computations with irrational $p$ (expressed via roots) in the inequality $p^n < T$.
+4. Preserve the task of finding the smallest $n$, now requiring nested steps: solve for $p$ and then solve the exponential inequality.
+
+Step 3
+#Rewritten Instruction#:
+Let $T=\frac{1}{6084}$ and let $p$ be the unique real number in $(0,1)$ satisfying $4p(1-p) = \frac{1}{169}$. Compute the least positive integer $n$ such that when a biased coin with heads probability $p$ is flipped $n$ times, the probability of it landing heads on all $n$ flips is less than $T$.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $T=\frac{1}{6084}$ and let $p$ be the unique real number in $(0,1)$ satisfying $4p(1-p) = \frac{1}{169}$. Compute the least positive integer $n$ such that when a biased coin with heads probability $p$ is flipped $n$ times, the probability of it landing heads on all $n$ flips is less than $T$.",success,145.46,"['The problem is equivalent to finding the least integer $n$ such that $\\frac{1}{2^{n}}<T$, or $2^{n}>\\frac{1}{T}=6084$. Because $2^{12}=4096$ and $2^{13}=8192$, the answer is $\\mathbf{1 3}$.']"
+2748,Let $T=13$. Compute the least integer $n>2023$ such that the equation $x^{2}-T x-n=0$ has integer solutions.,Let $T$ be the largest prime divisor of 2023. Compute the least integer $n>2023$ such that the equation $x^{2}-T x-n=0$ has a prime positive root and its discriminant is the square of a prime.,"Step 1  
+#Elements Identified#:  
+- Fixed constant: $T=13$.  
+- Condition: $n>2023$.  
+- Quadratic equation: $x^{2}-T x-n=0$.  
+- Goal: Find the least integer $n$ such that the equation has integer solutions.  
+- Core theme: Quadratic equations with integer roots and constraints on $n$.  
+
+Step 2  
+#Plan#:  
+1. Replace the fixed $T=13$ with a dynamic definition: Let $T$ be derived from $n$'s bound (2023) by setting it to the largest prime divisor of 2023.  
+2. Add a requirement that the positive root of the equation must be a prime number.  
+3. Impose an additional condition that the discriminant of the quadratic must be the square of a prime number.  
+Ensure logical coherence: The dynamic $T$ and added constraints increase complexity through factorization, primality checks, and interdependencies without redundancy.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let $T$ be the largest prime divisor of 2023. Compute the least integer $n>2023$ such that the equation $x^{2}-T x-n=0$ has a prime positive root and its discriminant is the square of a prime.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let $T$ be the largest prime divisor of 2023. Compute the least integer $n>2023$ such that the equation $x^{2}-T x-n=0$ has a prime positive root and its discriminant is the square of a prime.",success,201.29,"['The discriminant of the quadratic, $T^{2}+4 n$, must be a perfect square. Because $T$ and the discriminant have the same parity, and the leading coefficient of the quadratic is 1 , by the quadratic formula, the discriminant being a perfect square is sufficient to guarantee integer solutions. Before knowing $T$, note that $\\sqrt{4 \\cdot 2024}=$ $\\sqrt{8096}$ is slightly less than 90 because $90^{2}=8100$, and the square root must have the same parity as $T$. Because\n\n\n\n$T=13$, the square root must be greater than $\\sqrt{13^{2}+4 \\cdot 2023}=\\sqrt{8261}$, which is between 90 and 91 , so the desired square root is 91 . Hence $13^{2}+4 n=91^{2}$, so $n=\\mathbf{2 0 2 8}$.']"
+2753,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Find the maximum and minimum possible number of cromulent elements in a sequence of $n$ consecutive positive integers with $n=6$;",Extraction Failed,,success,433.83,"['First we prove that every sequence of five consecutive positive integers contains a cromulent element.\n\nProof: Consider a sequence of five consecutive integers. Exactly one number in such a sequence will be a multiple of 5 , but that number could also be a multiple of 2 and hence share a common factor with at least one other number in the sequence. There are several cases to consider, namely whether the sequence starts with an even number or an odd number.\n\nIf the sequence starts with an even number, then the second and fourth numbers are both odd, and at least one of them is not a multiple of 3 and hence is relatively prime to all other numbers in the sequence because it is neither a multiple of 2 nor 3 and hence is at least 5 away from the nearest integer with a common factor. Thus the sequence contains a cromulent element.\n\nIf the sequence starts with an odd number, then again, it contains an odd number that is not a multiple of 3 and hence is relatively prime to all other numbers in the sequence, thus the sequence contains a cromulent element. In fact, it contains two such numbers if the first or last number is a multiple of 3 , and if the middle number is a multiple of 3 , then all three odd elements are cromulent.\n\n\nThe minimum number is 1 and the maximum number is 2 . One example of a sequence of length 6 with one cromulent element is $5,6,7,8,9$, 10, where 7 is the cromulent element. To show that it is not possible for\n\n\na sequence of six consecutive elements to have zero cromulent elements, consider two cases. If the sequence begins with an even number, that number is not cromulent, and one of the other five elements must be cromulent by the argument in the proof above. A similar argument establishes that one element must be cromulent if the sequence of length 6 begins with an odd number (and thus ends in an even number).\n\nOne example of a sequence of length 6 with two cromulent elements is $1,2,3,4,5,6$, where 1 and 5 are both cromulent.\n\nTo prove that a sequence of length 6 cannot have three cromulent elements, consider that the cromulent elements would all have to be odd, and one of those three would be a multiple of 3 . Because one of the even elements must also be a multiple of 3 , it is not possible for all three odd elements to be cromulent.']"
+2754,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Find the maximum and minimum possible number of cromulent elements in a sequence of $n$ consecutive positive integers with $n=7$.","In a sequence of `n` consecutive positive integers, where `n` is a prime greater than 2, an element at position `k` is cromulent if it is relatively prime to every other element in the sequence and also relatively prime to `k`. For sequences of prime length `n > 2`, find the maximum and minimum possible number of cromulent elements.","Step 1
+#Elements Identified#:
+*   **Sequence Definition:** Consecutive positive integers, length `n > 1`.
+*   **Cromulent Definition:** An element relatively prime to *all other* elements in the sequence.
+*   **Initial Observation:** States that for `n=2`, all elements are cromulent.
+*   **Specific Query:** Asks for the maximum and minimum number of cromulent elements *specifically for `n=7`*.
+*   **Core Concepts:** Relative primality (gcd=1), consecutive integers, combinatorial counting within a constrained set.
+
+Step 2
+#Plan#:
+1.  **Generalize `n`:** Shift the query away from the fixed `n=7` to finding min/max over *any* sequence length satisfying constraints, increasing the scope and requiring induction/generalization.
+2.  **Add Constraint on `n`:** Introduce that `n` must be a prime number greater than 2, adding a significant number-theoretic constraint that impacts divisibility patterns.
+3.  **Strengthen Cromulent Condition:** Change the definition from ""relatively prime to all *other* numbers"" to ""relatively prime to *all other elements and also relatively prime to the index of its position within the sequence*"". This adds a new dimension (index dependence) tightly coupled to the relative primality condition and sequence structure. The position index (`k` for the `k-th` element in the sequence) is clearly defined.
+
+Step 3
+#Rewritten Instruction#:
+In a sequence of `n` consecutive positive integers, where `n` is a prime greater than 2, an element at position `k` is cromulent if it is relatively prime to every *other* element in the sequence *and* also relatively prime to `k`. Every element in a sequence with `n = 2` is cromulent as consecutive integers are coprime. Determine the maximum and minimum possible number of cromulent elements in any such sequence of length `n`.
+
+Step 4
+#Finally Rewritten Instruction#:
+In a sequence of `n` consecutive positive integers, where `n` is a prime greater than 2, an element at position `k` is cromulent if it is relatively prime to every other element in the sequence and also relatively prime to `k`. For sequences of prime length `n > 2`, find the maximum and minimum possible number of cromulent elements.",success,25.76,"['The minimum number is 1 and the maximum number is 3 . One example of a sequence of length 7 with one cromulent element is $4,5,6,7,8,9,10$, where 7 is the cromulent element. To show that it is not possible for such a sequence to have zero cromulent elements, consider two cases. If the sequence begins with an even number, then it contains three odd numbers. At most one of these is divisible by 3 , and at most one is divisible by 5 , so one of the odd numbers must be divisible by neither 3 nor 5 . This odd number differs by at most 6 from each other element of the sequence, so the only prime factors it can share with another element of the sequence are 2, 3, and 5 . Because it is divisible by none of these primes, it follows that the odd number in question is cromulent. Similarly, if the sequence begins with an odd number, then it contains four odd numbers; at most two of these are divisible by 3 , and at most one is divisible by 5 , so again, one odd number in the sequence must be divisible by neither 3 nor 5 . By the same argument, this element is cromulent.\n\nOne example of a sequence of length 7 with three cromulent elements is $1,2,3,4,5,6$, 7 , where 1,5 , and 7 are all cromulent.\n\nTo prove that a sequence of length 7 cannot have four cromulent elements, consider that the cromulent elements would all have to be odd. At least one of these four odd elements must be a multiple of 3 . Because one of the even elements must also be a multiple of 3 , it is thus not possible for all four odd elements to be cromulent.']"
+2759,"For an integer $n \geq 4$, define $a_{n}$ to be the product of all real numbers that are roots to at least one quadratic polynomial whose coefficients are positive integers that sum to $n$. Compute
+
+$$
+\frac{a_{4}}{a_{5}}+\frac{a_{5}}{a_{6}}+\frac{a_{6}}{a_{7}}+\cdots+\frac{a_{2022}}{a_{2023}} .
+$$","For an integer \(n \geq 4\), consider all quadratic polynomials \(px^2 + qx + r = 0\) with coprime positive integers \(p, q, r\) summing to \(n\). Let \(\alpha_n\) be the product of their distinct positive real roots, and \(\beta_n\) the product of their distinct negative real roots, each factored with multiplicity. Define the sequence \(d_m = \frac{\alpha_m \beta_m}{\beta_{m \div 2}}\) for integers \(m \geq 8\) where \(m \div 2 \leq m-2\). Compute
+\[
+\sum_{m=8}^{4046} \frac{d_m}{d_{m-1}} .
+\]","Step 1
+#Elements Identified#:
+*   **Definition:** \(a_{n}\) is defined as a product of real roots.
+*   **Root Source:** Roots originate from quadratic polynomials.
+*   **Coefficient Constraints:** Coefficients are positive integers summing to \(n\).
+*   **Action:** Computation of a sum of consecutive ratios (\(a_k / a_{k+1}\)).
+*   **Domain/Constraints:** \(n \geq 4\).
+*   **Theme:** Properties of real roots arising from quadratics with constrained integer coefficients.
+
+Step 2
+#Plan#:
+1.  **Increase Root Definition Complexity:** Change \(a_n\) from the product of *all* roots meeting the condition to *two distinct products*: \(\alpha_n\) for the *positive* real roots and \(\beta_n\) for the *negative* real roots of these quadratics. Include multiplicity explicitly.
+2.  **Increase Coefficient Constraint Complexity:** Add that the coefficients of each quadratic must be *coprime* (gcd = 1). This excludes monic multiples and ensures we capture distinct representative polynomials.
+3.  **Increase Ratio Complexity:** Replace the sum of *consecutive* ratios \(a_k / a_{k+1}\) with a sum involving *non-consecutive* terms and a *recurrent ratio definition*. Specifically, define a new sequence \(d_m = \alpha_m \beta_m / \beta_{m\div 2}\) (or similar division-based index shift) and sum ratios \(d_m / d_{m-1}\).
+4.  **Interconnect Modifications:** The coprime constraint reduces duplicate roots, directly impacting \(\alpha_n\) and \(\beta_n\). The separation of roots by sign necessitates handling both \(\alpha_n\) and \(\beta_n\) in \(d_m\), which combines them with an index manipulation. The ratio sum then acts on this constructed sequence \(d_m\). The domain needs adjustment to fit the new sequence \(d_m\).
+
+Step 3
+#Rewritten Instruction#:
+For an integer \(n \geq 4\), consider all quadratic polynomials \(px^2 + qx + r = 0\) with coprime positive integers \(p, q, r\) summing to \(n\). Let \(\alpha_n\) be the product of their distinct positive real roots, and \(\beta_n\) the product of their distinct negative real roots, each factored with multiplicity. Define the sequence \(d_m = \frac{\alpha_m \beta_m}{\beta_{m \div 2}}\) for integers \(m \geq 8\) where \(m \div 2 \leq m-2\). Compute the summation
+\[
+\sum_{m=8}^{4046} \frac{d_m}{d_{m-1}} .
+\]
+
+Step 4
+#Finally Rewritten Instruction#:
+For an integer \(n \geq 4\), consider all quadratic polynomials \(px^2 + qx + r = 0\) with coprime positive integers \(p, q, r\) summing to \(n\). Let \(\alpha_n\) be the product of their distinct positive real roots, and \(\beta_n\) the product of their distinct negative real roots, each factored with multiplicity. Define the sequence \(d_m = \frac{\alpha_m \beta_m}{\beta_{m \div 2}}\) for integers \(m \geq 8\) where \(m \div 2 \leq m-2\). Compute
+\[
+\sum_{m=8}^{4046} \frac{d_m}{d_{m-1}} .
+\]",success,25.22,"['For an integer $n \\geq 4$, let $S_{n}$ denote the set of real numbers $x$ that are roots to at least one quadratic polynomial whose coefficients are positive integers that sum to $n$. (Note that $S_{n}$ is nonempty, as the polynomial $x^{2}+(n-2) x+1$ has a discriminant of $(n-2)^{2}-4$, which is nonnegative for $n \\geq 4$.) Then $a_{n}=\\prod_{x \\in S_{n}} x$.\n\nSuppose that $a, b$, and $c$ are positive integers and $x$ is a real solution to $a x^{2}+b x+c=0$. Then $x$ must be nonzero. (In fact, $x$ must be negative.) Dividing the above equation by $x^{2}$ yields $a+\\frac{b}{x}+\\frac{c}{x^{2}}=0$, thus $r=\\frac{1}{x}$ is a solution to the quadratic equation $c r^{2}+b r+a=0$. This shows that $x \\in S_{n}$ if and only if $\\frac{1}{x} \\in S_{n}$.\n\nOne might then think that $a_{n}$ must equal 1, because one can presumably pair up all elements in a given $S_{n}$ into $\\left\\{x, \\frac{1}{x}\\right\\}$ pairs. But there is a (negative) value of $x$ for which $x=\\frac{1}{x}$, namely $x=-1$. Therefore the value of $a_{n}$ depends only on whether $-1 \\in S_{n}$. It is readily seen via a parity argument that $-1 \\in S_{n}$ if and only if $n$ is even. If $n=2 k$, then the polynomial $x^{2}+k x+(k-1)$ has -1 as a root. (In fact, any quadratic polynomial whose middle coefficient is $k$ and whose coefficients sum to $2 k$ will work.) But if $n=2 k+1$, then $a(-1)^{2}+b(-1)+c=a-b+c=(a+b+c)-2 b=(2 k+1)-2 b$ will be odd, and so $-1 \\notin S_{n}$.\n\nThus $a_{n}=-1$ when $n$ is even, $a_{n}=1$ when $n$ is odd, and finally,\n\n$$\n\\frac{a_{4}}{a_{5}}+\\frac{a_{5}}{a_{6}}+\\frac{a_{6}}{a_{7}}+\\cdots+\\frac{a_{2022}}{a_{2023}}=\\underbrace{(-1)+(-1)+(-1)+\\cdots+(-1)}_{2019(-1) \\mathrm{s}}=-\\mathbf{2 0 1 9} .\n$$']"
+2760,"Suppose that $u$ and $v$ are distinct numbers chosen at random from the set $\{1,2,3, \ldots, 30\}$. Compute the probability that the roots of the polynomial $(x+u)(x+v)+4$ are integers.","Suppose that $u$ and $v$ are distinct coprime numbers chosen at random from the set $\{1,2,3, \ldots, 50\}$, and $k$ is chosen independently from the set $\{1,2,3, \ldots, 10\}$. Compute the probability that the roots of the polynomial $(x+u)(x+v)+k$ are integers.","**Step 1**  
+#Elements Identified#:  
+- Variables: $u$ and $v$ (distinct integers from $\{1,2,3,\ldots,30\}$)  
+- Set: $\{1,2,3,\ldots,30\}$ (finite integer range)  
+- Polynomial: $(x+u)(x+v) + 4$ (quadratic form with constant term)  
+- Condition: Roots are integers  
+- Action: Compute probability based on random and distinct selection  
+- Theme: Probabilistic evaluation of algebraic condition (integer roots)  
+
+**Step 2**  
+#Plan#:  
+- Increase set size for variables to $\{1,2,3,\ldots,50\}$ to expand sample space, requiring more complex counting.  
+- Replace fixed constant 4 with a variable $k$ chosen independently from $\{1,2,3,\ldots,10\}$, adding an additional random dimension.  
+- Impose a gcd constraint that $u$ and $v$ must be coprime (i.e., $\gcd(u,v) = 1$), introducing dependencies that require filtering in selection and affecting the discriminant condition.  
+- Ensure all modifications directly interconnect: $u$ and $v$ depend via coprimality, $k$ affects the roots condition, and the enlarged set increases computation.  
+
+**Step 3**  
+#Rewritten Instruction#:  
+Suppose $u$ and $v$ are distinct coprime integers from $\{1,2,3,\ldots,50\}$, and $k$ is randomly chosen from $\{1,2,3,\ldots,10\}$. Compute the probability that the roots of $(x+u)(x+v)+k$ are integers.  
+
+**Step 4**  
+#Finally Rewritten Instruction#:  
+Suppose that $u$ and $v$ are distinct coprime numbers chosen at random from the set $\{1,2,3, \ldots, 50\}$, and $k$ is chosen independently from the set $\{1,2,3, \ldots, 10\}$. Compute the probability that the roots of the polynomial $(x+u)(x+v)+k$ are integers.",success,72.92,"['Assume without loss of generality that $u>v$. The condition that $(x+u)(x+v)+4$ has integer roots is equivalent to the discriminant $(u+v)^{2}-4(u v+4)=(u-v)^{2}-16$ being a perfect square. This is possible if and only if $u-v=4$ or $u-v=5$. There are $(30-4)+(30-5)=26+25=51$ such ordered pairs $(u, v)$, so the answer is\n\n$$\n\\frac{51}{\\left(\\begin{array}{c}\n30 \\\\\n2\n\\end{array}\\right)}=\\frac{\\mathbf{1 7}}{\\mathbf{1 4 5}}\n$$']"
+2761,The degree-measures of the interior angles of convex hexagon TIEBRK are all integers in arithmetic progression. Compute the least possible degree-measure of the smallest interior angle in hexagon TIEBRK.,The degree-measures of the interior angles of convex hexagon TIEBRK are distinct integers forming an arithmetic progression with positive integer common difference. The smallest angle occurs at vertex K. Determine its least possible degree-measure.,"Step 1
+#Elements Identified#:
+- Polygon: convex hexagon TIEBRK  
+- Angle properties: interior angles have integer degree-measures, form an arithmetic progression  
+- Variables: smallest angle \(a\) (integer), common difference \(d\) (rational)  
+- Constraints: sum of angles 720°, each angle between 0° and 180° exclusive  
+- Task: minimize \(a\)  
+- Theme: geometry of polygons, arithmetic sequences, optimization  
+
+Step 2
+#Plan#:
+- Modify variables/constraints: Require the common difference \(d\) to be a positive integer to force integer steps, restricting possible values and increasing solving complexity.  
+- Add constraint: Require all interior angles distinct to exclude trivial cases (\(d = 0\)) and introduce uniqueness condition.  
+- Introduce geometric dependency: Specify that the smallest interior angle is at vertex K to add positional constraint, linking the arithmetic sequence to vertex labeling, which affects assignment feasibility.  
+- Ensure coherence: All modifications interact (e.g., integer \(d\) and distinct angles with specified vertex for min angle influences AP sequence configuration), maintaining convexity, sum, and angle range.  
+
+Step 3
+#Rewritten Instruction#:
+The degree-measures of the interior angles of convex hexagon TIEBRK are distinct integers in arithmetic progression with a positive integer common difference. The smallest interior angle is at vertex K. Compute the least possible degree-measure of this smallest angle.  
+
+Step 4
+#Finally Rewritten Instruction#:
+The degree-measures of the interior angles of convex hexagon TIEBRK are distinct integers forming an arithmetic progression with positive integer common difference. The smallest angle occurs at vertex K. Determine its least possible degree-measure.",success,194.35,"['The sum of the measures of the interior angles of a convex hexagon is $(6-2)\\left(180^{\\circ}\\right)=720^{\\circ}$. Let the measures of the angles be $a, a+d, \\ldots, a+5 d$. This implies that $6 a+15 d=720 \\rightarrow 2 a+5 d=240 \\rightarrow 5 d=240-2 a$. Note that $a+5 d<180 \\rightarrow 240-a<180 \\rightarrow a>60$. By inspection, note that the least $a$ greater than 60 that produces an integer $d$ is $a=65 \\rightarrow d=22$. Thus the least possible degree-measure of the smallest angle is $65^{\\circ}$, and the hexagon has angles with degree-measures $65^{\\circ}, 87^{\\circ}, 109^{\\circ}, 131^{\\circ}, 153^{\\circ}$, and $175^{\\circ}$.']"
+2762,"A six-digit natural number is ""sort-of-decreasing"" if its first three digits are in strictly decreasing order and its last three digits are in strictly decreasing order. For example, 821950 and 631631 are sort-of-decreasing but 853791 and 911411 are not. Compute the number of sort-of-decreasing six-digit natural numbers.","A six-digit natural number is ""prime-linked-decreasing"" if: 1) All digits are prime; 2) The first three digits are strictly decreasing; 3) The last three digits are strictly decreasing; 4) The sum of the first three digits equals twice the minimum digit in the last three digits; 5) The middle digit (digit 4) is the product of digits 3 and 5. Compute the number of prime-linked-decreasing numbers.","Step 1
+#Elements Identified#:
+*   **Number Type:** Six-digit natural number.
+*   **Core Conditions:** Strictly decreasing first three digits; strictly decreasing last three digits.
+*   **Digit Constraints:** Digits are integers from 0 to 9 (implied for natural number). The decreasing constraints imply distinct digits.
+*   **Independence:** Conditions for the first three digits and last three digits are initially independent.
+*   **Output:** Count the total number satisfying both conditions.
+*   **Theme:** Combinatorial counting with digit sequence constraints.
+
+Step 2
+#Plan#:
+1.  **Add External Rule:** Instead of choosing digits freely (0-9), introduce an external constraint. Require that **all six digits must be prime numbers** (restricting to 2,3,5,7). This significantly reduces available digits and adds selection complexity.
+2.  **Reduce Independence:** Eliminate the independence between the first triplet and the last triplet. Impose a **dependence using the sum of one triplet related to the min of the other**. Specifically: **""the sum of the first three digits equals twice the minimum digit in the last three digits""**. This forces interaction during selection/computation.
+3.  **Add Explicit Digit Relationship:** Incorporate a specific condition requiring calculation of values *within* a digit sequence. Mandate that **""the middle digit of the entire number (digit 4) is the product of its two adjacent digits (digits 3 and 5)""**. This requires deeper reasoning about permissible digit triples in positions 3-4-5 and integrates a multiplicative constraint.
+
+Step 3
+#Rewritten Instruction#:
+A six-digit natural number is ""prime-linked-decreasing"" if: 1) All digits are prime numbers; 2) Its first three digits are strictly decreasing; 3) Its last three digits are strictly decreasing; 4) The sum of the first three digits equals twice the minimum digit in the last three digits; 5) The middle digit (digit 4) is the product of its adjacent digits (digits 3 and 5). Compute the number of prime-linked-decreasing six-digit numbers.
+
+Step 4
+#Finally Rewritten Instruction#:
+A six-digit natural number is ""prime-linked-decreasing"" if: 1) All digits are prime; 2) The first three digits are strictly decreasing; 3) The last three digits are strictly decreasing; 4) The sum of the first three digits equals twice the minimum digit in the last three digits; 5) The middle digit (digit 4) is the product of digits 3 and 5. Compute the number of prime-linked-decreasing numbers.",success,32.51,"['If three distinct digits are chosen from the set of digits $\\{0,1,2, \\ldots, 9\\}$, then there is exactly one way to arrange them in decreasing order. There are $\\left(\\begin{array}{c}10 \\\\ 3\\end{array}\\right)=120$ ways to choose the first three digits and 120 ways to choose the last three digits. Thus the answer is $120 \\cdot 120=\\mathbf{1 4 4 0 0}$.']"
+2763,"For each positive integer $N$, let $P(N)$ denote the product of the digits of $N$. For example, $P(8)=8$, $P(451)=20$, and $P(2023)=0$. Compute the least positive integer $n$ such that $P(n+23)=P(n)+23$.","For each positive integer $N$, let $P(N)$ denote the product of the digits of $N$ and $S(N)$ denote the sum of the digits of $N$. Compute the least positive integer $n$ with no zero digits such that $P(n + P(n)) = P(n) + S(n)$.","Step 1  
+#Elements Identified#:  
+- Variables: $N$, $n$, and the constant $23$.  
+- Functions: $P(N)$, the digit product function.  
+- Conditions: The equation $P(n+23) = P(n) + 23$ must hold.  
+- Goal: Find the least positive integer $n$ satisfying the equation.  
+- Theme: Digit-based product with an additive arithmetic constraint.  
+- Modifiable elements: The fixed constant $23$ can be generalized to a variable; additional functions like sum of digits ($S(N)$) can be introduced; constraints on $n$ (e.g., no zero digits) can be added to avoid trivial cases; the increment or equation can depend on $n$.  
+
+Step 2  
+#Plan#:  
+1. Replace the fixed constant $23$ with a function-dependent increment: Change $n+23$ to $n + P(n)$, making the increment depend on the digit product of $n$.  
+2. Introduce a new function and constraint to increase dependencies: Define $S(N)$ as the sum of digits of $N$, and use it in the equation ($P(n) + S(n)$) to create an additional variable-based link.  
+3. Add a constraint on $n$: Require $n$ to have no zero digits to ensure $P(n) \neq 0$ and avoid trivial solutions where $P(n) = 0$.  
+Ensure all modifications are interconnected: $P(n)$ drives both the increment and the right-hand side, $S(n)$ adds computational complexity, and the no-zero-digit constraint harshly reduces candidate $n$. Maintain the theme by focusing on digit operations.  
+
+Step 3  
+#Rewritten Instruction#:  
+For each positive integer $N$, let $P(N)$ denote the product of the digits of $N$ and $S(N)$ denote the sum of the digits of $N$. Compute the least positive integer $n$ with no zero digits such that $P(n + P(n)) = P(n) + S(n)$.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+For each positive integer $N$, let $P(N)$ denote the product of the digits of $N$ and $S(N)$ denote the sum of the digits of $N$. Compute the least positive integer $n$ with no zero digits such that $P(n + P(n)) = P(n) + S(n)$.",success,84.31,"['One can verify that no single-digit positive integer $n$ satisfies the conditions of the problem.\n\nIf $n$ has two digits, then $n+23$ cannot be a three-digit number; this can be verified by checking the numbers $n \\geq 88$, because if $n<88$, then one of the digits of $n+23$ is 0 . Therefore both $n$ and $n+23$ must be two-digit numbers, so the only possible carry for $n+23$ will occur in the tens place. If there is a carry for $n+23$, then $n=\\underline{a} \\underline{8}$ or $n=\\underline{a} \\underline{9}$, while $n+23=(a+3) 1$ or $n+23=(a+3) 2$, respectively (the case $n=\\underline{a} \\underline{7}$ is omitted because then $P(n+23)=0)$. In either case, $P(n+23)<P(n)$ because $a \\geq 1$. Otherwise, assume $n=\\underline{a} \\underline{b}$ and $n+23=(a+2)(b+3)$ is a solution to the given equation, which implies\n\n$$\n23=P(n+23)-P(n)=(a+2)(b+3)-a b=3 a+2 b+6 \\text {. }\n$$\n\nThis means $3 a+2 b=17$, which has solutions $(a, b)=(5,1),(3,4)$ as $a, b$ are digits and $b<7$. The two-digit solutions are $n=34$ or $n=51$; thus the least $n$ such that $P(n+23)=P(n)+23$ is $n=34$.']"
+2764,"Compute the least integer value of the function
+
+$$
+f(x)=\frac{x^{4}-6 x^{3}+2 x^{2}-6 x+2}{x^{2}+1}
+$$
+
+whose domain is the set of all real numbers.","**:
+Let `λ` be a real parameter for which the cubic `t³ - λ t² + t - 1 = 0` has exclusively rational roots. Compute both the least integer value attained by `g(x) = (x⁴ - 6x³ + (λ + 2)x² - 6x + 2)/(x² + 1)` and the smallest integer `k ≥ min |g(x)|`.","Step 1
+**#Elements Identified#**:
+*   **Variable:** Real number `x`.
+*   **Function:** `f(x) = (x⁴ - 6x³ + 2x² - 6x + 2) / (x² + 1)`, a quartic over quadratic rational function.
+*   **Domain:** The set of all real numbers (implied by domain of `f(x)`).
+*   **Action:** Compute the least *integer* value of the function.
+*   **Output:** A single integer value (the minimum integer output of the function).
+*   **Invariant Characteristic:** The focus remains on finding a minimum integer value attained by a rational function defined on all reals, utilizing simplification.
+*   **Theme:** Optimization (minimization) of a continuous function over an infinite domain with integer output constraints.
+
+Step 2
+**#Plan#**:
+1.  **Parameterize the Coefficients:** Introduce a real parameter `λ` into specific coefficients of the numerator, making the function family `g(x, λ)`.
+2.  **Add Constraint & Requirement:** Require that `λ` must ensure a root of a related cubic equation has only rational roots. This forces a specific algebraic condition be satisfied before min computation.
+3.  **Dual Output Requirement:** Set the objective to compute both (a) the least integer value of `g_min(λ)` defined on the solution set of `λ`, *and* (b) the least integer `k` satisfying a critical inequality derived from minimizing `g(x, λ)` under the constraint from Step 2.
+4.  **Increase Reasoning Depth:** Embed the original simplification/optimization within finding suitable `λ` and solving the derived inequality for `k`.
+
+Step 3
+**#Rewritten Instruction#**:
+Let `λ` be a real parameter such that the cubic equation `t³ - λ t² + t - 1 = 0` possesses only rational roots. For the function `g(x) = (x⁴ - 6x³ + (λ + 2) x² - 6x + 2) / (x² + 1)`, determine both the least integer value of `g(x)` and the least integer `k` greater than or equal to the minimum value of `|g(x)|`.
+
+Step 4
+**#Finally Rewritten Instruction#**:
+Let `λ` be a real parameter for which the cubic `t³ - λ t² + t - 1 = 0` has exclusively rational roots. Compute both the least integer value attained by `g(x) = (x⁴ - 6x³ + (λ + 2)x² - 6x + 2)/(x² + 1)` and the smallest integer `k ≥ min |g(x)|`.",success,118.13,"['$\\quad$ Use polynomial long division to rewrite $f(x)$ as\n\n$$\nf(x)=x^{2}-6 x+1+\\frac{1}{x^{2}+1}\n$$\n\nThe quadratic function $x^{2}-6 x+1=(x-3)^{2}-8$ has a minimum of -8 , achieved at $x=3$. The ""remainder term"" $\\frac{1}{x^{2}+1}$ is always positive. Thus $f(x)>-8$ for all $x$, so any integer value of $f(x)$ must be at least -7 .\n\nWhen $x=3$, the remainder term is less than 1 , so $f(3)$ is less than -7 . But $f(4)=-\\frac{34}{5}>-7$, so there must be some value of $x$ between 3 and 4 for which $f(x)=-7$, so the least integer value of $f(x)$ is $\\mathbf{- 7}$. The reader may note that $f(x)=-7$ when $x \\approx 2.097$ and $x \\approx 3.970$.']"
+2765,"Suppose that noncongruent triangles $A B C$ and $X Y Z$ are given such that $A B=X Y=10, B C=$ $Y Z=9$, and $\mathrm{m} \angle C A B=\mathrm{m} \angle Z X Y=30^{\circ}$. Compute $[A B C]+[X Y Z]$.","""Suppose noncongruent triangles \(ABC\) and \(XYZ\) are given with \(AB = XY = 8\), \(BC = YZ = 12\), and \(\angle ACB = \angle XZY = 30^{\circ}\), where points \(C\) and \(Z\) coincide and segments \(AB\), \(XY\) are on opposite sides of the line through \(B\) and \(Y\). Compute \([ABC] + [XYZ]\).""","Step 1  
+#Elements Identified#:  
+- Two triangles \(ABC\) and \(XYZ\).  
+- Side lengths \(AB = XY = 10\), \(BC = YZ = 9\).  
+- Angle measures \(\angle CAB = \angle ZXY = 30^\circ\).  
+- Condition: noncongruent triangles.  
+- Action: compute the sum of the areas \([ABC] + [XYZ]\).  
+- Theme: Ambiguous case of triangle congruence (SSA configuration), area calculation.  
+- Variables: lengths (10 and 9), angle (30°), positions of angles, or side dependencies.  
+- Participants: points \(A, B, C\) and \(X, Y, Z\); no inherent relation between them.  
+
+Step 2  
+#Plan#:  
+- Replace fixed side lengths with variables \(AB = XY = p\) and \(BC = YZ = q\), given specific values \(p=8\), \(q=12\) to ensure ambiguity under SSA conditions.  
+- Change the vertex of the given angle from \(\angle A\) to \(\angle C\), using \(\angle ACB = \angle XZY = 30^\circ\) to alter the ambiguous case setup.  
+- Introduce a relational constraint between the triangles: add that points \(C\) and \(Z\) are fixed, and the line segments \(AB\) and \(XY\) are on opposite sides of the line through \(B\) and \(Y\), adding positional dependence.  
+- Ensure logical interconnection: The side and angle changes preserve ambiguity, while the positional constraint affects possible configurations and adds geometric complexity. This avoids introducing arbitrary variables without criteria.  
+
+Step 3  
+#Rewritten Instruction#:  
+""Suppose noncongruent triangles \(ABC\) and \(XYZ\) are given with \(AB = XY = 8\), \(BC = YZ = 12\), and \(\angle ACB = \angle XZY = 30^{\circ}\), where points \(C\) and \(Z\) coincide and segments \(AB\), \(XY\) are on opposite sides of the line through \(B\) and \(Y\). Compute \([ABC] + [XYZ]\).""  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+""Suppose noncongruent triangles \(ABC\) and \(XYZ\) are given with \(AB = XY = 8\), \(BC = YZ = 12\), and \(\angle ACB = \angle XZY = 30^{\circ}\), where points \(C\) and \(Z\) coincide and segments \(AB\), \(XY\) are on opposite sides of the line through \(B\) and \(Y\). Compute \([ABC] + [XYZ]\).""",success,237.7,"['Because triangles $A B C$ and $X Y Z$ are noncongruent yet have two adjacent sides and an angle in common, the two triangles are the two possibilities in the ambiguous case of the Law of Sines. Without loss of generality, let triangle $A B C$ have obtuse angle $C$ and triangle $X Y Z$ have acute angle $Z$ so that $\\mathrm{m} \\angle C+\\mathrm{m} \\angle Z=$ $180^{\\circ}$. Place triangle $A B C$ so that $B$ and $Y$ coincide, and $C$ and $Z$ coincide. Because $\\mathrm{m} \\angle C$ and $\\mathrm{m} \\angle Z$ add up to $180^{\\circ}$, it follows that points $X, Z$, and $A$ all lie on the same line. The two triangles together then form $\\triangle A B X$, where $\\mathrm{m} \\angle B A X=\\mathrm{m} \\angle B X A=30^{\\circ}$ and $B X=A B=10$. Therefore the sum of the areas of the two triangles is equal to the area of triangle $A B X$, which is $\\frac{1}{2} \\cdot 10 \\cdot 10 \\cdot \\sin \\left(120^{\\circ}\\right)=\\frac{5 \\cdot 10 \\cdot \\sqrt{3}}{2}=\\mathbf{2 5} \\sqrt{\\mathbf{3}}$.\n\n<img_3887>\n\nFigure not drawn to scale.'
+ 'As explained above, let $\\triangle A B C$ have obtuse angle $C$ and $\\triangle X Y Z$ have acute angle $Z$. By the Law of Sines, $\\sin (\\angle C)=\\sin (\\angle Z)=\\frac{5}{9}$. This implies $\\mathrm{m} \\angle X Y Z=\\frac{5 \\pi}{6}-\\arcsin \\left(\\frac{5}{9}\\right)$ and $\\mathrm{m} \\angle A B C=$ $\\arcsin \\left(\\frac{5}{9}\\right)-\\frac{\\pi}{6}$. The areas of the triangles are $[X Y Z]=\\frac{1}{2} \\cdot 10 \\cdot 9 \\cdot \\sin \\left(\\frac{5 \\pi}{6}-\\arcsin \\left(\\frac{5}{9}\\right)\\right)$ and $[A B C]=\\frac{1}{2} \\cdot 10 \\cdot 9$. $\\sin \\left(\\arcsin \\left(\\frac{5}{9}\\right)-\\frac{\\pi}{6}\\right)$. By the angle subtraction rule, it follows that\n\n$$\n\\begin{aligned}\n\\sin \\left(\\frac{5 \\pi}{6}-\\arcsin \\left(\\frac{5}{9}\\right)\\right) & =\\sin \\left(\\frac{5 \\pi}{6}\\right) \\cos \\left(\\arcsin \\left(\\frac{5}{9}\\right)\\right)-\\cos \\left(\\frac{5 \\pi}{6}\\right) \\sin \\left(\\arcsin \\left(\\frac{5}{9}\\right)\\right) \\text { and } \\\\\n\\sin \\left(\\arcsin \\left(\\frac{5}{9}\\right)-\\frac{\\pi}{6}\\right) & =\\sin \\left(\\arcsin \\left(\\frac{5}{9}\\right)\\right) \\cos \\left(\\frac{\\pi}{6}\\right)-\\cos \\left(\\arcsin \\left(\\frac{5}{9}\\right)\\right) \\sin \\left(\\frac{\\pi}{6}\\right) .\n\\end{aligned}\n$$\n\nThe sum of the two sines is $\\sin \\left(\\arcsin \\left(\\frac{5}{9}\\right)\\right)\\left(\\cos \\left(\\frac{\\pi}{6}\\right)-\\cos \\left(\\frac{5 \\pi}{6}\\right)\\right)=\\frac{5}{9} \\cdot \\sqrt{3}$ because $\\sin \\left(\\frac{\\pi}{6}\\right)=\\sin \\left(\\frac{5 \\pi}{6}\\right)$. Finally, the sum of the areas of the two triangles is $\\frac{1}{2} \\cdot 10 \\cdot 9 \\cdot \\frac{5}{9} \\cdot \\sqrt{3}=25 \\sqrt{3}$.']"
+2766,"The mean, median, and unique mode of a list of positive integers are three consecutive integers in some order. Compute the least possible sum of the integers in the original list.","Let `k ≥ 3`. The mean, median, and unique mode of a list of `n` positive integers (with `5 ≤ n ≤ 40`) form `k` consecutive integers in some order and are in arithmetic progression. At least one integer in the list is prime. Compute the least possible sum of the integers.","Step 1
+#Elements Identified#:
+*   **Objects:** List of positive integers.
+*   **Statistical Measures:** Mean, Median, Unique Mode.
+*   **Relation:** The three measures are three consecutive integers (in some order).
+*   **Constraint:** Positive integers only; Unique mode required.
+*   **Goal:** Minimize the sum of the integers in the list.
+*   **Theme:** Finding minimal lists with specific statistical measure relationships.
+
+Step 2
+#Plan#:
+1.  **Generalize the Consecutive Sequence:** Change the condition from ""three consecutive integers"" to ""**k consecutive integers (where k ≥ 3)**"", making the sequence length variable and the relationship more complex to satisfy inherently.
+2.  **Constrain List Size:** Add a fixed constraint on the size of the list (`n`), specifying **minimum (5) and maximum (40) bounds**. This prevents trivial small solutions and forces consideration of larger, more intricate distributions.
+3.  **Impose Prime Constraint:** Introduce the requirement that **at least one integer in the list must be prime**, adding a number-theoretic constraint that interacts with the statistical measures.
+4.  **Add Sequential Constraint on Measures:** Stipulate that the measures *themselves* must be **in arithmetic progression (AP)**, adding a second layer of constraint on top of them being consecutive. This ensures the consecutive integers form a non-trivial sequence.
+5.  **Ensure Interconnection:** The size bound impacts feasibility for larger `k`. The prime constraint and AP condition on the measures interact with the distribution required to achieve consecutive/AP sums, central tendencies, and uniqueness of mode. Minimizing the sum requires balancing all these factors. The unique mode constraint remains crucial.
+
+Step 3
+#Rewritten Instruction#:
+Let `k ≥ 3`. The mean, median, and unique mode of a list `L` of `n` positive integers, where `5 ≤ n ≤ 40`, are `k` consecutive integers in some order and form an arithmetic progression. Furthermore, `L` contains at least one prime number. Find the least possible sum of the integers in `L`.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let `k ≥ 3`. The mean, median, and unique mode of a list of `n` positive integers (with `5 ≤ n ≤ 40`) form `k` consecutive integers in some order and are in arithmetic progression. At least one integer in the list is prime. Compute the least possible sum of the integers.",success,18.33,"['One possible list is $1,1,3,7$, which has mode 1 , median 2 , and mean 3 . The sum is $1+1+3+7=12$. A list with fewer than four numbers cannot produce a median and unique mode that are distinct from each other. To see this, first note that a list with one number has the same median and mode. In a list with two numbers, the mode is not unique if the numbers are different, and if the numbers are the same, the median and mode are equal. In a list of three numbers with a unique mode, the mode must occur twice. Hence the\n\n\n\nmode is equal to the middle number of the three, which is the median. Thus a list with a median and unique mode that are different from each other must contain at least four numbers.\n\nNow suppose that a list satisfying the given conditions sums to less than 12 . The mean must be greater than 1, and because the list contains at least four numbers, the mean must be exactly 2 . The median must also be greater than 1 , and if the mode is 4 , then the sum must be greater than 12 . Thus it remains to determine if a mean of 2 with mode 1 and median 3 can be achieved with a list of four or five positive integers. However, having two 1s in the list and a median of 3 forces the remaining numbers in each case to have a sum too large for a mean of 2 . The least possible sum is therefore $\\mathbf{1 2}$.']"
+2767,"David builds a circular table; he then carves one or more positive integers into the table at points equally spaced around its circumference. He considers two tables to be the same if one can be rotated so that it has the same numbers in the same positions as the other. For example, a table with the numbers $8,4,5$ (in clockwise order) is considered the same as a table with the numbers 4, 5,8 (in clockwise order), but both tables are different from a table with the numbers 8, 5, 4 (in clockwise order). Given that the numbers he carves sum to 17 , compute the number of different tables he can make.","David builds a circular table; he carves positive integers at equally spaced points around its circumference. Tables are considered identical if one can be rotated or reflected to match the other's number sequence. Furthermore, no two adjacent numbers are allowed to be equal, and the sum of the numbers must be a perfect square. Compute the smallest possible sum S such that there exists at least one distinct table configuration.","Step 1
+#Elements Identified#:
+*   **Circle Structure:** Points equally spaced around a circumference.
+*   **Objects Placed:** Positive integers (one or more).
+*   **Symmetry Group:** Tables are identified under rotation (cyclic group action). The example shows non-commutativity matters.
+*   **Numerical Constraint:** The sum of all carved numbers is fixed (S = 17).
+*   **Arrangement Equivalence:** Defined purely by rotational symmetry; reflection is not considered.
+*   **Key Process:** Counting distinct arrangements under rotation for a fixed sum.
+*   **Theme:** Combinatorial enumeration under group action (specifically cyclic group) with a sum constraint.
+
+Step 2
+#Plan#:
+1.  **Enhance Symmetry:** Change the symmetry group from cyclic (rotations only) to dihedral (rotations and reflections). Tables become the same under reflection as well as rotation.
+2.  **Refine Number Constraint:** Replace the fixed sum (17) with the requirement that the sum S must be a perfect square and introduce S as a variable. The problem must involve finding the minimal such S for which the count of tables under the new symmetry is at least 1.
+3.  **Add Placement Constraint:** Introduce the condition that no two adjacent numbers on the table are equal. This adds combinatorial complexity by imposing local restrictions on the sequence.
+
+Step 3
+#Rewritten Instruction#:
+David builds a circular table; he carves positive integers at equally spaced points around its circumference. Tables are identical if one can be rotated or reflected to match the other's number sequence. No adjacent numbers can be equal, and their sum is a perfect square. Find the smallest sum S for which at least one such table exists.
+
+Step 4
+#Finally Rewritten Instruction#:
+David builds a circular table; he carves positive integers at equally spaced points around its circumference. Tables are considered identical if one can be rotated or reflected to match the other's number sequence. Furthermore, no two adjacent numbers are allowed to be equal, and the sum of the numbers must be a perfect square. Compute the smallest possible sum S such that there exists at least one distinct table configuration.",success,19.13,"['The problem calls for the number of ordered partitions of 17 , where two partitions are considered the same if they are cyclic permutations of each other. Because 17 is prime, each ordered partition of 17 into $n$ parts will be a cyclic permutation of exactly $n$ such partitions (including itself), unless $n=17$. (If $n=17$, then all the numbers are 1s, and there is exactly one table David can make.) By the sticks and stones method, the number of ordered partitions of 17 into $n$ nonzero parts is $\\left(\\begin{array}{c}16 \\\\ n-1\\end{array}\\right)$, and this overcounts the number of tables by a factor of $n$, except when $n=17$. Thus the number of possible tables is\n\n$$\n1+\\sum_{n=1}^{16}\\left(\\begin{array}{c}\n16 \\\\\nn-1\n\\end{array}\\right) \\cdot \\frac{1}{n}=1+\\sum_{n=1}^{16}\\left(\\begin{array}{c}\n17 \\\\\nn\n\\end{array}\\right) \\cdot \\frac{1}{17}=1+\\frac{2^{17}-2}{17}=\\mathbf{7 7 1 1}\n$$']"
+2768,"In quadrilateral $A B C D, \mathrm{~m} \angle B+\mathrm{m} \angle D=270^{\circ}$. The circumcircle of $\triangle A B D$ intersects $\overline{C D}$ at point $E$, distinct from $D$. Given that $B C=4, C E=5$, and $D E=7$, compute the diameter of the circumcircle of $\triangle A B D$.",Extraction Failed,,success,248.25,"['Note that $\\mathrm{m} \\angle A+\\mathrm{m} \\angle C=90^{\\circ}$ in quadrilateral $A B C D$. Because quadrilateral $A B E D$ is cyclic, it follows that $\\mathrm{m} \\angle A D E+\\mathrm{m} \\angle A B E=180^{\\circ}$. Moreover, because $\\mathrm{m} \\angle A B E+\\mathrm{m} \\angle E B C+\\mathrm{m} \\angle A D E=270^{\\circ}$, it follows that $\\angle E B C$ is a right angle. Thus $B E=\\sqrt{C E^{2}-B C^{2}}=\\sqrt{5^{2}-4^{2}}=3$. Let $\\mathrm{m} \\angle B E C=\\theta$; then $\\cos \\theta=\\frac{3}{5}$ and $\\sin \\theta=\\frac{4}{5}$.\n\n<img_3458>\n\nApplying the Law of Cosines to $\\triangle B E D$ yields\n\n$$\nB D^{2}=3^{2}+7^{2}-2 \\cdot 3 \\cdot 7 \\cos \\left(180^{\\circ}-\\theta\\right)=3^{2}+7^{2}+2 \\cdot 3 \\cdot 7 \\cos \\theta=\\frac{416}{5}\n$$\n\nThus $B D=\\frac{4 \\sqrt{26}}{\\sqrt{5}}$. Let $R$ be the circumradius of $\\triangle A B D$ and $\\triangle B E D$. Then the requested diameter is $2 R$, and\n\n\n\napplying the Law of Sines to $\\triangle B E D$ yields\n\n$$\n2 R=\\frac{B D}{\\sin \\left(180^{\\circ}-\\theta\\right)}=\\frac{B D}{\\sin \\theta}=\\frac{4 \\sqrt{26}}{\\sqrt{5}} \\cdot \\frac{5}{4}=\\sqrt{\\mathbf{1 3 0}}\n$$']"
+2770,"Let $i=\sqrt{-1}$. The complex number $z=-142+333 \sqrt{5} i$ can be expressed as a product of two complex numbers in multiple different ways, two of which are $(57-8 \sqrt{5} i)(-6+5 \sqrt{5} i)$ and $(24+\sqrt{5} i)(-3+14 \sqrt{5} i)$. Given that $z=-142+333 \sqrt{5} i$ can be written as $(a+b \sqrt{5} i)(c+d \sqrt{5} i)$, where $a, b, c$, and $d$ are positive integers, compute the lesser of $a+b$ and $c+d$.","Let \(i = \sqrt{-1}\). Define \(z\) as the complex root with positive imaginary part of the equation \(w^2 + 284w + 574609 = 0\). This \(z\) can be factored into complex pairs, for example \((57 - 8\sqrt{5}i)(-6 + 5\sqrt{5}i)\) and \((24 + \sqrt{5}i)(-3 + 14\sqrt{5}i)\). Express \(z\) as \((a + b\sqrt{5}i)(c + d\sqrt{5}i)\) with positive integers \(a, b, c, d\) where \(\gcd(a,b) = 1\) and \(\gcd(c,d) = 1\), then determine \(\min(a+b, c+d)\).","Step 1  
+#Elements Identified#:  
+The core operation is factoring a complex number with an irrational component. Key elements include: the given complex number \(z = -142 + 333\sqrt{5}i\) with fixed coefficients; factorizations of the form \((a + b\sqrt{5}i)(c + d\sqrt{5}i)\); constraints that \(a, b, c, d\) must be positive integers; an objective to compute \(\min(a+b, c+d)\); and two example factorizations with mixed-sign coefficients serving as hints about possible but non-positive factor pairs. The theme involves arithmetic in the ring \(\mathbb{Z}[\sqrt{-5}]\) or similar, leveraging norms and multiplicative properties.  
+
+Step 2  
+#Plan#:  
+To increment complexity, modify three components: (1) Change the definition of \(z\) by specifying it implicitly as a root of a quadratic equation rather than providing explicit values, requiring derivation of \(z\) as an initial step. (2) Add constraints that the factors must be primitive, i.e., \(\gcd(a,b) = 1\) and \(\gcd(c,d) = 1\), to ensure coprime coefficients and demand additional checks. (3) Introduce a dependency on a real-variable condition by making the imaginary part positive for clarity, enhancing reasoning steps. This plan increases complexity through derivation, stricter constraints, and an unambiguous variable condition without introducing unwarranted variables.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let \(i = \sqrt{-1}\). Define \(z\) as the complex root with positive imaginary part of the equation \(w^2 + 284w + 574609 = 0\). This \(z\) can be expressed as a product of two complex numbers, such as \((57 - 8\sqrt{5}i)(-6 + 5\sqrt{5}i)\) or \((24 + \sqrt{5}i)(-3 + 14\sqrt{5}i)\). Find a factorization of \(z\) as \((a + b\sqrt{5}i)(c + d\sqrt{5}i)\) where \(a, b, c, d\) are positive integers, \(\gcd(a,b) = 1\), and \(\gcd(c,d) = 1\). Then compute the lesser of \(a+b\) and \(c+d\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let \(i = \sqrt{-1}\). Define \(z\) as the complex root with positive imaginary part of the equation \(w^2 + 284w + 574609 = 0\). This \(z\) can be factored into complex pairs, for example \((57 - 8\sqrt{5}i)(-6 + 5\sqrt{5}i)\) and \((24 + \sqrt{5}i)(-3 + 14\sqrt{5}i)\). Express \(z\) as \((a + b\sqrt{5}i)(c + d\sqrt{5}i)\) with positive integers \(a, b, c, d\) where \(\gcd(a,b) = 1\) and \(\gcd(c,d) = 1\), then determine \(\min(a+b, c+d)\).",success,138.44,"['Multiply each of the given parenthesized expressions by its complex conjugate to obtain\n\n$$\n\\begin{aligned}\n142^{2}+5 \\cdot 333^{2} & =\\left(57^{2}+5 \\cdot 8^{2}\\right)\\left(6^{2}+5 \\cdot 5^{2}\\right) \\\\\n& =\\left(24^{2}+5 \\cdot 1^{2}\\right)\\left(3^{2}+5 \\cdot 14^{2}\\right) \\\\\n& =\\left(a^{2}+5 b^{2}\\right)\\left(c^{2}+5 d^{2}\\right) .\n\\end{aligned}\n$$\n\nThe expression on the second line is equal to $581 \\cdot 989=7 \\cdot 83 \\cdot 23 \\cdot 43$ (one can perhaps factor 989 a little faster by noting that 23 divides $6^{2}+5 \\cdot 5^{2}=7 \\cdot 23$ but not 581 , so it must divide 989 ). Thus $a^{2}+5 b^{2}$ and $c^{2}+5 d^{2}$ must be a factor pair of this number. It is not possible to express $1,7,23,43$, or 83 in the form $x^{2}+5 y^{2}$ for integers $x, y$.\n\nLet $N=a^{2}+5 b^{2}$, and without loss of generality, assume that 7 divides $N$. From the above analysis, $N$ must be $7 \\cdot 23,7 \\cdot 43$, or $7 \\cdot 83$. By direct computation of checking all positive integers $b$ less than $\\sqrt{\\frac{N}{5}}$, the only possibilities for $(a, b)$ are:\n\n- when $N=7 \\cdot 23$, either $(9,4)$ or $(6,5)$;\n- when $N=7 \\cdot 43$, either $(16,3)$ or $(11,6)$; and\n- when $N=7 \\cdot 83$, either $(24,1)$ or $(9,10)$.\n\nNext, observe that\n\n$$\n\\frac{-142+333 \\sqrt{5} i}{a+b \\sqrt{5} i}=\\frac{(-142 a+1665 b)+(333 a+142 b) \\sqrt{5} i}{N}\n$$\n\nmust equal $c+d \\sqrt{5} i$, so $N$ must divide $-142 a+1665 b$ and $333 a+142 b$. But\n\n- 7 does not divide $333 \\cdot 9+142 \\cdot 4$ or $333 \\cdot 6+142 \\cdot 5$;\n- 43 does not divide $333 \\cdot 16+142 \\cdot 3$; and\n- 83 does not divide $333 \\cdot 9+142 \\cdot 10$.\n\nThus the only candidates are $(a, b)=(11,6)$ and $(a, b)=(24,1)$. Note that $(24,1)$ yields the second factorization given in the problem statement, which has a negative real part in one of its factors. Thus the only remaining candidate for $(a, b)$ is $(11,6)$, which yields $(c, d)=(28,15)$, thus the answer is $11+6=\\mathbf{1 7}$.']"

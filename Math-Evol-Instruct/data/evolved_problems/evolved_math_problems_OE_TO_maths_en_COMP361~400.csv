@@ -1,0 +1,925 @@
+﻿id,original_problem,evolved_problem,evolved_response,status,processing_time_seconds,original_solution
+2659,Let $T=9$. Compute $\sqrt{\sqrt{\sqrt[T]{10^{T^{2}-T}}}}$.,"Let \(T = S!\), where \(S\) is the number of positive divisors of 60. Compute \(\sqrt{\sqrt{\sqrt[T]{10^{T(TS - S^2) - T}}}}\).","**Step 1**  
+#Elements Identified#:  
+- **Variables**: Fixed scalar \(T = 9\).  
+- **Expression**: A nested radical with three roots: a \(T\)-th root, followed by two square roots, applied to a power expression \(10^{T^2 - T}\).  
+- **Theme**: Simplification of nested exponents and radicals with a fixed base (10) and based on a predefined variable \(T\).  
+
+**Step 2**  
+#Plan#:  
+1. **Introduce dynamic dependencies**: Modify \(T\) to be computed from an auxiliary variable (e.g., \(S\)) requiring problem-solving, while preserving the nested structure. Set \(S\) as the outcome of a non-trivial arithmetic constraint.  
+2. **Increase algebraic complexity**: Augment the exponent \(T^2 - T\) to include a product-term dependency on \(S\) and a polynomial expression in \(T\).  
+3. **Add constraints for dependencies**: Require \(S\) to satisfy a real-world condition (number theory property) linked to \(T\), ensuring variables are logically interdependent.  
+4. **Maintain computability**: Ensure all values remain integers and the expression simplifies coherently without ambiguity.  
+
+**Step 3**  
+#Rewritten Instruction#:  
+Let \(T = S!\), where \(S\) is the number of positive divisors of 60. Compute \(\sqrt{\sqrt{\sqrt[T]{10^{T(TS - S^2) - T}}}}\).  
+
+**Step 4**  
+#Finally Rewritten Instruction#:  
+Let \(T = S!\), where \(S\) is the number of positive divisors of 60. Compute \(\sqrt{\sqrt{\sqrt[T]{10^{T(TS - S^2) - T}}}}\).",success,124.7,"['The given radical equals $\\left(\\left(\\left(10^{T^{2}-T}\\right)^{\\frac{1}{T}}\\right)^{\\frac{1}{2}}\\right)^{\\frac{1}{2}}=10^{(T-1) / 4}$. With $T=9$, this simplifies to $10^{2}=100$']"
+2660,Let $T=3$. Regular hexagon $S U P E R B$ has side length $\sqrt{T}$. Compute the value of $B E \cdot S U \cdot R E$.,"Regular hexagon \( S U P E R B \) has side length \( \sqrt{T} \) and is inscribed in a circle. Point \( E_1 \) lies on the circle satisfying \( \angle SU E_1 = 60^\circ \). If the area of \( \triangle SUP \) is \( \frac{\sqrt{3}}{4}T \), compute \( B E_1 \cdot SU \cdot R E \).","Step 1  
+#Elements Identified#:  
+- Constant: \( T = 3 \)  
+- Participants: Regular hexagon vertices \( S, U, P, E, R, B \)  
+- Parameters: Side length \(\sqrt{T}\)  
+- Action: Compute the product \( BE \cdot SU \cdot RE \)  
+- Theme: Geometry of a regular hexagon with numerical computation.  
+- Potential for complexity: Introduce dynamic definition of \( T \), circumcircle, new point on the circle, angle constraint, and dependency in geometric properties for solving \( T \).  
+
+Step 2  
+#Plan#:  
+1. Remove explicit \( T = 3 \) and define \( T \) implicitly via the area of a new geometric shape (triangle formed by existing vertices).  
+2. Add a circumcircle to the hexagon and introduce point \( E_1 \) on this circle with the constraint \( \angle SU E_1 = 60^\circ \), altering the final computation to \( B E_1 \cdot SU \cdot R E \).  
+3. Link \( T \) to the area of \( \triangle SUP \) by setting \( \text{area}(\triangle SUP) = \frac{\sqrt{3}}{4}T \), which must be used to solve for \( T \) numerically.  
+4. Require \( B E_1 \) and \( R E \) to be calculated using circle properties and trigonometry, increasing reasoning steps.  
+5. Ensure coherence: All components (area constraint, new point, circle, angle) interact logically for a single solution path.  
+
+Step 3  
+#Rewritten Instruction#:  
+Regular hexagon \( S U P E R B \) has side length \( \sqrt{T} \) and is inscribed in a circle. Point \( E_1 \) sits on the circle such that \( \angle SU E_1 = 60^\circ \). Given that the area of \( \triangle SUP \) is \( \frac{\sqrt{3}}{4}T \), find the value of \( B E_1 \cdot SU \cdot R E \).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Regular hexagon \( S U P E R B \) has side length \( \sqrt{T} \) and is inscribed in a circle. Point \( E_1 \) lies on the circle satisfying \( \angle SU E_1 = 60^\circ \). If the area of \( \triangle SUP \) is \( \frac{\sqrt{3}}{4}T \), compute \( B E_1 \cdot SU \cdot R E \).",success,173.01,"['Because $\\overline{S U}$ and $\\overline{R E}$ are sides of the hexagon, $S U=R E=\\sqrt{T}$. Let $H$ be the foot of the altitude from $R$ to $\\overline{B E}$ in $\\triangle B R E$ and note that each interior angle of a regular hexagon is $120^{\\circ}$. Thus $B E=B H+H E=2\\left(\\frac{\\sqrt{3}}{2}\\right)(\\sqrt{T})=\\sqrt{3 T}$. Thus $B E \\cdot S U \\cdot R E=\\sqrt{3 T} \\cdot \\sqrt{T} \\cdot \\sqrt{T}=T \\sqrt{3 T}$. With $T=3$, the answer is $\\mathbf{9}$.']"
+2661,"Let $T=70$. Chef Selma is preparing a burrito menu. A burrito consists of: (1) a choice of chicken, beef, turkey, or no meat, (2) exactly one of three types of beans, (3) exactly one of two types of rice, and (4) exactly one of $K$ types of cheese. Compute the smallest value of $K$ such that Chef Selma can make at least $T$ different burrito varieties.","Let $T=70$. Chef Selma prepares burrito varieties. A burrito requires: (1) one meat choice: chicken (which allows 2 rice options), beef (3 rice), turkey (1 rice), or no meat (1 rice); (2) exactly one bean type: A, B, or C; (3) one rice type based on the meat; (4) one cheese choice. Beans B and C offer exactly 5 cheese types each, while bean A offers only $K$ types. Furthermore, Chef must ensure that at least 30% of all possible burritos contain bean A. Find the smallest $K$ such that at least $T$ distinct burrito varieties are possible.","Step 1
+#Elements Identified#:
+*   Target `T`: Fixed value (70) for number of required varieties.
+*   Meat Choices: 4 options (Chicken, Beef, Turkey, No Meat - essentially independent).
+*   Beans: Exactly one of 3 types (independent).
+*   Rice: Exactly one of 2 types (independent).
+*   Cheese: Exactly one of `K` types (`K` is the variable to solve for).
+*   Core Process: Selecting combinations of ingredients.
+*   Objective: Find the minimal `K` such that the total number of possible unique burritos is ≥ `T`.
+*   Theme: Combinatorial counting with constraints.
+
+Step 2
+#Plan#:
+1.  **Make Rice Choice Dependent**: Instead of always 2 rice choices, make the number of rice choices depend on the meat selection. E.g., one meat type might offer only 1 rice choice, while others offer 2.
+2.  **Condition Cheese Availability**: Rather than `K` choices for every burrito, make the availability of the `K` cheeses dependent on the chosen bean type. E.g., one bean type might allow only K cheeses, while the others allow fixed numbers (say 5).
+3.  **Introduce a Production Constraint**: Add information requiring the chef to use a specific bean type for a certain percentage (or minimum number) of the burritos, making the *effective* minimal `K` larger. Express this as needing *at least* 30% of the possible burritos to include a specific bean type (Bean A).
+4.  **Ensure Interrelation**: Ensure the meat choice affects rice (Plan 1), bean choice affects cheese availability (Plan 2), and bean choice also affects the global production constraint (Plan 3). Use distinct, minimal variations for clarity: different rice counts for different meats, different cheese counts per bean (only one bean tied to K), constraint on one specific bean type.
+
+Step 3
+#Rewritten Instruction#:
+Let $T=70$. Chef Selma prepares burritos with: (1) one meat: chicken (offers 2 rice choices), beef (offers 3), turkey or no meat (each offer 1); (2) exactly one of beans A, B, C; (3) exactly one rice type based on meat; (4) exactly one cheese. Bean A allows $K$ cheese choices, beans B and C each offer 5 types. Chef must ensure $at\ least$ 30% of possible burritos include bean A. Find the minimal $K$ to obtain at least $T$ distinct varieties.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $T=70$. Chef Selma prepares burrito varieties. A burrito requires: (1) one meat choice: chicken (which allows 2 rice options), beef (3 rice), turkey (1 rice), or no meat (1 rice); (2) exactly one bean type: A, B, or C; (3) one rice type based on the meat; (4) one cheese choice. Beans B and C offer exactly 5 cheese types each, while bean A offers only $K$ types. Furthermore, Chef must ensure that at least 30% of all possible burritos contain bean A. Find the smallest $K$ such that at least $T$ distinct burrito varieties are possible.",success,24.21,"['Using the Multiplication Principle, Chef Selma can make $4 \\cdot 3 \\cdot 2 \\cdot K=24 K$ different burrito varieties. With $T=70$, the smallest integral value of $K$ such that $24 K \\geq 70$ is $\\left\\lceil\\frac{70}{24}\\right\\rceil=3$.']"
+2662,Compute the smallest positive integer $N$ such that $20 N$ is a multiple of 14 and $14 N$ is a multiple of 20 .,"Find the least positive integer \(N\) such that \(20N\) is divisible by 14, \(14N\) is divisible by 21, and \(21N\) is divisible by 20.","Step 1  
+#Elements Identified#:  
+- Variables: \( N \) (the unknown positive integer to be found).  
+- Conditions: Two interconnected divisibility conditions: \( 20N \) must be divisible by 14, and \( 14N \) must be divisible by 20.  
+- Process: Solve for the smallest \( N \) satisfying both conditions, requiring manipulation of divisibility rules.  
+- Theme: Finding the least common multiple (LCM) through coprime factors derived from divisibility conditions.  
+- Structure: Simple pairwise multiplicative constraints with integers.  
+
+Step 2  
+#Plan#:  
+1. Increase the number of conditions: Extend from 2 to 3 distinct divisibility relations to create a cyclic dependency among a triplet of composite numbers (20, 14, and a new number 21).  
+2. Change the numbers: Replace the original pair (20, 14) with a set that introduces more prime factors (e.g., 20 = \(2^2 \cdot 5\), 14 = \(2 \cdot 7\), 21 = \(3 \cdot 7\)), making the LCM calculation more complex due to multiple primes and higher exponents.  
+3. Introduce asymmetric constraints: Modify the relationships so that each condition involves a unique product-divisor pair (e.g., \(20N\) divisible by 14, \(14N\) divisible by 21, \(21N\) divisible by 20).  
+- Justification: The cyclic triplet adds interdependencies, forcing \(N\) to satisfy all three conditions simultaneously. The chosen numbers (20, 14, 21) ensure non-trivial LCM calculations (involving primes 2, 3, 5, 7) and avoid redundancy.  
+
+Step 3  
+#Rewritten Instruction#:  
+Find the least positive integer \(N\) such that \(20N\) is divisible by 14, \(14N\) is divisible by 21, and \(21N\) is divisible by 20.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Find the least positive integer \(N\) such that \(20N\) is divisible by 14, \(14N\) is divisible by 21, and \(21N\) is divisible by 20.",success,84.23,"['Because $\\operatorname{gcd}(14,20)=2$, the problem is equivalent to computing the smallest positive integer $N$ such that $7 \\mid 10 N$ and $10 \\mid 7 N$. Thus $7 \\mid N$ and $10 \\mid N$, and the desired value of $N$ is $\\operatorname{lcm}(7,10)=\\mathbf{7 0}$.']"
+2663,"Call a positive integer fibbish if each digit, after the leftmost two, is at least the sum of the previous two digits. Compute the greatest fibbish number.","Call a positive integer fibbish if each digit after the leftmost two is exactly the units digit of the sum of the previous two digits, and the sum of the first two digits is a Fibonacci number. Compute the greatest prime fibbish number.","Step 1  
+#Elements Identified#:
+- **Variables**: Digits of the number, specifically positions starting from the third digit onward.  
+- **Conditions**: Each digit after the first two must satisfy ""at least the sum of the previous two digits,"" which implies sequential dependency with no external factors.  
+- **Participants**: The positive integer itself and its digit sequence.  
+- **Actions**: Compute the greatest (largest) such number.  
+- **Theme**: Digit-based property inspired by additive constraints, focused on maximization within number theory.  
+
+Step 2  
+#Plan#:  
+1. Modify the core condition to increase intricacy by introducing modulo arithmetic: change ""at least the sum"" to ""exactly the units digit of the sum,"" which adds carry-over considerations and tightens the digit constraint.  
+2. Add a dependency involving initial digits: require that the sum of the first two digits is a Fibonacci number, linking the start to another mathematical sequence and adding validation steps.  
+3. Introduce an additional global constraint: the number must be prime, complicating computation by ensuring the digit-based property holds alongside primality testing.  
+- Ensure all components interconnect: the modified condition affects digit sequencing, the initial sum must validate against Fibonacci properties, and primality imposes a restrictive overlay. The complexity increase is justified by the need for coordinated reasoning on digit sums, sequence properties, and number theory.
+
+Step 3  
+#Rewritten Instruction#:  
+Call a positive integer fibbish if each digit after the leftmost two is exactly the units digit of the sum of the previous two digits, and the sum of the first two digits is a Fibonacci number. Compute the greatest prime fibbish number.
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Call a positive integer fibbish if each digit after the leftmost two is exactly the units digit of the sum of the previous two digits, and the sum of the first two digits is a Fibonacci number. Compute the greatest prime fibbish number.",success,106.49,"['The largest fibbish number is 10112369. First, if $\\underline{A_{1}} \\underline{A_{2}} \\cdots \\underline{A_{n}}$ is an $n$-digit fibbish number with $A_{1}$ and $A_{2} \\neq 0$, the number created by prepending the ${\\text { digits }} A_{1}$ and 0 to the number is larger and still fibbish: $\\underline{A_{1}} \\underline{0} \\underline{A_{1}} \\underline{A_{2}} \\cdots \\underline{A_{n}}>\\underline{A_{1}} \\underline{A_{2}} \\cdots \\underline{A_{n}}$. Suppose that $A_{2}=0$ and $A_{3}=A_{1}$, so that the number begins $\\underline{A_{1}} \\underline{0} \\underline{A_{1}} \\underline{A_{4}}$. If the number is to be fibbish, $A_{4} \\geq A_{1}>0$. Then if $A_{1} \\geq 2$ and $A_{4} \\geq 2$, because the number is fibbish, $A_{5} \\geq 4$, and $A_{6} \\geq 6$. In this case there can be no more digits, because $A_{5}+A_{6} \\geq 10$. So the largest possible fibbish number beginning with 20 is 202246. If $A_{1}=2$ and $A_{2}=1$, then $A_{3}$ must be at least 3 , and the largest possible number is 21459; changing $A_{3}$ to 3 does not increase the length. Now consider $A_{1}=1$. If $A_{2}=1$, then $A_{3} \\geq 2, A_{4} \\geq 3, A_{5} \\geq 5$, and $A_{6} \\geq 8$. There can be no seventh digit because that digit would have to be at least 13 . Increasing $A_{3}$ to 3 yields only two additional digits, because $A_{4} \\geq 4, A_{5} \\geq 7$. So $A_{3}=2$ yields a longer (and thus larger) number. Increasing $A_{4}$ to 4 yields only one additional digit, $A_{5} \\geq 6$, because $A_{4}+A_{5} \\geq 10$. But if $A_{4}=3$, increasing $A_{5}$ to 6 still allows $A_{6}=9$, yielding the largest possible number of digits (8) and the largest fibbish number with that many digits.']"
+2664,"An ARMLbar is a $7 \times 7$ grid of unit squares with the center unit square removed. A portion of an ARMLbar is a square section of the bar, cut along the gridlines of the original bar. Compute the number of different ways there are to cut a single portion from an ARMLbar.","An ARMLbar is an $n \times n$ grid of unit squares with the center unit square removed, where $n$ is odd. A portion is a $k \times k$ square section cut along the grid lines. Compute the number of such $k \times k$ portions that do not overlap the removed center square.","Step 1
+#Elements Identified#:
+*   **Grid Structure:** A plane defined by a $7 \times 7$ grid of unit squares with the center unit square removed.
+*   **Portion Definition:** A contiguous square section (""portion"") cut along the original gridlines. This implies any possible square subgrid contained within the $7 \times 7$ bounds after the center removal.
+*   **Portion Property:** The portion is a square.
+*   **Action:** Counting the number of such possible square portions.
+*   **Constraints:** None beyond the grid structure, lack of center square, and portion being a square subgrid (overlapping the hole is permitted).
+*   **Theme:** Combinatorial geometry/counting on a discretized plane with a defect.
+
+Step 2
+#Plan#:
+1.  **Generalize Grid Size:** Replace the fixed $7 \times 7$ size with a variable odd-dimensioned grid $n \times n$ ($n \geq 3$ to ensure a center) with the center unit square removed. This abstracts the specific case ($n=7$).
+2.  **Constrain Portion Placement:** Introduce the critical new constraint that the square portion **cannot overlap the removed center square**. This adds significant combinatorial complexity regarding placement near the center.
+3.  **Vary Portion Size:** Instead of counting all possible squares from $1 \times 1$ up to the maximum possible, require counting squares of a specific, variable size $k \times k$ ($k \geq 1$). This deepens the dependency on both $n$ and $k$ and the forbidden center constraint.
+4.  **Integrate Variables:** Ensure the final count depends on both grid size $n$ and portion size $k$, with the hole exclusion constraint binding their interaction, especially for squares near the center.
+
+Step 3
+#Rewritten Instruction#:
+An ARMLbar is an $n \times n$ grid of unit squares with the center unit square removed, where $n$ is an odd positive integer. A portion is a $k \times k$ contiguous square section cut along the grid lines. Compute the number of portions which do not overlap the removed center square.
+
+Step 4
+#Finally Rewritten Instruction#:
+An ARMLbar is an $n \times n$ grid of unit squares with the center unit square removed, where $n$ is odd. A portion is a $k \times k$ square section cut along the grid lines. Compute the number of such $k \times k$ portions that do not overlap the removed center square.",success,34.86,"['Note that any portion of side length $m \\geq 4$ will overlap the center square, so consider only portions of side length 3 or less. If there were no hole in the candy bar, the number of portions could be counted by conditioning on the possible location of the upper-left corner of the portion. If the portion is of size $1 \\times 1$, then the corner can occupy any of the $7^{2}$ squares of the bar. If the portion is of size $2 \\times 2$, then the corner can occupy any of the top 6 rows and any of the left 6 columns, for $6^{2}=36$ possible $2 \\times 2$ portions. In general, the upper-left corner of an $m \\times m$ portion can occupy any of the top $8-m$ rows and any of the left $8-m$ columns. So the total number of portions from an intact bar would be $7^{2}+6^{2}+5^{2}$. Now when $m \\leq 3$, the number of $m \\times m$ portions that include the missing square is simply $m^{2}$, because the missing square could be any square of the portion. So the net number of portions is\n\n$$\n\\begin{aligned}\n7^{2}+6^{2}+5^{2}-3^{2}-2^{2}-1^{2} & =(49+36+25)-(9+4+1) \\\\\n& =110-14 \\\\\n& =\\mathbf{9 6}\n\\end{aligned}\n$$'
+ 'First ignore the missing square. As in the previous solution, the number of $m \\times m$ portions that can fit in the bar is $(8-m)^{2}$. So the total number of portions of all sizes is simply\n\n$$\n7^{2}+6^{2}+\\cdots+1^{2}=\\frac{7(7+1)(2 \\cdot 7+1)}{6}=140\n$$\n\nTo exclude portions that overlap the missing center square, it is useful to consider the location of the missing square within the portion. If an $m \\times m$ portion includes the missing center\n\n\n\nsquare, and $m \\leq 4$, then the missing square could be any one of the $m^{2}$ squares in the portion. If $m=5$, then the missing square cannot be in the leftmost or rightmost columns of the portion, because then the entire bar would have to extend at least four squares past the hole, and it only extends three. By similar logic, the square cannot be in the top or bottom rows of the portion. So for $m=5$, there are $3 \\cdot 3=9$ possible positions. For $m=6$, the two left and two right columns are excluded, as are the two top and the two bottom rows, for $2 \\cdot 2=4$ possible positions for the portion. And in a $7 \\times 7$ square, the only possible location of the hole is in the center. So the total number of portions overlapping the missing square is\n\n$$\n1^{2}+2^{2}+3^{2}+4^{2}+3^{2}+2^{2}+1^{2}=44 .\n$$\n\nThe difference is thus $140-44=\\mathbf{9 6}$']"
+2665,"Regular hexagon $A B C D E F$ and regular hexagon $G H I J K L$ both have side length 24 . The hexagons overlap, so that $G$ is on $\overline{A B}, B$ is on $\overline{G H}, K$ is on $\overline{D E}$, and $D$ is on $\overline{J K}$. If $[G B C D K L]=\frac{1}{2}[A B C D E F]$, compute $L F$.","Regular hexagon $A B C D E F$ has side length $a$, and regular hexagon $G H I J K L$ has side length $b = \frac{2}{3}a$. The second hexagon is rotated 30 degrees clockwise relative to the first. The hexagons overlap so that $G$ is on $\overline{A B}$, $B$ is on $\overline{G H}$, $K$ is on $\overline{D E}$, and $D$ is on $\overline{J K}$. If $[G H I J K L] \backslash [A B C D E F] = \frac{1}{2}[A B C D E F]$, compute $L F$.","Step 1  
+#Elements Identified#:  
+- Variables: Hexagons ABCDEF and GHIJKL with side length 24, points A to F and G to L, area [GBC DKL], area [ABCDEF], length LF.  
+- Conditions: G is on AB, B is on GH, K is on DE, D is on JK, area relation [GBC DKL] = 1/2 [ABCDEF].  
+- Participants: Two regular hexagons.  
+- Actions: Overlap with specific point incidences, area comparison, computation of LF.  
+- Theme: Geometry of overlapping regular hexagons with constraints leading to a distance calculation.  
+- Processes: Setting coordinate systems, solving for position using area condition, applying hexagon properties.  
+
+Step 2  
+#Plan#:  
+- Add a rotation: Rotate hexagon GHIJKL by 30 degrees around its center clockwise relative to ABCDEF. This introduces trigonometric functions and coordinates, increasing algebraic complexity.  
+- Introduce a size ratio: Let ABCDEF have side a and GHIJKL have side b, with b = (2/3)a, requiring solution with two variables. This adds dependency between side lengths.  
+- Modify the area region: Change from [GBC DKL] to [G H I J K L] minus the overlapping region with ABCDEF, written as [GHIJKL] \ [ABCDEF], adding set notation and increasing conceptual reasoning.  
+- Ensure interconnection: The rotation and size ratio affect the overlap points, combined with the modified area condition, creating coupled equations for LF.  
+
+Step 3  
+#Rewritten Instruction#:  
+Regular hexagon $A B C D E F$ has side length $a$, and regular hexagon $G H I J K L$ has side length $b = \frac{2}{3}a$. The second hexagon is rotated 30 degrees clockwise relative to the first. They overlap with $G$ on $\overline{A B}$, $B$ on $\overline{G H}$, $K$ on $\overline{D E}$, $D$ on $\overline{J K}$. If the area $[G H I J K L] \backslash [A B C D E F] = \frac{1}{2}[A B C D E F]$, compute $L F$.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Regular hexagon $A B C D E F$ has side length $a$, and regular hexagon $G H I J K L$ has side length $b = \frac{2}{3}a$. The second hexagon is rotated 30 degrees clockwise relative to the first. The hexagons overlap so that $G$ is on $\overline{A B}$, $B$ is on $\overline{G H}$, $K$ is on $\overline{D E}$, and $D$ is on $\overline{J K}$. If $[G H I J K L] \backslash [A B C D E F] = \frac{1}{2}[A B C D E F]$, compute $L F$.",success,118.05,"['The diagram below shows the hexagons.\n\n<img_3234>\n\nThe area of hexagon $G B C D K L$ can be computed as $[G B C D K L]=[A B C D E F]-[A G L K E F]$, and $[A G L K E F]$ can be computed by dividing concave hexagon $A G L K E F$ into two parallelograms sharing $\\overline{F L}$. If $A B=s$, then the height $A E$ is $s \\sqrt{3}$, so the height of parallelogram $A G L F$ is $\\frac{s \\sqrt{3}}{2}$. Thus $[A G L F]=L F \\cdot \\frac{s \\sqrt{3}}{2}$ and $[A G L K E F]=L F \\cdot s \\sqrt{3}$. On the other hand, the area of a regular hexagon of side length $s$ is $\\frac{3 s^{2} \\sqrt{3}}{2}$. Because $[G B C D K L]=\\frac{1}{2}[A B C D E F]$, it follows that $[A G L K E F]=\\frac{1}{2}[A B C D E F]$, and\n\n$$\nL F \\cdot s \\sqrt{3}=\\frac{1}{2}\\left(\\frac{3 s^{2} \\sqrt{3}}{2}\\right)=\\frac{3 s^{2} \\sqrt{3}}{4}\n$$\n\nwhence $L F=\\frac{3}{4} s$. With $s=24$, the answer is $\\mathbf{1 8}$.'
+ 'Compute $[B C D K L G]$ as twice the area of trapezoid $B C L G$. If $A B=s$, then $B G=s-L F$ and $C L=2 s-L F$, while the height of the trapezoid is $\\frac{s \\sqrt{3}}{2}$.[^0]\n\n\n[^0]:    ${ }^{1}$ The answer 115 was also accepted for this problem because of an alternate (and unintended) reasonable interpretation of the problem statement. Some students also counted portions that contained the ""hole"", with the hole being strictly inside the portion, and not along its edges.\n\n\n\nThus the area of the trapezoid is:\n\n$$\n\\frac{1}{2}\\left(\\frac{s \\sqrt{3}}{2}\\right)((s-L F)+(2 s-L F))=\\frac{s \\sqrt{3}(3 s-2 L F)}{4}\n$$\n\nDouble that area to obtain\n\n$$\n[B C D K L G]=\\frac{s \\sqrt{3}(3 s-2 L F)}{2}\n$$\n\nOn the other hand, $[A B C D E F]=\\frac{3 s^{2} \\sqrt{3}}{2}$, so\n\n$$\n\\begin{aligned}\n\\frac{s \\sqrt{3}(3 s-2 L F)}{2} & =\\frac{3 s^{2} \\sqrt{3}}{4} \\\\\n3 s-2 L F & =\\frac{3 s}{2} \\\\\nL F & =\\frac{3}{4} s .\n\\end{aligned}\n$$\n\nSubstituting $s=24$ yields $L F=\\mathbf{1 8}$.']"
+2666,"Compute the largest base-10 integer $\underline{A} \underline{B} \underline{C} \underline{D}$, with $A>0$, such that $\underline{A} \underline{B} \underline{C} \underline{D}=B !+C !+D !$.","Compute the largest base-10 integer \( \underline{A} \underline{B} \underline{C} \underline{D} \underline{E} \), with \( A > 0 \) and all digits distinct, such that \( \overline{ABCDE} = A! + B! + C! + D! + E! \).","Step 1  
+#Elements Identified#:  
+- **Variables**: \(A\), \(B\), \(C\), \(D\) (digits of a base-10 integer with \(A > 0\)).  
+- **Conditions**: The integer satisfies \( \overline{ABCD} = B! + C! + D! \).  
+- **Participants**: Digits \(B\), \(C\), \(D\) contribute to the factorial sum; digit \(A\) is excluded from the sum but affects the numerical value.  
+- **Actions**: Compute the largest such integer where \(A, B, C, D\) are digits.  
+- **Process**: Solve by digit/factorial constraints to maximize the number.  
+- **Theme**: Equating an integer to a sum of factorials of its own digits (subset).  
+
+Step 2  
+#Plan#:  
+1. **Increase digit count**: Expand the number from 4 digits (\(ABCD\)) to 5 digits (\(ABCDE\)) to broaden the search space (\(A > 0\)).  
+2. **Modify factorial eligibility**: Include all digits (\(A, B, C, D, E\)) in the factorial sum instead of a subset for stronger interdependency.  
+3. **Introduce variable constraints**: Add the requirement that digits must be distinct to prevent trivial repetitions and increase combinatorial complexity.  
+4. **Ensure coherence**: Maintain base-10 and the ""largest integer"" goal. All added elements interlink: digit count affects the sum, distinctness impacts valid combinations, and full-digit participation connects the entire number.  
+
+Step 3  
+#Rewritten Instruction#:  
+Compute the largest base-10 integer \( \underline{A} \underline{B} \underline{C} \underline{D} \underline{E} \), with \( A > 0 \) and all digits distinct, such that it equals the sum of the factorials of its digits, i.e., \( \overline{ABCDE} = A! + B! + C! + D! + E! \).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Compute the largest base-10 integer \( \underline{A} \underline{B} \underline{C} \underline{D} \underline{E} \), with \( A > 0 \) and all digits distinct, such that \( \overline{ABCDE} = A! + B! + C! + D! + E! \).",success,92.06,"['Let $\\underline{A} \\underline{B} \\underline{C} \\underline{D}=N$. Because $7 !=5040$ and $8 !=40,320, N$ must be no greater than $7 !+6 !+6 !=6480$. This value of $N$ does not work, so work through the list of possible sums in decreasing order: $7 !+6 !+5 !, 7 !+6 !+4$ !, etc. The first value that works is $N=5762=7 !+6 !+2 !$.'
+ 'Let $\\underline{A} \\underline{B} \\underline{C} \\underline{D}=N$. Because $7 !=5040$ and $8 !=40,320$, to find the maximal value, first consider values of $N$ that include 7 as a digit. Suppose then that $N=5040+X !+Y$ !. To force a 7 to appear in this sum with maximal $N$, let $X=6$, which yields $N=5040+720+Y !=5760+Y$ !. This value of $N$ has a 7 (and a 6 ), so search for values of $Y$ to find ones that satisfy the conditions of the problem. Only $Y=1$ and $Y=2$ will do, giving 5761 and 5762 . Hence $\\mathbf{5 7 6 2}$ is the maximum possible value of $N$.']"
+2667,"Let $X$ be the number of digits in the decimal expansion of $100^{1000^{10,000}}$, and let $Y$ be the number of digits in the decimal expansion of $1000^{10,000^{100,000}}$. Compute $\left\lfloor\log _{X} Y\right\rfloor$.",Extraction Failed,,success,184.8,"['The number of digits of $n$ is $\\lfloor\\log n\\rfloor+1$. Because $100^{1000^{10,000}}=\\left(10^{2}\\right)^{1000^{10,000}}, X=2$. $1000^{10,000}+1$. Similarly, $Y=3 \\cdot 10,000^{100,000}+1$. Using the change-of-base formula,\n\n$$\n\\begin{aligned}\n\\log _{X} Y=\\frac{\\log Y}{\\log X} & \\approx \\frac{\\log 3+\\log 10,000^{100,000}}{\\log 2+\\log 1000^{10,000}} \\\\\n& =\\frac{\\log 3+100,000 \\log 10,000}{\\log 2+10,000 \\log 1000} \\\\\n& =\\frac{\\log 3+100,000 \\cdot 4}{\\log 2+10,000 \\cdot 3} \\\\\n& =\\frac{400,000+\\log 3}{30,000+\\log 2}\n\\end{aligned}\n$$\n\n\n\nBoth $\\log 3$ and $\\log 2$ are tiny compared to the integers to which they are being added. If the quotient 400,000/30,000 were an integer (or extremely close to an integer), the values of these logarithms might matter, but $400,000 / 30,000=40 / 3=13 . \\overline{3}$, so in this case, they are irrelevant. Hence\n\n$$\n\\left\\lfloor\\log _{X} Y\\right\\rfloor=\\left\\lfloor\\frac{400,000}{30,000}\\right\\rfloor=\\left\\lfloor\\frac{40}{3}\\right\\rfloor=13\n$$']"
+2668,Compute the smallest possible value of $n$ such that two diagonals of a regular $n$-gon intersect at an angle of 159 degrees.,"""Compute the smallest possible value of \(n\) such that two diameters of a regular \(n\)-gon intersect at an angle of 159 degrees.""","Step 1  
+#Elements Identified#:  
+- Regular polygon: \(n\)-gon  
+- Diagonals: two diagonals intersecting  
+- Angle specification: 159 degrees  
+- Objective: smallest \(n\)  
+- Unspecified: type of diagonals (step length, position relative to center)  
+
+Step 2  
+#Plan#:  
+- Replace the generic diagonals with diameters, imposing symmetry constraints (must pass through center).  
+- Ensure \(n\) satisfies conditions for diameters to exist and points of intersection to be the center.  
+- The equation \(360j/n = 159\) (where \(j\) is the arc step) becomes core, requiring a Diophantine solution while preserving the angle definition.  
+- Maintain thematic consistency of polygon geometry but increase complexity via restricting diagonals to diameters, forcing a specific intersection point and demanding \(n\) to be even.  
+
+Step 3  
+#Rewritten Instruction#:  
+""Compute the smallest possible value of \(n\) such that two diameters of a regular \(n\)-gon intersect at an angle of 159 degrees.""  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+""Compute the smallest possible value of \(n\) such that two diameters of a regular \(n\)-gon intersect at an angle of 159 degrees.""",success,227.82,"['Let the vertices of the polygon be $A_{0}, A_{1}, \\ldots, A_{n-1}$. Considering the polygon as inscribed in a circle, the angle between diagonals $\\overline{A_{0} A_{i}}$ and $\\overline{A_{0} A_{j}}$ is $\\frac{1}{2} \\cdot\\left(\\frac{360^{\\circ}}{n}\\right) \\cdot|j-i|=\\left(\\frac{180|j-i|}{n}\\right)^{\\circ}$. The diagonal $\\overline{A_{k} A_{k+j}}$ can be considered as the rotation of $\\overline{A_{0} A_{j}}$ through $k / n$ of a circle, or $\\left(\\frac{360 k}{n}\\right)^{\\circ}$. So the diagonals $A_{0} A_{i}$ and $A_{k} A_{k+j}$ intersect at a combined angle of $\\left(\\frac{180|j-i|}{n}\\right)^{\\circ}+\\left(\\frac{360 k}{n}\\right)^{\\circ}$. Without loss of generality, assume $i<j$ (otherwise relabel vertices in the opposite order, with $A_{k}$ becoming $A_{0}$ ). Then the desired number is the least $n$ such that\n\n$$\n\\left(\\frac{180(j-i)}{n}\\right)+\\frac{360 k}{n}=159\n$$\n\nMultiply both sides of the equation by $n$ and factor to obtain $180(j-i+2 k)=159 n$, thus $60(j-i+2 k)=53 n$. Because 53 and 60 are relatively prime and $(j-i+2 k)$ is an integer, it follows that $60 \\mid n$. So the smallest possible value is $n=\\mathbf{6 0}$; one set of values that satisfies the equation is $i=1, j=54, k=0$.']"
+2669,"Compute the number of quadratic functions $f(x)=a x^{2}+b x+c$ with integer roots and integer coefficients whose graphs pass through the points $(0,0)$ and $(15,225)$.","Compute the number of quadratic functions \(f(x)=a x^{2}+b x+c\) with integer roots, integer coefficients, and \(|a| \leq 20\), whose graphs pass through the points \((2,4)\) and \((12,144)\), and with vertex having an integer x-coordinate.","Step 1  
+#Elements Identified#:  
+- Quadratic function: \( f(x) = ax^2 + bx + c \)  
+- Fixed points: Pass through \((0,0)\) and \((15,225)\)  
+- Root conditions: Integer roots  
+- Coefficient conditions: Integer coefficients \(a\), \(b\), \(c\)  
+- Core action: Counting the number of such quadratics  
+- Theme: Combinatorial constraints on roots and coefficients arising from point conditions  
+
+Step 2  
+#Plan#:  
+1. Modify the fixed points: Replace \((0,0)\) and \((15,225)\) with two distinct non-origin points \((2,4)\) and \((12,144)\), increasing complexity by removing the root-at-zero simplification.  
+2. Add symmetry constraint: Require the vertex to have an integer x-coordinate, introducing additional algebraic constraints without redundancy.  
+3. Introduce coefficient bounds: Restrict \(|a| \leq 20\) to make the problem computationally finite and layer on search space limitations.  
+4. Reinforce root constraints: Maintain integer roots and coefficients but ensure all elements are logically linked through the new points and conditions.  
+
+Step 3  
+#Rewritten Instruction#:  
+Compute the number of quadratic functions \(f(x)=a x^{2}+b x+c\) with integer roots, integer coefficients, and \(|a| \leq 20\), whose graphs pass through \((2,4)\) and \((12,144)\), and with vertex at an integer x-coordinate.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Compute the number of quadratic functions \(f(x)=a x^{2}+b x+c\) with integer roots, integer coefficients, and \(|a| \leq 20\), whose graphs pass through the points \((2,4)\) and \((12,144)\), and with vertex having an integer x-coordinate.",success,288.32,"['Because the graph passes through $(0,0)$, conclude that $c=0$. Then\n\n$$\nf(15)=225 \\Rightarrow a(15)^{2}+b(15)=225 a+15 b=225\n$$\n\nfrom which $b=15-15 a$. On the other hand, $f$ can be factored as $f(x)=a x(x+b / a)$, so if the roots are integers, $b / a$ must be an integer. Divide both sides of the equation $b=15-15 a$ by $a$ to obtain $b / a=15 / a-15$. Thus $15 / a$ must be an integer, and $a \\in\\{ \\pm 1, \\pm 3, \\pm 5, \\pm 15\\}$. Because $b=15-15 a$ is linear, each of these values for $a$ yields a unique integer value for $b$, so there are 8 such ordered pairs. The values of $a, b$, and the nonnegative root are given in the table below.\n\n| $a$ | $b$ | Root |\n| ---: | ---: | ---: |\n| 1 | 0 | 0 |\n| 3 | -30 | 10 |\n| 5 | -60 | 12 |\n| 15 | -210 | 14 |\n| -1 | 30 | 30 |\n| -3 | 60 | 20 |\n| -5 | 90 | 18 |\n| -15 | 240 | 16 |']"
+2670,"A bubble in the shape of a hemisphere of radius 1 is on a tabletop. Inside the bubble are five congruent spherical marbles, four of which are sitting on the table and one which rests atop the others. All marbles are tangent to the bubble, and their centers can be connected to form a pyramid with volume $V$ and with a square base. Compute $V$.","A bubble in the shape of a sphere of radius R contains eight congruent spherical marbles. Four marbles sit on the internal surface forming a square base, four form a square mid-layer above the base, and one central marble rests atop the mid-layer. All marbles are mutually tangent to the bubble and their adjacent marbles, exhibiting octahedral symmetry with the central marble's center on the sphere's vertical axis. Centers of a base square corner and the central marble form a pyramid with volume V. Compute the marble radius r and express V in terms of R.","Step 1
+#Elements Identified#:
+*   **Bubble:** Hemispherical, fixed radius (1), tangent constraint for marbles.
+*   **Marbles:** Five congruent spherical marbles. Fixed count. Tangent to bubble and each other.
+*   **Arrangement:** Four marbles on table, one on top. Centers form a pyramid with a square base.
+*   **Output:** Volume (V) of the pyramid formed by centers.
+*   **Constraints:** Tangency (marbles-bubble, marbles-marbles), coplanar base marbles on table, vertical stacking.
+*   **Theme:** Geometry of spheres in constrained space, specifically within a hemisphere, requiring tangency and position calculations.
+
+Step 2
+#Plan#:
+1.  **Generalize Bubble:** Change the bubble from a hemisphere of radius 1 to a **full sphere of radius R**. This removes the simplifying tabletop plane and hemisphere symmetry. The bubble is now completely closed. *Increases complexity by adding variable R and full 3D symmetry.*
+2.  **Increase Marble Count & Change Arrangement:** Instead of five marbles, use **eight congruent spherical marbles**. Arrange them with **four marbles forming a square base resting on the internal sphere surface**, **four marbles forming a square mid-layer above the base marbles**, and **one central marble resting atop the mid-layer marbles**. This creates a two-tiered pyramid structure. *Increases complexity through more spheres, a more complex layered arrangement requiring tangency resolution within tiers and between layers.*
+3.  **Add Explicit Tangency and Symmetry Constraints:**
+    *   All marbles are mutually tangent to the bubble.
+    *   Any two marbles in the same layer are tangent.
+    *   Each marble in the mid-layer is tangent to the base marbles below it and the central marble above it.
+    *   Assume the entire arrangement possesses **octahedral symmetry** (the most natural symmetric fit). Specifically, state that the center of the central marble lies on the axis perpendicular to the planes of the base and mid-layer squares and passing through the sphere's center.
+4.  **Modify Output:** Require finding both the **radius r of a single marble** and the volume (V) of the pyramid formed by connecting the centers of the five key marbles forming the primary pyramid shape (likely base corners and top center), expressed in terms of the bubble radius R. *Increases complexity by introducing an intermediate variable (r) and making V a function of R.*
+
+Step 3
+#Rewritten Instruction#:
+A bubble in the shape of a sphere of radius R contains eight congruent spherical marbles. Four marbles are arranged in a square base resting on the sphere's internal surface, four marbles form a square mid-layer above the base, and one central marble rests atop the mid-layer. All marbles are mutually tangent to the bubble and tangent to their adjacent marbles. The marbles exhibit octahedral symmetry, with the central marble's center lying on the sphere's vertical rotational symmetry axis. Centers of the base-square marbles and the central marble form a pyramid with volume V. Compute the radius r of a marble and express V in terms of R.
+
+Step 4
+#Finally Rewritten Instruction#:
+A bubble in the shape of a sphere of radius R contains eight congruent spherical marbles. Four marbles sit on the internal surface forming a square base, four form a square mid-layer above the base, and one central marble rests atop the mid-layer. All marbles are mutually tangent to the bubble and their adjacent marbles, exhibiting octahedral symmetry with the central marble's center on the sphere's vertical axis. Centers of a base square corner and the central marble form a pyramid with volume V. Compute the marble radius r and express V in terms of R.",success,29.55,"['The first step is to compute the radius $r$ of one of the marbles. The diagram below shows a cross-section through the centers of two diagonally opposite marbles.\n\n<img_3908>\n\nTriangle $B Q R$ appears to be equilateral, and in fact, it is. Reflect the diagram in the tabletop $\\overline{A C}$ to obtain six mutually tangent congruent circles inside a larger circle:\n\n<img_3444>\n\nBecause the circles are congruent, their centers are equidistant from $B$, and the distances between adjacent centers are equal. So $Q$ can be obtained as the image of $R$ under a rotation of $360^{\\circ} / 6=60^{\\circ}$ counterclockwise around $B$. Then $P Q=r \\Rightarrow B Q=B R=2 r \\Rightarrow B D=$ $3 r$, hence $r=1 / 3$. Notice too that the height of the pyramid is simply the radius $r$ and the diagonal of the square base is twice the altitude of the equilateral triangle $B Q R$, that is, $2 \\cdot \\frac{r \\sqrt{3}}{2}=r \\sqrt{3}$. So the area of the base is $3 r^{2} / 2$. Thus the volume of the pyramid is $(1 / 3)\\left(3 r^{2} / 2\\right)(r)=r^{3} / 2$. Because $r=1 / 3$, the volume is $\\mathbf{1} / \\mathbf{5 4}$.']"
+2671,Compute the smallest positive integer base $b$ for which $16_{b}$ is prime and $97_{b}$ is a perfect square.,"Compute the smallest positive integer base \( b \) for which \( 16_b \) is prime, \( 97_b \) is a perfect fourth power, \( 25_b \) is a perfect cube, and the prime divides \( b \).  
+
+*(Note: The fourth power for \( 97_b \) and division by \( b \) significantly increase complexity; \( 97_b = 9b + 7 \) must satisfy \( k^4 \) for integer \( k \), and \( 16_b = b + 6 \) must divide \( b \), implying \( b + 6 \) divides 6.)*","**Step 1**  
+#Elements Identified#:  
+- Variable: The base \( b \) (positive integer).  
+- Conditions:  
+  - \( 16_b \) (which is \( 1 \cdot b + 6 \)) must be a prime number.  
+  - \( 97_b \) (which is \( 9 \cdot b + 7 \)) must be a perfect square.  
+- Action: Compute the smallest such \( b \).  
+- Theme: Number theory involving base representation, primality, and perfect squares.  
+- Implicit constraints: \( b > 9 \) (since digit 9 is used in \( 97_b \)).  
+
+**Step 2**  
+#Plan#:  
+- Add a third numerical condition: Include \( 25_b \) (i.e., \( 2 \cdot b + 5 \)) and require it to be a perfect cube. This increases complexity by adding another property to satisfy simultaneously, forcing more advanced solving.  
+- Modify properties to increase depth: Change the perfect square condition for \( 97_b \) to require it to be a perfect fourth power instead of a square for greater numerical challenge.  
+- Introduce a dependency: Require that the prime \( 16_b \) must also divide \( b \) (the base itself), linking the conditions and adding an additional constraint.  
+- Ensure all elements are interconnected through \( b \) and avoid ambiguity (e.g., specify perfect fourth power with clear notation, and divisibility defined numerically).  
+- Maintain theme and logical sequence: Base representation properties remain central, with increased real-world constraints like polality and higher-power checks.  
+
+**Step 3**  
+#Rewritten Instruction#:  
+Compute the smallest positive integer base \( b \) for which \( 16_b \) is prime, \( 97_b \) is a perfect fourth power, and \( 25_b \) is a perfect cube.  
+
+**Step 4**  
+#Finally Rewritten Instruction#:  
+Compute the smallest positive integer base \( b \) for which \( 16_b \) is prime, \( 97_b \) is a perfect fourth power, \( 25_b \) is a perfect cube, and the prime divides \( b \).  
+
+*(Note: The fourth power for \( 97_b \) and division by \( b \) significantly increase complexity; \( 97_b = 9b + 7 \) must satisfy \( k^4 \) for integer \( k \), and \( 16_b = b + 6 \) must divide \( b \), implying \( b + 6 \) divides 6.)*",success,212.3,"['Because 9 is used as a digit, $b \\geq 10$. The conditions require that $b+6$ be prime and $9 b+7$ be a perfect square. The numbers modulo 9 whose squares are congruent to 7 modulo 9 are 4 and 5. So $9 b+7=(9 k+4)^{2}$ or $(9 k+5)^{2}$ for some integer $k$. Finally, $b$ must be odd (otherwise $b+6$ is even), so $9 b+7$ must be even, which means that for any particular value of $k$, only one of $9 k+4$ and $9 k+5$ is possible. Taking these considerations together, $k=0$ is too small. Using $k=1$ makes $9 k+4$ odd, and while $(9 \\cdot 1+5)^{2}=196=9 \\cdot 21+7$ is even, because $21+6=27$ is composite, $b \\neq 21$. Using $k=2$ makes $9 k+4$ even, yielding $22^{2}=484=9 \\cdot 53+7$, and $53+6=59$ is prime. Thus $b=\\mathbf{5 3}$, and $53+6=59$ is prime while $9 \\cdot 53+7=484=22^{2}$.']"
+2672,"For a positive integer $n$, let $C(n)$ equal the number of pairs of consecutive 1's in the binary representation of $n$. For example, $C(183)=C\left(10110111_{2}\right)=3$. Compute $C(1)+C(2)+$ $C(3)+\cdots+C(256)$.","For odd positive integers n from 1 to 255, represent each in 8-bit binary with leading zeros. Define E(n) as the number of starting indices i (1 ≤ i ≤ 6) where bits at positions i, i+1, and i+2 are all 1 and i is odd (positions from 1 for MSB). For example, E(127)=E(01111111_2)=2. Compute E(1) + E(3) + E(5) + ⋯ + E(255).","Step 1  
+#Elements Identified#:  
+- Function: C(n) counts pairs of consecutive 1's.  
+- Range: Sum from n=1 to n=256.  
+- Binary representation: Handles variable bit lengths implicitly.  
+- Pattern: Simple pairs of bits (e.g., ""11"").  
+- Example: Specific case for n=183.  
+- Theme: Binary pattern counting and summation.  
+
+Step 2  
+#Plan#:  
+- Modify the function: Change from counting consecutive pairs to counting triples of consecutive 1's (e.g., ""111"") to require longer pattern recognition.  
+- Add constraint to range: Restrict n to odd integers only (1 ≤ n ≤ 255) for the sum, adjusting the upper limit to ensure consistent 8-bit representation and introducing a divisibility condition.  
+- Introduce position-based dependency: Count triples only when they start at odd-numbered bit positions (with bits padded to 8 digits, MSB position 1), adding spatial logic and uniformity.  
+Ensure modifications are interconnected: The position constraint relies on padding for all n (now up to 255), and the odd n condition adds filtering. Complexity increases via longer patterns, conditional summation, and positional reasoning.  
+
+Step 3  
+#Rewritten Instruction#:  
+For odd positive integers n from 1 to 255, represent each in 8-bit binary with leading zeros. Define E(n) as the number of starting positions i (1 ≤ i ≤ 6) such that the bits at i, i+1, and i+2 are all 1 and i is odd (positions indexed from left, MSB as 1). For example, E(127) = E(01111111_2) = 2. Compute the sum E(1) + E(3) + E(5) + ⋯ + E(255).
+
+Step 4  
+#Finally Rewritten Instruction#:  
+For odd positive integers n from 1 to 255, represent each in 8-bit binary with leading zeros. Define E(n) as the number of starting indices i (1 ≤ i ≤ 6) where bits at positions i, i+1, and i+2 are all 1 and i is odd (positions from 1 for MSB). For example, E(127)=E(01111111_2)=2. Compute E(1) + E(3) + E(5) + ⋯ + E(255).",success,511.56,"[""Group values of $n$ according to the number of bits (digits) in their binary representations:\n\n| Bits | $C(n)$ values | Total |\n| :---: | :---: | :---: |\n| 1 | $C\\left(1_{2}\\right)=0$ | 0 |\n| 2 | $C\\left(10_{2}\\right)=0$ <br> $C\\left(11_{2}\\right)=1$ | 1 |\n| 3 | $C\\left(100_{2}\\right)=0$ $C\\left(101_{2}\\right)=0$ <br> $C\\left(110_{2}\\right)=1$ $C\\left(111_{2}\\right)=2$ | 3 |\n| 4 | $C\\left(1000_{2}\\right)=0$ $C\\left(1001_{2}\\right)=0$ $C\\left(1100_{2}\\right)=1$ $C\\left(1101_{2}\\right)=1$ <br> $C\\left(1010_{2}\\right)=0$ $C\\left(1011_{2}\\right)=1$ $C\\left(1110_{2}\\right)=2$ $C\\left(1111_{2}\\right)=3$ | 8 |\n\nLet $B_{n}$ be the set of $n$-bit integers, and let $c_{n}=\\sum_{k \\in B_{n}} C(k)$ be the sum of the $C$-values for all $n$-bit integers. Observe that the integers in $B_{n+1}$ can be obtained by appending a 1 or a 0 to the integers in $B_{n}$. Appending a bit does not change the number of consecutive 1's in the previous (left) bits, but each number in $B_{n}$ generates two different numbers in $B_{n+1}$. Thus $c_{n+1}$ equals twice $2 c_{n}$ plus the number of new 11 pairs. Appending a 1 will create a new pair of consecutive 1's in (and only in) numbers that previously terminated in 1. The number of such numbers is half the number of elements in $B_{n}$. Because there are $2^{n-1}$ numbers in $B_{n}$, there are $2^{n-2}$ additional pairs of consecutive 1's among the elements in $B_{n+1}$. Thus for $n \\geq 2$, the sequence $\\left\\{c_{n}\\right\\}$ satisfies the recurrence relation\n\n$$\nc_{n+1}=2 c_{n}+2^{n-2}\n$$\n\n(Check: the table shows $c_{3}=3$ and $c_{4}=8$, and $8=2 \\cdot 3+2^{3-1}$.) Thus\n\n$$\n\\begin{aligned}\n& c_{5}=2 \\cdot c_{4}+2^{4-2}=2 \\cdot 8+4=20, \\\\\n& c_{6}=2 \\cdot c_{5}+2^{5-2}=2 \\cdot 20+8=48, \\\\\n& c_{7}=2 \\cdot c_{6}+2^{6-2}=2 \\cdot 48+16=112, \\text { and } \\\\\n& c_{8}=2 \\cdot c_{7}+2^{7-2}=2 \\cdot 112+32=256 .\n\\end{aligned}\n$$\n\nBecause $C(256)=0$, the desired sum is $c_{1}+c_{2}+c_{3}+c_{4}+c_{5}+c_{6}+c_{7}+c_{8}$, which equals 448 .""]"
+2673,A set $S$ contains thirteen distinct positive integers whose sum is 120 . Compute the largest possible value for the median of $S$.,"**  
+A set \( S \) contains thirteen distinct positive integers greater than 5 summing to 110, with no distinct pair summing to a multiple of 3. Compute the largest possible value for the median, defined as the average of the 6th and 7th elements in the ordered set.","Step 1  
+**#Elements Identified#:**  
+- **Set Properties:** Thirteen distinct positive integers, sum 120.  
+- **Optimization Goal:** Maximize the median.  
+- **Core Concept:** Ordered list median (7th element).  
+- **Manipulable Elements:** Distribution/range of values, constraints on minimum/maximum values.  
+- **Theme:** Discrete optimization under fixed sum/count.  
+
+Step 2  
+**#Plan#:**  
+1. **Add Minimum Value Constraint:** Require all integers ≥ 6 to restrict small values.  
+2. **Introduce Pairwise Constraint:** Add ""no distinct pair sums to a multiple of 3"" to force congruence planning.  
+3. **Increase Reasoning Depth:** Change the median definition to the average of the 6th and 7th elements since \( n \) (13) is odd.  
+4. **Adjust Sum:** Reduce total sum to 110 to tighten constraints (original sum 120 allows median ~16; 110 forces harder prioritization).  
+
+Step 3  
+**#Rewritten Instruction#:**  
+A set \( S \) contains thirteen distinct positive integers greater than 5 summing to 110. No distinct pair sums to a multiple of 3. Compute the largest possible value for the median of \( S \), where the median is the average of the 6th and 7th elements in the ordered set.  
+
+Step 4  
+**#Finally Rewritten Instruction#:**  
+A set \( S \) contains thirteen distinct positive integers greater than 5 summing to 110, with no distinct pair summing to a multiple of 3. Compute the largest possible value for the median, defined as the average of the 6th and 7th elements in the ordered set.",success,15.35,"[""Let $S_{L}$ be the set of the least six integers in $S$, let $m$ be the median of $S$, and let $S_{G}$ be the set of the greatest six integers in $S$. In order to maximize the median, the elements of $S_{L}$ should be as small as possible, so start with $S_{L}=\\{1,2,3,4,5,6\\}$. Then the sum of $S_{L}$ 's elements is 21, leaving 99 as the sum of $m$ and the six elements of $S_{G}$. If $m=11$ and $S_{G}=\\{12,13,14,15,16,17\\}$, then the sum of all thirteen elements of $S$ is 119 . It is impossible to increase $m$ any further, because then the smallest set of numbers for $S_{G}$ would be $\\{13,14,15,16,17,18\\}$, and the sum would be at least 126 . To get the sum to be exactly 120, simply increase either 6 to 7 or 17 to 18 . The answer is $\\mathbf{1 1 .}$""]"
+2674,"Let $T=11$. Compute the least positive integer $b$ such that, when expressed in base $b$, the number $T$ ! ends in exactly two zeroes.","Let \( T = 11 \) and define \( S \) as the number of digits in the base 10 representation of \( T \). Compute the least positive integer \( b \) such that, when expressed in base \( b \), the number \( T! \) ends in exactly \( S \) zeroes.","Step 1  
+#Elements Identified#:  
+- Fixed variable: \( T = 11 \)  
+- Base variable: \( b \) (to be found)  
+- Condition: \( T! \) must end in exactly two zeroes when expressed in base \( b \)  
+- Action: Compute the least positive integer \( b \) satisfying the condition  
+- Theme: Factorial properties and trailing zeroes in different bases  
+- Components to manipulate: Value of \( T \), number of trailing zeroes (fixed at 2), simplicity of condition (no additional variables or dependencies)  
+
+Step 2  
+#Plan#:  
+1. Modify the value of \( T \): Instead of a fixed constant, make \( T \) derived from a computation by introducing \( S \) as a new variable. Specifically, define \( S \) as the number of digits of 11 in base 10, ensuring it must be computed and for \( T=11 \), \( S=2 \) maintains the original requirement while adding an intermediate step.  
+2. Modify the number of trailing zeroes: Replace the fixed number (2) with the variable \( S \), making the condition depend on the computed value and adding reasoning about digit representation.  
+3. Add a dependency between variables: Explicitly reference \( S \) in the trailing zeroes condition, creating a logical chain where \( S \) depends on \( T \), and the zero count depends on \( S \), increasing complexity through interconnectedness.  
+4. Ensure coherency: \( S \) is unambiguously defined (number of digits in base 10 for given \( T \)), and all modifications are justified, adding real-world elements like digit counting without exceeding 30 extra words. Avoid reducing complexity (e.g., by not constraining \( b \)) to preserve the challenge of arbitrary base search.  
+
+Step 3  
+#Rewritten Instruction#:  
+Let \( T = 11 \) and define \( S \) as the number of digits in the base 10 representation of \( T \). Compute the least positive integer \( b \) such that, when expressed in base \( b \), the number \( T! \) ends in exactly \( S \) zeroes.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let \( T = 11 \) and define \( S \) as the number of digits in the base 10 representation of \( T \). Compute the least positive integer \( b \) such that, when expressed in base \( b \), the number \( T! \) ends in exactly \( S \) zeroes.",success,82.43,"['For any integers $n$ and $b$, define $d(n, b)$ to be the unique nonnegative integer $k$ such that $b^{k} \\mid n$ and $b^{k+1} \\nmid n$; for example, $d(9,3)=2, d(9,4)=0$, and $d(18,6)=1$. So the problem asks for the smallest value of $b$ such that $d(T !, b)=2$. If $p$ is a prime and $p \\mid b$, then $d(T !, b) \\leq d(T !, p)$, so the least value of $b$ such that $d(T !, b)=2$ must be prime. Also, if $b$ is prime, then $d(T !, b)=\\lfloor T / b\\rfloor+\\left\\lfloor T / b^{2}\\right\\rfloor+\\left\\lfloor T / b^{3}\\right\\rfloor+\\cdots$. The only way that $d(T, b)$ can equal 2 is if the first term $\\lfloor T / b\\rfloor$ equals 2 and all other terms equal zero. (If $T \\geq b^{2}$, then $b \\geq 2$ implies $T / b \\geq b \\geq 2$, which would mean the first two terms by themselves would have a sum of at least 3.) Thus $2 b \\leq T<3 b$, hence $b \\leq T / 2$ and $T / 3<b$. For $T=11$, the only such $b$ is 5 .']"
+2675,"Let $T=5$. Suppose that $a_{1}=1$, and that for all positive integers $n, a_{n+1}=$ $\left\lceil\sqrt{a_{n}^{2}+34}\right\rceil$. Compute the least value of $n$ such that $a_{n}>100 T$.","Let $b_1 = 1$, and for each positive integer $m$, $b_{m+1} = \left\lceil \sqrt{b_m^2 + 18} \right\rceil$. Define $T$ as $b_k$ for the smallest positive integer $k$ such that $b_k > 8k$. Set $a_1 = T$, and for all positive integers $n$, $a_{n+1} = \left\lceil \sqrt{a_n^2 + 34} \right\rceil$. Compute the least positive integer $n$ such that $a_n > 100T$.","Step 1
+#Elements Identified#:
+- Variables: $T$ (constant), $a_n$ (sequence defined recursively), $n$ (index to find).
+- Conditions: Initial value $a_1 = 1$; recurrence $a_{n+1} = \left\lceil \sqrt{a_n^2 + 34} \right\rceil$; inequality $a_n > 100T$ with $T=5$.
+- Theme: Recursive integer sequence with ceiling function and square root, finding minimal $n$ when sequence exceeds a linear function of $T$.
+- Complexity Levers: Modify $T$ to be dynamic; change recurrence structure (e.g., variable increment); add another sequence or dependency; incorporate additional constraints like growth conditions or derived values.
+
+Step 2
+#Plan#:
+- **Modify $T$**: Redefine $T$ as a derived value from a new sequence, introducing dependencies ($T$ no longer constant).
+- **Add a new sequence**: Define a secondary sequence $b_m$ with its own recurrence ($b_1=1$, $b_{m+1} = \left\lceil \sqrt{b_m^2 + 18} \right\rceil$), complicating the setup.
+- **Change the target condition**: Replace the simple $a_n > 100T$ with a comparison involving the index $m$ where $b_m = T$, by setting $T$ as $b_k$ for the smallest $k$ such that $b_k > 8k$, adding a mixed sequence-index condition.
+- **Retain core with adjustments**: Keep the recurrence for $a_n$ similar but start $a_1$ from the new $T$, and compute $a_n > 100T$; ensure all parts interconnect logically (e.g., $b_m$ influences $a_1$ and threshold).
+
+Step 3
+#Rewritten Instruction#:
+Let $b_1 = 1$, and for each positive integer $m$, $b_{m+1} = \left\lceil \sqrt{b_m^2 + 18} \right\rceil$. Define $T$ as $b_k$ for the smallest positive integer $k$ such that $b_k > 8k$. Set $a_1 = T$, and for all positive integers $n$, $a_{n+1} = \left\lceil \sqrt{a_n^2 + 34} \right\rceil$. Compute the smallest $n$ where $a_n > 100T$.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $b_1 = 1$, and for each positive integer $m$, $b_{m+1} = \left\lceil \sqrt{b_m^2 + 18} \right\rceil$. Define $T$ as $b_k$ for the smallest positive integer $k$ such that $b_k > 8k$. Set $a_1 = T$, and for all positive integers $n$, $a_{n+1} = \left\lceil \sqrt{a_n^2 + 34} \right\rceil$. Compute the least positive integer $n$ such that $a_n > 100T$.",success,137.34,"['Start by computing the first few terms of the sequence: $a_{1}=1, a_{2}=\\lceil\\sqrt{35}\\rceil=6, a_{3}=$ $\\lceil\\sqrt{70}\\rceil=9$, and $a_{4}=\\lceil\\sqrt{115}\\rceil=11$. Note that when $m \\geq 17,(m+1)^{2}=m^{2}+2 m+1>$ $m^{2}+34$, so if $a_{n} \\geq 17, a_{n+1}=\\left[\\sqrt{a_{n}^{2}+34}\\right\\rceil=a_{n}+1$. So it remains to continue the sequence until $a_{n} \\geq 17: a_{5}=13, a_{6}=15, a_{7}=17$. Then for $n>7, a_{n}=17+(n-7)=n+10$, and $a_{n}>100 T \\Rightarrow n>100 T-10$. With $T=5, n>490$, and the least value of $n$ is 491 .']"
+2676,"Compute the smallest $n$ such that in the regular $n$-gon $A_{1} A_{2} A_{3} \cdots A_{n}, \mathrm{~m} \angle A_{1} A_{20} A_{13}<60^{\circ}$.",Extraction Failed,,success,187.57,"['If the polygon is inscribed in a circle, then the arc $\\overparen{A_{1} A_{13}}$ intercepted by $\\angle A_{1} A_{20} A_{13}$ has measure $12\\left(360^{\\circ} / n\\right)$, and thus $\\mathrm{m} \\angle A_{1} A_{20} A_{13}=6\\left(360^{\\circ} / n\\right)$. If $6(360 / n)<60$, then $n>6(360) / 60=$ 36. Thus the smallest value of $n$ is $\\mathbf{3 7}$.']"
+2677,Let $T=37$. A cube has edges of length $T$. Square holes of side length 1 are drilled from the center of each face of the cube through the cube's center and across to the opposite face; the edges of each hole are parallel to the edges of the cube. Compute the surface area of the resulting solid.,"Let $T=37$. A cube has edges of length $T$. For each of the three unique pairs of opposite faces, labeled $f = 1, 2, 3$, a rectangular hole is drilled: centered on each face, drilled straight through the cube's center to the opposite face, with edges parallel to the cube's edges. For hole pair $f$, its length $a_f = (T \mod f) + 1$ and its width $b_f = |a_f - 2|$, ensuring the holes only intersect at the cube's center. Compute the surface area of the resulting solid.","Step 1
+#Elements Identified#:
+*   Constant: $T = 37$ (cube edge length)
+*   Hole Shape: Square, side length 1 (fixed, simple)
+*   Hole Placement: Centered on each face, drilled straight through to opposite face, parallel to cube edges (uniform, symmetric, no variation)
+*   Hole Path: Always passes through the cube's center (simple connection)
+*   Primary Operation: Drilling holes
+*   Goal: Compute surface area (singular output)
+*   Theme: Removing material from a cube via orthogonal drilling creates a new solid whose surface area must be calculated.
+*   Current Complexity Level: Primarily involves subtraction logic and accounting for overlapping removed areas.
+
+Step 2
+#Plan#:
+1.  **Complexify Hole Shape:** Change the holes from fixed-size squares to **rectangles** of variable length and width. This introduces two new variable dimensions per hole.
+2.  **Add Constrained Variation:** Instead of being identical, make the hole dimensions depend on the face:
+    *   Define the **length** $a_f$ of a hole on face $f$ as $a_f = (T \mod (f)) + 1$, where $f$ is a number uniquely assigned to each opposing face pair. This requires defining $f$ (e.g., the pairs could be labeled with numbers from 1 to 3).
+    *   Define the **width** $b_f$ as $b_f = |a_f - 2|$ (ensuring a non-zero, likely different value, introducing simple dependencies).
+    *   This introduces variable holes across face pairs.
+3.  **Introduce Spatial Constraint & Concretization:** Restrict the hole paths to ensure they don't intersect *within* the cube's volume, except potentially at the center point. This adds a real-world constraint that the user must implicitly check is satisfied by the defined $a_f$, $b_f$ and $T$ to proceed accurately. This layer increases reasoning depth.
+4.  **Maintain Core:** Keep $T=37$, drilling from the center of each face through the cube's center to the opposite face, edges parallel to the cube, and the goal of computing surface area. Ensure the new dimension formulas depend solely on $T$ as given.
+
+Step 3
+#Rewritten Instruction#:
+Let $T=37$. A cube has edges of length $T$. Consider the three pairs of opposite faces. Label each pair uniquely with $f = 1, 2, 3$. A rectangular hole is drilled for each pair: centered on both faces, drilled straight through the cube's center to the opposite face, with edges parallel to the cube's edges. For hole pair $f$, its **length** parallel to one cube edge is $a_f = (T \mod f) + 1$ and its **width** parallel to the other cube edge is $b_f = |a_f - 2|$, ensuring holes do not intersect within the volume except at the center. Compute the surface area of the resulting solid.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $T=37$. A cube has edges of length $T$. For each of the three unique pairs of opposite faces, labeled $f = 1, 2, 3$, a rectangular hole is drilled: centered on each face, drilled straight through the cube's center to the opposite face, with edges parallel to the cube's edges. For hole pair $f$, its length $a_f = (T \mod f) + 1$ and its width $b_f = |a_f - 2|$, ensuring the holes only intersect at the cube's center. Compute the surface area of the resulting solid.",success,30.63,"['After the holes have been drilled, each face of the cube has area $T^{2}-1$. The three holes meet in a $1 \\times 1 \\times 1$ cube in the center, forming six holes in the shape of rectangular prisms whose bases are $1 \\times 1$ squares and whose heights are $(T-1) / 2$. Each of these holes thus contributes $4(T-1) / 2=2(T-1)$ to the surface area, for a total of $12(T-1)$. Thus the total area is $6\\left(T^{2}-1\\right)+12(T-1)$, which can be factored as $6(T-1)(T+1+2)=6(T-1)(T+3)$. With $T=37$, the total surface area is $6(36)(40)=\\mathbf{8 6 4 0}$.']"
+2678,Let $T=8640$. Compute $\left\lfloor\log _{4}\left(1+2+4+\cdots+2^{T}\right)\right\rfloor$.,"Let $T=6\times24\times60$, $m=\lfloor\sqrt{T}\rfloor$, and compute $\left\lfloor\log_{4}\left(\sum_{k=m}^{T}2^{k}\right)\right\rfloor$.","Step 1
+#Elements Identified#:
+- Variable: $T$, a fixed value (8640).
+- Geometric series: $1 + 2 + 4 + \cdots + 2^{T}$, which sums to $2^{T+1} - 1$.
+- Logarithm and floor: Compute $\log_4$ of the series sum and apply the floor function.
+- Theme: Mathematical computation involving series summation, logarithmic evaluation, and discrete functions.
+
+Step 2
+#Plan#:
+- Modify $T$ from fixed to derived value: Define $T$ as the product of factors representing real-world time units (6 days × 24 hours/day × 60 minutes/hour), increasing complexity by adding a computation step.
+- Alter the series start index: Change the lower bound of the sum from $k=0$ to $k = \lfloor \sqrt{T} \rfloor$, requiring computation of the floor square root and affecting the geometric sum.
+- Adjust the series to exclude small terms: Sum from $k = \lfloor \sqrt{T} \rfloor$ to $T$ instead of full $k=0$ to $T$, changing the sum structure and requiring handling of partial sums.
+- Ensure elements interconnect: $T$ is used to compute $\lfloor \sqrt{T} \rfloor$, which defines the series bounds; the sum depends on both, leading to more involved logarithmic evaluation.
+- Justify increases: Added computations (e.g., product, square root, floor) and partial sum manipulation deepen reasoning, while dependencies (e.g., $m$ from $T$) enforce logical flow.
+
+Step 3
+#Rewritten Instruction#:
+Let $T = 6 \times 24 \times 60$, $m = \lfloor \sqrt{T} \rfloor$, and compute $\left\lfloor \log_{4} \left( \sum_{k=m}^{T} 2^{k} \right) \right\rfloor$.
+
+Step 4
+#Finally Rewritten Instruction#:
+Let $T=6\times24\times60$, $m=\lfloor\sqrt{T}\rfloor$, and compute $\left\lfloor\log_{4}\left(\sum_{k=m}^{T}2^{k}\right)\right\rfloor$.",success,145.21,"['Let $S=\\log _{4}\\left(1+2+4+\\cdots+2^{T}\\right)$. Because $1+2+4+\\cdots+2^{T}=2^{T+1}-1$, the change-of-base formula yields\n\n$$\nS=\\frac{\\log _{2}\\left(2^{T+1}-1\\right)}{\\log _{2} 4}\n$$\n\n\n\nLet $k=\\log _{2}\\left(2^{T+1}-1\\right)$. Then $T<k<T+1$, so $T / 2<S<(T+1) / 2$. If $T$ is even, then $\\lfloor S\\rfloor=T / 2$; if $T$ is odd, then $\\lfloor S\\rfloor=(T-1) / 2$. With $T=8640$, the answer is 4320 .']"
+2679,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+Compute $d(6), d(16)$, and $d(72)$.","House numbers in ARMLopolis are positive integers, with City Hall at 0. Define \(d(n)\) as \(\frac{\min\{k \geq 0 \mid \forall p \in \{2,3,5\}, v_p(n) \geq k\}}{30}\), where \(v_p(n)\) is the p-adic valuation. For houses \(m\) and \(n\), their distance \(d(m, n)\) equals \(d(a \cdot m + b \cdot n)\) with integers \(a, b\) satisfying \(a^2 + b^2 = 5\). Compute \(d(6)\), \(d(16)\), \(d(72)\), \(d(100)\), and \(d(225)\).","Step 1
+#Elements Identified#:
+- Distance function \(d(n)\) defined via the highest power of 3 dividing \(n\)
+- House numbers: positive integers (City Hall = 0)
+- Distance between houses \(m\) and \(n\) is \(d(m-n)\)
+- Example calculations: \(d(6)\), \(d(16)\), \(d(72)\)
+- Underlying mathematical concept: p-adic valuation (specifically for \(p=3\))
+
+Step 2
+#Plan#:
+1. **Replace the prime base**: Change reliance on prime 3 to multiple primes (2, 3, 5). Require \(d(n)\) to depend on the minimal valuation across these primes.  
+2. **Modify distance measurement**: Replace \(d(m-n)\) with \(d(a \cdot m + b \cdot n)\), introducing integer coefficients \(a, b\) constrained by a Diophantine equation to ensure non-trivial dependency.  
+3. **Increase computational burden**: Add two more calculations (\(d(100)\), \(d(225)\)) with numbers challenging under the multi-prime valuation.  
+4. **Embed coefficient constraints**: Define \(a, b\) via \(a^2 + b^2 = 5\) to avoid arbitrariness.  
+5. **Formalize multi-prime definition**: Explicitly define \(d(n)\) using \(p\)-adic valuations for primes 2, 3, 5 normalized by LCM.
+
+Step 3
+#Rewritten Instruction#:
+In ARMLopolis, house numbers are positive integers, and City Hall is 0. Define \(d(n)\) as \(\frac{\min\{\text{ord}_2(n), \text{ord}_3(n), \text{ord}_5(n)\}}{30}\) where \(\text{ord}_p(n)\) is the highest power of prime \(p\) dividing \(n\). The distance between houses \(m\) and \(n\), denoted \(d(m, n)\), is \(d(a \cdot m + b \cdot n)\) for integers \(a, b\) satisfying \(a^2 + b^2 = 5\). Compute \(d(6)\), \(d(16)\), \(d(72)\), \(d(100)\), and \(d(225)\).
+
+Step 4
+#Finally Rewritten Instruction#:
+House numbers in ARMLopolis are positive integers, with City Hall at 0. Define \(d(n)\) as \(\frac{\min\{k \geq 0 \mid \forall p \in \{2,3,5\}, v_p(n) \geq k\}}{30}\), where \(v_p(n)\) is the p-adic valuation. For houses \(m\) and \(n\), their distance \(d(m, n)\) equals \(d(a \cdot m + b \cdot n)\) with integers \(a, b\) satisfying \(a^2 + b^2 = 5\). Compute \(d(6)\), \(d(16)\), \(d(72)\), \(d(100)\), and \(d(225)\).",success,25.81,"['Factoring, $6=2 \\cdot 3^{1}, 16=16 \\cdot 3^{0}$, and $72=8 \\cdot 3^{2}$, so $d(6)=1 / 3, d(16)=1$, and $d(72)=1 / 9$.']"
+2680,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+Of the houses with positive numbers less than 100, find, with proof, the house or houses which is (are) closest to City Hall.","In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, the distance \(d(n)\) between house \(n\) and City Hall is now defined as \(d(n) = 2^{-v_2(n)} + 3^{-v_3(n)}\), where \(v_p(n)\) is the highest power of prime \(p\) dividing \(n\). For example, \(d(12) = 2^{-2} + 3^{-1} = \frac{1}{4} + \frac{1}{3} = \frac{7}{12}\) and \(d(1) = 1 + 1 = 2\). Similarly, \(d(-33) = 2^{0} + 3^{-1} = 1 + \frac{1}{3} = \frac{4}{3}\). By definition, \(d(0) = 0\). The distance from house \(m\) to house \(n\) is \(d(m, n) = d(m - n)\). Of houses with positive numbers less than 30 and congruent to 1 modulo 4, find with proof which are closest to City Hall.","Step 1
+#Elements Identified#:
+- **Variables**: \(n\) (house number), \(k\) (exponent for 3-adic valuation), \(n'\) (cofactor not divisible by 3), and implicitly \(m\), \(n\) for house pairs with \(d(m, n) = d(m - n)\).
+- **Conditions**: Houses have positive integers less than 100; City Hall at 0; \(d(n)\) defined via factorization \(n = 3^k n'\) yielding \(d(n) = 3^{-k}\); \(d(m, n)\) based on difference; examples provided for clarity.
+- **Participants**: Houses, City Hall, with the cowpath theme linked to multiple primes.
+- **Actions**: Calculating \(d(n)\), comparing distances across houses to find the minimum.
+- **Processes**: Factorizing \(n\) to determine valuation, applying the valuation to compute distance, minimizing over a discrete set.
+- **Theme**: Valuation-based distance metric (originally 3-adic) with minimization over a constrained integer set.
+
+Step 2
+#Plan#:
+1. **Change the distance function**: Expand from a single prime (base 3) to incorporate multiple prime valuations. Define \(d(n)\) based on both 2-adic and 3-adic valuations: \(d(n) = 2^{-v_2(n)} + 3^{-v_3(n)}\), increasing complexity by requiring analysis of dual dependencies.
+2. **Modify the range**: Shrink the range from ""less than 100"" to ""less than 30"" to intensify constraints and focus computations, addressing edge cases like higher valuations within tighter bounds.
+3. **Add constraints**: Introduce that only houses with numbers congruent to 1 modulo 4 are considered, adding a modular arithmetic condition that necessitates additional reasoning and excludes some high-valuation candidates.
+4. **Ensure coherence**: The modifications interconnect—new distance requires trade-off minimization between valuations under the modulo constraint for a reduced range, preserving the theme while increasing difficulty.
+
+Step 3
+#Rewritten Instruction#:
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, the distance \(d(n)\) between house \(n\) and City Hall is now defined as \(d(n) = 2^{-v_2(n)} + 3^{-v_3(n)}\), where \(v_p(n)\) is the highest power of prime \(p\) dividing \(n\). For example, \(d(12) = 2^{-2} + 3^{-1} = \frac{1}{4} + \frac{1}{3} = \frac{7}{12}\) and \(d(1) = 1 + 1 = 2\). Similarly, \(d(-33) = 2^{0} + 3^{-1} = 1 + \frac{1}{3} = \frac{4}{3}\). By definition, \(d(0) = 0\). The distance from house \(m\) to house \(n\) is \(d(m, n) = d(m - n)\). Of houses with positive numbers less than 30 and congruent to 1 modulo 4, find with proof which are closest to City Hall.
+
+Step 4
+#Finally Rewritten Instruction#:
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, the distance \(d(n)\) between house \(n\) and City Hall is now defined as \(d(n) = 2^{-v_2(n)} + 3^{-v_3(n)}\), where \(v_p(n)\) is the highest power of prime \(p\) dividing \(n\). For example, \(d(12) = 2^{-2} + 3^{-1} = \frac{1}{4} + \frac{1}{3} = \frac{7}{12}\) and \(d(1) = 1 + 1 = 2\). Similarly, \(d(-33) = 2^{0} + 3^{-1} = 1 + \frac{1}{3} = \frac{4}{3}\). By definition, \(d(0) = 0\). The distance from house \(m\) to house \(n\) is \(d(m, n) = d(m - n)\). Of houses with positive numbers less than 30 and congruent to 1 modulo 4, find with proof which are closest to City Hall.",success,194.17,"['If $n=3^{k} m$ where $3 \\nmid m$, then $d(n)=1 / 3^{k}$. So the smallest values of $d(n)$ occur when $k$ is largest. The largest power of 3 less than 100 is $3^{4}=81$, so $d(81)=1 / 3^{4}=1 / 81$ is minimal.']"
+2684,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+Suppose that $n$ is a house with $d(n)=1 / 27$. Determine the ten smallest positive integers $m$ (in the standard ordering of the integers) such that $m \in \mathcal{N}(n)$.","In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. The distance $d(n)$ to City Hall is defined as $d(n) = 5^{-k}$ for $n = 5^k n'$ with $k \geq 0$ integer and $n'$ not divisible by 5, and $d(0) = 0$. The distance between houses $d(m, n) = d(m-n)$. The neighborhood $\mathcal{N}(n)$ consists of all houses at the same distance from City Hall as $n$. Suppose $n = 125$, so $d(n) = 1/125$. Determine the ten smallest positive integers $m$ such that $m \in \mathcal{N}(n)$ and $d(m, n) \leq 1/625$.","Step 1  
+#Elements Identified#:  
+- The base of the valuation (3) can be changed to a different prime (e.g., 5) to increase numerical scale.  
+- The specific distance value (1/27) can be generalized to a higher power (e.g., 5^{-3} = 1/125) for larger house numbers.  
+- The neighborhood concept (based solely on d(n)) can be modified by adding a relative distance constraint involving d(m, n).  
+- Fixing a specific house n (like 125) anchors the problem, allowing dependencies on n.  
+- The task ""find ten smallest positive integers"" can include additional conditions (e.g., proximity to n) to reduce the solution set.  
+
+Step 2  
+#Plan#:  
+- Change the valuation base from 3 to 5 to necessitate handling larger numbers and increase computation difficulty.  
+- Set d(n) to 1/125 and specify n = 125, forcing dependence on this fixed house to define the neighborhood uniquely.  
+- Introduce a proximity constraint: require d(m, n) ≤ 1/625, emulating v_5(m-n) ≥ 4, which adds reasoning steps about relative positions.  
+- Ensure the sequence grows faster and the constraint tightens the set, demanding more intricate analysis than a simple valuation list.  
+- Maintain core elements: distance definition, neighborhood, and house numbering, but enhance complexity through base change, fixed n, and the new condition.  
+
+Step 3  
+#Rewritten Instruction#:  
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. The distance $d(n)$ to City Hall is defined as $d(n) = 5^{-k}$ for $n = 5^k n'$ with $k \geq 0$ integer and $n'$ not divisible by 5, and $d(0) = 0$. The distance between houses $d(m, n) = d(m-n)$. The neighborhood $\mathcal{N}(n)$ consists of all houses at the same distance from City Hall as $n$. Suppose $n = 125$, so $d(n) = 1/125$. Determine the ten smallest positive integers $m$ such that $m \in \mathcal{N}(n)$ and $d(m, n) \leq 1/625$.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. The distance $d(n)$ to City Hall is defined as $d(n) = 5^{-k}$ for $n = 5^k n'$ with $k \geq 0$ integer and $n'$ not divisible by 5, and $d(0) = 0$. The distance between houses $d(m, n) = d(m-n)$. The neighborhood $\mathcal{N}(n)$ consists of all houses at the same distance from City Hall as $n$. Suppose $n = 125$, so $d(n) = 1/125$. Determine the ten smallest positive integers $m$ such that $m \in \mathcal{N}(n)$ and $d(m, n) \leq 1/625$.",success,168.98,"['Here, $\\mathcal{N}(n)=\\{m \\mid m=27 k$, where $3 \\nmid k\\}$. The ten smallest elements of $\\mathcal{N}(n)$ are 27, $54,108,135,189,216,270,297,351$, and 378.']"
+2687,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+Suppose that $d(17, m)=1 / 81$. Determine the possible values of $d(16, m)$.","In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. For a fixed prime $p$, if $n = p^{k} n^{\prime}$ where $k \geq 0$ and integer $n^{\prime}$ is not divisible by $p$, then $d(n) = p^{-k}$. The distance between houses $m$ and $n$ is $d(m,n) = d(m-n)$. Suppose house $a$ satisfies $v_p(a) = s$ for a known integer $s$, and $d(a, m) = p^{-k}$ for some integer $k \ge 0$. Find the possible values of $d(b, m)$ for $b = a + p^k d$ with integer $d$ not divisible by $p$.","Step 1
+#Elements Identified#:
+- The distance function $d(n)$ based on the 3-adic valuation, specifically $d(n) = 3^{-k}$ if $n = 3^k n'$ with $n'$ not divisible by 3.
+- Pairwise distance defined as $d(m,n) = d(m-n)$.
+- Specific house numbers: 17 (as a reference point with $d(17)=1$) and 16 (as the point for which to find distances).
+- Given condition: $d(17, m) = 1/81$, implying $v_3(17 - m) = 4$.
+- Goal: Find possible values of $d(16, m)$.
+- Neighborhood concept $\mathcal{N}(n)$, defined as houses at the same distance from City Hall, but underutilized.
+- Theme: Leveraging p-adic valuations to determine distances, with an arithmetic difference.
+
+Step 2
+#Plan#:
+- Modify the valuation base from 3 to a general prime $p$ to add a parameter, increasing abstraction.
+- Instead of fixed houses 17 and 16, use variables $a$ and $b$, with specified properties:
+  - $a$ has a given valuation $s = v_p(a)$ (to generalize the reference point).
+  - $b$ is defined such that $b = a + p^t c$ for an integer $c$ not divisible by $p$ and $t > s$, ensuring $v_p(b - a) > s$ allows for multiple values in the output.
+- Generalize the input distance to $d(a, m) = p^{-k}$ for a given $k \ge 0$, removing specificity.
+- For the output, find $d(b, m)$ for $b = a + p^k d$ with $v_p(d) = 0$, so that the valuation $v_p(b - m)$ can vary depending on $m$, allowing multiple possible distance values.
+- Maintain logical connections: $d(a, m) = p^{-k}$ fixes $v_p(a - m) = k$, and $b - m = (b - a) + (a - m)$, where $v_p(b - a) = v_p(p^k d) = k + v_p(d) = k$ (since $v_p(d) = 0$), so $v_p(b - m) \ge \min(v_p(b - a), v_p(a - m)) = k$ and equality may not hold, leading to variation.
+isv  - Ensure complexity by causing possible values of $d(b, m)$ to depend on higher-order congruences of $a - m$ modulo $p^{k+1}, p^{k+2}, \dots$.
+
+Step 3
+#Rewritten Instruction#:
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. For a fixed prime $p$, if $n = p^{k} n^{\prime}$ where $k \geq 0$ and $n^{\prime}$ is not divisible by $p$, then the distance to City Hall is $d(n) = p^{-k}$. The distance between houses $m$ and $n$ is $d(m,n) = d(m-n)$. Suppose house $a$ has $v_p(a) = s$ for a known integer $s$, and for a given $m$, $d(a, m) = p^{-k}$ with $k \ge 0$. Determine the possible values of $d(b, m)$ where $b = a + p^k d$ for some integer $d$ not divisible by $p$.
+
+Step 4
+#Finally Rewritten Instruction#:
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. For a fixed prime $p$, if $n = p^{k} n^{\prime}$ where $k \geq 0$ and integer $n^{\prime}$ is not divisible by $p$, then $d(n) = p^{-k}$. The distance between houses $m$ and $n$ is $d(m,n) = d(m-n)$. Suppose house $a$ satisfies $v_p(a) = s$ for a known integer $s$, and $d(a, m) = p^{-k}$ for some integer $k \ge 0$. Find the possible values of $d(b, m)$ for $b = a + p^k d$ with integer $d$ not divisible by $p$.",success,284.01,"['Because $d(17, m)=1 / 81,17-m=81 l$, where $l \\in \\mathbb{Z}$ and $3 \\nmid l$. So $m=17-81 l$ and $16-m=81 l-1$. Hence $3 \\nmid 16-m$, and $d(16, m)=d(16-m)=1$.']"
+2701,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+Ross takes a walk starting at his house, which is number 34 . He first visits house $n_{1}$, such that $d\left(n_{1}, 34\right)=1 / 3$. He then goes to another house, $n_{2}$, such that $d\left(n_{1}, n_{2}\right)=1 / 3$. Continuing in that way, he visits houses $n_{3}, n_{4}, \ldots$, and each time, $d\left(n_{i}, n_{i+1}\right)=1 / 3$. At the end of the day, what is his maximum possible distance from his original house? Justify your answer.",Extraction Failed,,success,293.6,"['The maximum possible distance $d\\left(34, n_{k}\\right)$ is $1 / 3$. This can be proved by induction on $k: d\\left(n_{1}, 34\\right) \\leq 1 / 3$, and if both $d\\left(n_{k-1}, 34\\right) \\leq 1 / 3$ and $d\\left(n_{k-1}, n_{k}\\right) \\leq 1 / 3$, then $\\max \\left\\{d\\left(n_{k-1}, 34\\right), d\\left(n_{k-1}, n_{k}\\right)\\right\\} \\leq 1 / 3$ so by 5 b, $d\\left(34, n_{k}\\right) \\leq 1 / 3$.']"
+2702,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+Later, ARMLopolis finally decides on a drastic expansion plan: now house numbers will be rational numbers. To define $d(p / q)$, with $p$ and $q$ integers such that $p q \neq 0$, write $p / q=3^{k} p^{\prime} / q^{\prime}$, where neither $p^{\prime}$ nor $q^{\prime}$ is divisible by 3 and $k$ is an integer (not necessarily positive); then $d(p / q)=3^{-k}$.
+Compute $d(3 / 5), d(5 / 8)$, and $d(7 / 18)$.","In ARMLopolis, house numbers are rational, and City Hall is at 0. For a house \(r\), write \(r = 3^a \cdot 5^b \cdot r'\) with \(r'\) coprime to 15; then \(d(r) = 3^{-a} \cdot 5^{-b}\). The distance \(d(m,n)\) between houses \(m\) and \(n\) is \(d(3m - 2n)\). The neighborhood \(\mathcal{N}(n)\) comprises all \(m\) with \(d(m) = d(n)\) and \(m \equiv 5n \pmod{3}\). Compute \(d(3/5)\), \(d(5/8)\), and \(d(7/18)\).","Step 1
+#Elements Identified#:  
+Variables: \(n\), \(m\), \(k\), \(n'\), \(p\), \(q\), \(p'\), \(q'\)  
+Conditions: Decomposition \(n = 3^k n'\) (or \(\frac{p}{q} = 3^k \frac{p'}{q'}\)) with \(n', p', q'\) not divisible by 3; \(k\) integer ≥0 for integers but arbitrary for rationals.  
+Participants: Houses, City Hall, neighborhoods \(\mathcal{N}(n)\).  
+Actions/Processes: Computing \(d(n)\), extending to rationals, calculating \(d(m,n) = d(m-n)\).  
+Theme: Discrete distance metric based on 3-adic valuation, geometric analogies, generalization to rationals.  
+
+Step 2
+#Plan#:  
+1. **Replace single prime (3) with two primes (3 and 5)**: Modify the decomposition to use \(3^a \cdot 5^b\), increasing algebraic complexity for rational numbers and neighborhood constraints.  
+2. **Revise distance metric**: Redefine the inter-house distance \(d(m,n)\) using \(d(am - bn)\) for coprimes \(a, b\), demanding solving Diophantine-like conditions.  
+3. **Add neighborhood constraints**: Require \(\mathcal{N}(n)\) to include houses congruent to \(n\) modulo a new prime-defined composite.  
+4. **Integrate computations**: Embed endpoint calculations within the new structure, ensuring dependencies.  
+
+Step 3
+#Rewritten Instruction#:  
+In ARMLopolis, house numbers are rational, and City Hall is at 0. For a house \(r\), write \(r = 3^a \cdot 5^b \cdot r'\) with \(r'\) coprime to 15; then \(d(r) = 3^{-a} \cdot 5^{-b}\). The distance \(d(m,n)\) between houses \(m\) and \(n\) is \(d(3m - 2n)\). The neighborhood \(\mathcal{N}(n)\) comprises all \(m\) with \(d(m) = d(n)\) and \(m \equiv 5n \pmod{3}\). Compute \(d(3/5)\), \(d(5/8)\), and \(d(7/18)\) using this system.  
+
+Step 4
+#Finally Rewritten Instruction#:  
+In ARMLopolis, house numbers are rational, and City Hall is at 0. For a house \(r\), write \(r = 3^a \cdot 5^b \cdot r'\) with \(r'\) coprime to 15; then \(d(r) = 3^{-a} \cdot 5^{-b}\). The distance \(d(m,n)\) between houses \(m\) and \(n\) is \(d(3m - 2n)\). The neighborhood \(\mathcal{N}(n)\) comprises all \(m\) with \(d(m) = d(n)\) and \(m \equiv 5n \pmod{3}\). Compute \(d(3/5)\), \(d(5/8)\), and \(d(7/18)\).",success,27.77,"['$\\frac{1}{3}, 1, 9$']"
+2705,"Let $A R M L$ be a trapezoid with bases $\overline{A R}$ and $\overline{M L}$, such that $M R=R A=A L$ and $L R=$ $A M=M L$. Point $P$ lies inside the trapezoid such that $\angle R M P=12^{\circ}$ and $\angle R A P=6^{\circ}$. Diagonals $A M$ and $R L$ intersect at $D$. Compute the measure, in degrees, of angle $A P D$.","Let \(A R M L\) be a trapezoid with bases \(\overline{A R}\) and \(\overline{M L}\), such that \(M R = R A = A L\) and \(L R = A M = M L\). Suppose the diagonals \(\overline{A M}\) and \(\overline{R L}\) are perpendicular at \(D\) and the height \(h\) satisfies \(h = \frac{AR + ML}{2}\). Point \(P\) lies inside the trapezoid such that \(\angle R M P = 12^{\circ}\), \(\angle R A P = 6^{\circ}\), and \(\angle P A M = 18^{\circ}\). Compute the measure, in degrees, of \(\angle A P D\).","Step 1  
+#Elements Identified#:  
+Variables: Points A, R, M, L, P, D.  
+Conditions: Bases \(\overline{AR}\) and \(\overline{ML}\ known), MR = RA = AL, LR = AM = ML, \(\angle RMP = 12^\circ\), \(\angle RAP = 6^\circ\), diagonals AM and RL intersect at D.  
+Participants: Trapezoid, diagonal intersection D, point P.  
+Actions: Compute \(\angle APD\).  
+Theme: Angle measurement in a geometrically constrained trapezoid using given angle conditions.  
+
+Step 2  
+#Plan#:  
+1. Add condition: Diagonals AM and RL are perpendicular at D to introduce a rigidity constraint affecting angle computations.  
+2. Add condition: \(\angle PAM = 18^\circ\) to incorporate another angle at point A, increasing the number of angular relationships.  
+3. Add variable: Introduce height h of the trapezoid with dependency h = (AR + ML)/2, adding a metric constraint to link distances with angles.  
+4. Ensure coherence: Maintain the trapezoid's defining equalities, perpendicular diagonals enforce specific shape properties, h relates to symmetry, and new angles with height dependence increase reasoning steps for \(\angle APD\).  
+
+Step 3  
+#Rewritten Instruction#:  
+Let \(A R M L\) be a trapezoid with bases \(\overline{A R}\) and \(\overline{M L}\), such that \(M R = R A = A L\) and \(L R = A M = M L\). Suppose the diagonals \(\overline{A M}\) and \(\overline{R L}\) are perpendicular at their intersection point \(D\) and the height \(h\) satisfies \(h = \frac{AR + ML}{2}\). Point \(P\) lies inside the trapezoid such that \(\angle R M P = 12^{\circ}\), \(\angle R A P = 6^{\circ}\), and \(\angle P A M = 18^{\circ}\). Compute the measure, in degrees, of \(\angle A P D\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let \(A R M L\) be a trapezoid with bases \(\overline{A R}\) and \(\overline{M L}\), such that \(M R = R A = A L\) and \(L R = A M = M L\). Suppose the diagonals \(\overline{A M}\) and \(\overline{R L}\) are perpendicular at \(D\) and the height \(h\) satisfies \(h = \frac{AR + ML}{2}\). Point \(P\) lies inside the trapezoid such that \(\angle R M P = 12^{\circ}\), \(\angle R A P = 6^{\circ}\), and \(\angle P A M = 18^{\circ}\). Compute the measure, in degrees, of \(\angle A P D\).",success,151.79,"['First, determine the angles of $A R M L$. Let $\\mathrm{m} \\angle M=x$. Then $\\mathrm{m} \\angle L R M=x$ because $\\triangle L R M$ is isosceles, and $\\mathrm{m} \\angle R L M=180^{\\circ}-2 x$. Because $\\overline{A R} \\| \\overline{L M}, \\mathrm{~m} \\angle A R M=180^{\\circ}-x$ and $\\mathrm{m} \\angle A R L=180^{\\circ}-2 x$, as shown in the diagram below.\n\n<img_3627>\n\nHowever, $\\triangle A R L$ is also isosceles (because $A R=A L$ ), so $\\mathrm{m} \\angle A L R=180^{\\circ}-2 x$, yielding $\\mathrm{m} \\angle A L M=360^{\\circ}-4 x$. Because $\\mathrm{m} \\angle R M L=\\mathrm{m} \\angle A L M$, conclude that $360^{\\circ}-4 x=x$, so $x=72^{\\circ}$. Therefore the base angles $L$ and $M$ have measure $72^{\\circ}$ while the other base angles $A$ and $R$ have measure $108^{\\circ}$. Finally, the angle formed by diagonals $\\overline{A M}$ and $\\overline{L R}$ is as follows: $\\mathrm{m} \\angle R D M=180^{\\circ}-\\mathrm{m} \\angle L R M-\\mathrm{m} \\angle A M R=180^{\\circ}-72^{\\circ}-36^{\\circ}=72^{\\circ}$.\n\nNow construct equilateral $\\triangle R O M$ with $O$ on the exterior of the trapezoid, as shown below.\n\n<img_3202>\n\nBecause $A R=R M=R O$, triangle $O A R$ is isosceles with base $\\overline{A O}$. The measure of $\\angle A R O$ is $108^{\\circ}+60^{\\circ}=168^{\\circ}$, so $\\mathrm{m} \\angle R A O=(180-168)^{\\circ} / 2=6^{\\circ}$. Thus $P$ lies on $\\overline{A O}$. Additionally, $\\mathrm{m} \\angle P O M=\\mathrm{m} \\angle A O M=60^{\\circ}-6^{\\circ}=54^{\\circ}$, and $\\mathrm{m} \\angle P M O=60^{\\circ}+12^{\\circ}=72^{\\circ}$ by construction. Thus $\\mathrm{m} \\angle M P O=180^{\\circ}-72^{\\circ}-54^{\\circ}=54^{\\circ}$, hence $\\triangle P M O$ is isosceles with $P M=O M$. But because $O M=R M, \\triangle R M P$ is isosceles with $R M=M P$, and $R M=D M$ implies that $\\triangle P D M$ is also isosceles. But $\\mathrm{m} \\angle R M P=12^{\\circ}$ implies that $\\mathrm{m} \\angle P M D=36^{\\circ}-12^{\\circ}=24^{\\circ}$, so $\\mathrm{m} \\angle D P M=78^{\\circ}$. Thus $\\mathrm{m} \\angle A P D=180^{\\circ}-\\mathrm{m} \\angle O P M-\\mathrm{m} \\angle D P M=180^{\\circ}-54^{\\circ}-78^{\\circ}=48^{\\circ}$.']"
+2706,A regular hexagon has side length 1. Compute the average of the areas of the 20 triangles whose vertices are vertices of the hexagon.,"**  
+A regular triangular bipyramid has volume \( V \). Vertices \( A, B, C \) form its equatorial face. Find the average area of all triangles formed by non-adjacent vertex triplets. Compare this with the average for triangles whose vertices include exactly one of \( \{A, B, C\} \).","Step 1  
+**#Elements Identified#:**  
+- **Shape:** Regular hexagon (fixed).  
+- **Variables:** Side length (fixed at 1).  
+- **Target:** Average area of all possible vertex triangles (number fixed at 20).  
+- **Constraints/Process:** All triangles formed by any 3 vertices; no restrictions.  
+- **Theme:** Combinatorial geometry with uniform vertices.  
+
+Step 2  
+**#Plan#:**  
+1. **Modify shape:** Replace hexagon with a **regular triangular bipyramid** (5 vertices: 3 equatorial, 2 apical).  
+2. **Change key variable:** Replace fixed side length with a **fixed volume \( V \)**, requiring derivation of edge length.  
+3. **Add selection criteria:** Restrict triangles to those formed by **non-adjacent vertices**, altering combinatorial scope.  
+4. **Expand target:** Compute two averages (non-adjacent triplets vs. triplets containing exactly one equatorial vertex) and compare them.  
+*Logical Connections:* Volume \( V \) \( \rightarrow \) edge length \( \rightarrow \) area calculations. Non-adjacency refines valid triplets. Comparison adds layer.  
+
+Step 3  
+**#Rewritten Instruction#:**  
+A regular triangular bipyramid has volume \( V \). Vertices \( A, B, C \) form its equatorial face. Find the average area of all triangles formed by non-adjacent vertex triplets. Then compute the average for triplets containing exactly one of \( \{A, B, C\} \), and compare these two averages.  
+
+Step 4  
+**#Finally Rewritten Instruction#:**  
+A regular triangular bipyramid has volume \( V \). Vertices \( A, B, C \) form its equatorial face. Find the average area of all triangles formed by non-adjacent vertex triplets. Compare this with the average for triangles whose vertices include exactly one of \( \{A, B, C\} \).",success,22.99,"['There are 6 triangles of side lengths $1,1, \\sqrt{3} ; 2$ equilateral triangles of side length $\\sqrt{3}$; and 12 triangles of side lengths $1, \\sqrt{3}, 2$. One triangle of each type is shown in the diagram below.\n<img_3233>\n\nEach triangle in the first set has area $\\sqrt{3} / 4$; each triangle in the second set has area $3 \\sqrt{3} / 4$; and each triangle in the third set has area $\\sqrt{3} / 2$. The average is\n\n$$\n\\frac{6\\left(\\frac{\\sqrt{3}}{4}\\right)+2\\left(\\frac{3 \\sqrt{3}}{4}\\right)+12\\left(\\frac{\\sqrt{3}}{2}\\right)}{20}=\\frac{\\frac{6 \\sqrt{3}}{4}+\\frac{6 \\sqrt{3}}{4}+\\frac{24 \\sqrt{3}}{4}}{20}=\\frac{\\mathbf{9} \\sqrt{\\mathbf{3}}}{\\mathbf{2 0}} .\n$$']"
+2707,"Paul was planning to buy 20 items from the ARML shop. He wanted some mugs, which cost $\$ 10$ each, and some shirts, which cost $\$ 6$ each. After checking his wallet he decided to put $40 \%$ of the mugs back. Compute the number of dollars he spent on the remaining items.","Paul planned to buy 30 items from the ARML shop: mugs (\$10 each), shirts (\$6, discounted to \$5 if he buys ≥8), and t-shirts (\$8, discounted to \$7 if ≥5). He bought twice as many shirts as t-shirts initially. After checking his wallet, he returned 30% of the mugs and 25% of the shirts. Later, he repurchased 50% of the returned t-shirts. If the final cost of all shirts equaled twice the final cost of all t-shirts, compute the number of dollars he spent.","Step 1
+#Elements Identified#:
+- **Items**: Mugs (\$10) and shirts (\$6)
+- **Initial Quantity**: 20 items total
+- **Modification**: Paul returns 40% of the mugs
+- **Calculation Goal**: Cost of remaining items
+- **Theme**: Cost calculation after modifying purchase quantities based on percentage removal
+
+Step 2
+#Plan#:
+1. **Add Item Type**: Introduce a third item (t-shirts at \$8) to expand variables.
+2. **Dynamic Pricing**: Implement volume discounts (e.g., shirts cost \$5 if ≥8 bought, t-shirts cost \$7 if ≥5 bought).
+3. **Multi-step Modification**: Paul returns 30% of mugs *and* 25% of shirts but later rebuys 50% of the returned t-shirts.
+4. **Ratio Constraint**: Specify shirt cost must be twice the t-shirt cost after modification.
+5. **Increase Initial Quantity**: Start with 30 items total to accommodate new variables.
+
+Step 3
+#Rewritten Instruction#:
+Paul planned to buy 30 items from the ARML shop: mugs (\$10 each), shirts (\$6, but \$5 if he buys ≥8), and t-shirts (\$8, but \$7 if ≥5). He bought twice as many shirts as t-shirts initially. After checking his wallet, he returned 30% of mugs and 25% of shirts. Then, he rebought 50% of the returned t-shirts. Given that the total cost of shirts equaled twice the total cost of t-shirts after all actions, compute his total expenditure.
+
+Step 4
+#Finally Rewritten Instruction#:
+Paul planned to buy 30 items from the ARML shop: mugs (\$10 each), shirts (\$6, discounted to \$5 if he buys ≥8), and t-shirts (\$8, discounted to \$7 if ≥5). He bought twice as many shirts as t-shirts initially. After checking his wallet, he returned 30% of the mugs and 25% of the shirts. Later, he repurchased 50% of the returned t-shirts. If the final cost of all shirts equaled twice the final cost of all t-shirts, compute the number of dollars he spent.",success,19.55,"['The problem does not state the number of mugs Paul intended to buy, but the actual number is irrelevant. Suppose Paul plans to buy $M$ mugs and $20-M$ shirts. The total cost is $10 M+6(20-M)$ However, he puts back $40 \\%$ of the mugs, so he ends up spending $10(0.6 M)+$ $6(20-M)=6 M+120-6 M=\\mathbf{1 2 0}$ dollars.']"
+2708,"Let $x$ be the smallest positive integer such that $1584 \cdot x$ is a perfect cube, and let $y$ be the smallest positive integer such that $x y$ is a multiple of 1584 . Compute $y$.",Set $A = 1584$ and $B = 250$. Let $x$ be the smallest positive integer such that $A \cdot x$ is a perfect cube and $B \cdot x$ is a perfect fifth power. Let $y$ be the smallest positive integer such that $x \cdot y$ is a multiple of $A$ and $\frac{x \cdot y}{A}$ is a perfect fourth power. Compute $y$.,"Step 1  
+#Elements Identified#:  
+- Key variables: $x$ (smallest positive integer such that $1584 \cdot x$ is a perfect cube), $y$ (smallest positive integer such that $x \cdot y$ is a multiple of 1584).  
+- Conditions: Single base number (1584), single perfect-power constraint (cube), minimal multipliers.  
+- Actions: Factorization to determine missing prime exponents for the cube; reuse of $x$ in divisibility condition for $y$.  
+- Theme: Minimal multipliers satisfying perfect-power and divisibility constraints via prime exponent balancing.  
+
+Step 2  
+#Plan#:  
+1. Increase the perfect-power complexity by requiring $x$ to satisfy two distinct perfect-power conditions simultaneously (e.g., cube and fifth power) using two base numbers (replace 1584 with $A$ and introduce $B$).  
+2. Add constraints to $y$ by requiring not just divisibility by $A$ but also that the quotient $(x \cdot y)/A$ is a higher perfect power (fourth power).  
+3. Modify the base constants to ensure shared and distinct prime factors (choose $A=1584$, $B=250$) to require solving simultaneous linear congruences for exponents during factorization.  
+
+Step 3  
+#Rewritten Instruction#:  
+Set $A = 1584$ and $B = 250$. Let $x$ be the smallest positive integer such that $A \cdot x$ is a perfect cube and $B \cdot x$ is a perfect fifth power. Let $y$ be the smallest positive integer such that $x \cdot y$ is a multiple of $A$ and $\frac{x \cdot y}{A}$ is a perfect fourth power. Compute $y$.
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Set $A = 1584$ and $B = 250$. Let $x$ be the smallest positive integer such that $A \cdot x$ is a perfect cube and $B \cdot x$ is a perfect fifth power. Let $y$ be the smallest positive integer such that $x \cdot y$ is a multiple of $A$ and $\frac{x \cdot y}{A}$ is a perfect fourth power. Compute $y$.",success,149.5,"['In order for $1584 \\cdot x$ to be a perfect cube, all of its prime factors must be raised to powers divisible by 3 . Because $1584=2^{4} \\cdot 3^{2} \\cdot 11$, $x$ must be of the form $2^{3 k+2} \\cdot 3^{3 m+1} \\cdot 11^{3 n+2} \\cdot r^{3}$, for nonnegative integers $k, m, n, r, r>0$. Thus the least positive value of $x$ is $2^{2} \\cdot 3 \\cdot 11^{2}=1452$. But in order for $x y$ to be a positive multiple of $1584, x y$ must be of the form $2^{a} \\cdot 3^{b} \\cdot 11^{c} \\cdot d$, where $a \\geq 4, b \\geq 2, c \\geq 1$, and $d \\geq 1$. Thus $y$ must equal $2^{2} \\cdot 3^{1}=\\mathbf{1 2}$.']"
+2709,"Emma goes to the store to buy apples and peaches. She buys five of each, hands the shopkeeper one $\$ 5$ bill, but then has to give the shopkeeper another; she gets back some change. Jonah goes to the same store, buys 2 apples and 12 peaches, and tries to pay with a single $\$ 10$ bill. But that's not enough, so Jonah has to give the shopkeeper another $\$ 10$ bill, and also gets some change. Finally, Helen goes to the same store to buy 25 peaches. Assuming that the price in cents of each fruit is an integer, compute the least amount of money, in cents, that Helen can expect to pay.","Emma buys 5 apples and 5 peaches. She hands the shopkeeper a $\$5$ bill, then another $\$5$ bill, and receives change. Jonah buys 2 apples and 12 peaches, pays first with a $\$10$ bill, adds a second $\$10$ bill, and gets change. Max buys 8 apples and Y peaches (Y unknown), pays with a $\$20$ bill and receives $\$5$ change. A fixed tax of T% is applied to each pre-tax total. Helen buys at least k peaches (k = T + 15) for the lowest cost per peach. Prices are integer cents per fruit. Compute the minimum cents per peach Helen can pay.","Step 1
+#Elements Identified#:
+*   **Fruits:** Apples (A cents), Peaches (P cents) - Prices in integer cents.
+*   **Buyers and Transactions:**
+    *   Emma: Buys 5A + 5P. Pays $5 ($500 cents), gets change. Then pays *another* $5 ($1000 cents total paid). Gets some change.
+    *   Jonah: Buys 2A + 12P. Pays $10 ($1000 cents), insufficient, pays *another* $10 ($2000 cents total paid). Gets some change.
+    *   Helen: Buys 25P. Needs minimal cost.
+*   **Constraints:** Price per fruit is an integer (cents). Change is given in both Emma and Jonah's transactions, implying the total paid *exceeds* the cost.
+*   **Goal:** Find the minimal possible cost Helen pays for 25 peaches.
+*   **Theme:** Determining integer prices under multiple, interdependent transaction constraints to minimize a final cost.
+
+Step 2
+#Plan#:
+1.  **Introduce a Tax/Adjustment Factor:** Add a fixed percentage-based adjustment (e.g., a tax rate ""T%"" or a fixed fee per fruit type) applied to the *total cost* before payment. This adds a variable parameter (T) that must be inferred from the transactions, making the core prices (A, P) and T interdependent. The adjustment applies uniformly to all transactions.
+2.  **Add a Fourth Buyer with Partial Information:** Introduce a fourth customer (Max) who buys an *unknown* mix of both fruits (M_A apples and M_P peaches where either M_A or M_P is unknown). Max pays with specific bills, possibly gets change or needs to add more, but one piece of quantity information is missing, adding another variable to solve for.
+3.  **Modify Helen's Purchase Goal:** Change Helen's task from buying just 25 peaches to buying *at least X peaches*, where X is a number derived from the minimal cost calculated for the first three transactions or related to the newly introduced parameter (e.g., a function of T or k). Furthermore, change the goal from minimizing Helen's *total* cost to minimizing her *cost per peach*.
+4.  **Increase Bill Complexity:** Change bill denominations to multiples of five and ten dollars to create more specific modular constraints ($5, $10, $20).
+5.  **Increase Reasoning Depth:** Require solving for more interdependent variables (A, P, T, M_A or M_P) and optimize a ratio (cost/peach) under constraints.
+
+Step 3
+#Rewritten Instruction#:
+Emma buys 5 apples and 5 peaches. She hands the shopkeeper a $\$5$ bill, then has to give another $\$5$ bill, and receives change. Jonah buys 2 apples and 12 peaches, pays first with a $\$10$ bill, needs to add a second $\$10$ bill, and receives change. Max buys 8 apples and Y peaches (Y unknown), pays with a $\$20$ bill and gets $\$5$ back. A fixed tax of T% is applied to the pre-tax total of each purchase. Helen needs to buy *at least k* peaches (where k = T + 15) for the lowest possible cost *per peach*. Prices in cents per fruit are integers. Compute the minimum cents per peach Helen pays.
+
+Step 4
+#Finally Rewritten Instruction#:
+Emma buys 5 apples and 5 peaches. She hands the shopkeeper a $\$5$ bill, then another $\$5$ bill, and receives change. Jonah buys 2 apples and 12 peaches, pays first with a $\$10$ bill, adds a second $\$10$ bill, and gets change. Max buys 8 apples and Y peaches (Y unknown), pays with a $\$20$ bill and receives $\$5$ change. A fixed tax of T% is applied to each pre-tax total. Helen buys at least k peaches (k = T + 15) for the lowest cost per peach. Prices are integer cents per fruit. Compute the minimum cents per peach Helen can pay.",success,28.16,"['Let $a$ be the price of one apple and $p$ be the price of one peach, in cents. The first transaction shows that $500<5 a+5 p<1000$, hence $100<a+p<200$. The second transaction shows that $1000<2 a+12 p<2000$, so $500<a+6 p<1000$. Subtracting the inequalities yields $300<5 p<900$, so $60<p<180$. Therefore the price of 25 peaches is at least $25 \\cdot 61=\\mathbf{1 5 2 5}$ cents.']"
+2710,"Circle $O$ has radius 6. Point $P$ lies outside circle $O$, and the shortest distance from $P$ to circle $O$ is 4. Chord $\overline{A B}$ is parallel to $\overleftrightarrow{O P}$, and the distance between $\overline{A B}$ and $\overleftrightarrow{O P}$ is 2 . Compute $P A^{2}+P B^{2}$.","Circle \(O\) has radius 6. Point \(P\) lies outside circle \(O\), and the shortest distance from \(P\) to circle \(O\) is 4. Chord \(\overline{AB}\) is parallel to \(\overleftrightarrow{OP}\), and the length of \(\overline{AB}\) equals the perpendicular distance from \(O\) to \(\overline{AB}\). Compute \(PA^{2} + PB^{2}\).","Step 1  
+#Elements Identified#:  
+- Circle \(O\) with fixed radius (6).  
+- Point \(P\) outside circle with given shortest distance (4) to the circle.  
+- Chord \(\overline{AB}\) parallel to \(\overleftrightarrow{OP}\).  
+- Distance between \(\overline{AB}\) and \(\overleftrightarrow{OP}\) is fixed (2).  
+- Output: \(PA^2 + PB^2\).  
+- Core theme: Geometric relation between a circle, an external point, and a parallel chord at a specified distance.  
+
+Step 2  
+#Plan#:  
+1. Replace the fixed distance constraint (2) with an additional geometric condition to increase complexity: set the length of \(\overline{AB}\) equal to the perpendicular distance from \(O\) to \(\overline{AB}\). This adds an equation that requires solving for the distance.  
+2. Ensure coherence: Keep the circle radius and shortest distance fixed as they are foundational. Maintain the chord parallel to \(\overleftrightarrow{OP}\) as the key relationship.  
+3. Justify complexity: The solver must now deduce the perpendicular distance via the new constraint, involving circle-chord geometry (e.g., \(L = 2\sqrt{r^2 - d^2} = d\)), adding algebraic work before computing \(PA^2 + PB^2\).  
+4. Avoid ambiguity: Clarify that the ""perpendicular distance"" refers to the line segment from \(O\) to the chord. No new variables are introduced; the constraint is formulaic.  
+
+Step 3  
+#Rewritten Instruction#:  
+Circle \(O\) has radius 6. Point \(P\) lies outside circle \(O\), and the shortest distance from \(P\) to circle \(O\) is 4. Chord \(\overline{AB}\) is parallel to \(\overleftrightarrow{OP}\), and the length of \(\overline{AB}\) equals the perpendicular distance from \(O\) to \(\overline{AB}\). Compute \(PA^{2} + PB^{2}\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Circle \(O\) has radius 6. Point \(P\) lies outside circle \(O\), and the shortest distance from \(P\) to circle \(O\) is 4. Chord \(\overline{AB}\) is parallel to \(\overleftrightarrow{OP}\), and the length of \(\overline{AB}\) equals the perpendicular distance from \(O\) to \(\overline{AB}\). Compute \(PA^{2} + PB^{2}\).",success,225.5,"['Extend $\\overline{A B}$ to point $Q$ such that $\\overline{P Q} \\perp \\overline{A Q}$ as shown, and let $M$ be the midpoint of $\\overline{A B}$. (The problem does not specify whether $A$ or $B$ is nearer $P$, but $B$ can be assumed to be nearer $P$ without loss of generality.)\n\n<img_3454>\n\nThen $O P=10, P Q=O M=2$, and $O B=6$. Thus $M B=\\sqrt{6^{2}-2^{2}}=4 \\sqrt{2}$. Because $Q M=O P=10$, it follows that $Q B=10-4 \\sqrt{2}$ and $Q A=10+4 \\sqrt{2}$. So\n\n$$\n\\begin{aligned}\nP A^{2}+P B^{2} & =\\left(Q A^{2}+Q P^{2}\\right)+\\left(Q B^{2}+Q P^{2}\\right) \\\\\n& =(10+4 \\sqrt{2})^{2}+2^{2}+(10-4 \\sqrt{2})^{2}+2^{2} \\\\\n& =\\mathbf{2 7 2}\n\\end{aligned}\n$$']"
+2711,"A palindrome is a positive integer, not ending in 0 , that reads the same forwards and backwards. For example, 35253,171,44, and 2 are all palindromes, but 17 and 1210 are not. Compute the least positive integer greater than 2013 that cannot be written as the sum of two palindromes.","**:  
+Compute the least integer \( n > 2013 \) that cannot be expressed as the sum of two primes, each having a palindromic base-9 representation (without leading or trailing zeros).","**Step 1**  
+**#Elements Identified#**:  
+- **Palindromes**: Defined as positive integers read the same forwards and backwards, no trailing zeros.  
+- **Operands**: Two palindromic numbers summed.  
+- **Operation**: Sum of two palindromes.  
+- **Target**: Minimal integer \( n > 2013 \) not expressible as such a sum.  
+- **Constraints**: Palindromes are integers, \( n \) must exceed 2013, and palindromic representation excludes leading/trailing zeros.  
+- **Theme**: Combinatorial number theory with modular arithmetic constraints.  
+
+**Step 2**  
+**#Plan#**:  
+1. **Change base**: Replace base-10 palindromes with base-\( b \) palindromes, specifying \( b = 9 \) for increased complexity due to non-standard base conversions.  
+2. **Add primality**: Require palindromes to be primes, creating ""palindromic primes in base 9,"" which adds primality testing and integrates number theory.  
+3. **Strict digit constraints**: Specify that base-9 representations must avoid leading/trailing zeros and demand explicit handling during base conversions.  
+4. **Maintain lower bound**: Keep \( n > 2013 \) but adjust complexity via new dependencies (base conversion, primality).  
+*Justification*: Base change alters palindrome sets; primality introduces sparsity; digit constraints ensure valid representations. These elements interconnect: base-9 primes must satisfy palindromic conditions in that base, making the sum test computationally intensive.  
+
+**Step 3**  
+**#Rewritten Instruction#**:  
+In base 9, a palindromic prime is a prime whose base-9 representation is a palindrome (no leading or trailing zeros). Compute the least integer \( n > 2013 \) not expressible as the sum of two such primes.  
+
+**Step 4**  
+**#Finally Rewritten Instruction#**:  
+Compute the least integer \( n > 2013 \) that cannot be expressed as the sum of two primes, each having a palindromic base-9 representation (without leading or trailing zeros).",success,100.43,"['If $a+b \\geq 2014$, then at least one of $a, b$ must be greater than 1006 . The palindromes greater than 1006 but less than 2014 are, in descending order, 2002, 1991, 1881, ..., 1111. Let a\n\n\n\nrepresent the larger of the two palindromes. Then for $n=2014, a=2002$ is impossible, because $2014-2002=12$. Any value of $a$ between 1111 and 2000 ends in 1 , so if $a+b=2014$, $b$ ends in 3 , and because $b<1000$, it follows that $303 \\leq b \\leq 393$. Subtracting 303 from 2014 yields 1711, and so $a \\leq 1711$. Thus $a=1661$ and $b=353$. A similar analysis shows the following results:\n\n$$\n\\begin{aligned}\n& 2015=1551+464 ; \\\\\n& 2016=1441+575 ; \\\\\n& 2017=1331+686 ; \\text { and } \\\\\n& 2018=1221+797\n\\end{aligned}\n$$\n\nBut 2019 cannot be expressed as the sum of two palindromes: $b$ would have to end in 8 , so $b=808+10 d$ for some digit $d$. Then $2019-898 \\leq a \\leq 2019-808$, hence $1121 \\leq a \\leq 1211$, and there is no palindrome in that interval.']"
+2712,"Positive integers $x, y, z$ satisfy $x y+z=160$. Compute the smallest possible value of $x+y z$.","Positive integers \(x, y, z, w\) satisfy \(w = y z - x\) and \(2xy + 3z = 1000\). Find the largest possible value of the minimum of \(\{x + z, w + x\}\).","Step 1
+#Elements Identified#:
+*   **Variables:** Positive integers $x, y, z$.
+*   **Constraint:** $x y + z = 160$.
+*   **Objective:** Minimize $x + y z$.
+*   **Scope/Complexity:** Single linear constraint, simple linear objective, homogeneous variable relationships.
+
+Step 2
+#Plan#:
+1.  **Increase Constraint Complexity:** Modify the constraint equation from a simple linear equation to a more complex form involving larger coefficients and constants, introducing numerical scale and sparsity, and add an auxiliary variable $w$ defined in relation to $x, y, z$.
+2.  **Add a Variable:** Introduce a fourth positive integer variable $w$, defined solely in terms of the existing variables ($w = y z - x$) to create an intrinsic dependency without introducing arbitrary new freedom.
+3.  **Enhance Objective Complexity:** Change the minimization objective to a max-min objective involving $w$ and new expressions ($x+z$, $w+x$), creating competing expressions the solver must balance to satisfy the max-min condition within the constraints. This replaces the simple minimization.
+
+Step 3
+#Rewritten Instruction#:
+Positive integers $x, y, z, w$ satisfy $w = y z - x$ and $2xy + 3z = 1000$. Find the largest possible value of the minimum of $\{x + z, w + x\}$.
+
+Step 4
+#Finally Rewritten Instruction#:
+Positive integers \(x, y, z, w\) satisfy \(w = y z - x\) and \(2xy + 3z = 1000\). Find the largest possible value of the minimum of \(\{x + z, w + x\}\).",success,19.63,"['First consider the problem with $x, y, z$ positive real numbers. If $x y+z=160$ and $z$ is constant, then $y=\\frac{160-z}{x}$, yielding $x+y z=x+\\frac{z(160-z)}{x}$. For $a, x>0$, the quantity $x+\\frac{a}{x}$ is minimized when $x=\\sqrt{a}$ (proof: use the Arithmetic-Geometric Mean Inequality $\\frac{A+B}{2} \\geq \\sqrt{A B}$ with $A=x$ and $\\left.B=\\frac{a}{x}\\right)$; in this case, $x+\\frac{a}{x}=2 \\sqrt{a}$. Thus $x+y z \\geq 2 \\sqrt{z(160-z)}$. Considered as a function of $z$, this lower bound is increasing for $z<80$.\n\nThese results suggest the following strategy: begin with small values of $z$, and find a factorization of $160-z$ such that $x$ is close to $\\sqrt{z(160-z)}$. (Equivalently, such that $\\frac{x}{y}$ is close to $z$.) The chart below contains the triples $(x, y, z)$ with the smallest values of $x+y z$, conditional upon $z$.\n\n| $z$ | $(x, y, z)$ | $x+y z$ |\n| :---: | :---: | :---: |\n| 1 | $(53,3,1)$ | 56 |\n| 2 | $(79,2,2)$ | 83 |\n| 3 | $(157,1,3)$ | 160 |\n| 4 | $(26,6,4)$ | 50 |\n| 5 | $(31,5,5)$ | 56 |\n| 6 | $(22,7,6)$ | 64 |\n\nBecause $x+y z \\geq 2 \\sqrt{z(160-z)}$, it follows that $x+y z \\geq 64$ for $6 \\leq z \\leq 80$. And because $x+y z>80$ for $z \\geq 80$, the minimal value of $x+y z$ is $\\mathbf{5 0}$.']"
+2713,Compute $\cos ^{3} \frac{2 \pi}{7}+\cos ^{3} \frac{4 \pi}{7}+\cos ^{3} \frac{8 \pi}{7}$.,"Let ζ = e^{i2π/7} be a primitive 7th root of unity. For integer k ≥ 0, express the sum S(k) = ∑_{j∈{1,2,4}} cos^k(2πj/7) + ∑_{j∈{1,2,4}} sin^k(2πj/7) as the constant term of the minimal monic rational cubic polynomial with roots ζ + ζ⁻¹, ζ² + ζ⁻², ζ⁴ + ζ⁻⁴. Use this to compute S(3).","Step 1
+#Elements Identified#:
+*   **Trigonometric Function:** `cos`
+*   **Operation:** Cubing (`^3`)
+*   **Angles:** Fixed angles `2π/7`, `4π/7`, `8π/7`, understood as seventh roots of unity.
+*   **Action:** Summation of the cubed cosines.
+*   **Domain/Phase:** Real numbers (angles are real), specific phase choices.
+*   **Theme:** Evaluating symmetric sums of trigonometric functions of angles related by doubling modulo 2π (or 7th roots of unity).
+
+Step 2
+#Plan#:
+1.  **Increase Exponent Scope:** Replace the fixed cube exponent `^3` with a variable integer exponent `k`, demanding computation for any `k` (not just `k=3`).
+2.  **Introduce Additional Constraints:** Frame expression as root of specific minimal polynomial. Require solving a system: sum of `cos^k(θ_j)` **plus** an additional related symmetric sum (e.g., `sin^k(θ_j)` or a product).
+3.  **Create Dependency:** Link the expression's value to the constant term of the minimal rational polynomial with rational coefficients having roots `e^{±i2π/7}, e^{±i4π/7}, e^{±i8π/7}` (excluding the trivial root 1).
+4.  **Modify Angles:** Keep angles as roots of unity but frame them generically via a primitive root, requiring symbolic manipulation.
+5.  **Maintain Theme Symmetry:** Ensure new constraints depend on/respect the intrinsic symmetry of the seventh roots of unity (± pairs) and phase shift properties.
+
+Step 3
+#Rewritten Instruction#:
+Let ζ = e^{i2π/7} be a primitive 7th root of unity. For integer k ≥ 0, compute S(k) = ∑_{j=1,2,4} cos^k(2πj/7) + ∑_{j=1,2,4} sin^k(2πj/7) and identify it as the constant term of the minimal rational cubic polynomial whose roots are ζ + ζ⁻¹, ζ² + ζ⁻², ζ⁴ + ζ⁻⁴. Apply this to find S(3).
+
+Step 4
+#Finally Rewritten Instruction#:
+Let ζ = e^{i2π/7} be a primitive 7th root of unity. For integer k ≥ 0, express the sum S(k) = ∑_{j∈{1,2,4}} cos^k(2πj/7) + ∑_{j∈{1,2,4}} sin^k(2πj/7) as the constant term of the minimal monic rational cubic polynomial with roots ζ + ζ⁻¹, ζ² + ζ⁻², ζ⁴ + ζ⁻⁴. Use this to compute S(3).",success,21.21,"['The identity $\\cos 3 \\theta=4 \\cos ^{3} \\theta-3 \\cos \\theta$ can be rewritten into the power-reducing identity\n\n$$\n\\cos ^{3} \\theta=\\frac{1}{4} \\cos 3 \\theta+\\frac{3}{4} \\cos \\theta\n$$\n\n\n\nThus if $D$ is the desired sum,\n\n$$\n\\begin{aligned}\nD & =\\cos ^{3} \\frac{2 \\pi}{7}+\\cos ^{3} \\frac{4 \\pi}{7}+\\cos ^{3} \\frac{8 \\pi}{7} \\\\\n& =\\frac{1}{4}\\left(\\cos \\frac{6 \\pi}{7}+\\cos \\frac{12 \\pi}{7}+\\cos \\frac{24 \\pi}{7}\\right)+\\frac{3}{4}\\left(\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{8 \\pi}{7}\\right) .\n\\end{aligned}\n$$\n\nObserve that $\\cos \\frac{24 \\pi}{7}=\\cos \\frac{10 \\pi}{7}$, so\n\n$$\nD=\\frac{1}{4}\\left(\\cos \\frac{6 \\pi}{7}+\\cos \\frac{12 \\pi}{7}+\\cos \\frac{10 \\pi}{7}\\right)+\\frac{3}{4}\\left(\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{8 \\pi}{7}\\right) .\n$$\n\nNotice also that $\\cos \\theta=\\cos (2 \\pi-\\theta)$ implies $\\cos \\frac{12 \\pi}{7}=\\cos \\frac{2 \\pi}{7}, \\cos \\frac{10 \\pi}{7}=\\cos \\frac{4 \\pi}{7}$, and $\\cos \\frac{8 \\pi}{7}=$ $\\cos \\frac{6 \\pi}{7}$. Rewriting $D$ using the least positive equivalent angles yields\n\n$$\n\\begin{aligned}\nD & =\\frac{1}{4}\\left(\\cos \\frac{6 \\pi}{7}+\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}\\right)+\\frac{3}{4}\\left(\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{6 \\pi}{7}\\right) \\\\\n& =\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{6 \\pi}{7} .\n\\end{aligned}\n$$\n\nTo evaluate this sum, use the identity $\\cos \\theta=\\cos (2 \\pi-\\theta)$ again to write\n\n$$\n2 D=\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{6 \\pi}{7}+\\cos \\frac{8 \\pi}{7}+\\cos \\frac{10 \\pi}{7}+\\cos \\frac{12 \\pi}{7}\n$$\n\nIf $\\alpha=\\cos \\frac{2 \\pi}{7}+i \\sin \\frac{2 \\pi}{7}$, notice that the right side of the equation above is simply the real part of the sum $\\alpha+\\alpha^{2}+\\alpha^{3}+\\alpha^{4}+\\alpha^{5}+\\alpha^{6}$. Because $\\alpha^{n}$ is a solution to the equation $z^{7}=1$ for $n=0,1, \\ldots, 6$, the sum $1+\\alpha+\\alpha^{2}+\\cdots+\\alpha^{6}$ equals 0 . Hence $\\alpha+\\alpha^{2}+\\cdots+\\alpha^{6}=-1$ and $D=-1 / 2$.'
+ 'Construct a cubic polynomial in $x$ for which $\\cos \\frac{2 \\pi}{7}, \\cos \\frac{4 \\pi}{7}$, and $\\cos \\frac{8 \\pi}{7}$ are zeros; then the sum of their cubes can be found using techniques from the theory of equations. In particular, suppose the three cosines are zeros of $x^{3}+b x^{2}+c x+d$. Then\n\n$$\n\\begin{aligned}\nb & =-\\left(\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{8 \\pi}{7}\\right) \\\\\nc & =\\cos \\frac{2 \\pi}{7} \\cos \\frac{4 \\pi}{7}+\\cos \\frac{2 \\pi}{7} \\cos \\frac{8 \\pi}{7}+\\cos \\frac{4 \\pi}{7} \\cos \\frac{8 \\pi}{7}, \\text { and } \\\\\nd & =-\\cos \\frac{2 \\pi}{7} \\cos \\frac{4 \\pi}{7} \\cos \\frac{8 \\pi}{7}\n\\end{aligned}\n$$\n\nUse complex seventh roots of unity (as in the previous solution) to find $b=1 / 2$. To find $c$, use the product-to-sum formula $2 \\cos A \\cos B=\\cos (A+B)+\\cos (A-B)$ three times:\n\n$$\n\\begin{aligned}\n2 c & =\\left(\\cos \\frac{6 \\pi}{7}+\\cos \\frac{2 \\pi}{7}\\right)+\\left(\\cos \\frac{10 \\pi}{7}+\\cos \\frac{6 \\pi}{7}\\right)+\\left(\\cos \\frac{4 \\pi}{7}+\\cos \\frac{12 \\pi}{7}\\right) \\\\\n& \\left.=\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{6 \\pi}{7}+\\cos \\frac{8 \\pi}{7}+\\cos \\frac{10 \\pi}{7}+\\cos \\frac{12 \\pi}{7} \\text { [because } \\cos \\theta=\\cos (2 \\pi-\\theta)\\right] \\\\\n& =-1\n\\end{aligned}\n$$\n\n\n\nThus $c=-1 / 2$.\n\nTo compute $d$, multiply both sides by $\\sin \\frac{2 \\pi}{7}$ and use the identity $2 \\sin \\theta \\cos \\theta=\\sin 2 \\theta$ :\n\n$$\n\\begin{aligned}\nd \\sin \\frac{2 \\pi}{7} & =-\\sin \\frac{2 \\pi}{7} \\cos \\frac{2 \\pi}{7} \\cos \\frac{4 \\pi}{7} \\cos \\frac{8 \\pi}{7} \\\\\n& =-\\frac{1}{2} \\sin \\frac{4 \\pi}{7} \\cos \\frac{4 \\pi}{7} \\cos \\frac{8 \\pi}{7} \\\\\n& =-\\frac{1}{4} \\sin \\frac{8 \\pi}{7} \\cos \\frac{8 \\pi}{7} \\\\\n& =-\\frac{1}{8} \\sin \\frac{16 \\pi}{7} .\n\\end{aligned}\n$$\n\nBecause $\\sin \\frac{16 \\pi}{7}=\\sin \\frac{2 \\pi}{7}$, the factors on both sides cancel, leaving\n\n$$\nd=-1 / 8\n$$\n\nThus $\\cos \\frac{2 \\pi}{7}, \\cos \\frac{4 \\pi}{7}$, and $\\cos \\frac{8 \\pi}{7}$ are roots of $x^{3}+\\frac{1}{2} x^{2}-\\frac{1}{2} x-\\frac{1}{8}$; so each value also satisfies the equation $x^{3}=-\\frac{1}{2} x^{2}+\\frac{1}{2} x+\\frac{1}{8}$. Hence the desired sum can be rewritten as\n\n$$\n\\begin{aligned}\n\\cos ^{3} \\frac{2 \\pi}{7}+\\cos ^{3} \\frac{4 \\pi}{7}+\\cos ^{3} \\frac{8 \\pi}{7} & =-\\frac{1}{2}\\left(\\cos ^{2} \\frac{2 \\pi}{7}+\\cos ^{2} \\frac{4 \\pi}{7}+\\cos ^{2} \\frac{8 \\pi}{7}\\right) \\\\\n& +\\frac{1}{2}\\left(\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{8 \\pi}{7}\\right)+\\frac{3}{8}\n\\end{aligned}\n$$\n\nPrevious work has already established that $\\cos \\frac{2 \\pi}{7}+\\cos \\frac{4 \\pi}{7}+\\cos \\frac{8 \\pi}{7}=-1 / 2$, so it remains to compute $\\cos ^{2} \\frac{2 \\pi}{7}+\\cos ^{2} \\frac{4 \\pi}{7}+\\cos ^{2} \\frac{8 \\pi}{7}$. The identity $A^{2}+B^{2}+C^{2}=(A+B+C)^{2}-2(A B+B C+A C)$ allows the use of previous results: $\\cos ^{2} \\frac{2 \\pi}{7}+\\cos ^{2} \\frac{4 \\pi}{7}+\\cos ^{2} \\frac{8 \\pi}{7}=(-1 / 2)^{2}-2(-1 / 2)=5 / 4$. Thus\n\n$$\n\\cos ^{3} \\frac{2 \\pi}{7}+\\cos ^{3} \\frac{4 \\pi}{7}+\\cos ^{3} \\frac{8 \\pi}{7}=-\\frac{1}{2}\\left(\\frac{5}{4}\\right)+\\frac{1}{2}\\left(-\\frac{1}{2}\\right)+\\frac{3}{8}=-\\frac{1}{2} .\n$$']"
+2714,"In right triangle $A B C$ with right angle $C$, line $\ell$ is drawn through $C$ and is parallel to $\overline{A B}$. Points $P$ and $Q$ lie on $\overline{A B}$ with $P$ between $A$ and $Q$, and points $R$ and $S$ lie on $\ell$ with $C$ between $R$ and $S$ such that $P Q R S$ is a square. Let $\overline{P S}$ intersect $\overline{A C}$ in $X$, and let $\overline{Q R}$ intersect $\overline{B C}$ in $Y$. The inradius of triangle $A B C$ is 10 , and the area of square $P Q R S$ is 576 . Compute the sum of the inradii of triangles $A X P, C X S, C Y R$, and $B Y Q$.","In right triangle $A B C$ with right angle $C$, line $\ell$ is drawn through $C$ and is parallel to $\overline{A B}$. Points $P$ and $Q$ lie on $\overline{A B}$ with $P$ between $A$ and $Q$, and points $R$ and $S$ lie on $\ell$ with $C$ between $R$ and $S$ such that $P Q R S$ is a rectangle with area 576 and $|PQ| : |PS| = 4 : 3$, and diagonal $\overline{P R}$ is perpendicular to $\overline{A C}$. Let $\overline{P S}$ intersect $\overline{A C}$ in $X$, let $\overline{Q R}$ intersect $\overline{B C}$ in $Y$, and let lines $X C$ and $Y B$ intersect at $Z$. The inradius of triangle $A B C$ is 10. Compute the sum of the inradii of triangles $A X P, C X S, C Y R$, and $B Y Q$.","Step 1  
+#Elements Identified#:  
+- Right angle at C  
+- Line ℓ through C parallel to AB  
+- Points P and Q on AB with P between A and Q  
+- Points R and S on ℓ with C between R and S  
+- PQRS is a square  
+- PS intersects AC at X; QR intersects BC at Y  
+- Given: inradius of ABC is 10, area of square PQRS is 576  
+- Compute sum of inradii of triangles AXP, CXS, CYR, and BYQ  
+
+Step 2  
+#Plan#:  
+- Modify the shape: Change PQRS from a square to a rectangle with a specified aspect ratio (e.g., |PQ| : |PS| = 4 : 3) to introduce variable orientation and scale dependencies.  
+- Add geometric dependence: Specify that the rectangle's diagonal PR is perpendicular to AC, adding an angular constraint that increases reasoning complexity.  
+- Introduce an additional point: Include the intersection point Z of lines XC and YB, requiring computation involving more angular relationships.  
+
+Step 3  
+#Rewritten Instruction#:  
+In right triangle $A B C$ with right angle $C$, line $\ell$ is drawn through $C$ and is parallel to $\overline{A B}$. Points $P$ and $Q$ lie on $\overline{A B}$ with $P$ between $A$ and $Q$, and points $R$ and $S$ lie on $\ell$ with $C$ between $R$ and $S$ such that $P Q R S$ is a rectangle with area 576 and $|PQ| : |PS| = 4 : 3$, and diagonal $\overline{P R}$ is perpendicular to $\overline{A C}$. Let $\overline{P S}$ intersect $\overline{A C}$ in $X$, let $\overline{Q R}$ intersect $\overline{B C}$ in $Y$, and let lines $X C$ and $Y B$ intersect at $Z$. The inradius of triangle $A B C$ is 10. Compute the sum of the inradii of triangles $A X P, C X S, C Y R$, and $B Y Q$.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+In right triangle $A B C$ with right angle $C$, line $\ell$ is drawn through $C$ and is parallel to $\overline{A B}$. Points $P$ and $Q$ lie on $\overline{A B}$ with $P$ between $A$ and $Q$, and points $R$ and $S$ lie on $\ell$ with $C$ between $R$ and $S$ such that $P Q R S$ is a rectangle with area 576 and $|PQ| : |PS| = 4 : 3$, and diagonal $\overline{P R}$ is perpendicular to $\overline{A C}$. Let $\overline{P S}$ intersect $\overline{A C}$ in $X$, let $\overline{Q R}$ intersect $\overline{B C}$ in $Y$, and let lines $X C$ and $Y B$ intersect at $Z$. The inradius of triangle $A B C$ is 10. Compute the sum of the inradii of triangles $A X P, C X S, C Y R$, and $B Y Q$.",success,203.85,"['Note that in right triangle $A B C$ with right angle $C$, the inradius $r$ is equal to $\\frac{a+b-c}{2}$, where $a=B C, b=A C$, and $c=A B$, because the inradius equals the distance from the vertex of the right angle $C$ to (either) point of tangency along $\\overline{A C}$ or $\\overline{B C}$. Thus the sum of the inradii of triangles $A X P, C X S, C Y R$, and $B Y Q$ is equal to one-half the difference between the sum of the lengths of the legs of these triangles and the sum of the lengths of the hypotenuses of these triangles. Let $t$ be the side length of square $P Q R S$. Then the sum of the lengths of the legs of triangles $A X P, C X S, C Y R$, and $B Y Q$ is\n\n$$\n\\begin{aligned}\n& A P+P X+X S+S C+C R+R Y+Y Q+Q B \\\\\n= & A P+P S+S R+R Q+Q B \\\\\n= & A P+t+t+t+Q B \\\\\n= & A B-P Q+3 t \\\\\n= & c-t+3 t \\\\\n= & c+2 t .\n\\end{aligned}\n$$\n\n\n\nThe sum of the lengths of the hypotenuses of triangles $A X P, C X S, C Y R$, and $B Y Q$ is $A X+X C+C Y+Y B=A C+C B=b+a$. Hence the sum of the inradii of triangles $A X P, C X S, C Y R$, and $B Y Q$ is $\\frac{c+2 t-(a+b)}{2}=t-r$. Thus the desired sum equals $\\sqrt{576}-10=24-10=\\mathbf{1 4}$.']"
+2715,"Compute the sum of all real numbers $x$ such that
+
+$$
+\left\lfloor\frac{x}{2}\right\rfloor-\left\lfloor\frac{x}{3}\right\rfloor=\frac{x}{7}
+$$",Compute the sum of all real numbers \(x\) such that \(\left\lfloor\frac{x}{3}\right\rfloor + \left\lfloor\frac{x}{4}\right\rfloor - \left\lfloor\frac{x}{5}\right\rfloor = \frac{x}{7}\).,"Step 1
+#Elements Identified#:
+- **Variables**: Real number \(x\)
+- **Conditions**: Equation involving floor functions and a linear fraction: \(\left\lfloor\frac{x}{2}\right\rfloor - \left\lfloor\frac{x}{3}\right\rfloor = \frac{x}{7}\)
+- **Actions**: Compute the sum of all satisfying \(x\)  
+- **Theme**: Solving a functional equation with discontinuous (floor) components to find and sum real roots
+
+Step 2
+#Plan#:
+1. Increase the number of floor function terms: Expand from two floor terms to three to amplify residue class complexity.
+2. Alter the arithmetic operators: Replace subtraction with a mix of addition and subtraction to disrupt linearity patterns.
+3. Modify the moduli of floor functions: Shift moduli to coprime-like values (e.g., 3,4,5) to maximize the period length (LCM = 60), multiplying solution intervals.
+4. Simplify constraints: Retain the right side as \(\frac{x}{k}\) to avoid ambiguity.
+5. Ensure interconnectivity: New moduli (3,4,5) and operator changes (\(\cdots + \cdots - \cdots\)) maintain dependency on residue intervals, increasing algebraic and case-handling demands.
+
+Step 3
+#Rewritten Instruction#:
+Compute the sum of all real numbers \(x\) such that \(\left\lfloor\frac{x}{3}\right\rfloor + \left\lfloor\frac{x}{4}\right\rfloor - \left\lfloor\frac{x}{5}\right\rfloor = \frac{x}{7}\).
+
+Step 4
+#Finally Rewritten Instruction#:
+Compute the sum of all real numbers \(x\) such that \(\left\lfloor\frac{x}{3}\right\rfloor + \left\lfloor\frac{x}{4}\right\rfloor - \left\lfloor\frac{x}{5}\right\rfloor = \frac{x}{7}\).",success,271.72,"['Because the quantity on the left side is the difference of two integers, $x / 7$ must be an integer, hence $x$ is an integer (in fact a multiple of 7). Because the denominators on the left side are 2 and 3 , it is convenient to write $x=6 q+r$, where $0 \\leq r \\leq 5$, so that $\\lfloor x / 2\\rfloor=3 q+\\lfloor r / 2\\rfloor$ and $\\lfloor x / 3\\rfloor=2 q+\\lfloor r / 3\\rfloor$. Then for $r=0,1, \\ldots, 5$ these expressions can be simplified as shown in the table below.\n\n| $r$ | 0 | 1 | 2 | 3 | 4 | 5 |\n| :---: | :---: | :---: | :---: | :---: | :---: | :---: |\n| $\\left\\lfloor\\frac{x}{2}\\right\\rfloor$ | $3 q$ | $3 q$ | $3 q+1$ | $3 q+1$ | $3 q+2$ | $3 q+2$ |\n| $\\left\\lfloor\\frac{x}{3}\\right\\rfloor$ | $2 q$ | $2 q$ | $2 q$ | $2 q+1$ | $2 q+1$ | $2 q+1$ |\n| $\\left\\lfloor\\frac{x}{2}\\right\\rfloor-\\left\\lfloor\\frac{x}{3}\\right\\rfloor$ | $q$ | $q$ | $q+1$ | $q$ | $q+1$ | $q+1$ |\n\nNow proceed by cases:\n\n$r=0:$ Then $q=x / 6$. But from the statement of the problem, $q=x / 7$, so $x=0$.\n\n$r=1: \\quad$ Then $q=(x-1) / 6=x / 7 \\Rightarrow x=7$.\n\n$r=2: \\quad$ Then $q=(x-2) / 6$ and $q+1=x / 7$, so $(x+4) / 6=x / 7$, and $x=-28$.\n\n$r=3$ : Then $q=(x-3) / 6$ and $q=x / 7$, so $x=21$.\n\n$r=4: \\quad$ Then $q=(x-4) / 6$ and $q+1=x / 7$, so $(x+2) / 6=x / 7$, and $x=-14$.\n\n$r=5$ : Then $q=(x-5) / 6$ and $q+1=x / 7$, so $(x+1) / 6=x / 7$, and $x=-7$.\n\nThe sum of these values is $0+7+-28+21+-14+-7=\\mathbf{- 2 1}$.']"
+2717,"Let $S=\{1,2, \ldots, 20\}$, and let $f$ be a function from $S$ to $S$; that is, for all $s \in S, f(s) \in S$. Define the sequence $s_{1}, s_{2}, s_{3}, \ldots$ by setting $s_{n}=\sum_{k=1}^{20} \underbrace{(f \circ \cdots \circ f)}_{n}(k)$. That is, $s_{1}=f(1)+$ $\cdots+f(20), s_{2}=f(f(1))+\cdots+f(f(20)), s_{3}=f(f(f(1)))+f(f(f(2)))+\cdots+f(f(f(20)))$, etc. Compute the smallest integer $p$ such that the following statement is true: The sequence $s_{1}, s_{2}, s_{3}, \ldots$ must be periodic after a certain point, and its period is at most $p$. (If the sequence is never periodic, then write $\infty$ as your answer.)","Let \(S = \{1, 2, \ldots, n\}\) for a positive integer \(n\), and \(w : S \to \mathbb{Z}\) be a weight function. Let \(f\) and \(g\) be functions from \(S\) to \(S\). Define the sequence \(s_1, s_2, s_3, \ldots\) by setting \(a_{0,k} = k\), and for \(m \geq 1\), \(a_{m,k} = f(a_{m-1,k})\) if \(m\) is odd or \(g(a_{m-1,k})\) if \(m\) is even, then \(s_m = \sum_{k=1}^{n} w(a_{m,k})\). Compute the smallest integer \(p(n)\) such that for any \(n\), any \(w\), and any \(f,g\), the sequence is eventually periodic with period at most \(p(n)\).","Step 1  
+#Elements Identified#:  
+- **Set S**: Finite set of fixed size (20 elements).  
+- **Function f**: Single arbitrary function from S to S.  
+- **Sequence definition**: \(s_n\) is the sum of the n-fold composition of f applied to each element of S.  
+- **Periodicity requirement**: Find the smallest p ensuring \(s_n\) is eventually periodic with period ≤ p for any f.  
+- **Core theme**: Eventual periodicity of the sum of iterated function applications over a finite set.
+
+Step 2  
+#Plan#:  
+- **Change set size to variable n**: Replace fixed S size (20) with a variable size n to require a generalized bound dependent on n.  
+- **Introduce multiple functions**: Replace the single function f with two functions f and g, applying them alternately during composition to increase state space complexity.  
+- **Modify sequence definition**: Define \(s_m\) using a time-dependent composition (alternating f and g) and include a weight function w to vary the summation input.  
+- **Ensure interconnected complexity**: The weight w and alternating functions force consideration of interaction effects on periodicity. The size variable n scales the problem, and all elements tie to the periodic behavior.  
+- **Maintain solvability**: Eventual periodicity is preserved due to finiteness, but the bound p(n) must account for worst-case interactions.
+
+Step 3  
+#Rewritten Instruction#:  
+Let \(S = \{1, 2, \ldots, n\}\) for a positive integer \(n\), and \(w : S \to \mathbb{Z}\) be a weight function. Let \(f\) and \(g\) be two functions from \(S\) to \(S\). Define the sequence \(s_1, s_2, s_3, \ldots\) by \(s_m = \sum_{k=1}^{n} w(a_{m,k})\), where \(a_{m,k}\) is defined with \(a_{0,k} = k\), and \(a_{m,k} = f(a_{m-1,k})\) if \(m\) is odd, or \(g(a_{m-1,k})\) if \(m\) is even for \(m \geq 1\). Compute the smallest integer \(p(n)\) such that for any \(n\), any \(w\), and any \(f,g\), the sequence must be eventually periodic with period at most \(p(n)\). (If not periodic, provide an expression in terms of \(n\).)
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Let \(S = \{1, 2, \ldots, n\}\) for a positive integer \(n\), and \(w : S \to \mathbb{Z}\) be a weight function. Let \(f\) and \(g\) be functions from \(S\) to \(S\). Define the sequence \(s_1, s_2, s_3, \ldots\) by setting \(a_{0,k} = k\), and for \(m \geq 1\), \(a_{m,k} = f(a_{m-1,k})\) if \(m\) is odd or \(g(a_{m-1,k})\) if \(m\) is even, then \(s_m = \sum_{k=1}^{n} w(a_{m,k})\). Compute the smallest integer \(p(n)\) such that for any \(n\), any \(w\), and any \(f,g\), the sequence is eventually periodic with period at most \(p(n)\).",success,187.44,"[""If $f$ is simply a permutation of $S$, then $\\left\\{s_{n}\\right\\}$ is periodic. To understand why, consider a smaller set $T=\\{1,2,3,4,5,6,7,8,9,10\\}$. If $f:[1,2,3,4,5,6,7,8,9,10] \\rightarrow[2,3,4,5,1,7,8,6,9,10]$, then $f$ has one cycle of period 5 and one cycle of period 3 , so the period of $f$ is 15 . However,\n\n$$\nf(1)+f(2)+f(3)+f(4)+f(5)+f(6)+f(7)+f(8)+f(9)+f(10)=\n$$\n\n\n\n$$\n2+3+4+5+1+7+8+6+9+10=55,\n$$\n\nbecause $f$ just rearranges the order of the summands. So $s_{1}=s_{0}$, and for all $n, s_{n}=s_{n+1}$; in short, the period of $\\left\\{s_{n}\\right\\}$ is just 1 .\n\nIn order for $\\left\\{s_{n}\\right\\}$ to have a period greater than $1, f$ must be many-to-one, so that some values occur more than once (and some values do not occur at all) in the sum $f(1)+f(2)+\\cdots+f(10)$ (or, in the original problem, $f(1)+f(2)+\\cdots+f(20)$ ). For example, consider the function $f_{2}$ below:\n\n$$\nf_{2}:[1,2,3,4,5,6,7,8,9,10] \\rightarrow[2,3,4,5,1,10,9,10,7,3]\n$$\n\nNote that $s_{1}=2+3+4+5+1+10+9+10+7+3 \\neq 55$, so $\\left\\{s_{n}\\right\\}$ is not immediately periodic. But $\\left\\{s_{n}\\right\\}$ is eventually periodic, as the following argument shows. The function $f_{2}$ has two cycles: $1 \\rightarrow 2 \\rightarrow 3 \\rightarrow 4 \\rightarrow 5 \\rightarrow 1$, and $7 \\rightarrow 9 \\rightarrow 7$. There are also two paths that meet up with the first cycle: $6 \\rightarrow 10 \\rightarrow 3 \\rightarrow \\cdots$ and $8 \\rightarrow 10 \\rightarrow 3 \\rightarrow \\cdots$. Thus for all $k$ in $T, f_{2}\\left(f_{2}(k)\\right)$ is an element of one of these two extended cycles. Thus $\\left\\{s_{n}\\right\\}$ eventually becomes periodic.\n\nThe criterion that the function be many-to-one is necessary, but not sufficient, for $\\left\\{s_{n}\\right\\}$ to have period greater than 1 . To see why, consider the function $g:[1,2,3,4,5,6,7,8,9,10] \\rightarrow$ $[2,3,4,5,6,1,8,7,8,7]$. This function is many-to-one, and contains two cycles, $1 \\rightarrow 2 \\rightarrow$ $3 \\rightarrow 4 \\rightarrow 5 \\rightarrow 6 \\rightarrow 1$ and $7 \\rightarrow 8 \\rightarrow 7$. But because $g(9)=8$ and $g(10)=7$, the sum $s_{1}=2+3+4+5+6+1+8+7+8+7$, while $s_{2}=3+4+5+6+1+2+7+8+7+8$. In fact, for $n>1, s_{n+1}=s_{n}$, because applying $f$ only permutes the 6 -cycle and switches the two 7 's and two 8's. That is, in the list $\\underbrace{(g \\circ \\cdots \\circ g)}_{n}(1), \\ldots, \\underbrace{(g \\circ \\cdots \\circ g)}_{n}(10)$, the values 7 and 8 both show up exactly twice. This cycle is balanced: each of its elements shows up the same number of times for all $n$ in the list $\\underbrace{(g \\circ \\cdots \\circ g)}_{n}(1), \\ldots, \\underbrace{(g \\circ \\cdots \\circ g)}_{n}(10)$, for all $n$ after a certain point. The conclusion is that not all many-to-one functions produce unbalanced cycles.\n\nThere are two ways a function $g$ can produce balanced cycles. First, the cycles can be selfcontained, so no element outside of the cycle is ever absorbed into the cycle, as happens with the 6-cycle in the example above. Alternatively, the outside elements that are absorbed into a cycle can all arrive at different points of the cycle, so that each element of the cycle occurs equally often in each iteration of $g$. In the example above, the values $g(9)=7$ and $g(10)=8$ balance the $7 \\rightarrow 8 \\rightarrow 7$ cycle. On the other hand, in the function $f_{2}$ above, $f(f(6))=f(f(8))=f(f(1))=3$, making the large cycle unbalanced: in $s_{2}$, the value 3 appears three times in $s_{2}$, but the value 2 only appears once in $s_{2}$.\n\nThe foregoing shows that only unbalanced cycles can affect the periodicity of $\\left\\{s_{n}\\right\\}$. Because each element of a balanced cycle occurs equally often in each iteration, the period of that component of the sum $s_{n}$ attributed to the cycle is simply 1. (The case where $f$ is a permutation of $S$ is simply a special case of this result.) In the above example, the large cycle is\n\n\n\nunbalanced. Note the following results under $f_{2}$.\n\n| $n$ | $\\overbrace{\\left(f_{2} \\circ \\cdots \\circ f_{2}\\right)}^{n}(T)$ | $s_{n}$ |\n| :---: | :---: | :---: |\n| 1 | $[2,3,4,5,1,10,9,10,7,3]$ | 54 |\n| 2 | $[3,4,5,1,2,3,7,3,9,4]$ | 41 |\n| 3 | $[4,5,1,2,3,4,9,4,7,5]$ | 40 |\n| 4 | $[5,1,2,3,4,5,7,5,9,1]$ | 42 |\n| 5 | $[1,2,3,4,5,1,9,1,7,2]$ | 35 |\n| 6 | $[2,3,4,5,1,2,7,2,9,3]$ | 38 |\n| 7 | $[3,4,5,1,2,3,9,3,7,4]$ | 41 |\n| 8 | $[4,5,1,2,3,4,7,4,9,5]$ | 40 |\n| 9 | $[5,1,2,3,4,5,9,5,7,1]$ | 42 |\n\nThe period of $\\left\\{s_{n}\\right\\}$ for $f_{2}$ is 5 , the period of the unbalanced cycle.\n\nThe interested reader may inquire whether all unbalanced cycles affect the periodicity of $\\left\\{s_{n}\\right\\}$; we encourage those readers to explore the matter independently. For the purposes of solving this problem, it is sufficient to note that unbalanced cycles can affect $\\left\\{s_{n}\\right\\}$ 's periodicity.\n\nFinally, note that an unbalanced $k$-cycle actually requires at least $k+1$ elements: $k$ to form the cycle, plus at least 1 to be absorbed into the cycle and cause the imbalance. For the original set $S$, one way to create such an imbalance would be to have $f(20)=f(1)=$ $2, f(2)=3, f(3)=4, \\ldots, f(19)=1$. This arrangement creates an unbalanced cycle of length 19. But breaking up into smaller unbalanced cycles makes it possible to increase the period of $\\left\\{s_{n}\\right\\}$ even more, because then in most cases the period is the least common multiple of the periods of the unbalanced cycles. For example, $f:[1,2,3, \\ldots, 20]=$ $[2,3,4,5,6,7,8,9,1,1,12,13,14,15,16,17,18,11,11,11]$ has an unbalanced cycle of length 9 and an unbalanced cycle of length 8 , giving $\\left\\{s_{n}\\right\\}$ a period of 72 .\n\nSo the goal is to maximize $\\operatorname{lcm}\\left\\{k_{1}, k_{2}, \\ldots, k_{m}\\right\\}$ such that $k_{1}+k_{2}+\\cdots+k_{m}+m \\leq 20$. With $m=2$, the maximal period is 72 , achieved with $k_{1}=9$ and $k_{2}=8$. With $m=3$, $k_{1}+k_{2}+k_{3} \\leq 17$, but $\\operatorname{lcm}\\{7,6,4\\}=84<\\operatorname{lcm}\\{7,5,4\\}=140$. This last result can be obtained with unbalanced cycles of length 4,5 , and 7 , with the remaining four points entering the three cycles (or with one point forming a balanced cycle of length 1, i.e., a fixed point). Choosing larger values of $m$ decreases the values of $k$ so far that they no longer form long cycles: when $m=4, k_{1}+k_{2}+k_{3}+k_{4} \\leq 16$, and even if $k_{4}=2, k_{3}=3$, and $k_{2}=5$, for a period of 30 , the largest possible value of $k_{1}=6$, which does not alter the period. (Even $k_{1}=7, k_{2}=5$, and $k_{3}=k_{4}=2$ only yields a period of 70 .) Thus the maximum period of $s_{n}$ is $\\mathbf{1 4 0}$. One such function $f$ is given below.\n\n$$\n\\begin{array}{c|cccccccccccccccccccc}\nn & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16 & 17 & 18 & 19 & 20 \\\\\n\\hline f(n) & 2 & 3 & 4 & 1 & 1 & 7 & 8 & 9 & 10 & 6 & 6 & 13 & 14 & 15 & 16 & 17 & 18 & 12 & 12 & 20\n\\end{array}\n$$""]"
+2718,Compute the smallest positive integer $n$ such that $n^{2}+n^{0}+n^{1}+n^{3}$ is a multiple of 13 .,Compute the smallest prime integer \(n\) such that \(n^{0} + n^{1} + n^{2} + n^{3} + n^{4}\) is divisible by both 13 and 17.,"Step 1
+#Elements Identified#:
+- Variables: Positive integer \(n\).
+- Conditions: Expression \(n^{2} + n^{0} + n^{1} + n^{3}\) must be divisible by 13; \(n\) must be the smallest positive integer satisfying this.
+- Participants: Solely \(n\), with no additional entities.
+- Actions: Computation involving polynomial evaluation and divisibility check.
+- Processes: Sum of powers of \(n\) with fixed exponents, modulo operation using 13.
+- Theme: Modular arithmetic applied to a specific polynomial expression, focused on finding a minimal solution.
+
+Step 2
+#Plan#:
+- Expand the polynomial by adding a higher-degree term (\(n^{4}\)) to increase algebraic complexity and require handling of a geometric-like series.
+- Modify the divisibility condition to involve multiple prime moduli (replace single modulus 13 with co-prime primes 13 and 17), necessitating simultaneous divisibility, which introduces the need for the Chinese Remainder Theorem.
+- Add a constraint that \(n\) must be a prime number, which adds a primality test and restricts the solution space, forcing more rigorous reasoning about number properties.
+- Ensure all elements are interconnected: The polynomial growth influences the modulo checks, and the primality constraint affects the search for the minimal \(n\), tying back to the core theme while increasing reasoning depth without irrelevant variables.
+
+Step 3
+#Rewritten Instruction#:
+Compute the smallest prime integer \(n\) such that \(n^{0} + n^{1} + n^{2} + n^{3} + n^{4}\) is divisible by both 13 and 17.
+
+Step 4
+#Finally Rewritten Instruction#:
+Compute the smallest prime integer \(n\) such that \(n^{0} + n^{1} + n^{2} + n^{3} + n^{4}\) is divisible by both 13 and 17.",success,59.6,"['Note that $n^{2}+n^{0}+n^{1}+n^{3}=n^{2}+1+n+n^{3}=\\left(n^{2}+1\\right)(1+n)$. Because 13 is prime, 13 must be a divisor of one of these factors. The smallest positive integer $n$ such that $13 \\mid 1+n$ is $n=12$, whereas the smallest positive integer $n$ such that $13 \\mid n^{2}+1$ is $n=\\mathbf{5}$.']"
+2720,Let T be any number you want. Compute $2^{\log _{T} 8}-8^{\log _{T} 2}$.,"**  
+""Let \(T\) be any positive real number not equal to 1, and \(p, q\) be any positive real numbers. Compute \((T^{p})^{\log_{T} q} - (T^{q})^{\log_{T} p}\).""","Step 1  
+**#Elements Identified#:**  
+- **Variables**: \(T\) (arbitrary number, but with implicit constraints: \(T > 0\), \(T \neq 1\) for logarithm non-degeneracy).  
+- **Expressions**: Exponential terms with logarithmic exponents (\(2^{\log_T 8}\) and \(8^{\log_T 2}\)).  
+- **Operations**: Logarithm, exponentiation, and subtraction.  
+- **Core Concept**: Simplification of logarithmic-exponential expressions using logarithmic identities.  
+- **Structure**: Simple binary subtraction of two symmetric terms, which inherently simplifies to 0 for all valid \(T\) (due to identity \(a^{\log_b c} = c^{\log_b a}\)).  
+- **Theme**: Algebraic manipulation of logarithmic properties to evaluate expressions.  
+
+**Weaknesses for Complexity Increase**: Minimal variables, symmetry leading to zero, no dependency on additional parameters or real-world constraints.  
+
+---  
+
+Step 2  
+**#Plan#:**  
+1. **Introduce Additional Variables**: Replace fixed bases/arguments (2 and 8) with arbitrary positive real numbers \(p\) and \(q\), and keep \(T\) as the base. This discards inherent symmetry and forces analysis for arbitrary real inputs.  
+2. **Redefine Expressions**: Replace \(2^{\log_{T} 8\) with \((T^{p})^{\log_{T} q}\) and \(8^{\log_{T} 2\) with \((T^{q})^{\log_{T} p}\). This maintains logarithmic complexity but requires expanding exponential forms using identities.  
+3. **Add Quantitative Constraints**: Impose explicit positivity constraints (\(T > 0, T \neq 1\); \(p > 0, q > 0\)) to ensure domain validity of logs/exponents.  
+4. **Enhance Reasoning Demand**: The expression \((T^{p})^{\log_{T} q} - (T^{q})^{\log_{T} p}\) resolves to \(q^p - p^q\) after simplification—requiring decomposition into multiple steps:  
+   - Simplify \((T^{p})^{\log_{T} q}\) to \(q^p\) using \((a^b)^c = a^{bc}\) and \(T^{\log_{T} a} = a\).  
+   - Apply analogous simplification to \((T^{q})^{\log_{T} p}\) to get \(p^q\).  
+   - Recognize the expression is independent of \(T\), becoming \(q^p - p^q\), demanding deeper insights.  
+
+**Justification**: Adds two variables and amplifies reasoning through simultaneous exponent-and-log simplification. The result (\(q^p - p^q\)) is non-constant and variable-dependent, enabling algebraic experimentation. Constraints prevent degenerate cases and maintain interconnectivity (""compute"" depends explicitly and coherently on all variables).  
+
+---  
+
+Step 3  
+**#Rewritten Instruction#:**  
+""Let \(T\) be any positive real number not equal to 1, and \(p, q\) be any positive real numbers. Compute \((T^{p})^{\log_{T} q} - (T^{q})^{\log_{T} p}\).""  
+
+---  
+
+Step 4  
+**#Finally Rewritten Instruction#:**  
+""Let \(T\) be any positive real number not equal to 1, and \(p, q\) be any positive real numbers. Compute \((T^{p})^{\log_{T} q} - (T^{q})^{\log_{T} p}\).""",success,156.14,['Let $\\log _{T} 8=x$. Then $T^{x}=8$. Thus the given expression equals $2^{x}-\\left(T^{x}\\right)^{\\log _{T} 2}=2^{x}-T^{x \\log _{T} 2}=$ $2^{x}-T^{\\log _{T} 2^{x}}=2^{x}-2^{x}=\\mathbf{0}$ (independent of $T$ ).']

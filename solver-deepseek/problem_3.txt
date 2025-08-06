@@ -1,0 +1,2 @@
+**:  
+For a regular \(20\)-gon with \(20\) distinct tokens (one per vertex), a move swaps tokens at an edge's endpoints. After all \(\binom{20}{2}\) pairs are swapped exactly once, compute the minimum possible number of unselected edges.

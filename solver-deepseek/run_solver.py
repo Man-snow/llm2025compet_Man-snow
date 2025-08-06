@@ -1,31 +1,50 @@
+# run_solver.py
+
 import subprocess
 import os
 import sys
 import time
-import argparse # argparseをインポート
-from concurrent.futures import ProcessPoolExecutor
+import argparse
+import json
+import traceback
+import re
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from datasets import load_dataset
-import pandas
 
-# ★ 変更点 1: 関数に引数を追加し、取得範囲を指定できるようにする
+def get_existing_ids(filepath):
+    """
+    JSONLファイルから既存のすべての問題IDをセットとして読み取る。
+    """
+    if not os.path.exists(filepath):
+        return set()
+    
+    ids = set()
+    with open(filepath, 'r', encoding='utf-8') as f:
+        for line in f:
+            try:
+                data = json.loads(line)
+                if 'id' in data:
+                    ids.add(data['id'])
+            except (json.JSONDecodeError, KeyError):
+                continue
+    return ids
+
 def fetch_problems(start_index=1, num_to_fetch=3):
     """
-    Hugging Face Hubから指定された範囲の数学問題を取得する
+    Hugging Face Hubから指定された範囲の数学問題をストリーミングで取得する
     """
     print(f"📚 Fetching {num_to_fetch} problems from Hugging Face Hub, starting from problem #{start_index}...")
     try:
         dataset = load_dataset("Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-r1-0528-free", split='train', streaming=True)
         
         problems = []
-        
-        # isliceを使ってデータセットの指定された範囲を効率的に処理
         from itertools import islice
-        start_position = start_index - 1 # 0-based index
+        start_position = start_index - 1
         dataset_slice = islice(dataset, start_position, start_position + num_to_fetch)
 
         for i, example in enumerate(dataset_slice):
             problems.append({
-                "id": start_index + i, # 問題番号を正しく設定
+                "id": start_index + i,
                 "problem": example['evolved_problem']
             })
         
@@ -34,111 +53,125 @@ def fetch_problems(start_index=1, num_to_fetch=3):
             print("Warning: No problems were fetched. Check start_index and dataset size.")
         return problems
     except Exception as e:
-        print(f"❌ Failed to fetch problems: {e}")
+        print(f"❌ Failed to fetch problems. An error occurred: {e}", file=sys.stderr)
+        traceback.print_exc()
         sys.exit(1)
 
 def run_single_agent_instance(agent_id, problem_id, problem_file, log_dir):
-    """
-    agent_modified.py の単一インスタンスを実行する
-    """
     log_file = os.path.join(log_dir, f"problem_{problem_id}_agent_{agent_id:02d}.log")
-    cmd = [
-        sys.executable,
-        "agent_modified.py", # ここはご自身のファイル名に合わせてください
-        problem_file,
-        "--log",
-        log_file
-    ]
+    signal_file = f"SUCCESS_SOLUTION_{problem_id}_{agent_id}.txt"
+    cmd = [sys.executable, "solver_agent.py", problem_file, "--log", log_file, "--signal_file", signal_file]
     
     print(f"🚀 Starting agent {agent_id} for problem {problem_id}...")
-    
     try:
-        subprocess.run(
-            cmd,
-            timeout=1800,
-            check=False
-        )
-        if os.path.exists("SUCCESS_SIGNAL.txt"):
-            os.remove("SUCCESS_SIGNAL.txt")
-            return (problem_id, agent_id, True)
-        return (problem_id, agent_id, False)
-
+        subprocess.run(cmd, timeout=1800, check=False)
+        if os.path.exists(signal_file):
+            with open(signal_file, 'r', encoding='utf-8') as f:
+                solution_text = f.read()
+            os.remove(signal_file)
+            return (problem_id, agent_id, True, solution_text)
+        return (problem_id, agent_id, False, None)
     except subprocess.TimeoutExpired:
         print(f"⌛ Agent {agent_id} for problem {problem_id} timed out.")
-        return (problem_id, agent_id, False)
+        return (problem_id, agent_id, False, None)
     except Exception as e:
-        print(f"💥 Agent {agent_id} for problem {problem_id} failed with an error: {e}")
-        return (problem_id, agent_id, False)
+        print(f"💥 Agent {agent_id} for problem {problem_id} failed: {e}", file=sys.stderr)
+        return (problem_id, agent_id, False, None)
 
-def solve_problem_in_parallel(problem_id, problem_text, num_agents=3, log_dir="logs"):
-    """
-    1つの問題に対して複数のエージェントを並列実行する
-    """
+def solve_problem_in_parallel(problem_id, problem_text, num_agents, log_dir):
     problem_file = f"problem_{problem_id}.txt"
-    with open(problem_file, "w", encoding="utf-8") as f:
-        f.write(problem_text)
-        
+    with open(problem_file, "w", encoding="utf-8") as f: f.write(problem_text)
     print("\n" + "="*60)
-    print(f"🔬 Solving Problem {problem_id} with {num_agents} parallel agents...")
-    print(f"📄 Problem statement saved to {problem_file}")
-    print("="*60)
-    
-    solution_found = False
-    
+    print(f"🔬 Solving Problem ID: {problem_id} with {num_agents} parallel agents...")
+    solution_text = None
     with ProcessPoolExecutor(max_workers=num_agents) as executor:
-        futures = [executor.submit(run_single_agent_instance, i, problem_id, problem_file, log_dir) for i in range(num_agents)]
-        
-        for future in futures:
+        futures = {executor.submit(run_single_agent_instance, i, problem_id, problem_file, log_dir): i for i in range(num_agents)}
+        for future in as_completed(futures):
             try:
-                prob_id, agent_id, success = future.result()
+                prob_id, agent_id, success, result_text = future.result()
                 if success:
-                    solution_found = True
-                    print(f"\n🎉🎉🎉 Agent {agent_id} FOUND A SOLUTION for Problem {prob_id}! 🎉🎉🎉")
-                    print(f"Check logs in '{log_dir}/problem_{prob_id}_agent_{agent_id:02d}.log' for details.")
+                    solution_text = result_text
+                    print(f"\n🎉🎉🎉 Agent {agent_id} FOUND A SOLUTION for Problem ID: {prob_id}! Shutting down other agents.")
                     executor.shutdown(wait=False, cancel_futures=True)
-                    break 
+                    break
             except Exception as e:
-                 print(f"A worker process failed: {e}")
-
+                 print(f"A worker process for problem {problem_id} failed: {e}", file=sys.stderr)
     os.remove(problem_file)
-    
-    if not solution_found:
-        print(f"\n❌ No solution found for Problem {problem_id} after {num_agents} attempts.")
-        
-    return solution_found
+    return solution_text
+
+def extract_final_answer(solution_text):
+    if not solution_text: return ""
+    patterns = [r'\\boxed\{(.+?)\}', r'Final Answer:\s*(.*)', r'Verdict:\s*(.*)']
+    for pattern in patterns:
+        match = re.search(pattern, solution_text, re.DOTALL | re.IGNORECASE)
+        if match:
+            return match.group(1).strip()
+    return ""
 
 def main():
-    parser = argparse.ArgumentParser(description='Solve math problems from Hugging Face Hub.')
-    parser.add_argument('--num_agents', '-n', type=int, default=3, 
-                        help='Number of parallel agents to run per problem (default: 1)')
-    parser.add_argument('--start_problem', type=int, default=4, 
-                        help='The starting problem number to fetch (default: 4)')
-    parser.add_argument('--num_problems', type=int, default=7, 
-                        help='The number of problems to fetch (default: 7, for problems 4 to 10)')
+    parser = argparse.ArgumentParser(description='Solve math problems, skipping any problems that already exist in the output file.')
+    parser.add_argument('--start_problem', type=int, default=1, help='The starting problem id to fetch.')
+    parser.add_argument('--num_problems', type=int, default=3, help='The number of problems to attempt in this run.')
+    parser.add_argument('--num_agents', type=int, default=3, help='Number of parallel agents per problem.')
+    parser.add_argument('--output_file', type=str, default='results.jsonl', help='Output file for results in JSON Lines (.jsonl) format.')
     args = parser.parse_args()
+
+    start_problem_id = args.start_problem
+    print(f"🚀 Starting session. Attempting to solve {args.num_problems} problems, starting from ID {start_problem_id}.")
     
-    # ★ 変更点 2: コマンドライン引数をfetch_problemsに渡す
-    problems = fetch_problems(start_index=args.start_problem, num_to_fetch=args.num_problems)
-    
+    existing_ids = get_existing_ids(args.output_file)
+    if existing_ids:
+        print(f"ℹ️ Found {len(existing_ids)} existing problems in '{args.output_file}'. Will skip them if they are in the requested range.")
+        
+    problems = fetch_problems(start_problem_id, args.num_problems)
     log_dir = "logs"
     os.makedirs(log_dir, exist_ok=True)
     
     start_time = time.time()
-    
     solved_count = 0
+    skipped_count = 0
+
     for problem in problems:
-        if solve_problem_in_parallel(problem['id'], problem['problem'], num_agents=args.num_agents, log_dir=log_dir):
+        if problem['id'] in existing_ids:
+            print(f"⏭️ Skipping problem ID {problem['id']} as it already exists in the results file.")
+            skipped_count += 1
+            continue
+        
+        solution_text = solve_problem_in_parallel(problem['id'], problem['problem'], args.num_agents, log_dir)
+        
+        if solution_text:
+            final_answer = extract_final_answer(solution_text)
+            # ★ 修正点1: 成功した場合のJSON構造を変更
+            result_json = {
+                "id": problem['id'], 
+                "question": problem['problem'], 
+                "output": None,  # 常にnull (PythonではNone)
+                "answer": final_answer,
+                "solution": f"<think>{solution_text}</think>{final_answer}"
+            }
             solved_count += 1
-            
-    end_time = time.time()
-    total_time = end_time - start_time
-    
+        else:
+            print(f"\n❌ No solution found for Problem ID: {problem['id']}.")
+            # ★ 修正点2: 失敗した場合のJSON構造も統一
+            result_json = {
+                "id": problem['id'], 
+                "question": problem['problem'], 
+                "output": None, # 常にnull (PythonではNone)
+                "answer": "NO_SOLUTION_FOUND",
+                "solution": "<think></think>NO_SOLUTION_FOUND"
+            }
+        
+        with open(args.output_file, 'a', encoding='utf-8') as f:
+            f.write(json.dumps(result_json) + '\n')
+        print(f"💾 Result for problem ID {problem['id']} saved to {args.output_file}")
+
     print("\n" + "#"*60)
     print("### FINAL SUMMARY ###")
-    print(f"Total problems attempted: {len(problems)}")
-    print(f"Problems solved: {solved_count}")
-    print(f"Total execution time: {total_time:.2f} seconds")
-    print(f"All logs are available in the '{log_dir}' directory.")
+    print(f"Problems attempted in this run: {len(problems)}")
+    print(f"Problems skipped (already solved): {skipped_count}")
+    print(f"Problems newly solved: {solved_count}")
+    print(f"Total execution time: {time.time() - start_time:.2f} seconds")
+    print(f"Results are saved in: {os.path.abspath(args.output_file)}")
     print("#"*60)
 
 if __name__ == "__main__":

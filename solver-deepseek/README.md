@@ -1,88 +1,139 @@
-# Problem Solver (DeepSeek/OpenRouter Version)
+# Math Problem Solver Agent (DeepSeek/OpenRouter版)
 
-このプロジェクトは、論文「Gemini 2.5 Pro Capable of Winning Gold at IMO 2025」で提案された、数学オリンピックの問題を解くための「自己検証パイプライン」を実装したものです。
+このプロジェクトは、論文「Gemini 2.5 Pro Capable of Winning Gold at IMO 2025」で提案された「自己検証パイプライン」を実装し、複雑な数学の問題を解くものです。
 
-* **元実装**: https://github.com/lyang36/IMO25/tree/main
-
-元の実装からAPIとデータソースを変更し、DeepSeekモデル（OpenRouter経由）とHugging Faceのデータセットを利用するように改造しています。
-
-* **データ取得元**: https://huggingface.co/datasets/Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-r1-0528-free/
-* **利用API**: https://openrouter.ai/deepseek/deepseek-r1:free
+このバージョンは、DeepSeekモデルをOpenRouter API経由で利用し、特定のHugging Faceデータセットから問題を自動で取得するように改造されています。並列実行、堅牢なエラーハンドリング、そしてHugging Face Hubを介した共同作業のための結果マージ機能をサポートしています。
 
 ## 主な機能
 
-* **自動問題取得**: Hugging Face Hubから問題を自動で取得します。
-* **自己検証パイプライン**: 論文で提案された「生成→自己改善→検証→修正」のループを実行し、解の精度を高めます。
-* **並列実行**: 1つの問題に対し、複数のエージェントを並列で実行することで、解を発見する確率と速度を向上させます。
-* **カスタマイズ性**: モデルやプロンプト、各種パラメータを容易に変更できるよう設計されています。
+- **問題の自動取得**: `Man-snow/evolved-math-problems-OlympiadBench-from-deepseek-r1-0528-free` データセットから、指定されたID範囲の問題を取得します。
+- **自己検証パイプライン**: 論文で提案された「生成→自己改善→検証→修正」のループを実行し、解の精度を高めます。
+- **並列処理**: 各問題に対し、複数のエージェントを同時に実行し、解を発見する確率を高めます。
+- **堅牢なリトライ処理**: 初期解の生成が「不完全」と判断された場合に、自動でリトライします。
+- **JSONL形式での出力**: 各問題の結果を、構造化されたJSON Lines (`.jsonl`) 形式で保存します。
+- **共同作業のためのアップロード機能**: 共有されたHugging Faceデータセットに対し、新しいIDの結果を追加し、既存のIDの結果を上書きする、安全なアップロードを行います。
 
 ---
 
-## 事前準備
+## セットアップ
 
-実行には以下の準備が必要です。
+### 1. 前提条件
 
-### 1. リポジトリのクローン
+- Python 3.7+
+- [OpenRouter APIキー](https://openrouter.ai/)
+- [Hugging Faceアカウント](https://huggingface.co/) と、書き込み(`write`)権限を持つAPIトークン
 
-まず、プロジェクトファイルをローカル環境に準備します。
+### 2. インストール
 
-```bash
-# このリポジトリをクローンする場合
-git clone <repository_url>
-cd <repository_name>
-
-# または、提供されたファイルを同じフォルダに保存します。
-```
-
-### 2. APIキーの設定
-
-プロジェクトのルートディレクトリに `.env` という名前のファイルを作成し、お持ちのOpenRouter APIキーを以下のように記述してください。
-
-**.env**
-```
-OPENROUTER_API_KEY="sk-or-..."
-```
-
-### 3. 必要なライブラリのインストール
-
-ターミナルで以下のコマンドを実行し、プロジェクトに必要なPythonライブラリをインストールします。
+このリポジトリをクローンし、必要なPythonライブラリをインストールします。
 
 ```bash
+git clone <your_repo_url>
+cd <your_repo_name>
 pip install -r requirements.txt
 ```
 
----
+### 3. 認証設定
 
-## スクリプトの実行方法
+OpenRouterとHugging Faceの両方の認証情報を設定する必要があります。
 
-すべての準備が完了したら、以下のコマンドを実行するだけで、全体のプロセスが開始されます。
+#### OpenRouter APIキー:
 
-```bash
-python run_solver.py
+プロジェクトのルートディレクトリに `.env` ファイルを作成し、キーを追加します。
+
+```env
+OPENROUTER_API_KEY="sk-or-..."
 ```
 
-このコマンドにより、以下の処理が自動で行われます。
-1.  Hugging Faceから指定された3つの問題を取得します。
-2.  各問題に対し、3つのエージェントを並列実行して解答を試みます。
-3.  実行中のログは、`logs`ディレクトリ内のファイルに保存されます。
-4.  いずれかのエージェントが解を発見した場合、その問題の処理は終了し、次の問題に進みます。
+#### Hugging Face ログイン:
+
+結果をアップロードするには、コマンドライン経由でHugging Faceアカウントにログインします。
+
+```bash
+huggingface-cli login
+```
+
+プロンプトに従って、ご自身のAPIトークンを入力してください。
 
 ---
 
-## ファイル構成
+## 実行方法
 
-| ファイル名             | 説明                                                                                                                              |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **`run_solver.py`** | **実行用メインスクリプト（司令塔）**。問題取得から並列実行の管理まで、プロジェクト全体のワークフローを担当します。                    |
-| **`solver_agent.py`** | **エージェントのコアロジック**。論文の自己検証パイプライン（生成・改善・検証・修正ループ）を実装しています。                      |
-| `requirements.txt`     | プロジェクトに必要なPythonライブラリのリストです。                                                                                |
-| `.env`                 | APIキーなどの環境変数を保存するファイルです。Gitの管理対象外にすることが推奨されます。                                            |
-| `logs/`                | （実行時に自動生成）各エージェントの実行ログが保存されるディレクトリです。                                                        |
+メインスクリプトは `run_solver.py` です。コマンドライン引数を使って動作を制御できます。
+
+### 基本コマンド
+
+```bash
+python run_solver.py [OPTIONS]
+```
+
+### コマンドライン引数
+
+- `--start_problem <ID>`: 取得を開始する問題の `new_id`。（デフォルト: 1）
+- `--num_problems <N>`: 試行する問題の数。（デフォルト: 3）
+- `--num_agents <N>`: 各問題に対して並列実行するエージェントの数。（デフォルト: 3）  
+  ※ APIのレート制限を避けるため、1に設定することを推奨します。
+- `--output_file <PATH>`: 結果を出力するファイルパス。（デフォルト: `results.jsonl`）
+- `--upload_to_hf`: このフラグを付けると、Hugging Face Hubに結果をアップロードします。（デフォルト: 無効）
+- `--hf_repo <REPO_ID>`: アップロード先のHugging FaceデータセットリポジトリID（例: `YourUsername/YourRepoName`）  
+  ※ `--upload_to_hf` を使用する場合は必須です。
 
 ---
 
-## 注意事項
+## 実行例
 
-* **APIコスト**: `deepseek-r1:free`は無料ですが、OpenRouterで他のモデルを利用する場合はコストが発生する可能性があります。利用状況はご自身でご確認ください。
-* **実行時間**: パイプラインは複数のAPI呼び出しと反復処理を含むため、1つの問題を解くのに時間がかかります。スクリプト内のタイムアウト設定（デフォルト30分）は環境に応じて調整してください。
-* **解答の確実性**: このプログラムは必ずしもすべての問題の正解を保証するものではありません。成功率は、モデルの能力と問題の難易度に依存します。
+### 例1: 10問目から5問を解く
+
+```bash
+python run_solver.py --start_problem 10 --num_problems 5 --num_agents 1
+```
+
+### 例2: ID 50から2問を解き、結果をアップロードする
+
+```bash
+python run_solver.py --start_problem 50 --num_problems 2 --num_agents 1 --upload_to_hf --hf_repo "MyUsername/math-olympiad-solutions"
+```
+
+---
+
+## 出力について
+
+### ログファイル
+
+`logs/` ディレクトリには、各エージェントの試行ごとの詳細なリアルタイムログが保存されます。
+
+ファイル名は `problem_{ID}_agent_{AGENT_NUM}.log` の形式です。  
+特定のエージェントの思考プロセスをデバッグするのに役立ちます。
+
+### 結果ファイル (`results.jsonl`)
+
+`results.jsonl` は、試行された各問題の最終結果を格納する主要な出力ファイルです。  
+これは JSON Lines 形式のファイルで、各行が1つの完全なJSONオブジェクトになっています。
+
+#### 各行の構造:
+
+```json
+{
+    "id": 123, 
+    "question": "問題の全文...",
+    "output": "<think>成功した最初のエージェントの思考プロセスを含む、生の解答全文...</think>最終的な答え",
+    "answer": "抽出された最終的な答え（例: '0'や'-2'、'解は存在しない'など）"
+}
+```
+
+※ 問題が解けなかった場合、`output` の値は `"NO_SOLUTION_FOUND"` になります。
+
+---
+
+## 引用元 (Citation)
+
+このプロジェクトの根幹となる手法は、以下の論文に基づいています。
+
+```bibtex
+@article{huang2025gemini,
+  title={Gemini 2.5 Pro Capable of Winning Gold at IMO 2025},
+  author={Huang, Yichen and Yang, Lin F},
+  journal={arXiv preprint arXiv:2507.15855},
+  year={2025}
+}
+```

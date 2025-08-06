@@ -1,0 +1,686 @@
+﻿id,original_problem,evolved_problem,evolved_response,status,processing_time_seconds,original_solution
+2694,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+Prove that the distance between houses with consecutive numbers does not change after the move.","**  
+In ARMLopolis, every house number is a positive integer, and City Hall is at 0. The distance \(d(n)\) to City Hall is defined as \(d(n) = 3^{-k}\) for \(n = 3^{k} n'\) with \(k \geq 0\) and \(n'\) not divisible by 3. All houses are occupied until July 17, when families from house \(n\) move to \(n + 18\) for \(n \geq 1\). Determine the precise fraction of families that have a different distance to City Hall after the move.","Step 1  
+**#Elements Identified#:**  
+- Distance function \(d(n)\) based on 3-adic valuation: \(d(n) = 3^{-k}\) if \(n = 3^{k} n'\) with \(k \geq 0\) and \(n'\) not divisible by 3.  
+- Relocation shift of 18 (where \(v_3(18) = 2\)).  
+- Houses: positive integers for occupied houses, City Hall at 0.  
+- Original proof task: invariance of the distance between consecutive house numbers after relocation, which simplifies to \(d(1) = 1\) always, making the proof trivial.  
+- Neighborhood concept \(\mathcal{N}(n)\): set of houses at same distance from City Hall.  
+- Key for increasing complexity: Focus on the effect of relocation on families' distances to City Hall instead of consecutive distances, introduce computation of a proportion (limiting density) to handle infinite sets, and leverage the valuation shift.  
+
+Step 2  
+**#Plan#:**  
+- Change from a proof about constant consecutive distance to a computational task: Compute the proportion of families whose distance to City Hall changes after relocation.  
+- Increase complexity by:  
+  1. Using the shift \(S = 18\) as in the original, but shifting focus to families' changing distances.  
+  2. Computing a specific answer (fraction) via limiting density to deal with infinite houses.  
+  3. Allowing for varying valuations and cancellations in distance calculations to require deeper analysis.  
+- Ensure logical flow: Relocation moves families from \(n\) to \(n+18\), altering their distance to City Hall; compute the fraction for which \(d(n) \neq d(n+18)\).  
+- For even more difficult problem: Generalize the base from 3 to a prime \(p\) and the shift to a general \(S\) with \(v_p(S) = l\), requiring the proportion as a function of \(l\).  
+
+Step 3  
+**#Rewritten Instruction#:**  
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. The distance \(d(n)\) from house \(n\) to City Hall is given: if \(n = 3^{k} n'\) with \(k \geq 0\) and \(n'\) not divisible by 3, then \(d(n) = 3^{-k}\). All houses are occupied initially. On July 17, every family from house \(n\) (for \(n \geq 1\)) is relocated to house \(n + 18\). Compute the exact fraction of families whose distance to City Hall changes as a result of this relocation.  
+
+Step 4  
+**#Finally Rewritten Instruction#:**  
+In ARMLopolis, every house number is a positive integer, and City Hall is at 0. The distance \(d(n)\) to City Hall is defined as \(d(n) = 3^{-k}\) for \(n = 3^{k} n'\) with \(k \geq 0\) and \(n'\) not divisible by 3. All houses are occupied until July 17, when families from house \(n\) move to \(n + 18\) for \(n \geq 1\). Determine the precise fraction of families that have a different distance to City Hall after the move.",success,676.89,"['Note that $d(m+18, n+18)=d((m+18)-(n+18))=d(m-n)=d(m, n)$. In particular, if $m=n+1$, then $d(m, n)=1$, thus $d(m+18, n+18)$ is also 1 .']"
+2695,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+The residents of $\mathcal{N}(1)$ value their suburban location and protest the move, claiming it will make them closer to City Hall. Will it? Justify your answer.","**:  
+In ARMLopolis, with the distance $d(n)$ defined via 3-adic valuation, every house is relocated by adding $M = 39366$. Consider houses at distance $r = 3^{-10}$ (i.e., $\mathcal{N}(r)$ with $v_3(n) = 10$). For house numbers $n$ from 1 to $N = 14348907$, determine exactly how many such houses have a smaller distance to City Hall after relocation. Compute the number $D$ where $d(n + M) < d(n)$.","### Step 1  
+**#Elements Identified#**:  
+- Distance function \(d(n)\) based on the 3-adic valuation: \(d(n) = 3^{-k}\) where \(k = v_3(n)\).  
+- Neighborhood \(\mathcal{N}(r)\) defined by houses at a fixed distance \(r = 3^{-K}\) to City Hall, corresponding to \(v_3(n) = K\).  
+- Relocation by adding a constant (originally 18) to all house numbers: from \(n\) to \(n + M\).  
+- Specific protest group: residents of \(\mathcal{N}(1)\) \( (K=0) \) concerned about decreased distance after relocation.  
+- Core question: Binary ""Will it?"" proof about distance decrease for \(\mathcal{N}(1)\) with \(M=18\).  
+- Theme: 3-adic metric properties and ultrametric inequality.  
+
+### Step 2  
+**#Plan#**:  
+- **Increase scale and specificity**: For a larger radius, set \(K = 10\), so \(r = 3^{-10} = 1/59049\). Relocation uses \(M = 39366 = 2 \times 3^{10}\), ensuring \(v_3(M) = K\) to enable distance decreases.  
+- **Add computational element**: Replace ""Will it?"" with a quantitative problem. Ask for the exact number of houses in \(\mathcal{N}(r)\) with house numbers \(1 \leq n \leq N\) (set \(N = 3^{15} = 14348907\)) that have decreased distance after relocation, i.e., \(v_3(n + M) > v_3(n)\).  
+- **Incorporate bounds and calculation**: Use \(N = 3^{K+5}\) for a large finite set, requiring explicit count derivation. Compute \(D = |\{n : v_3(n) = K, 1 \leq n \leq N, v_3(n + M) > K\}|\), leveraging the structure of \(M\) and \(N\).  
+- **Ensure hardness**: Choosing \(K=10\) and \(N\) large demands handling high valuations and modular arithmetic. The answer is a specific integer from detailed computation.  
+- **Maintain theme**: Distance change depends on congruences modulo 3, tied to ultrametric properties.
+
+### Step 3  
+**#Rewritten Instruction#**:  
+In ARMLopolis, with the distance $d(n)$ defined via 3-adic valuation, every house is relocated by adding $M = 39366$. Consider houses at distance $r = 3^{-10}$ (i.e., $\mathcal{N}(r)$ with $v_3(n) = 10$). For house numbers $n$ from 1 to $N = 14348907$, determine exactly how many such houses have a smaller distance to City Hall after relocation. Comput the number $D$ where $d(n + M) < d(n)$.
+
+### Step 4  
+**#Finally Rewritten Instruction#**:  
+In ARMLopolis, with the distance $d(n)$ defined via 3-adic valuation, every house is relocated by adding $M = 39366$. Consider houses at distance $r = 3^{-10}$ (i.e., $\mathcal{N}(r)$ with $v_3(n) = 10$). For house numbers $n$ from 1 to $N = 14348907$, determine exactly how many such houses have a smaller distance to City Hall after relocation. Compute the number $D$ where $d(n + M) < d(n)$.",success,311.92,"[""No, they won't move. If $a \\in \\mathcal{N}(1)$, then $3 \\nmid a$. Thus $3 \\nmid(a+18)$, and so $d(a+18)=1$.""]"
+2696,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+Some residents of $\mathcal{N}(9)$ claim that their tightly-knit community will be disrupted by the move: they will be scattered between different neighborhoods after the change. Will they? Justify your answer.","In ARMLopolis, houses have positive integer addresses; City Hall is at 0. Distance \(d(n) = 3^{-k}\) if \(3^k\) exactly divides \(n\), with \(d(0) = 0\). On July 17, 2024, all houses \(n > 0\) move to \(n + 2025\). The neighborhood \(\mathcal{N}(81)\) has \(d(m) = 1/81\). How many houses \(n\) with \(1 \leq n \leq 3^{10}\) are in \(\mathcal{N}(81)\) and have \(d(n + 2025) = 1/81\)?","Step 1  
+#Elements Identified#:  
+- Distance function \(d(n)\) based on 3-adic valuation: \(d(n) = 3^{-k}\) if \(3^k\) exactly divides \(n\) (i.e., \(3^k \mid n\) but \(3^{k+1} \nmid n\)), with \(d(0) = 0\).  
+- Neighborhood \(\mathcal{N}(r)\) defined as \(\{m \mid d(m) = d(r)\}\), geometrically a set at fixed distance from City Hall.  
+- Relocation operation: a shift by a fixed amount \(S\) (originally \(S = 18\)) applied on a specific date (July 17), moving house \(n > 0\) to \(n + S\).  
+- Specific instance: shift disrupts \(\mathcal{N}(9)\) (houses with \(d(n) = 1/9\)), questioning if all members scatter to different distances.  
+- Core theme: Effect of integer translation on neighborhoods under a valuation-based metric.  
+
+Step 2  
+#Plan#:  
+- Increase the relocation shift to \(S = 2025\) (complex due to multiple prime factors; \(v_3(2025) = 4\)).  
+- Expand the neighborhood to \(\mathcal{N}(81)\) (i.e., \(d(n) = 1/81\), requiring \(v_3(n) = 4\), which is deeper valuation level).  
+- Transform from proof to computational query: ask for the exact count of houses in \(\mathcal{N}(81)\) within finite bounds \([1, 3^{10}]\) that retain the same distance after shift (requiring detailed 3-adic computation), rather than binary scatter outcome.  
+- Justification: Higher exponent (4 vs. 2) and larger shift (2025 vs. 18) amplify arithmetic complexity; finite range \(N = 3^{10}\) forces modular analysis over residues, demanding non-trivial summation and case handling.  
+
+Step 3  
+#Rewritten Instruction#:  
+In ARMLopolis, house numbers are positive integers; City Hall is at 0. Distance \(d(n)\) is \(3^{-k}\) if \(3^k\) exactly divides \(n\), with \(d(0)=0\). On July 17, 2024, all houses \(n > 0\) relocate to \(n + 2025\). The neighborhood \(\mathcal{N}(81)\) has \(d(n) = 1/81\). Compute how many houses \(n\) with \(1 \leq n \leq 3^{10}\) are in \(\mathcal{N}(81)\) and satisfy \(d(n + 2025) = 1/81\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+In ARMLopolis, houses have positive integer addresses; City Hall is at 0. Distance \(d(n) = 3^{-k}\) if \(3^k\) exactly divides \(n\), with \(d(0) = 0\). On July 17, 2024, all houses \(n > 0\) move to \(n + 2025\). The neighborhood \(\mathcal{N}(81)\) has \(d(m) = 1/81\). How many houses \(n\) with \(1 \leq n \leq 3^{10}\) are in \(\mathcal{N}(81)\) and have \(d(n + 2025) = 1/81\)?",success,390.38,"['Yes, they will be split apart. If $a \\in \\mathcal{N}(9)$, then $9 \\mid a$ but $27 \\nmid a$, so $a=27 k+9$ or $a=27 k+18$. Adding 18 has different effects on these different sets of houses: $27 k+18 \\mapsto 27 k+36$, which is still in $\\mathcal{N}(9)$, while $27 k+9 \\mapsto 27 k+27$, which is in $\\mathcal{N}(27 r)$ for some $r \\in \\mathbb{Z}^{+}$, depending on the exact value of $a$. For example, $a=9 \\mapsto 27$, while $a=63 \\mapsto 81$, and $d(81)=3^{-4}$. That is, $d(a+18) \\leq 3^{-3}$ whenever $a=27 k+9$, with equality unless $a \\equiv 63 \\bmod 81$.']"
+2697,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+Other residents of $\mathcal{N}(9)$ claim that their community will be disrupted by newcomers: they say that after the move, their new neighborhood will also contain residents previously from several different old neighborhoods (not just the new arrivals to ARMLopolis). Will it? Justify your answer","In ARMLopolis, house distances are defined by d(n) = 3^{-k} for n = 3^k m (3 ∤ m), with 𝒩(n) = {m | d(m) = d(n)}. After relocating house n to n + R where R = 3^{100}, find the exact number of distinct original neighborhoods 𝒩(m) containing at least one house that relocates to the new neighborhood 𝒩(S), given S = 3^{100} - 1. Utilize modular arguments with modulus 3^{101}.","Step 1
+#Elements Identified#:
+Distance function: d(n) = 3^{-k} for n = 3^k * m (3 ∤ m)
+Neighborhood definition: 𝒩(n) = {m | d(m) = d(n)}
+Relocation action: Shift all house n > 0 to n+18
+Base question: Determine disruption to 𝒩(9) post-move (whether new neighborhood contains houses from multiple old neighborhoods)
+Key parameters: Fixed shift value (18), fixed reference house (9)
+Proof nature: Requires logical yes/no justification
+
+Step 2
+#Plan#:
+1. **De-generalize shift distance**: Replace fixed shift 18 with a large parameter R = 3^{100}, forcing computation at scale.
+2. **Modify reference and depth**: Replace 𝒩(9) with 𝒩(S) where S = 3^{100} - 1. This maximizes k for d(S) = 3^{-100}, intensifying computational depth.
+3. **Shift to quantitative output**: Change yes/no proof to computing the exact count of distinct *old* neighborhoods intersecting the post-move 𝒩(S). This demands analysis of residue classes modulo 3^{101}.
+4. **Enforce constraint binding**: Mandate the computation uses modular arithmetic properties of d(n) under large exponent displacements.
+
+Step 3
+#Rewritten Instruction#:
+After relocating every house n to n + R, where R = 3^{100}, and given S = 3^{100} - 1, compute the number of distinct neighborhoods 𝒩(m) from the original configuration for which at least one house in 𝒩(m) relocates to the new neighborhood 𝒩(S). Use properties of t-adic valuation modulo 3^{k+1} for d(m) = d(S) = 3^{-100}.
+
+Step 4
+#Finally Rewritten Instruction#:
+In ARMLopolis, house distances are defined by d(n) = 3^{-k} for n = 3^k m (3 ∤ m), with 𝒩(n) = {m | d(m) = d(n)}. After relocating house n to n + R where R = 3^{100}, find the exact number of distinct original neighborhoods 𝒩(m) containing at least one house that relocates to the new neighborhood 𝒩(S), given S = 3^{100} - 1. Utilize modular arguments with modulus 3^{101}.",success,323.17,"['The question is whether it is possible that $x \\notin \\mathcal{N}(9)$ but $x+18 \\in \\mathcal{N}(9)$. Because $d(9)=1 / 9$, there are two cases to consider: $d(x)>1 / 9$ and $d(x)<1 / 9$. In the first case, $9 \\nmid x$ (either $x$ is not divisible by 3 , or $x$ is divisible by 3 and not 9 ). These houses do not move into $\\mathcal{N}(9): x \\not \\equiv 0 \\bmod 9 \\Rightarrow x+18 \\not \\equiv 0 \\bmod 9$. On the other hand, if $d(x)<1 / 9$, then $27 \\mid x$, i.e., $x=27 k$. Then $x+18=27 k+18$ which is divisible by 9 but not by 27 , so $d(x+18)=9$. So in fact every house $x$ of ARMLopolis with $d(x)<1 / 9$ will move into $\\mathcal{N}(9)$ !']"
+2698,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+One day, Paul (house 23) and Sally (house 32), longtime residents of $\mathcal{N}(1)$, are discussing the "" 2 side"" of the neighborhood, that is, the set of houses $\{n \mid n=3 k+2, k \in \mathbb{Z}\}$. Paul says ""I feel like I'm at the center of the "" 2 side"": when I looked out my window, I realized that the ""2 side"" consists of exactly those houses whose distance from me is at most $1 / 3 . ""$ Prove that Paul is correct.","In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. The distance \(d(n)\) between house \(n\) and City Hall is defined as \(3^{-k}\) if \(n = 3^{k} n^{\prime}\) with \(k \geq 0\) integer and \(n^{\prime}\) not divisible by 3; \(d(0) = 0\). Distance between houses \(d(m,n) = d(m-n)\). On July 17, families move from house \(n\) to \(n+17\) for all \(n > 0\), and new families occupy houses 1 to 18. Paul, once at 23, is now at 40. The ""2 side"" consists of houses with \(n \equiv 2 \pmod{3}\). Compute the number of houses \(m\) where \(1 \leq m \leq 1000\), \(d(m,40) \leq \frac{1}{9}\), and \(m \not\equiv 2 \pmod{3}\).","Step 1  
+#Elements Identified#:  
+The key elements include the distance function \(d(n)\) based on 3-adic valuation (\(d(n) = 3^{-k}\) for \(n = 3^k n'\) with \(n' \not\equiv 0 \pmod{3}\)), the concept of neighborhoods \(\mathcal{N}(n)\), the relocation operation by a shift amount (originally 18), specific house numbers (City Hall at 0, Paul at 23, Sally at 32), the ""2 side"" defined as houses with address \(n \equiv 2 \pmod{3}\), Paul's claim about being the center of the ""2 side"" with distance bounds, and the date July 17.  
+
+Step 2  
+#Plan#:  
+- Increase complexity by changing the shift amount from 18 to 17 (to alter residue classes modulo higher powers, as 17 is not divisible by 3) and modifying Paul's distance criterion from at most \(1/3\) to at most \(1/9\) for finer valuation.  
+- Add a finite computational range (1 to 1000) for concrete output, requiring precise counting under multiple conditions.  
+- Focus the computation on Paul's new position after the shift (40) and involve the interaction between distance thresholds and congruence classes, specifically counting houses that satisfy the distance condition but contradict the broader ""2 side,"" introducing number theory constraints.  
+- Ensure interconnection by using the relocation effect to challenge the neighborhood structure and the date parameter to influence the problem context.  
+
+Step 3  
+#Rewritten Instruction#:  
+In ARMLopolis, houses and distance are defined as before. On July 17, Shewad Movers relocate every family from house \(n\) to \(n+17\) for all positive \(n\), and eighteen new families move into houses 1 to 18. Paul, originally at 23, is now at house 40. The ""2 side"" is the set of houses with address \(n \equiv 2 \pmod{3}\). For houses \(m\) with \(1 \leq m \leq 1000\), compute how many satisfy \(d(m, 40) \leq \frac{1}{9}\) but \(m\) is not on the ""2 side.""  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. The distance \(d(n)\) between house \(n\) and City Hall is defined as \(3^{-k}\) if \(n = 3^{k} n^{\prime}\) with \(k \geq 0\) integer and \(n^{\prime}\) not divisible by 3; \(d(0) = 0\). Distance between houses \(d(m,n) = d(m-n)\). On July 17, families move from house \(n\) to \(n+17\) for all \(n > 0\), and new families occupy houses 1 to 18. Paul, once at 23, is now at 40. The ""2 side"" consists of houses with \(n \equiv 2 \pmod{3}\). Compute the number of houses \(m\) where \(1 \leq m \leq 1000\), \(d(m,40) \leq \frac{1}{9}\), and \(m \not\equiv 2 \pmod{3}\).",success,227.32,"['If $n=3 k+2$, then $d(23, n)=d(3 k-21)$, and because $3 k-21=3(k-7), d(3 k-21) \\leq$ $1 / 3$. On the other hand, if $d(23, n) \\leq 1 / 3$, then $3 \\mid(n-23)$, so $n-23=3 k$, and $n=3 k+23=3(k+7)+2$.']"
+2699,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+Sally (house 32). Prove that $\{n \mid n=3 k+2, k \in \mathbb{Z}\}$ consists exactly of those houses whose distance from Sally's house is at most $1 / 3$.","**:  
+In ARMLopolis, house numbers are nonnegative integers with City Hall at 0. The distance \(d(n)\) from City Hall to house \(n\) is \(3^{-k}\) if \(n=3^{k}n'\) (\(k \geq 0\) integer, \(n'\) not divisible by 3), and \(d(0)=0\); the distance between houses \(m\) and \(n\) is \(d(m-n)\). After eighteen families arrive needing homes, every family in house \(n>0\) relocates to \(n+18\), freeing houses 1 to 18. The new families move in there. Compute the exact value of the sum of the distances between every pair of distinct new houses.","**Step 1**  
+**#Elements Identified#**:  
+- Distance function \(d(n)\) based on 3-adic valuation: \(d(n) = 3^{-k}\) where \(k = v_3(n)\), for \(n \neq 0\); \(d(0) = 0\).  
+- Distance between houses \(m\) and \(n\) is \(d(m-n)\).  
+- Relocation of all houses \(n > 0\) to \(n + 18\), leaving addresses \(1\) to \(18\) vacant.  
+- Placement of 18 new families in the vacant houses \(1\) to \(18\).  
+- Set-theoretic property (congruence modulo 3) and Sally's house (address 32, moved to 50) in the original proof.  
+
+**Step 2**  
+**#Plan#**:  
+1. **Shift focus to new families**: Emphasize the impact of relocation by placing 18 new families in the vacated addresses \(1\) to \(18\).  
+2. **Increase complexity through aggregation**: Replace the proof-based set property with a specific computational task requiring the summation of pairwise distances among all new houses. This involves \(\binom{18}{2} = 153\) pairwise evaluations of \(d(|m-n|)\), leveraging the distance function and combinatorial counting.  
+3. **Maintain constraints and connections**: Retain the relocation parameter (18) and distance definition, ensuring they interact systematically to produce a hard, non-trial-and-error-friendly computation (output is an integer due to fraction cancellations from symmetries in 3-adics).  
+
+**Step 3**  
+**#Rewritten Instruction#**:  
+In ARMLopolis, house numbers are nonnegative integers (City Hall is 0). Distance \(d(n)\) from City Hall to house \(n\) is \(3^{-k}\) if \(n=3^{k}n'\) (\(k\geq 0\), \(n'\) not divisible by 3), with \(d(0)=0\); distance between houses \(m\) and \(n\) is \(d(m-n)\). After 18 families arrive, all residents of houses \(n>0\) move to \(n+18\), vacating addresses 1 to 18. The new families occupy these addresses. Compute the sum of all distances between every pair of distinct new houses.  
+
+**Step 4**  
+**#Finally Rewritten Instruction#**:  
+In ARMLopolis, house numbers are nonnegative integers with City Hall at 0. The distance \(d(n)\) from City Hall to house \(n\) is \(3^{-k}\) if \(n=3^{k}n'\) (\(k \geq 0\) integer, \(n'\) not divisible by 3), and \(d(0)=0\); the distance between houses \(m\) and \(n\) is \(d(m-n)\). After eighteen families arrive needing homes, every family in house \(n>0\) relocates to \(n+18\), freeing houses 1 to 18. The new families move in there. Compute the exact value of the sum of the distances between every pair of distinct new houses.",success,572.63,"['If $n=3 k+2$, then $d(32, n)=d(3 k-30) \\leq 1 / 3$. Similarly, if $d(32, n) \\leq 1 / 3$, then $3 \\mid n-32 \\Rightarrow n=3 k+32=3(k+10)+2$.']"
+2700,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+
+Unfortunately for new development, ARMLopolis is full: every nonnegative integer corresponds to (exactly one) house (or City Hall, in the case of 0). However, eighteen families arrive and are looking to move in. After much debate, the connotations of using negative house numbers are deemed unacceptable, and the city decides on an alternative plan. On July 17, Shewad Movers arrive and relocate every family from house $n$ to house $n+18$, for all positive $n$ (so that City Hall does not move). For example, the family in house number 17 moves to house number 35.
+For any $x$, let $\mathcal{D}_{r}(x)=\{y \mid d(x, y) \leq r\}$, that is, $\mathcal{D}_{r}(x)$ is the disk of radius $r$. Prove that if $d(x, z)=r$, then $\mathcal{D}_{r}(x)=\mathcal{D}_{r}(z) . \quad[2 \mathrm{pts}]$","After reconstruction, the eighteen new houses occupy positions 1 to 18. Let \(x\) be house 1 and let \(r\) be the distance of house 18 from City Hall. Calculate the number of new houses \(y\) satisfying \(d(x,y) \leq r\).","Step 1  
+#Elements Identified#:  
+- Distance function \(d(n) = 3^{-k}\) where \(n = 3^k n'\) with integer \(k \geq 0\) and \(n'\) not divisible by 3; \(d(0) = 0\).  
+- Inter-house distance defined as \(d(m, n) = d(m - n)\).  
+- Disk of radius \(r\) centered at \(x\): \(\mathcal{D}_r(x) = \{y \mid d(x, y) \leq r\}\).  
+- Eighteen new houses at positions 1 through 18 after relocation.  
+- Proof statement involving disk equality when \(d(x, z) = r\).  
+
+Step 2  
+#Plan#:  
+- Transform proof question into computational question requiring specific numerical answer.  
+- Focus on new houses (positions 1-18) for finite computation.  
+- Set specific point (x) and radius (r) related to the move: let x be house 1, and r = d(18) = 1/9.  
+- Compute size of disk \(\mathcal{D}_r(x)\) within the set of new houses to increase complexity (finite set, explicit calculation).  
+- Retain core theme (distances, relocation impact).  
+
+Step 3  
+#Rewritten Instruction#:  
+After relocation, consider the eighteen new houses at positions 1 through 18. Let \(x = 1\) and \(r = d(18)\). Compute the size of the disk \(\mathcal{D}_r(x)\), i.e., the number of new houses \(y\) such that \(d(x,y) \leq r\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+After reconstruction, the eighteen new houses occupy positions 1 to 18. Let \(x\) be house 1 and let \(r\) be the distance of house 18 from City Hall. Calculate the number of new houses \(y\) satisfying \(d(x,y) \leq r\).",success,477.84,"['Show that $\\mathcal{D}_{r}(x) \\subseteq \\mathcal{D}_{r}(z)$ and conversely. Suppose that $y \\in \\mathcal{D}_{r}(x)$. Then $d(x, y) \\leq r$. Because $d(x, z)=r$, by $5 \\mathrm{~b}, d(y, z) \\leq \\max \\{d(x, y), d(x, z)\\}=r$. So $y \\in \\mathcal{D}_{r}(z)$. Thus $\\mathcal{D}_{r}(x) \\subseteq \\mathcal{D}_{r}(z)$. Similarly, $\\mathcal{D}_{r}(z) \\subseteq \\mathcal{D}_{r}(x)$, so the two sets are equal.']"
+2704,"In ARMLopolis, every house number is a positive integer, and City Hall's address is 0. However, due to the curved nature of the cowpaths that eventually became the streets of ARMLopolis, the distance $d(n)$ between house $n$ and City Hall is not simply the value of $n$. Instead, if $n=3^{k} n^{\prime}$, where $k \geq 0$ is an integer and $n^{\prime}$ is an integer not divisible by 3 , then $d(n)=3^{-k}$. For example, $d(18)=1 / 9$ and $d(17)=1$. Notice that even though no houses have negative numbers, $d(n)$ is well-defined for negative values of $n$. For example, $d(-33)=1 / 3$ because $-33=3^{1} \cdot-11$. By definition, $d(0)=0$. Following the dictum ""location, location, location,"" this Power Question will refer to ""houses"" and ""house numbers"" interchangeably.
+
+Curiously, the arrangement of the houses is such that the distance from house $n$ to house $m$, written $d(m, n)$, is simply $d(m-n)$. For example, $d(3,4)=d(-1)=1$ because $-1=3^{0} \cdot-1$. In particular, if $m=n$, then $d(m, n)=0$.
+
+
+The neighborhood of a house $n$, written $\mathcal{N}(n)$, is the set of all houses that are the same distance from City Hall as $n$. In symbols, $\mathcal{N}(n)=\{m \mid d(m)=d(n)\}$. Geometrically, it may be helpful to think of $\mathcal{N}(n)$ as a circle centered at City Hall with radius $d(n)$.
+
+Later, ARMLopolis finally decides on a drastic expansion plan: now house numbers will be rational numbers. To define $d(p / q)$, with $p$ and $q$ integers such that $p q \neq 0$, write $p / q=3^{k} p^{\prime} / q^{\prime}$, where neither $p^{\prime}$ nor $q^{\prime}$ is divisible by 3 and $k$ is an integer (not necessarily positive); then $d(p / q)=3^{-k}$.
+A longtime resident of IMOpia moves to ARMLopolis and hopes to keep his same address. When asked, he says ""My old address was $e$, that is, the sum $\frac{1}{0 !}+\frac{1}{1 !}+\frac{1}{2 !}+\ldots$ I'd really like to keep that address, because the addresses of my friends here are all partial sums of this series: Alice's house is $\frac{1}{0 !}$, Bob's house is $\frac{1}{0 !}+\frac{1}{1 !}$, Carol's house is $\frac{1}{0 !}+\frac{1}{1 !}+\frac{1}{2 !}$, and so on. Just let me know what I have to do in order to be near my friends!"" After some head-scratching, the ARMLopolitan planning council announces that this request cannot be satisfied: there is no number, rational or otherwise, that corresponds to the (infinite) sum, or that is arbitrarily close to the houses in this sequence. Prove that the council is correct (and not just bureaucratic).","**
+In ARMLopolis, the distance `d(r)` for a rational address `r` is defined as `d(r) = 3^{-k}` where `r = p/q = 3^k * p'/q'` with `p', q'` coprime to 3. Distance between houses `m, n` is `d(m-n)`. A resident desires the address π. His friends' houses are `s_p = 4 \cdot Σ_{k=0}^{p} (-1)^{k}/(2k+1)` for each prime `p`. Define `δ_p(m) = d(m - s_p)`. For `N = 1000`, let `M` be the minimal value of `\max_{\text{prime } p ≤ N} δ_p(m)` over all rational `m`. Compute `M` and express it as `3^{-t}`, and also give the `d(m) = 3^{-k}` for a house `m` achieving this min max distance.","Step 1
+**#Elements Identified#:**
+1.  **Distance Function (`d(n)`):** Defined via the 3-adic valuation (`k` where `n = 3^k * n'`, `3∤n'`), with `d(n)=3^{-k}`. Extended to rationals `d(p/q)=3^{-k}` where `p/q = 3^k * p'/q'` with `3∤p',q'`.
+2.  **House Set:** Initially positive integers, extended to rational numbers.
+3.  **Target Property:** Desired address is the mathematical constant `e`, defined by the infinite series `Σ 1/n!`.
+4.  **Friend Sequence:** Specific rational addresses given by partial sums of `e`: `s_c = Σ_{n=0}^c 1/n!`.
+5.  **Core Proof Objective:** Show no rational number (or limit point) exists near the friend sequence under the metric defined by `d(m-n)`.
+6.  **Neighborhood Concept:** `N(n) = {m | d(m) = d(n)}`, analogous to a circle.
+
+Step 2
+**#Plan#:**
+1.  **Change Target Constant & Series:** Replace `e` (sum `1/n!`) with `π` (infinite series, e.g., Leibniz `π/4 = Σ (-1)^k/(2k+1)` or similar). This removes reliance on cancellation/local gaps of factorial series.
+2.  **Add Index Constraint:** Restrict friend sequence indices to **prime numbers** (adjust notation). Friends are `s_p = Σ_{k=0}^p a_k` for `p` prime, where `a_k` are terms of the new series. Requires identifying primes and computing a more complex partial sum.
+3.  **Transform Proof to Quantitative Computation:** Instead of proving non-existence near the *infinite* sequence, ask for a **specific computation** for large `N` based on minimizing a distance measure to the *truncated* friend set.
+4.  **Redefine Optimization Goal:** Find a house `m` (rational) minimizing the **maximum distance** `d(m - s_p)` to all friend houses `s_p` where `p` is prime and `p ≤ N` (for large `N`, e.g., 1000). ""Near friends"" becomes minimizing worst-case distance to closest cluster points.
+5.  **Require Direct Output:** Demand computation of the minimal possible **maximum distance** and the corresponding `d(m)`.
+6.  **Increase Computational Load:** `N=1000` ensures many primes (~168) and partial sums must be generated and distances computed or reasoned about efficiently.
+
+Step 3
+**#Rewritten Instruction#:**
+In ARMLopolis, the distance `d(r)` for a rational address `r` is defined as follows: Write `r = p/q = 3^k * p'/q'` where `p', q'` are integers coprime to 3 and `k` is an integer; then `d(r) = 3^{-k}`. The distance between houses `m` and `n` is `d(m, n) = d(m - n)`. A resident desires the address π (pi). His friends' houses correspond to the partial sums of the Leibniz series up to prime indices: `s_p = Σ_{k=0}^{p} (-1)^{k}/(2k+1)` for each prime `p`. For house `m` and prime `p`, let `δ_p(m) = d(m - s_p)`. For a large fixed `N = 1000`, determine the minimal possible value `M` of `\max_{\text{prime } p ≤ N} δ_p(m)` over all rational house numbers `m`. Find this value `M`, express your answer for `M` in the form `3^{-t}`, and state the corresponding `d(m) = 3^{-k}` that achieves this minimal `M`.
+
+Step 4
+**#Finally Rewritten Instruction#:**
+In ARMLopolis, the distance `d(r)` for a rational address `r` is defined as `d(r) = 3^{-k}` where `r = p/q = 3^k * p'/q'` with `p', q'` coprime to 3. Distance between houses `m, n` is `d(m-n)`. A resident desires the address π. His friends' houses are `s_p = 4 \cdot Σ_{k=0}^{p} (-1)^{k}/(2k+1)` for each prime `p`. Define `δ_p(m) = d(m - s_p)`. For `N = 1000`, let `M` be the minimal value of `\max_{\text{prime } p ≤ N} δ_p(m)` over all rational `m`. Compute `M` and express it as `3^{-t}`, and also give the `d(m) = 3^{-k}` for a house `m` achieving this min max distance.",success,28.66,"[""The houses in this sequence actually get arbitrarily far apart from each other, and so there's no single house which they approach. If $H_{n}=\\frac{1}{0 !}+\\frac{1}{1 !}+\\cdots+\\frac{1}{n !}$, then $d\\left(H_{n}, H_{n-1}\\right)=$ $d(1 / n !)=3^{k}$, where $k=\\lfloor n / 3\\rfloor+\\lfloor n / 9\\rfloor+\\lfloor n / 27\\rfloor \\ldots$. In particular, if $n !=3^{k} \\cdot n_{0}$, where $k>0$ and $3 \\nmid n_{0}$, then $d\\left(H_{n}, H_{n-1}\\right)=3^{k}$, which can be made arbitrarily large as $n$ increases.""]"
+2749,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Show that any two consecutive odd positive integers are relatively prime to each other.","**  
+For \(k \geq 2\), find the smallest positive integer \(s\) such that there exist \(k\) disjoint pairs of consecutive odd integers \(S_i = \{a_i, a_i + 2\}\) where \(s = \min(a_i)\), all \(2k\) integers are distinct, and \(\gcd(x, y) = 1\) for every \(x \in S_i\) and every \(y \in S_j\) whenever \(i \neq j\).","### Step 1  
+**#Elements Identified#:**  
+- *Sequence type*: Consecutive integers → Consecutive odd integers.  
+- *Key property*: ""cromulent"" (relatively prime to all other elements).  
+- *Variables*: Sequence length \(n\) (here \(n=2\)).  
+- *Core task*: Proof of pairwise coprimality for consecutive odds.  
+- *Constraints*: Only two elements, base coprimality property used.  
+
+### Step 2  
+**#Plan#:**  
+1. **Expand dimensionality**: Replace ""two consecutive odds"" with \(\mathbf{k \geq 2}\) **disjoint pairs** of consecutive odd integers, requiring global distinctness.  
+2. **Add constraints**: Demand that **every integer across all pairs** is coprime to **every integer in every other pair** (not just within pairs).  
+3. **Concretize task**: Require computation of the **minimal starting s** for these pairs to exist.  
+4. **Inject optimization**: Force \(\mathbf{s}\) to be minimized under pairwise coprimality between sets and interlaced LCM constraints, using \(\mathbf{k}\) as input.  
+5. **Preserve theme**: All pairs consist of consecutive odd integers with no shared elements, complicating residue checks.  
+
+### Step 3  
+**#Rewritten Instruction#:**  
+For \(k \geq 2\), define \(k\) disjoint pairs of consecutive odd integers. Let \(S_i = \{a_i, a_i + 2\}\) for \(i = 1, 2, \dots, k\), where \(a_i\) are distinct odds and all \(2k\) integers are unique. Compute the minimal starting integer \(s = \min(a_1)\) such that every number in \(S_i\) is coprime to every number in \(S_j\) for all \(i \neq j\).  
+
+### Step 4  
+**#Finally Rewritten Instruction#:**  
+For \(k \geq 2\), find the smallest positive integer \(s\) such that there exist \(k\) disjoint pairs of consecutive odd integers \(S_i = \{a_i, a_i + 2\}\) where \(s = \min(a_i)\), all \(2k\) integers are distinct, and \(\gcd(x, y) = 1\) for every \(x \in S_i\) and every \(y \in S_j\) whenever \(i \neq j\).",success,28.75,"['Two consecutive odd integers differ by 2 . Thus any common divisor of the two integers must also divide 2 . However, the only prime divisor of 2 is 2 , and neither of the consecutive odd integers is a multiple of 2 . Therefore any two consecutive odd integers are relatively prime to each other, as desired.']"
+2750,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Show that every sequence of three consecutive positive integers contains a cromulent element.","**
+For sequences of 10 consecutive positive integers that start with a multiple of 13 and end with a multiple of 19, compute exactly how many elements are relatively prime to every other element in the sequence.","Step 1
+**#Elements Identified#:**
+*   **Sequence Length (`n`)**: Defines the number of consecutive positive integers. Fixed at 3 in the original proof.
+*   **Consecutive Positive Integers**: The fundamental objects. (`a, a+1, ... , a+n-1`)
+*   **Cromulent Element**: An element relatively prime to *all other* elements in the sequence.
+*   **Relative Primality (Coprimality)**: The key mathematical relationship defining ""cromulent"".
+*   **Existence Proof Goal**: The original instruction asks only to *show* that such an element exists for `n=3`.
+
+Step 2
+**#Plan#:**
+1.  **Increase Sequence Length**: Drastically increase `n` from 3 to 10. This exponentially increases computational complexity but keeps the core concept.
+2.  **Introduce Specific Starting/Ending Constraints**: Add constraints that the sequence must start with a multiple of a moderately large prime (13) and end with a multiple of another moderately large prime (19). This forces consideration of divisibility by these primes throughout the sequence, complicating the coprimality checks required for identifying cromulent elements. It makes the start/end positions critical.
+3.  **Replace Proof with Specific Counting**: Instead of proving existence (guaranteed for any contiguous sequence), demand the precise *count* of cromulent elements within the sequence satisfying the constraints. This requires a full check of every element against every other.
+4.  **Retain Core Theme**: The problem still revolves entirely around identifying elements relatively prime to all others in a sequence of consecutive integers under stricter constraints and for a larger `n`.
+
+Step 3
+**#Rewritten Instruction#:**
+Consider sequences of 10 consecutive positive integers that start with a multiple of 13 and end with a multiple of 19. How many elements in such a sequence are cromulent, meaning relatively prime to all other nine numbers?
+
+Step 4
+**#Finally Rewritten Instruction#:**
+For sequences of 10 consecutive positive integers that start with a multiple of 13 and end with a multiple of 19, compute exactly how many elements are relatively prime to every other element in the sequence.",success,21.78,"['Consider the sequence $a-1, a, a+1$. Note that $a$ is relatively prime to $a-1$ and $a+1$ because any common divisor must divide their difference, and the differences are both 1 . Thus $a$ is a cromulent element of the sequence.']"
+2751,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Show that every sequence of four consecutive positive integers contains a cromulent element.",Find the smallest integer \(n > 1\) such that there exists a sequence of \(n\) consecutive positive integers with no cromulent element.,"**Step 1**  
+#Elements Identified#:  
+- Length of the sequence, \(n\) (with \(n > 1\) given).  
+- Definition of ""cromulent"": an element relatively prime to all other elements in the sequence.  
+- Sequence composition: consecutive positive integers.  
+- Proof objective: existence of at least one cromulent element for \(n = 4\).  
+- Theme: Number theory properties involving coprimality and consecutive integers.  
+
+**Step 2**  
+#Plan#:  
+- Transform the existential proof for fixed \(n = 4\) into a computational problem that demands a specific numerical output.  
+- Replace the fixed \(n\) with a variable and target the minimal \(n\) where the property (every sequence contains a cromulent element) fails for some sequence.  
+- Increase complexity by introducing the concept of a sequence with ""no cromulent element,"" requiring identification of a critical \(n\) tied to advanced topics like covering systems in number theory.  
+- Maintain all original elements (e.g., cromulent definition, consecutive sequence) to preserve theme cohesion.  
+- Ensure logical flow: The output (minimal \(n\)) requires nontrivial computation or known mathematical results.  
+- Avoid oversimplification: The new problem is harder than the original proof, as it involves determining an exact integer value that is not immediate and exceeds small cases.  
+
+**Step 3**  
+#Rewritten Instruction#:  
+Find the smallest integer \(n > 1\) such that there exists a sequence of \(n\) consecutive positive integers with no cromulent element.  
+
+**Step 4**  
+#Finally Rewritten Instruction#:  
+Find the smallest integer \(n > 1\) such that there exists a sequence of \(n\) consecutive positive integers with no cromulent element.",success,115.77,"['First we prove that any two consecutive odd positive integers are relatively prime to each other.\n\nProof: Two consecutive odd integers differ by 2 . Thus any common divisor of the two integers must also divide 2 . However, the only prime divisor of 2 is 2 , and neither of the consecutive odd integers is a multiple of 2 . Therefore any two consecutive odd integers are relatively prime to each other, as desired.\n\nConsider a sequence of four consecutive integers. Notice that two of these integers will be odd, and by the proof above, these are relatively prime to each other. At most one of these two odd integers can be a multiple of 3 . Let $a$ be an odd integer in the sequence that is not a multiple of 3 . Then $a$ is cromulent by the following reasoning. Note that the difference between $a$ and any other element of the sequence is at most 3. Thus if $a$ shared a common factor greater than 1 with some other element of the sequence, this factor would have to be 2 or 3 . But because $a$ is odd and not a multiple of 3 , it follows that $a$ is cromulent.']"
+2752,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Show that every sequence of five consecutive positive integers contains a cromulent element.","**:  
+For sequences of 20 consecutive positive integers whose starting number `s` satisfies `s ≡ r₁ (mod 3)`, `s ≡ r₂ (mod 4)`, and `s ≡ r₃ (mod 5)`, where residue set `(r₁, r₂, r₃)` partitions sequences such that no sequence contains elements divisible by 3, 4, and 5 at predetermined positions, calculate the percentage (to 0.01%) of sequences in this partition having at least one cromulent element.","Step 1  
+**#Elements Identified#**:  
+- Sequence length parameter (`n`).  
+- ""Cromulent"" definition (relatively prime to all other elements).  
+- Consecutive positive integers.  
+- Proof structure for existence (`n=5`).  
+- Base case (`n=2`).  
+- Core theme: Distribution and properties of coprimality in finite consecutive sequences.  
+
+Step 2  
+**#Plan#**:  
+1. **Transform existence proof → high-precision computation**: Require calculating the proportion (as a percentage) of sequences with ≥1 cromulent element, avoiding mere existence guarantees.  
+2. **Increase sequence length/complexity**: Use `n = 20` instead of `5` to escalate combinatorial density and prime interactions.  
+3. **Introduce moduli constraints**: Impose residue conditions modulo distinct small primes to control divisibility patterns, linking the sequence start to CRT-compatible residues.  
+4. **Quantify over a structured set**: Analyze sequences partitioned based on start value modulo `P` (where `P` is primorial), demanding exact counting under constraints.  
+
+Step 3  
+**#Rewritten Instruction#**:  
+Consider sequences of 20 consecutive positive integers partitioned by their start value modulo 60. For sequences in the partition where the start satisfies:  
+`start ≡ a (mod 3)`, `start ≡ b (mod 4)`, `start ≡ c (mod 5)`  
+(where residues `a,b,c` avoid divisibility by 3,4,5 within the sequence), compute the proportion (to 2 decimal places) of sequences containing at least one cromulent element.  
+
+Step 4  
+**#Finally Rewritten Instruction#**:  
+For sequences of 20 consecutive positive integers whose starting number `s` satisfies `s ≡ r₁ (mod 3)`, `s ≡ r₂ (mod 4)`, and `s ≡ r₃ (mod 5)`, where residue set `(r₁, r₂, r₃)` partitions sequences such that no sequence contains elements divisible by 3, 4, and 5 at predetermined positions, calculate the percentage (to 0.01%) of sequences in this partition having at least one cromulent element.",success,23.95,"['Consider a sequence of five consecutive integers. Exactly one number in such a sequence will be a multiple of 5 , but that number could also be a multiple of 2 and hence share a common factor with at least one other number in the sequence. There are several cases to consider, namely whether the sequence starts with an even number or an odd number.\n\nIf the sequence starts with an even number, then the second and fourth numbers are both odd, and at least one of them is not a multiple of 3 and hence is relatively prime to all other numbers in the sequence because it is neither a multiple of 2 nor 3 and hence is at least 5 away from the nearest integer with a common factor. Thus the sequence contains a cromulent element.\n\nIf the sequence starts with an odd number, then again, it contains an odd number that is not a multiple of 3 and hence is relatively prime to all other numbers in the sequence, thus the sequence contains a cromulent element. In fact, it contains two such numbers if the first or last number is a multiple of 3 , and if the middle number is a multiple of 3 , then all three odd elements are cromulent.']"
+2755,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Prove that there is at least one cromulent element in every sequence of $n$ consecutive positive integers with $n=8$;","For sequences of length \(n = 15\) consecutive positive integers, a number is *cromulent* if relatively prime to all others in the sequence. Compute the minimal possible number of cromulent elements over all such sequences.","Step 1  
+#Elements Identified#:  
+- **Concept**: Cromulent element (relatively prime to all others in a sequence of consecutive integers).  
+- **Fixed Parameter**: Sequence length \(n = 8\).  
+- **Key Property**: Relies on coprimality of consecutive integers and residue classes.  
+- **Objective**: Prove existence of at least one cromulent element.  
+- **Theme**: Number theory properties within bounded intervals.  
+
+Step 2  
+#Plan#:  
+1. **Replace existence proof with computation**: Instead of proving existence, compute the **minimal possible number** of cromulent elements over all sequences of length \(n\).  
+2. **Increase \(n\) significantly**: Change \(n = 8\) to \(n = 15\) to force analysis of residue patterns modulo primes up to \(13\).  
+3. **Introduce dependency on position**: Require computation of this minimal count for a sequence **starting at an integer congruent to a specific residue** modulo primes \(p < 15\), challenging optimization.  
+4. **Concretize with optimization**: Task becomes finding the minimal count \(k\) such that **some starting point yields \(\leq k\) cromulent elements**, leveraging deep residue class conflicts.  
+
+Step 3  
+#Rewritten Instruction#:  
+Consider sequences of \(n = 15\) consecutive positive integers. A number is *cromulent* if it is coprime to all others in its sequence. Determine the minimal possible number \(k\) such that there exists a sequence where there are exactly \(k\) cromulent elements.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+For sequences of length \(n = 15\) consecutive positive integers, a number is *cromulent* if relatively prime to all others in the sequence. Compute the minimal possible number of cromulent elements over all such sequences.",success,24.3,"['In any sequence of eight consecutive integers, four of them will be even and hence not cromulent. The primes 3,5 , and 7 are the only numbers that could possibly divide more than one number in the sequence, with 5 and 7 each dividing at most one of the four odd numbers. Note that for 7 to divide two numbers in the sequence, they must be the first and last numbers because only those differ by 7 . The prime 3 can divide two odd numbers in the sequence, but only if they differ by 6 , which means they must be either the 1st and 7th or the $2 \\mathrm{nd}$ and 8th numbers in the list. Therefore one of the two odd multiples of 3 would also be the only candidate to be an odd multiple of 7 when there are two multiples of 7 , and so at least one of the four odd numbers must be cromulent.']"
+2756,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+Prove that there is at least one cromulent element in every sequence of $n$ consecutive positive integers with $n=9$.","For sequences of 100 consecutive positive integers each greater than 10^6, compute the minimum number of cromulent elements (relatively prime to all other elements) over all such sequences and provide the specific numerical value.","Step 1  
+#Elements Identified#:  
+- Variables: Fixed n=9, sequence length.  
+- Conditions: n>1, sequence consists of n consecutive positive integers.  
+- Definition: An element is ""cromulent"" if relatively prime to all other elements in the sequence.  
+- Action: Prove existence of at least one cromulent element for n=9.  
+- Theme: Number theory involving relative primality and sequential integer properties.  
+
+Step 2  
+#Plan#:  
+- Change the fixed value: Increase n from 9 to 100 for larger scale and computational complexity.  
+- Modify the action: Transform from proof of existence to computation of a specific numerical value, specifically the minimum number of cromulent elements over all possible sequences.  
+- Add numerical dependency: Require computation of this minimum for sequences where all elements are bounded by an additional constraint (e.g., all greater than 10^6 to avoid trivial small values) to add difficulty and necessitate log-scale reasoning.  
+- Enhance complexity: Introduce a dependency on the sequence's range by specifying a lower bound, ensuring the computation involves nontrivial number theory (e.g., distribution of integers with large prime factors).  
+
+Step 3  
+#Rewritten Instruction#:  
+For sequences of 100 consecutive positive integers each greater than 10^6, compute the minimum number of cromulent elements (relatively prime to all other elements) over all such sequences and provide the specific numerical value.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+For sequences of 100 consecutive positive integers each greater than 10^6, compute the minimum number of cromulent elements (relatively prime to all other elements) over all such sequences and provide the specific numerical value.",success,209.39,"['First we prove that there is at least one cromulent element in every sequence of $n$ consecutive positive integers with $n=8$;\n\nProof: In any sequence of eight consecutive integers, four of them will be even and hence not cromulent. The primes 3,5 , and 7 are the only numbers that could possibly divide more than one number in the sequence, with 5 and 7 each dividing at most one of the four odd numbers. Note that for 7 to divide two numbers in the sequence, they must be the first and last numbers because only those differ by 7 . The prime 3 can divide two odd numbers in the sequence, but only if they differ by 6 , which means they must be either the 1st and 7th or the $2 \\mathrm{nd}$ and 8th numbers in the list. Therefore one of the two odd multiples of 3 would also be the only candidate to be an odd multiple of 7 when there are two multiples of 7 , and so at least one of the four odd numbers must be cromulent.\n\nNow we turn to prove that given assumption. In a sequence of nine consecutive integers, again the only primes to check are $2,3,5$, and 7 . If there are five even numbers in the sequence, then at least one of the odd numbers is cromulent by similar reasoning to the proof above. The difference is that in this case the multiples of 7 can be either the 1st and 8th or the 2nd and 9th numbers, while the odd multiples of 3 must be the 2 nd and 8th numbers (because the 1st number is even) and hence overlap with the multiples of 7 again. If instead there are four even numbers in the sequence, then the 1st, 3rd, 5th, 7th, and 9th numbers are odd. Now 7 divides at most one of these odd numbers, 5 divides at most one, and 3 divides at most two, leaving at least one odd cromulent element.']"
+2757,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+
+The goal of this problem is to prove the following claim:
+
+Claim: For $k \geq 300$, there is a sequence of $k$ consecutive integers with no cromulent elements.
+
+Let $\pi(n)$ denote the number of primes less than or equal to $n$. You may use the following lemma without proof in the problems that follow.
+
+Lemma: For $x \geq 75, \pi(2 x)-\pi(x) \geq 2\left\lfloor\log _{2}(x)\right\rfloor+2$.
+
+One argument for proving the above claim begins as follows. Let $m=\left\lfloor\frac{k}{4}\right\rfloor \geq 75$, let $p_{1}, p_{2}, \ldots, p_{r}$ denote the primes in the set $\{1,2, \ldots, m\}$ (note that $p_{1}=2$ ), and let $p_{r+1}, p_{r+2}, \ldots, p_{s}$ denote the primes in the set $\{m+1, m+2, \ldots, 2 m\}$.
+Prove that if each of the $k$ consecutive integers in the sequence is divisible by at least one of the primes $p_{1}, p_{2}, \ldots, p_{s}$, then the sequence has no cromulent elements.","Find the smallest integer \(k \geq 300\) such that there exists a sequence of \(k\) consecutive positive integers where every element is divisible by at least one prime \(p \leq 2m\) with \(m = \left\lfloor k/4 \right\rfloor\), ensuring no cromulent elements exist; use the lemma \(\pi(2x) - \pi(x) \geq 2 \lfloor \log_2 x \rfloor + 2\) for \(x \geq 75\).","Step 1
+#Elements Identified#:
+- Primary subject: Sequences of consecutive integers and the property of having no cromulent elements (where an element is relatively prime to all others in the sequence).
+- Key variables: Sequence length \(k\) (with \(k \geq 300\)), \(m = \left\lfloor k/4 \right\rfloor\), prime sets defined by intervals \([1, m]\) and \([m+1, 2m]\).
+- Conditions: The sequence must be covered by primes from the set \(\{p_1, p_2, \ldots, p_s\}\), ensuring no cromulent elements exist; lemma provides a lower bound on the difference \(\pi(2x) - \pi(x)\) for \(x \geq 75\).
+- Theme: Reliance on prime distribution to guarantee coverage for large \(k\), transforming existence proof into a quantitative computation.
+
+Step 2
+#Plan#:
+- Transform from ""proof"" to ""computational"": Instead of proving existence for \(k \geq 300\), require finding the minimal \(k\) (with the constraint \(k \geq 300\) to enforce lemma usage) for which a sequence with no cromulent elements exists under the specified covering condition.
+- Increase complexity: Optimize for the smallest \(k\), demanding rigorous application of the lemma and solving a covering system problem; this introduces optimization and requires understanding of Chinese Remainder Theorem or prime-based covering.
+- Add constraint: Explicitly state that the sequence must be covered by primes \(\leq 2m\) with \(m = \left\lfloor k/4 \right\rfloor\), making the prime set dependent on \(k\) and linking to lemma bounds.
+- Enhance difficulty: Focus on minimal \(k\) as the specific answer, forcing computation that leverages the lemma while avoiding trivial cases; all elements interrelate logically through coverage and no cromulent elements.
+
+Step 3
+#Rewritten Instruction#:
+Find the smallest integer \(k \geq 300\) such that there exists a sequence of \(k\) consecutive positive integers where every element is divisible by at least one prime \(p \leq 2m\) with \(m = \left\lfloor k/4 \right\rfloor\). This sequence has no cromulent elements; use the lemma \(\pi(2x) - \pi(x) \geq 2 \lfloor \log_2 x \rfloor + 2\) for \(x \geq 75\).
+
+Step 4
+#Finally Rewritten Instruction#:
+Find the smallest integer \(k \geq 300\) such that there exists a sequence of \(k\) consecutive positive integers where every element is divisible by at least one prime \(p \leq 2m\) with \(m = \left\lfloor k/4 \right\rfloor\), ensuring no cromulent elements exist; use the lemma \(\pi(2x) - \pi(x) \geq 2 \lfloor \log_2 x \rfloor + 2\) for \(x \geq 75\).",success,141.49,"['Let the sequence of $k$ integers be $a_{1}, a_{2}, \\ldots, a_{k}$, where $a_{n}=a_{1}+(n-1)$ for $1 \\leq n \\leq k$. For any $a_{j} \\in\\left\\{a_{1}, a_{2}, \\ldots, a_{2 m}\\right\\}$, suppose that $a_{j}$ is divisible by some $p \\in\\left\\{p_{1}, p_{2}, \\ldots, p_{s}\\right\\}$. Then $a_{j+p}=a_{j}+p$, so $a_{j+p}$ is also divisible by $p$. Hence neither $a_{j}$ nor $a_{j+p}$ is cromulent because both numbers are divisible by $p$ (also note that $j+p<4 m \\leq k$, so $a_{j+p}$ is one of the $k$ integers in the sequence). Thus none of $a_{1}, a_{2}, \\ldots, a_{2 m}$ are cromulent. Similarly, for any $a_{j^{\\prime}} \\in\\left\\{a_{2 m+1}, a_{2 m+2}, \\ldots, a_{k}\\right\\}$, suppose that $a_{j^{\\prime}}$ is divisible by some $p^{\\prime} \\in\\left\\{p_{1}, p_{2}, \\ldots, p_{s}\\right\\}$. Then $a_{j^{\\prime}-p^{\\prime}}=a_{j^{\\prime}}-p^{\\prime}$ is also divisible by $p^{\\prime}$ (also note that $1<j^{\\prime}-p^{\\prime} \\leq k-2$, so $a_{j^{\\prime}-p^{\\prime}}$ is one of the $k$ integers in the sequence). Thus none of $a_{2 m+1}, a_{2 m+2}, \\ldots, a_{k}$ are cromulent, completing the proof.']"
+2758,"In a sequence of $n$ consecutive positive integers, where $n>1$, an element of the sequence is said to be cromulent if it is relatively prime to all other numbers in the sequence. Every element of a sequence with $n=2$ is cromulent because any two consecutive integers are relatively prime to each other.
+
+The goal of this problem is to prove the following claim:
+
+Claim: For $k \geq 300$, there is a sequence of $k$ consecutive integers with no cromulent elements.
+
+Let $\pi(n)$ denote the number of primes less than or equal to $n$. You may use the following lemma without proof in the problems that follow.
+
+Lemma: For $x \geq 75, \pi(2 x)-\pi(x) \geq 2\left\lfloor\log _{2}(x)\right\rfloor+2$.
+
+One argument for proving the above claim begins as follows. Let $m=\left\lfloor\frac{k}{4}\right\rfloor \geq 75$, let $p_{1}, p_{2}, \ldots, p_{r}$ denote the primes in the set $\{1,2, \ldots, m\}$ (note that $p_{1}=2$ ), and let $p_{r+1}, p_{r+2}, \ldots, p_{s}$ denote the primes in the set $\{m+1, m+2, \ldots, 2 m\}$.
+Let $x$ be a solution to the system of congruences $x \equiv 1(\bmod 2)$ and $x \equiv 0\left(\bmod p_{2} p_{3} \cdots p_{r}\right)$. Then the integers
+
+$$
+x-2 m, x-2 m+2, \ldots, x-2, x, x+2, \ldots, x+2 m-2, x+2 m
+$$
+
+form a sequence of $2 m+1$ consecutive odd integers of the form $x \pm 2 y$, where $y$ varies from 0 to $m$.
+
+Prove that every number in the above sequence, except those in which $y$ is a power of 2 , is divisible by one of the primes $p_{2}, \ldots, p_{r}$.","**:
+For $k = 500$, let $m = \left\lfloor k/4 \right\rfloor$ and use the lemma. Let $f$ be the number of distinct Fibonacci numbers in $\{0, 1, \dots, m\}$, and let $\mathcal{T}$ denote the primes in $\{m+1, \dots, 2m\}$ that are congruent to $3 \pmod{4}$. Compute the number of solutions $x$ modulo $M = 2 \times \prod_{i=2}^{r} p_i \times \prod_{q \in \mathcal{T}} q$ for which the sequence $x - 2m, x - 2m + 2, \dots, x + 2m$ has no cromulent element, given that elements with $y$-values not Fibonacci are divisible by $\{p_2, \dots, p_r\}$, and $\mathcal{T}$ covers all positions with Fibonacci $y$-values.","### Step 1
+**#Elements Identified#**:
+- The core concept involves proving that for sequences of length $k \geq 300$, there exists a sequence of $k$ consecutive integers with no ""cromulent"" elements (elements relatively prime to all others).
+- Key variables: $k$ (sequence length), $m = \lfloor k/4 \rfloor$ (linked to primes), and $y$ (offset in the constructed sequence).
+- Conditions: $n > 1$, $m \geq 75$, use of the prime counting function $\pi(n)$, and the lemma for lower bounds on prime density.
+- Participants/actions: The sequence construction using $x \equiv 1 \pmod{2}$ and $x \equiv 0 \pmod{\prod_{i=2}^r p_i}$, except for positions where $y$ is a power of 2.
+- Theme: Combinatorial number theory, focusing on prime distributions, congruences, and properties of sequences to avoid elements relatively prime to all others.
+
+### Step 2
+**#Plan#**:
+1. **Modify the exception criterion**: Replace ""y is a power of 2"" with ""y is a Fibonacci number"" to complicate the exception set, as Fibonacci numbers grow exponentially but irregularly, increasing computational difficulty and requiring identification of Fibonacci numbers up to $m$.
+2. **Add real-world constraints**: Require that each large prime used for covering ($p$ in $\{m+1, \ldots, 2m\}$) is congruent to $3 \pmod{4}$ to add modular constraints, making the covering step harder and introducing a primality filter.
+3. **Increase complexity with a specific computation**: Instead of existence, ask for the exact count of $x$ mod $M$ (where $M$ is a large modulus) that produce a sequence with no cromulent elements, using the modified construction. This requires combining the lemma with explicit prime counts, solving transcendental equations for Fibonacci bounds, and handling residue classes.
+4. **Maintain logical coherence**: Ensure the modifications interconnect: $m$ determines the Fibonacci exception set and the available large primes; the constraint $p \equiv 3 \pmod{4}$ affects the Chinese Remainder Theorem solution and coverage; and the modulus $M$ depends on the prime products. The sequence construction remains centered, and the lemma is used critically.
+5. **Ensure difficulty**: Target $k = 500$ for specificity (as in $m = 125$), requiring computation of $\pi(250)$, $\pi(125)$, Fibonacci numbers up to 125, and solving multiple congruences.
+
+### Step 3
+**#Rewritten Instruction#**:
+For $k = 500$, let $m = \left\lfloor k/4 \right\rfloor$ and use the lemma. Let $f$ be the number of distinct Fibonacci numbers in $\{0, 1, \dots, m\}$, and let $\mathcal{T}$ denote the primes in $\{m+1, \dots, 2m\}$ congruent to $3 \pmod{4}$. Compute the number of solutions $x$ modulo $M = 2 \times \prod_{i=2}^{r} p_i \times \prod_{q \in \mathcal{T}} q$ for which the sequence $x - 2m, x - 2m + 2, \dots, x + 2m$ has no cromulent element, given that elements with $y$-values not Fibonacci are divisible by $\{p_2, \dots, p_r\}$, and $\mathcal{T}$ covers Fibonacci $y$-positions with each prime used once.
+
+### Step 4
+**#Finally Rewritten Instruction#**:
+For $k = 500$, let $m = \left\lfloor k/4 \right\rfloor$ and use the lemma. Let $f$ be the number of distinct Fibonacci numbers in $\{0, 1, \dots, m\}$, and let $\mathcal{T}$ denote the primes in $\{m+1, \dots, 2m\}$ that are congruent to $3 \pmod{4}$. Compute the number of solutions $x$ modulo $M = 2 \times \prod_{i=2}^{r} p_i \times \prod_{q \in \mathcal{T}} q$ for which the sequence $x - 2m, x - 2m + 2, \dots, x + 2m$ has no cromulent element, given that elements with $y$-values not Fibonacci are divisible by $\{p_2, \dots, p_r\}$, and $\mathcal{T}$ covers all positions with Fibonacci $y$-values.",success,233.19,"['Note that $x \\equiv 1(\\bmod 2)$ implies that $x$ is odd. Because $x \\equiv 0\\left(\\bmod p_{2} p_{3} \\cdots p_{r}\\right)$, write $x=q p_{2} p_{3} \\cdots p_{r}$ for some odd integer $q$. Then $x$ is divisible by all of the primes $p_{2}, \\ldots, p_{r}$. The desired result will first be established for numbers of the form $x+2 y$, with $1 \\leq y \\leq m$. Because $x$ is divisible by each of $p_{2}, \\ldots, p_{r}$, it suffices to prove that $y$ is divisible by one of $p_{2}, \\ldots, p_{r}$ unless $y$ is a power of 2 . Note that because $p_{2}, \\ldots, p_{r}$ are all odd, if $y$ is a power of 2 (including $2^{0}=1$ ), then $2 y$ cannot be divisible by any of $p_{2}, \\ldots, p_{r}$. On the other hand, if $y$ has an odd factor greater than 1, by the Fundamental Theorem of Arithmetic, $y$ must be divisible by at least one of $p_{2}, \\ldots, p_{r}$ (note that $p_{2}=3$ and $p_{r} \\leq m$ ). Finally, because the desired result holds for $x+2 y$, with $1 \\leq y \\leq m$, it also holds for $x-2 y$ because $x-2 y=(x+2 y)-4 y$, thus completing the proof.']"
+2864,"An $\boldsymbol{n}$-label is a permutation of the numbers 1 through $n$. For example, $J=35214$ is a 5 -label and $K=132$ is a 3 -label. For a fixed positive integer $p$, where $p \leq n$, consider consecutive blocks of $p$ numbers in an $n$-label. For example, when $p=3$ and $L=263415$, the blocks are 263,634,341, and 415. We can associate to each of these blocks a $p$-label that corresponds to the relative order of the numbers in that block. For $L=263415$, we get the following:
+
+$$
+\underline{263} 415 \rightarrow 132 ; \quad 2 \underline{63415} \rightarrow 312 ; \quad 26 \underline{341} 5 \rightarrow 231 ; \quad 263 \underline{415} \rightarrow 213
+$$
+
+Moving from left to right in the $n$-label, there are $n-p+1$ such blocks, which means we obtain an $(n-p+1)$-tuple of $p$-labels. For $L=263415$, we get the 4 -tuple $(132,312,231,213)$. We will call this $(n-p+1)$-tuple the $\boldsymbol{p}$-signature of $L$ (or signature, if $p$ is clear from the context) and denote it by $S_{p}[L]$; the $p$-labels in the signature are called windows. For $L=263415$, the windows are $132,312,231$, and 213 , and we write
+
+$$
+S_{3}[263415]=(132,312,231,213)
+$$
+
+More generally, we will call any $(n-p+1)$-tuple of $p$-labels a $p$-signature, even if we do not know of an $n$-label to which it corresponds (and even if no such label exists). A signature that occurs for exactly one $n$-label is called unique, and a signature that doesn't occur for any $n$-labels is called impossible. A possible signature is one that occurs for at least one $n$-label.
+
+In this power question, you will be asked to analyze some of the properties of labels and signatures.
+Explain why the label 1234 has a unique 3-signature.","For $\boldsymbol{n=7}$ and $\boldsymbol{p=3}$, determine the number of 7-labels that have a unique 3-signature and contain at least one increasing window (pattern 123) in their signature.","Step 1
+#Elements Identified#:
+- Core concept: Permutations (n-labels) and their p-signatures derived from consecutive blocks of size p.
+- Variables: n (size of label), p (block size), specific n-labels (e.g., 1234), windows (p-label sequences).
+- Key properties: Unique signatures (one-to-one), impossible signatures (not realized), possible signatures (realized by at least one label).
+- Process: Generating the (n-p+1)-tuple of p-labels from an n-label and analyzing signature uniqueness.
+- Initial query: Proof that for n=4, p=3, the label 1234 has a unique 3-signature.
+
+Step 2
+#Plan#:
+- Change from proof to computation: Instead of explaining uniqueness for one label, compute the number of n-labels with unique p-signatures for a larger n to ensure non-trivial calculation.
+- Increase complexity by scaling n: Set n=7 and p=3, making manual computation impractical and requiring combinatorial reasoning (7! = 5040 labels, 6^{7-3+1} = 6^5 = 7776 possible signatures).
+- Add dynamic constraint: Introduce the requirement that every window in the signature must contain the relative order pattern 123 (increasing pattern) at least once, linking back to the idea in the original proof but complicating the count with dependencies.
+- Enhance with numerical depth: Demand the exact numerical answer to quantify the count.
+- Ensure coherence: Uniqueness depends on the signature not being shared, and the pattern constraint introduces real-world constraint on relative orders.
+
+Step 3
+#Rewritten Instruction#:
+For $\boldsymbol{n=7}$ and $\boldsymbol{p=3}$, compute the number of 7-labels that have a unique 3-signature and whose signature contains at least one window with the increasing pattern 123 in every possible block.
+
+Step 4
+#Finally Rewritten Instruction#:
+For $\boldsymbol{n=7}$ and $\boldsymbol{p=3}$, determine the number of 7-labels that have a unique 3-signature and contain at least one increasing window (pattern 123) in their signature.",success,98.79,"['We will prove this by contradiction. Suppose for some other 4-label $L$ we have $S_{3}[L]=$ $S_{3}[1234]=(123,123)$. Write out $L$ as $a_{1}, a_{2}, a_{3}, a_{4}$. From the first window of $S_{3}[L]$, we have $a_{1}<a_{2}<a_{3}$. From the second window, we have $a_{2}<a_{3}<a_{4}$. Connecting these inequalities gives $a_{1}<a_{2}<a_{3}<a_{4}$, which forces $L=1234$, a contradiction. Therefore, the 3 -signature above is unique.']"
+2866,"An $\boldsymbol{n}$-label is a permutation of the numbers 1 through $n$. For example, $J=35214$ is a 5 -label and $K=132$ is a 3 -label. For a fixed positive integer $p$, where $p \leq n$, consider consecutive blocks of $p$ numbers in an $n$-label. For example, when $p=3$ and $L=263415$, the blocks are 263,634,341, and 415. We can associate to each of these blocks a $p$-label that corresponds to the relative order of the numbers in that block. For $L=263415$, we get the following:
+
+$$
+\underline{263} 415 \rightarrow 132 ; \quad 2 \underline{63415} \rightarrow 312 ; \quad 26 \underline{341} 5 \rightarrow 231 ; \quad 263 \underline{415} \rightarrow 213
+$$
+
+Moving from left to right in the $n$-label, there are $n-p+1$ such blocks, which means we obtain an $(n-p+1)$-tuple of $p$-labels. For $L=263415$, we get the 4 -tuple $(132,312,231,213)$. We will call this $(n-p+1)$-tuple the $\boldsymbol{p}$-signature of $L$ (or signature, if $p$ is clear from the context) and denote it by $S_{p}[L]$; the $p$-labels in the signature are called windows. For $L=263415$, the windows are $132,312,231$, and 213 , and we write
+
+$$
+S_{3}[263415]=(132,312,231,213)
+$$
+
+More generally, we will call any $(n-p+1)$-tuple of $p$-labels a $p$-signature, even if we do not know of an $n$-label to which it corresponds (and even if no such label exists). A signature that occurs for exactly one $n$-label is called unique, and a signature that doesn't occur for any $n$-labels is called impossible. A possible signature is one that occurs for at least one $n$-label.
+
+In this power question, you will be asked to analyze some of the properties of labels and signatures.
+Explain why the 3 -signature $(123,321)$ is impossible.","**:  
+For \( p = 4 \) and \( n = 8 \), compute how many distinct \( n \)-labels \( L \) exist such that \( S_4[L] \) has first window \( 1324 \), last window \( 4231 \), all windows are distinct permutations of size 4, and no window is \( 1234 \).","**Step 1**  
+**#Elements Identified#**:  
+- **Variables**: \( n \) (length of label), \( p \) (window size), fixed example signatures (e.g., (123,321)), signature windows (blocks of relative orders), concept of impossible/unique signatures.  
+- **Conditions**: Signature corresponds to relative orders of consecutive blocks; signature must be derived from an \( n \)-label; impossibility arises from contradictions in order constraints.  
+- **Participants/Actions**: Generating signatures from labels; checking realizability of specific signatures; proving impossibility via logical inconsistencies.  
+- **Theme**: Permutation combinatorics with overlapping windows and order constraints.  
+
+**Step 2**  
+**#Plan#**:  
+1. **Transform proof into computation**: Replace ""prove impossibility"" with ""compute the exact number of realizable \( n \)-labels"" for a complex signature specification.  
+2. **Increase parameter sizes**: Set large \( n \) and \( p \) (\( n=8 \), \( p=4 \)) to elevate computational demands.  
+3. **Add constraints**: Require fixed start/end windows, distinct windows in the signature, and a global permutation property (all windows avoid identity). This introduces interdependencies between overlapping windows and non-local conditions.  
+4. **Ensure non-trivial output**: The count involves combinatorial enumeration with constraints on window orders, reflecting the original impossibility theme through restricted realizability.  
+
+**Step 3**  
+**#Rewritten Instruction#**:  
+For \( p = 4 \) and \( n = 8 \), a signature consists of \( n - p + 1 = 5 \) windows. Compute how many distinct \( n \)-labels \( L \) exist such that the signature \( S_4[L] \) has first window \( 1324 \), last window \( 4231 \), all windows are distinct, and no window is the identity permutation \( 1234 \).  
+
+**Step 4**  
+**#Finally Rewritten Instruction#**:  
+For \( p = 4 \) and \( n = 8 \), compute how many distinct \( n \)-labels \( L \) exist such that \( S_4[L] \) has first window \( 1324 \), last window \( 4231 \), all windows are distinct permutations of size 4, and no window is \( 1234 \).",success,70.6,"['If $S_{3}\\left[a_{1}, a_{2}, a_{3}, a_{4}\\right]=(123,321)$, then the first window forces $a_{2}<a_{3}$, whereas the second window forces $a_{2}>a_{3}$. This is impossible, so the 3 -signature $(123,321)$ is impossible.']"
+2998,"Elizabeth is in an ""escape room"" puzzle. She is in a room with one door which is locked at the start of the puzzle. The room contains $n$ light switches, each of which is initially off. Each minute, she must flip exactly $k$ different light switches (to ""flip"" a switch means to turn it on if it is currently off, and off if it is currently on). At the end of each minute, if all of the switches are on, then the door unlocks and Elizabeth escapes from the room.
+
+Let $E(n, k)$ be the minimum number of minutes required for Elizabeth to escape, for positive integers $n, k$ with $k \leq n$. For example, $E(2,1)=2$ because Elizabeth cannot escape in one minute (there are two switches and one must be flipped every minute) but she can escape in two minutes (by flipping Switch 1 in the first minute and Switch 2 in the second minute). Define $E(n, k)=\infty$ if the puzzle is impossible to solve (that is, if it is impossible to have all switches on at the end of any minute).
+
+For convenience, assume the $n$ light switches are numbered 1 through $n$.
+Show that if $n+k$ is even and $\frac{n}{2}<k<n$, then $E(n, k)=3$.","Elizabeth is in an escape room with 100 light switches, all initially off. Each minute, she flips exactly 60 distinct switches simultaneously. If all switches are on after a minute, she escapes. Given that 100 + 60 is even and 50 < 60 < 100, compute the number of distinct sequences of three flip actions (specifying which 60 switches to flip each minute) resulting in all switches being on after the third minute. You must output this number modulo \(10^9 + 7\).","Step 1  
+#Elements Identified#:  
+- Variables: \(n\) (number of light switches), \(k\) (number of switches flipped per minute).  
+- Conditions: All switches start off; each minute exactly \(k\) distinct switches are flipped; escape occurs only if all switches are on at the end of the minute.  
+- Key mathematical condition: When \(n + k\) is even and \(\frac{n}{2} < k < n\), then \(E(n,k) = 3\).  
+- Participants: Elizabeth (agent performing flips, but process-focused).  
+- Actions: Flipping switches (binary state change).  
+- Theme: State transition in a puzzle to reach all-on state with minimal time.  
+- Core proof element: Establishing that the minimum time is 3 under the given condition.  
+
+Step 2  
+#Plan#:  
+- Change from a proof-based comparison to a computational problem requiring a specific numerical output, increasing complexity by demanding exact calculation.  
+- Replace the focus on existence/minimum time with counting the number of minimal-length sequences that achieve escape, adding combinatorial depth.  
+- Set specific large values for \(n\) and \(k\) to satisfy the original condition and ensure computational difficulty.  
+- Retain the theme and context but introduce modular arithmetic for feasible output.  
+- Ensure logical interconnection: The condition \(n + k\) even and \(\frac{n}{2} < k < n\) ensures \(E(n,k) = 3\), allowing sequences to be counted using combinatorial structures derived from the proof.  
+
+Step 3  
+#Rewritten Instruction#:  
+Elizabeth is in an escape room with \(n = 100\) light switches, all initially off. Each minute, she flips exactly \(k = 60\) distinct switches, and if all switches are on at the minute's end, she escapes. Given that \(100 + 60 = 160\) (even) and \(50 < 60 < 100\), compute the number of distinct sequences of exactly three flip actions (each defined by a choice of 60 switches) that result in all switches being on after the third action. Output this number modulo \(10^9 + 7\).  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Elizabeth is in an escape room with 100 light switches, all initially off. Each minute, she flips exactly 60 distinct switches simultaneously. If all switches are on after a minute, she escapes. Given that 100 + 60 is even and 50 < 60 < 100, compute the number of distinct sequences of three flip actions (specifying which 60 switches to flip each minute) resulting in all switches being on after the third minute. You must output this number modulo \(10^9 + 7\).",success,186.95,"[""First, because $k<n$, not all switches can be flipped in one minute, and so $E(n, k) \\neq 1$. Second, because $k>\\frac{n}{2}$, some switches must be flipped twice in the first two minutes, and so $E(n, k) \\neq 2$.\n\nHere is a strategy by which Elizabeth can escape in three minutes. Note that because $n+k$ is even, it follows that $3 k-n=(k+n)+2(k-n)$ is also even. Then let $3 k-n=2 b$. Note that $b>0$ (because $k>\\frac{n}{2}$ ), and $b<k$ (because $k<n$ ).\n\nElizabeth's strategy is to flip switches 1 through $b$ three times each, and the remaining $n-b$ switches once each. This is possible because $n-b=(3 k-2 b)-b=3(k-b)$ is divisible by 3 , and $b+\\frac{n-b}{3}=b+(k-b)=k$. Therefore, each minute, Elizabeth can flip switches 1 through $b$, and one-third of the $3(k-b)$ switches from $b+1$ through $n$. This allows her to escape in three minutes, as desired.""]"
+2999,"Elizabeth is in an ""escape room"" puzzle. She is in a room with one door which is locked at the start of the puzzle. The room contains $n$ light switches, each of which is initially off. Each minute, she must flip exactly $k$ different light switches (to ""flip"" a switch means to turn it on if it is currently off, and off if it is currently on). At the end of each minute, if all of the switches are on, then the door unlocks and Elizabeth escapes from the room.
+
+Let $E(n, k)$ be the minimum number of minutes required for Elizabeth to escape, for positive integers $n, k$ with $k \leq n$. For example, $E(2,1)=2$ because Elizabeth cannot escape in one minute (there are two switches and one must be flipped every minute) but she can escape in two minutes (by flipping Switch 1 in the first minute and Switch 2 in the second minute). Define $E(n, k)=\infty$ if the puzzle is impossible to solve (that is, if it is impossible to have all switches on at the end of any minute).
+
+For convenience, assume the $n$ light switches are numbered 1 through $n$.
+Show that if $n$ is even and $k$ is odd, then $E(n, k)=E(n,n-k)$.","""Elizabeth faces 100 light switches in a line. All start off. Each minute, she flips exactly $k=17$ distinct switches. Flipping a switch toggles itself and its neighbors (switch 1 toggles 1 and 2; internal switches toggle left, self, right; switch 100 toggles 99 and 100). She cannot flip the same switch in two consecutive minutes. Escape occurs when all are on after a minute. Compute $E(100, 17)$, the minimum number of minutes required, or state that it is impossible.""","Step 1
+#Elements Identified#:
+- **Variables**: $n$ (number of light switches), $k$ (number of switches flipped per minute), the minimum minutes $E(n,k)$ or $\infty$ if impossible.
+- **Conditions**: $n$ even and $k$ odd for the equality $E(n,k) = E(n,n-k)$, all switches start off, escape when all are on at end of a minute.
+- **Participants**: Elizabeth, but minimized; the focus is on switch states.
+- **Actions**: Each minute, flip exactly $k$ distinct switches, toggling their states.
+- **Processes**: Sequence of flip actions to reach all-on state from all-off state.
+- **Theme**: Parity constraints, group theory over $\text{GF}(2)$, combinatorial sequences.
+
+Step 2
+#Plan#:
+- **Introduce graph structure**: Modify the switch interactions—switches are vertices on a graph (e.g., a path graph), flipping a switch toggles itself and its adjacent switches. This couples switches and increases dependency.
+- **Add temporal constraint**: Elizabeth cannot flip the same switch in two consecutive minutes; this restricts the sequence and adds minimal-gap reasoning, complicating the search for valid sequences.
+- **Request specific computation**: Assign large, coprime values $n=100$, $k=17$ to ensure computational complexity, and demand $E(n,k)$ for a path graph with the above, forcing numerical result via linear algebra or optimization.
+- **Ensure coherence**: Graph structure maintains the theme with spatial constraints; temporal constraint enhances sequence complexity; specific computable instance extracts a concrete answer from the abstract proof.
+
+Step 3
+#Rewritten Instruction#:
+""Elizabeth faces 100 light switches in a line. All start off. Each minute, she flips exactly $k=17$ distinct switches. Flipping a switch toggles itself and its neighbors (ends affect only adjacent). She cannot flip any switch consecutively. Escape occurs when all are on. Compute $E(100, 17)$, the min minutes or state it is impossible. Define: flipping switch $1$ toggles $\{1,2\}$; switches $2$–$99$ toggle $\{i-1,i,i+1\}$; switch $100$ toggles $\{99,100\}$.""
+
+Step 4
+#Finally Rewritten Instruction#:
+""Elizabeth faces 100 light switches in a line. All start off. Each minute, she flips exactly $k=17$ distinct switches. Flipping a switch toggles itself and its neighbors (switch 1 toggles 1 and 2; internal switches toggle left, self, right; switch 100 toggles 99 and 100). She cannot flip the same switch in two consecutive minutes. Escape occurs when all are on after a minute. Compute $E(100, 17)$, the minimum number of minutes required, or state that it is impossible.""",success,355.39,"['Because $n$ is even, and because each switch must be flipped an odd number of times in order to escape, the total number of flips is even. Because $k$ must be odd, $E(n, k)$ must be even. To show this, consider the case where $E(n, k)$ is odd. If $E(n, k)$ is odd, then an odd number of flips happen an odd number of times, resulting in an odd number of total flips. This is a contradiction because $n$ is even.\n\nCall a switch ""non-flipped"" in any given minute if it is not among the switches flipped in that minute. Because $E(n, k)$ (i.e., the total number of minutes) is even, and each switch is flipped an odd number of times, each switch must also be non-flipped an odd number of times. Therefore any sequence of flips that solves the "" $(n, k)$ puzzle"" can be made into a sequence of flips that solves the "" $(n, n-k)$ "" puzzle by interchanging flips and non-flips. These sequences last for the same number of minutes, and therefore $E(n, k)=E(n, n-k)$.']"
+3002,"Elizabeth is in an ""escape room"" puzzle. She is in a room with one door which is locked at the start of the puzzle. The room contains $n$ light switches, each of which is initially off. Each minute, she must flip exactly $k$ different light switches (to ""flip"" a switch means to turn it on if it is currently off, and off if it is currently on). At the end of each minute, if all of the switches are on, then the door unlocks and Elizabeth escapes from the room.
+
+Let $E(n, k)$ be the minimum number of minutes required for Elizabeth to escape, for positive integers $n, k$ with $k \leq n$. For example, $E(2,1)=2$ because Elizabeth cannot escape in one minute (there are two switches and one must be flipped every minute) but she can escape in two minutes (by flipping Switch 1 in the first minute and Switch 2 in the second minute). Define $E(n, k)=\infty$ if the puzzle is impossible to solve (that is, if it is impossible to have all switches on at the end of any minute).
+
+For convenience, assume the $n$ light switches are numbered 1 through $n$.
+Show that if $n$ and $k$ are both even and $k \leq \frac{n}{2}$, then $E(n, k)=\left\lceil\frac{n}{k}\right\rceil$.","Elizabeth is in an escape room with $100$ light switches, all initially off. Each minute, she must flip exactly $33$ different switches (toggle between on and off), but she cannot flip any switch that was flipped in the previous minute. The door unlocks if all switches are on at the end of a minute. Compute the minimum number of minutes required for her to escape, or state it is impossible.","Step 1
+#Elements Identified#:
+- Variables: $n$ (number of light switches), $k$ (number of switches flipped per minute)
+- Initial conditions: All switches are off
+- Actions: Each minute, flip exactly $k$ different switches (toggle on/off)
+- Escape condition: The door unlocks if all switches are on at the end of a minute
+- Core definition: $E(n, k)$ as the minimum minutes to escape, with $\infty$ if impossible
+- Specific case in proof: When $n$ and $k$ both even and $k \leq n/2$, $E(n, k) = \lceil n/k \rceil$
+- Theme: Discrete mathematics involving switch states, flips, and optimization under constraints
+
+Step 2
+#Plan#:
+1. Introduce an action constraint to increase complexity: Elizabeth cannot flip the same switch in two consecutive minutes. This adds a sequence dependency, forcing non-consecutive flip choices.
+2. Alter the conditions to avoid the original proof case: Use $n$ and $k$ both odd, where the original result does not apply, and $E(n,k)$ is finite but harder to compute. Specifically, set $n=100$ and $k=33$ for large, non-trivial computation.
+3. Shift from proof to computational output: Instead of proving a result, require computation of $E'(n,k)$ under the new constraint for the specified $n$ and $k$. The constraint makes the minimum minutes non-obvious and increases difficulty by requiring sequence-aware optimization.
+4. Ensure coherence: The constraint logically ties to the action component, and the parameters are chosen to complicate state transitions, leveraging combinatorics of sets with pairwise disjointness in consecutive flips.
+
+Step 3
+#Rewritten Instruction#:
+Elizabeth is in an escape room with $100$ light switches, all initially off. Each minute, she must flip exactly $33$ different switches (toggle on/off), but she cannot flip any switch that was flipped in the previous minute. The door unlocks if all switches are on at the end of a minute. Compute the minimum number of minutes Elizabeth needs to escape, or state it is impossible.
+
+Step 4
+#Finally Rewritten Instruction#:
+Elizabeth is in an escape room with $100$ light switches, all initially off. Each minute, she must flip exactly $33$ different switches (toggle between on and off), but she cannot flip any switch that was flipped in the previous minute. The door unlocks if all switches are on at the end of a minute. Compute the minimum number of minutes required for her to escape, or state it is impossible.",success,266.05,"['First, if $k$ divides $n$, then $E(n, k)=\\frac{n}{k}=\\left\\lceil\\frac{n}{k}\\right\\rceil$. Assume then that $k$ does not divide $n$. Then let $r=\\left\\lceil\\frac{n}{k}\\right\\rceil$, which implies $(r-1) k<n<r k$.\n\nBecause $(r-1) k<n$, it follows that $r-1$ minutes are not enough to flip each switch once, so $E(n, k) \\geq r$.\n\nBecause $n$ and $k$ are even, it follows that $r k$ and $r k-n$ are also even. Then $r k-n=2 b$ for some integer $b \\geq 1$, and note that $b<k$ because $r k-k<n$. Then the following strategy turns all of the lights on in $r$ minutes.\n\n- In each of the first three minutes, flip switches 1 through $b$, along with the next $k-b$ switches that have not yet been flipped. This leaves $b+3(k-b)$ lights on, and the rest off. Note that $b+3(k-b)=3 k-2 b=3 k-(r k-n)=n-k(r-3)$.\n- In each of the remaining $r-3$ minutes, flip the first $k$ switches that have never been flipped before.\n\nThis strategy turns on the remaining $k(r-3)$ lights, and Elizabeth escapes the room after $r$ minutes.']"
+3003,"Elizabeth is in an ""escape room"" puzzle. She is in a room with one door which is locked at the start of the puzzle. The room contains $n$ light switches, each of which is initially off. Each minute, she must flip exactly $k$ different light switches (to ""flip"" a switch means to turn it on if it is currently off, and off if it is currently on). At the end of each minute, if all of the switches are on, then the door unlocks and Elizabeth escapes from the room.
+
+Let $E(n, k)$ be the minimum number of minutes required for Elizabeth to escape, for positive integers $n, k$ with $k \leq n$. For example, $E(2,1)=2$ because Elizabeth cannot escape in one minute (there are two switches and one must be flipped every minute) but she can escape in two minutes (by flipping Switch 1 in the first minute and Switch 2 in the second minute). Define $E(n, k)=\infty$ if the puzzle is impossible to solve (that is, if it is impossible to have all switches on at the end of any minute).
+
+For convenience, assume the $n$ light switches are numbered 1 through $n$.
+Prove that if $k$ is odd and $k \leq \frac{n}{2}$, then either $E(n, k)=\left\lceil\frac{n}{k}\right\rceil$ or $E(n, k)=\left\lceil\frac{n}{k}\right\rceil+1$.",Extraction Failed,,success,219.41,"['First we prove that if $n$ and $k$ are both even and $k \\leq \\frac{n}{2}$, then $E(n, k)=\\left\\lceil\\frac{n}{k}\\right\\rceil$.\n\nProof. First, if $k$ divides $n$, then $E(n, k)=\\frac{n}{k}=\\left\\lceil\\frac{n}{k}\\right\\rceil$. Assume then that $k$ does not divide $n$. Then let $r=\\left\\lceil\\frac{n}{k}\\right\\rceil$, which implies $(r-1) k<n<r k$.\n\nBecause $(r-1) k<n$, it follows that $r-1$ minutes are not enough to flip each switch once, so $E(n, k) \\geq r$.\n\nBecause $n$ and $k$ are even, it follows that $r k$ and $r k-n$ are also even. Then $r k-n=2 b$ for some integer $b \\geq 1$, and note that $b<k$ because $r k-k<n$. Then the following strategy turns all of the lights on in $r$ minutes.\n\n- In each of the first three minutes, flip switches 1 through $b$, along with the next $k-b$ switches that have not yet been flipped. This leaves $b+3(k-b)$ lights on, and the rest off. Note that $b+3(k-b)=3 k-2 b=3 k-(r k-n)=n-k(r-3)$.\n- In each of the remaining $r-3$ minutes, flip the first $k$ switches that have never been flipped before.\n\nThis strategy turns on the remaining $k(r-3)$ lights, and Elizabeth escapes the room after $r$ minutes.\n\n\nFirst, if $k$ divides $n$, then $E(n, k)=\\frac{n}{k}=\\left\\lceil\\frac{n}{k}\\right\\rceil$. Assume then that $k$ does not divide $n$. Then let $r=\\left\\lceil\\frac{n}{k}\\right\\rceil$, which implies $(r-1) k<n<r k$.\n\nBecause $(r-1) k<n$, it follows that $r-1$ minutes are not enough to flip each switch once, so $E(n, k) \\geq r$.\n\n\n\nExactly one of $r k-n$ and $(r+1) k-n$ is even. There are two cases.\n\nCase 1: Suppose $r k-n=2 b$ for some integer $b \\geq 1$. As in the proof above, b<k$. Then the following strategy turns all of the lights on in $r$ minutes.\n\n- In each of the first three minutes, flip switches 1 through $b$, along with the next $k-b$ switches that have not yet been flipped. This leaves $b+3(k-b)$ lights on, and the rest off. Note that $b+3(k-b)=3 k-2 b=3 k-(r k-n)=n-k(r-3)$.\n- In each of the remaining $r-3$ minutes, flip the first $k$ switches that have never been flipped before.\n\nThis strategy turns on the remaining $k(r-3)$ lights, and Elizabeth escapes the room after $r$ minutes.\n\nCase 2: Suppose $(r+1) k-n=2 b$ for some integer $b \\geq 1$. As in the solution to proof above, b<k$. Then the following strategy turns all of the lights on in $r+1$ minutes.\n\n- In each of the first three minutes, flip switches 1 through $b$, along with the next $k-b$ switches that have not yet been flipped. This leaves $b+3(k-b)$ lights on, and the rest off. Note that $b+3(k-b)=3 k-2 b=3 k-(r k+k-n)=n-k(r-2)$.\n- In each of the remaining $r-2$ minutes, flip the first $k$ switches that have never been flipped before.\n\nThis strategy turns on the remaining $k(r-2)$ lights, and Elizabeth escapes the room after $r+1$ minutes.']"
+3005,"Elizabeth is in an ""escape room"" puzzle. She is in a room with one door which is locked at the start of the puzzle. The room contains $n$ light switches, each of which is initially off. Each minute, she must flip exactly $k$ different light switches (to ""flip"" a switch means to turn it on if it is currently off, and off if it is currently on). At the end of each minute, if all of the switches are on, then the door unlocks and Elizabeth escapes from the room.
+
+Let $E(n, k)$ be the minimum number of minutes required for Elizabeth to escape, for positive integers $n, k$ with $k \leq n$. For example, $E(2,1)=2$ because Elizabeth cannot escape in one minute (there are two switches and one must be flipped every minute) but she can escape in two minutes (by flipping Switch 1 in the first minute and Switch 2 in the second minute). Define $E(n, k)=\infty$ if the puzzle is impossible to solve (that is, if it is impossible to have all switches on at the end of any minute).
+
+For convenience, assume the $n$ light switches are numbered 1 through $n$.
+One might guess that in most cases, $E(n, k) \approx \frac{n}{k}$. In light of this guess, define the inefficiency of the ordered pair $(n, k)$, denoted $I(n, k)$, as
+
+$$
+I(n, k)=E(n, k)-\frac{n}{k}
+$$
+
+if $E(n, k) \neq \infty$. If $E(n, k)=\infty$, then by convention, $I(n, k)$ is undefined.
+
+Prove that for any integer $x>2$, there exists an ordered pair $(n, k)$ for which $I(n, k)>x$.","Elizabeth is in an ""escape room"" puzzle with $n$ light switches arranged in a line. Each minute, she must flip exactly $k$ consecutive light switches. The escape happens when all switches are on at the end of a minute. Define $E(n,k)$ as the minimum minutes to escape, or infinity if impossible. Define the inefficiency $I(n,k) = E(n,k) - \frac{n}{k}$ if $E(n,k) \neq \infty$. For $n = 101$ and $k = 10$, compute $I(101,10)$.","Step 1  
+#Elements Identified#:  
+- $n$ light switches arranged in a one-dimensional array.  
+- Each minute, flip exactly $k$ consecutive switches.  
+- Initial state: all switches off.  
+- Escape condition: all switches on at end of a minute.  
+- $E(n,k)$: minimum minutes to escape, or infinity if impossible.  
+- $I(n,k) = E(n,k) - \frac{n}{k}$ if $E(n,k) \neq \infty$, else undefined.  
+- Original task: prove existential quantifier for large inefficiency.  
+- Theme: achieving all-on state with constraints.  
+
+Step 2  
+#Plan#:  
+- **Modify flipping action**: Instead of any $k$ different switches, require flipping a block of exactly $k$ consecutive switches in the array to add spatial dependency.  
+- **Introduce parameter for computation**: Define $n$ and $k$ in terms of a given parameter $m$ to scale complexity. Set $n = 2m + 1$ and $k = \lfloor \sqrt{m} \rfloor$ to ensure asymmetric sizes and large $m$ requires handling parity and alignment issues.  
+- **Computational focus**: Replace proof with computation of $I(n,k)$ for large $m$, specifically for $m = 100$, making calculation non-trivial due to linear constraint and minuet optimization under consecutive flips.  
+- **Ensure interconnectivity**: The consecutive flip constraint increases difficulty by introducing ordering and proximity effects, directly impacting $E(n,k)$ and inefficiency; the parameter $m$ forces computation with large numbers.  
+
+Step 3  
+#Rewritten Instruction#:  
+Elizabeth is in an ""escape room"" puzzle with $n$ light switches arranged in a line. Each minute, she must flip exactly $k$ consecutive light switches. The escape happens when all switches are on at the end of a minute. Define $E(n,k)$ as the minimum minutes to escape, or infinity if impossible. Define the inefficiency $I(n,k) = E(n,k) - \frac{n}{k}$ if $E(n,k) \neq \infty$. Compute $I(100, \lfloor \sqrt{100} \rfloor)$ for this puzzle.  
+
+Step 4  
+#Finally Rewritten Instruction#:  
+Elizabeth is in an ""escape room"" puzzle with $n$ light switches arranged in a line. Each minute, she must flip exactly $k$ consecutive light switches. The escape happens when all switches are on at the end of a minute. Define $E(n,k)$ as the minimum minutes to escape, or infinity if impossible. Define the inefficiency $I(n,k) = E(n,k) - \frac{n}{k}$ if $E(n,k) \neq \infty$. For $n = 101$ and $k = 10$, compute $I(101,10)$.",success,857.77,"['First, we prove that if $n$ is even and $k$ is odd, then $E(n, k)=E(n,n-k)$.\n\n\nBecause $n$ is even, and because each switch must be flipped an odd number of times in order to escape, the total number of flips is even. Because $k$ must be odd, $E(n, k)$ must be even. To show this, consider the case where $E(n, k)$ is odd. If $E(n, k)$ is odd, then an odd number of flips happen an odd number of times, resulting in an odd number of total flips. This is a contradiction because $n$ is even.\n\nCall a switch ""non-flipped"" in any given minute if it is not among the switches flipped in that minute. Because $E(n, k)$ (i.e., the total number of minutes) is even, and each switch is flipped an odd number of times, each switch must also be non-flipped an odd number of times. Therefore any sequence of flips that solves the "" $(n, k)$ puzzle"" can be made into a sequence of flips that solves the "" $(n, n-k)$ "" puzzle by interchanging flips and non-flips. These sequences last for the same number of minutes, and therefore $E(n, k)=E(n, n-k)$.\n\n\nLet $n=2 x$ and $k=2 x-1$ for some positive integer $x$. Then $n$ is even and $k$ is odd, so the above prove applies, and $E(n, k)=E(n, n-k)=E(n, 1)=2 x$. Therefore $I(n, k)=2 x-\\frac{2 x}{2 x-1}$. Because $x>2$, it follows that $\\frac{2 x}{2 x-1}<2<x$, so $I(n, k)>x$, as desired.']"

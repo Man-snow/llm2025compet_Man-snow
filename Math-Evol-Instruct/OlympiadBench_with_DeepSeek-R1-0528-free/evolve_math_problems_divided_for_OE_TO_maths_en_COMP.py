@@ -120,22 +120,85 @@ def parse_final_instruction(response_text: str) -> str:
 
 
 def main():
-    """Main execution function with configurable start/count and CSV-only output."""
-    # ★★★ ここで開始問題番号と処理数を指定してください ★★★	
-    start_from_problem_number = 1 # 例: 1番目の問題から開始
-    num_to_process = 40 # 例: 40問を処理
-    
+    """Main execution function with configurable problem IDs and CSV-only output."""
+    # ★★★ ここで処理したい問題のIDをリストで指定してください ★★★
+    # 例: ['comp-1', 'comp-15', 'comp-30'] のように指定します
+    target_ids = [
+                "2258",
+                "2260",
+                "2261",
+                "2263",
+                "2265",
+                "2266",
+                "2268",
+                "2275",
+                "2276",
+                "2277",
+                "2280",
+                "2281",
+                "2282",
+                "2283",
+                "2286",
+                "2287",
+                "2288",
+                "2289",
+                "2292",
+                "2298",
+                "2300",
+                "2301",
+                "2303",
+                "2312",
+                "2313",
+                "2315",
+                "2317",
+                "2318",
+                "2319",
+                "2321",
+                "2322",
+                "2323",
+                "2325",
+                "2326",
+                "2327",
+                "2328",
+                "2329",
+                "2330",
+                "2331",
+                "2332",
+                "2333",
+                "2334",
+                "2336",
+                "2338",
+                "2339",
+                "2340",
+                "2341",
+                "2777",
+                "2778",
+                "2780",
+                "2781",
+                "2782",
+                "2783",
+                "2784",
+                "2785",
+                "2786",
+                "2787",
+                "2788",
+                "2789",
+                "2790",
+                "2791",
+                ] 
+
     # ★★★ 出力ファイル名を動的に設定 ★★★
     output_filename = f"evolved_math_problems_{DATASET_CONFIG}.csv"
 
-    # --- Resume Logic ---
+    # --- Resume Logic (変更なし) ---
     processed_ids = []
     if os.path.exists(output_filename):
         print(f"📄 Found existing results file: '{output_filename}'.")
         try:
             existing_df = pd.read_csv(output_filename)
             if 'id' in existing_df.columns:
-                processed_ids = existing_df['id'].dropna().tolist()
+                # 読み込んだIDを文字列に変換して比較を確実にする
+                processed_ids = existing_df['id'].dropna().astype(str).tolist()
                 print(f"✅ Found {len(processed_ids)} previously processed problems. They will be skipped.")
         except pd.errors.EmptyDataError:
             print("⚠️ Existing results file is empty. Starting fresh.")
@@ -149,29 +212,31 @@ def main():
         print("No problems were loaded from the source. Exiting.")
         return
 
-    # (以降のロジックは変更なし)
-    start_index = start_from_problem_number - 1
-    end_index = start_index + num_to_process
-
-    if len(all_problems_df) <= start_index:
-        print(f"Source has only {len(all_problems_df)} problems. Cannot start from problem {start_from_problem_number}. Exiting.")
-        return
+    # ★★★ IDリストに基づいて処理対象のデータを抽出 ★★★
+    # DataFrameの'id'列も文字列型に変換して比較を確実にする
+    all_problems_df['id'] = all_problems_df['id'].astype(str)
+    target_problems_df = all_problems_df[all_problems_df['id'].isin(target_ids)].copy()
     
-    target_problems_df = all_problems_df.iloc[start_index:end_index].copy()
+    if target_problems_df.empty:
+        print(f"⚠️ Specified IDs {target_ids} were not found in the dataset. Please check the IDs. Exiting.")
+        return
 
+    # (以降のロジックはほぼ変更なし)
     if processed_ids:
         problems_to_process_df = target_problems_df[~target_problems_df['id'].isin(processed_ids)]
     else:
         problems_to_process_df = target_problems_df
 
     if problems_to_process_df.empty:
-        print("✅ All target problems have already been processed. Nothing to do.")
+        print("✅ All specified problems have already been processed. Nothing to do.")
         return
 
     batch_results = []
     total_to_process = len(problems_to_process_df)
     
-    print(f"\n🚀 Starting upward evolution for {total_to_process} problems...")
+    # 処理対象のIDを分かりやすく表示
+    processing_id_list = problems_to_process_df['id'].tolist()
+    print(f"\n🚀 Starting upward evolution for {total_to_process} problems (IDs: {processing_id_list})...")
     print(f"💾 Results will be appended to '{output_filename}' after each problem.")
 
     for i, (index, row) in enumerate(problems_to_process_df.iterrows()):
